@@ -1,5 +1,6 @@
 'use client';
 
+import templateApi from '@/api/templateApi';
 import ButtonTemplate from '@/components/common/ButtonTemplate';
 import { useState } from 'react';
 
@@ -21,8 +22,10 @@ const TemplateComponent = () => {
     setInputValue(e.target.value);
   };
 
-  const handleClick = () => {
-    alert(inputValue);
+  const handleClick = async () => {
+    const res = await templateApi({ input: inputValue });
+
+    alert(`${res.data.input} ${res.data.value}`);
   };
 
   return (
