@@ -27,6 +27,12 @@
       }
     ],
     "@typescript-eslint/camelcase": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -35,6 +41,7 @@
         "tsx": "never"
       }
     ],
+    "import/no-cycle": "off",
     "no-console": "error"
   },
   "parser": "@typescript-eslint/parser",
