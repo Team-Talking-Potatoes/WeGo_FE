@@ -1,5 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
-import { ButtonTemplateVariants } from '@/components/common/variants/ButtonTemplateVariants';
+import { ButtonTemplateVariants } from '@/components/common/ButtonTemplate';
 
 interface ButtonTemplateProps
   extends VariantProps<typeof ButtonTemplateVariants> {

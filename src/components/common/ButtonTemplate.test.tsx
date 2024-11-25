@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ButtonTemplate from './ButtonTemplate';
+import { ButtonTemplate } from './ButtonTemplate';
 
 describe('ButtonTemplate', () => {
   it('label이 올바르게 렌더링되는지 테스트', () => {
