@@ -1,6 +1,8 @@
 message="$(cat $1)"
 requiredPattern="^(feat|fix|design|docs|style|refactor|test|conf|rename|remove):.*$"
-if ! [[ $message =~ $requiredPattern ]];
+mergePattern="^Merge (branch|pull request).*$"
+
+if ! [[ $message =~ $requiredPattern || $message =~ $mergePattern ]];
 then
   echo "=========================================================================="
   echo "======================   🚨 WRONG COMMIT MESSAGE!   ======================"
