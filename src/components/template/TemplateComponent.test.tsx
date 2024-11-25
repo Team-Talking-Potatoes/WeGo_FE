@@ -35,7 +35,6 @@ describe('TemplateComponent', () => {
     const input = screen.getByRole('textbox');
     const longText = '12345678901';
 
-    // 한 글자씩 입력하여 실제 사용자 입력을 시뮬레이션
     for (let i = 0; i < longText.length; i++) {
       fireEvent.change(input, { target: { value: longText.slice(0, i + 1) } });
     }
@@ -44,7 +43,6 @@ describe('TemplateComponent', () => {
   });
 
   it('버튼 클릭 시 alert가 호출되고 api도 정상적으로 호출되어야함.', async () => {
-    // alert 모킹이 되어있지만 실제로 호출되는지 확인하지 않고 있습니다.
     const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /click me/i });
@@ -52,12 +50,10 @@ describe('TemplateComponent', () => {
     fireEvent.change(input, { target: { value: '테스트' } });
     fireEvent.click(button);
 
-    // alert가 호출되었는지 확인이 필요합니다
     await waitFor(() => {
       expect(alertMock).toHaveBeenCalledWith('테스트 fake data test');
     });
 
-    // alert 모킹 복원
     alertMock.mockRestore();
   });
 });

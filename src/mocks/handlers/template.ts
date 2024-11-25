@@ -8,7 +8,6 @@ interface RequestBody {
 const template = [
   http.post('/api/template', async ({ request }) => {
     const body = (await request.json()) as RequestBody;
-    console.log(body);
 
     return HttpResponse.json({
       data: {
