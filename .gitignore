@@ -9,6 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+.eslintcache
 
 # testing
 /coverage
@@ -40,3 +41,10 @@ yarn-error.log*
 next-env.d.ts
 
 *storybook.log
+
+# IDE files
+.vscode/
+.idea/
+
+# cache files
+.cache/

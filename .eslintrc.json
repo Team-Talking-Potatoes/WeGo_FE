@@ -9,13 +9,13 @@
   "extends": [
     "airbnb",
     "airbnb-typescript",
-    "airbnb/hooks",
+    // "airbnb/hooks",
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "prettier",
+    // "prettier",
     "plugin:storybook/recommended"
   ],
   "rules": {
@@ -27,7 +27,14 @@
       }
     ],
     "@typescript-eslint/camelcase": "off",
-    "import/extensions": ["error", "ignorePackages"],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "no-console": "error"
   },
   "parser": "@typescript-eslint/parser",
