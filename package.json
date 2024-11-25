@@ -9,7 +9,8 @@
     "lint": "next lint",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -48,9 +49,11 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-storybook": "^0.11.1",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-fixed-jsdom": "^0.0.9",
+    "lint-staged": "^15.2.10",
     "msw": "^2.6.6",
     "postcss": "^8",
     "prettier": "^3.3.3",
@@ -63,6 +66,12 @@
   "msw": {
     "workerDirectory": [
       "public"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --list-different"
     ]
   }
 }
