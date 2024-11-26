@@ -29,6 +29,7 @@ const ButtonTemplate = ({
 }: ButtonTemplateProps) => {
   return (
     <button
+      type="button"
       className={cn(ButtonTemplateVariants({ variant, size }), {
         'bg-slate-400 hover:bg-slate-400': error,
       })}

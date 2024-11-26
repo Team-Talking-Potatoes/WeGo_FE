@@ -24,7 +24,7 @@ const TemplateComponent = () => {
 
   const handleClick = async () => {
     const res = await templateApi({ input: inputValue });
-
+    // eslint-disable-next-line no-alert
     alert(`${res.data.input} ${res.data.value} ${process.env.NODE_ENV}`);
   };
 

@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import TemplateComponent from './TemplateComponent';
 import { server } from '@/mocks/server';
+import TemplateComponent from './TemplateComponent';
 import 'whatwg-fetch';
 
 describe('TemplateComponent', () => {
