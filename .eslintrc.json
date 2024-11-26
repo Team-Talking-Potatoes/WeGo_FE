@@ -5,11 +5,16 @@
     "node": true,
     "es6": true
   },
-  "plugins": ["import", "@typescript-eslint", "react", "prettier"],
+  "plugins": [
+    "import",
+    "@typescript-eslint",
+    "react",
+    "prettier",
+    "tailwindcss"
+  ],
   "extends": [
     "airbnb",
     "airbnb-typescript",
-    // "airbnb/hooks",
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -26,7 +31,17 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
+    "react/require-default-props": "off",
+    "no-plusplus": "off",
+    "react/function-component-definition": "off",
     "@typescript-eslint/camelcase": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "arrow-body-style": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -35,7 +50,15 @@
         "tsx": "never"
       }
     ],
-    "no-console": "error"
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
+    "no-console": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/mocks/**"]
+      }
+    ]
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

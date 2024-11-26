@@ -29,7 +29,7 @@ describe('ButtonTemplate', () => {
   });
 
   it('error가 true일 때 버튼이 비활성화되는지 테스트', () => {
-    render(<ButtonTemplate label="에러 상태" error={true} />);
+    render(<ButtonTemplate label="에러 상태" error />);
 
     expect(screen.getByText('에러 상태')).toBeDisabled();
   });

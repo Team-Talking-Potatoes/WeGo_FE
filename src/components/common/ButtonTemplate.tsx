@@ -1,6 +1,5 @@
 import cn from '@/utils/cn';
-import { ButtonTemplateProps } from '@/@types/template';
-import { cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 
 const ButtonTemplateVariants = cva('rounded-md px-4 py-2 hover:bg-blue-600', {
   variants: {
@@ -12,12 +11,19 @@ const ButtonTemplateVariants = cva('rounded-md px-4 py-2 hover:bg-blue-600', {
       sm: 'text-xs',
       lg: 'text-md',
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
+  },
+  defaultVariants: {
+    variant: 'default',
+    size: 'default',
   },
 });
+
+interface Props extends VariantProps<typeof ButtonTemplateVariants> {
+  children?: React.ReactNode;
+  label?: string;
+  error?: boolean;
+  handler?: () => void;
+}
 
 const ButtonTemplate = ({
   variant,
@@ -26,9 +32,10 @@ const ButtonTemplate = ({
   label,
   error,
   handler,
-}: ButtonTemplateProps) => {
+}: Props) => {
   return (
     <button
+      type="button"
       className={cn(ButtonTemplateVariants({ variant, size }), {
         'bg-slate-400 hover:bg-slate-400': error,
       })}
