@@ -42,8 +42,7 @@ describe('TemplateComponent', () => {
     expect(input).toHaveValue('1234567890');
   });
 
-  it('버튼 클릭 시 alert가 호출되고 api도 정상적으로 호출되어야함.', async () => {
-    const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
+  it('버튼 클릭 시 div가 추가되고 api도 정상적으로 호출되어야함.', async () => {
     const input = screen.getByRole('textbox');
     const button = screen.getByRole('button', { name: /click me/i });
 
@@ -51,9 +50,7 @@ describe('TemplateComponent', () => {
     fireEvent.click(button);
 
     await waitFor(() => {
-      expect(alertMock).toHaveBeenCalledWith('테스트 fake data test');
+      expect(screen.getByText(/테스트/)).toBeInTheDocument();
     });
-
-    alertMock.mockRestore();
   });
 });

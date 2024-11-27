@@ -7,7 +7,7 @@ import { useState } from 'react';
 const TemplateComponent = () => {
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState(true);
-
+  const [text, setText] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 10) {
       return;
@@ -25,7 +25,7 @@ const TemplateComponent = () => {
   const handleClick = async () => {
     const res = await templateApi({ input: inputValue });
     // eslint-disable-next-line no-alert
-    alert(`${res.data.input} ${res.data.value} ${process.env.NODE_ENV}`);
+    setText(`${res.data.input} ${res.data.value} ${process.env.NODE_ENV}`);
   };
 
   return (
@@ -45,6 +45,7 @@ const TemplateComponent = () => {
       >
         Click me
       </ButtonTemplate>
+      <div>{text}</div>
     </div>
   );
 };
