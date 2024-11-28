@@ -12,7 +12,7 @@ export default {
         foreground: 'var(--foreground)',
       },
       fontFamily: {
-        pretendard: ['PretendardVariable', 'sans-serif'],
+        pretendard: ['var(--font-pretendard)', 'sans-serif'],
       },
     },
   },

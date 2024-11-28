@@ -1,7 +1,15 @@
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import '@/globals.css';
 import { MswComponent } from '@/mocks/msw.component';
 import QueryProviders from '@/utils/queryProvider';
+
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +23,7 @@ const RootLayout = async ({
 }>) => {
   return (
     <html lang="ko">
-      <body className="font-pretendard antialiased">
+      <body className={`${pretendard.variable} antialiased`}>
         <MswComponent />
         <QueryProviders>{children}</QueryProviders>
       </body>
