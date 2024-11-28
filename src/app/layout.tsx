@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '@/globals.css';
 import { MswComponent } from '@/mocks/msw.component';
+import QueryProviders from '@/utils/queryProvider';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -24,7 +25,7 @@ const RootLayout = async ({
     <html lang="ko">
       <body className={`${pretendard.variable} antialiased`}>
         <MswComponent />
-        {children}
+        <QueryProviders>{children}</QueryProviders>
       </body>
     </html>
   );
