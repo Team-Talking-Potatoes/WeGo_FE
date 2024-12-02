@@ -14,7 +14,7 @@ const TravelCard = ({
 }: Travel & { formattedStartDate: string }) => {
   return (
     <article className="flex gap-4">
-      <div className="h-[120px] w-[100px]">
+      <div className="h-[120px] w-[100px] flex-shrink-0">
         <Image
           src="/test2.png"
           alt=""
@@ -28,7 +28,7 @@ const TravelCard = ({
           <div className="w-fit rounded-[20px] bg-blue-100 px-[6px] py-[3px] text-[10px] font-semibold text-[#2563EB]">
             {isDomestic ? '국내여행' : '해외여행'}
           </div>
-          <div className="font-bold">{travelName}</div>
+          <div className="line-clamp-2 font-bold">{travelName}</div>
         </div>
         <div className="flex items-center gap-[6px] text-[#878A92]">
           <div className="flex items-center gap-[2px] after:ml-[6px] after:text-[#E0E0E2] after:content-['|']">
