@@ -2,6 +2,16 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PasswordInput from './PasswordInput';
 
+jest.mock('@/assets/pw_open.svg', () => {
+  const MockedIcon = () => <div>pw-open-icon</div>;
+  return MockedIcon;
+});
+
+jest.mock('@/assets/pw_close.svg', () => {
+  const MockedIcon = () => <div>pw-close-icon</div>;
+  return MockedIcon;
+});
+
 describe('PasswordInput', () => {
   const placeholder = '비밀번호를 입력해주세요.';
 
