@@ -16,6 +16,9 @@ const preview: Preview = {
     msw: {
       handlers,
     },
+    nextjs: {
+      appDirectory: true,
+    },
   },
   loaders: [mswLoader],
 };
