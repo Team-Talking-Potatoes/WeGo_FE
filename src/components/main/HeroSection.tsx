@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import React from 'react';
 
-const HeroSection = () => {
+const HeroSection = ({ imageSrc }: { imageSrc?: string }) => {
   return (
     <section className="flex h-[440px] items-center justify-center pt-20">
       <Image
-        src="/test.png"
-        alt="사람들이 다리를 건너는 모습, '함께 떠나는 여행코스. 지금 제일 인기 있는 여행모임을 만나보세요.'라는 문구가 포함된 이미지"
+        src={imageSrc || '/test.png'}
+        alt="파리의 다리를 건너는 사람들 모습과 여행 모임 홍보 문구"
         width={335}
         height={360}
         className="rounded-lg"
