@@ -1,7 +1,10 @@
 import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
+import PwOpen from '@/assets/pw_open.svg';
+import PwClose from '@/assets/pw_close.svg';
+import { useState } from 'react';
 
-const TextInputVariants = cva(
+const PasswordInputVariants = cva(
   'mt-[6px] rounded-md border border-[#e0e0e2] p-2 mx-auto outline-none h-11 text-xs focus:border-[#222] p-4',
   {
     variants: {
@@ -15,7 +18,7 @@ const TextInputVariants = cva(
   },
 );
 
-interface Props extends VariantProps<typeof TextInputVariants> {
+interface Props extends VariantProps<typeof PasswordInputVariants> {
   name: string;
   value: string;
   placeholder?: string;
@@ -24,7 +27,7 @@ interface Props extends VariantProps<typeof TextInputVariants> {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput = ({
+const PasswordInput = ({
   name,
   value,
   placeholder,
@@ -33,18 +36,39 @@ const TextInput = ({
   classNameCondition,
   onChange,
 }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const clickButton = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <input
-      type="password"
-      name={name}
-      value={value}
-      spellCheck="false"
-      maxLength={15}
-      placeholder={placeholder}
-      className={cn(TextInputVariants({ size, className }), classNameCondition)}
-      onChange={onChange}
-    />
+    <div className="relative">
+      <input
+        type={isOpen ? 'text' : 'password'}
+        name={name}
+        value={value}
+        spellCheck="false"
+        maxLength={15}
+        placeholder={placeholder}
+        className={cn(
+          PasswordInputVariants({ size, className }),
+          classNameCondition,
+        )}
+        onChange={onChange}
+      />
+      <button
+        type="button"
+        className="absolute right-[13px] top-[19px]"
+        onClick={clickButton}
+      >
+        {isOpen ? (
+          <PwClose width={20} height={20} />
+        ) : (
+          <PwOpen width={20} height={20} />
+        )}
+      </button>
+    </div>
   );
 };
 
-export default TextInput;
+export default PasswordInput;
