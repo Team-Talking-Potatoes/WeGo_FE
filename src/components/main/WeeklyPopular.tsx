@@ -29,7 +29,7 @@ function WeeklyPopular({ travelList }: Props) {
           </div>
           <Link
             href="/"
-            className="flex h-[20px] items-center justify-center gap-[2px] text-[#222222]"
+            className="flex h-5 items-center justify-center gap-0.5 text-[#222222]"
           >
             <div className="text-xs font-semibold">MORE</div>
             <Plus width={14} height={14} />
