@@ -18,11 +18,11 @@ interface ColorBoxProps {
 const ColorBox = ({ colorClass, label, hexCode }: ColorBoxProps) => (
   <div className="flex flex-col items-center gap-2">
     <div
-      className={`h-20 w-20 rounded-lg ${colorClass} border-line-normal flex items-center justify-center border`}
+      className={`h-20 w-20 rounded-lg ${colorClass} flex items-center justify-center border border-line-normal`}
     />
     <div className="text-center">
       <p className="text-sm font-medium">{label}</p>
-      <p className="text-label-alternative text-xs">{hexCode}</p>
+      <p className="text-xs text-label-alternative">{hexCode}</p>
     </div>
   </div>
 );
