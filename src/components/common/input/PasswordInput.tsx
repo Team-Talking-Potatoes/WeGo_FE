@@ -62,9 +62,9 @@ const PasswordInput = ({
         onClick={clickButton}
       >
         {isOpen ? (
-          <PwClose width={20} height={20} />
-        ) : (
           <PwOpen width={20} height={20} />
+        ) : (
+          <PwClose width={20} height={20} />
         )}
       </button>
     </div>
