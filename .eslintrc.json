@@ -37,6 +37,7 @@
     "no-plusplus": "off",
     "react/function-component-definition": "off",
     "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": [
       "error",
       {
