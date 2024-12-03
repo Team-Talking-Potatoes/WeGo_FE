@@ -27,13 +27,12 @@ function WeeklyPopular({ travelList }: Props) {
           <div className="text-2xl font-extrabold text-[#222222]">
             이번주 인기 여행모임
           </div>
-          <Link href="/">
-            <div className="flex h-[20px] items-center justify-center gap-[2px] text-[#222222]">
-              <div className="text-xs font-semibold">MORE</div>
-              <div>
-                <Plus width={14} height={14} />
-              </div>
-            </div>
+          <Link
+            href="/"
+            className="flex h-[20px] items-center justify-center gap-[2px] text-[#222222]"
+          >
+            <div className="text-xs font-semibold">MORE</div>
+            <Plus width={14} height={14} />
           </Link>
         </div>
         <div className="text-sm font-medium text-[#878A92]">
