@@ -32,7 +32,7 @@ const TravelCard = ({
           </div>
           <div className="line-clamp-2 font-bold">{travelName}</div>
         </div>
-        <div className="flex items-center gap-[6px] text-[#878A92]">
+        <div className="flex items-center gap-[6px] text-xs font-semibold text-[#878A92]">
           <div className="flex items-center gap-[2px] after:ml-[6px] after:text-[#E0E0E2] after:content-['|']">
             <Location />
             {travelLocation}
@@ -41,7 +41,7 @@ const TravelCard = ({
             <Multiple />
             {`${currentParticipant}/${maxParticipant}`}
           </div>
-          <div>{formattedStartDate}</div>
+          <div className="">{formattedStartDate}</div>
         </div>
         <div className="relative h-[6px] overflow-hidden rounded-[10px] bg-gray-200">
           <div
