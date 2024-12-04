@@ -3,7 +3,7 @@ import Location from '@/assets/input_location.svg';
 import { TextInputWithLabel } from './TextInputWithLabel';
 
 const meta = {
-  title: 'Components/Common/TextInputWithLabel',
+  title: 'Components/InputWithLabel/TextInputWithLabel',
   component: TextInputWithLabel,
   parameters: {
     layout: 'centered',

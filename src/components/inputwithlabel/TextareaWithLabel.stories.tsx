@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import TextareaWithLabel from './TextareaWithLabel';
 
 const meta = {
-  title: 'Components/Common/TextareaWithLabel',
+  title: 'Components/InputWithLabel/TextareaWithLabel',
   component: TextareaWithLabel,
   parameters: {
     layout: 'centered',
