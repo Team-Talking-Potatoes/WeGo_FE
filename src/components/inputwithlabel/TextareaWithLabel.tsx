@@ -1,7 +1,7 @@
 import Textarea from '@/components/common/textarea/Textarea';
 import cn from '@/utils/cn';
 import { VariantProps } from 'class-variance-authority';
-import { LabelVariants } from '@/components/common/input/TextInputWithLabel';
+import { LabelVariants } from '@/components/inputwithlabel/TextInputWithLabel';
 
 interface Props extends VariantProps<typeof LabelVariants> {
   label: string;

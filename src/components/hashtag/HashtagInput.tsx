@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { TextInputWithLabel } from '@/components/common/input/TextInputWithLabel';
+import { TextInputWithLabel } from '@/components/inputwithlabel/TextInputWithLabel';
 import { Button } from '@/components/common/button/Button';
 
 interface Props {
