@@ -18,19 +18,19 @@ const MainNavigation = () => {
         href="/reviews"
         icon={<Start />}
         label="여행리뷰"
-        isActive={pathname === '/reviews'}
+        isActive={pathname !== '/'}
       />
       <NavLink
         href="/find"
         icon={<Find />}
         label="여행찾기"
-        isActive={pathname === '/find'}
+        isActive={pathname !== '/'}
       />
       <NavLink
         href="/bookmarks"
         icon={<Bookmark />}
         label="체크한 여행"
-        isActive={pathname === '/bookmarks'}
+        isActive={pathname !== '/'}
       />
       <NavLink
         href="/"
