@@ -4,7 +4,7 @@ import travelList from '@/mocks/travel/travelList.json';
 import ReviewListSection from '@/components/main/ReviewListSection';
 import reviewList from '@/mocks/review/reviewList.json';
 import userList from '@/mocks/user/popularUser.json';
-import Userpopular from '@/components/main/Userpopular';
+import UserPopular from '@/components/main/Userpopular';
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
       <HeroSection />
       <WeeklyPopular travelList={travelList} />
       <ReviewListSection reviewList={reviewList} />
-      <Userpopular userList={userList} />
+      <UserPopular userList={userList} />
     </main>
   );
 };

@@ -17,9 +17,9 @@ const ReviewListSection = ({ reviewList }: Props) => {
   return (
     <section className="flex flex-col justify-start gap-5 bg-black py-10 pl-5">
       <header>
-        <div className="text-2xl font-extrabold text-white">
+        <h2 className="pb-[6px] text-2xl font-extrabold text-white">
           여행리뷰 모아보기
-        </div>
+        </h2>
         <p className="text-label-alternative">
           다양한 여행모임 후기들을 한눈에 확인해요!
         </p>

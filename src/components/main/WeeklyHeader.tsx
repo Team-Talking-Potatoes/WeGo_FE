@@ -4,7 +4,7 @@ import Plus from '@/assets/plus.svg';
 const WeeklyHeader = ({ month, week }: { month: number; week: number }) => (
   <header className="flex flex-col gap-[6px]">
     <div className="flex justify-between">
-      <h2 className="text-2xl font-extrabold text-label-normal">
+      <h2 className="pb-[6px] text-2xl font-extrabold text-label-normal">
         이번주 인기 여행모임
       </h2>
       <Link
