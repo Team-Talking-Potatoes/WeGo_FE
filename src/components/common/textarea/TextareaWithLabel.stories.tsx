@@ -36,8 +36,19 @@ export const SmallSize: Story = {
 export const HiddenLabel: Story = {
   args: {
     label: '숨겨진 레이블',
-    srOnly: true,
+    state: 'srOnly',
     name: 'hiddenLabel',
+    value: '',
+    placeholder: '내용을 입력해주세요',
+    size: 'default',
+  },
+};
+
+export const RequiredLabel: Story = {
+  args: {
+    label: '필수 레이블',
+    state: 'required',
+    name: 'RequiredLabel',
     value: '',
     placeholder: '내용을 입력해주세요',
     size: 'default',
