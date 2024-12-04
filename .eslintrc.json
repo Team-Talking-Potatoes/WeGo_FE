@@ -62,6 +62,12 @@
         "devDependencies": true
         // "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/mocks/**"]
       }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "assert": "htmlFor"
+      }
     ]
   },
   "parser": "@typescript-eslint/parser",
