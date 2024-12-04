@@ -1,19 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ImageUploadButton from './ImageUploadButton';
 import ImagePreview from './ImagePreview';
 
 const ImageUploader = () => {
   const [image, setImage] = useState<string | null>(null);
+  const objectUrlRef = useRef<string | null>(null);
 
   const handleImageChange = (imageUrl: string) => {
+    if (objectUrlRef.current) {
+      URL.revokeObjectURL(objectUrlRef.current);
+    }
+    objectUrlRef.current = imageUrl;
     setImage(imageUrl);
   };
 
   const handleRemoveImage = () => {
+    if (objectUrlRef.current) {
+      URL.revokeObjectURL(objectUrlRef.current);
+      objectUrlRef.current = null;
+    }
     setImage(null);
   };
+
+  useEffect(() => {
+    return () => {
+      if (objectUrlRef.current) {
+        URL.revokeObjectURL(objectUrlRef.current);
+      }
+    };
+  }, []);
 
   const id = 'image';
   return (
