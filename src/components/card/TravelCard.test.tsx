@@ -12,6 +12,7 @@ describe('TravelCard', () => {
         travelLocation="충남 부여"
         maxParticipant={6}
         currentParticipant={1}
+        startDate="12/3"
         formattedStartDate="12/03"
       />,
     );
