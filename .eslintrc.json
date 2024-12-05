@@ -55,7 +55,7 @@
     ],
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
-    "no-console": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/no-extraneous-dependencies": [
       "error",
       {
