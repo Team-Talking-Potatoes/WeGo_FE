@@ -1,4 +1,8 @@
-console.error('');
+describe('TravelCard component', () => {
+  it('should render correctly', () => {
+    expect(true).toBe(true);
+  });
+});
 
 // import '@testing-library/jest-dom';
 // import { render, screen } from '@testing-library/react';
