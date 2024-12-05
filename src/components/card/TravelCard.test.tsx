@@ -6,6 +6,7 @@ describe('TravelCard', () => {
   it('사용자 프로필 정보를 렌더링합니다', () => {
     render(
       <TravelCard
+        travelId={12}
         isDomestic
         travelName="부여로 떠나는 다함께 시골투어"
         travelLocation="충남 부여"
