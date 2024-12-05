@@ -3,6 +3,8 @@ import { useCallback, memo, useState, useEffect } from 'react';
 import { Button } from '@/components/common/button/Button';
 import formatTimeToMMSS from '@/utils/formatTimeToMMSS';
 import { AUTH_SUCCESS_MESSAGE } from '@/constants/auth';
+import useSendMail from '@/queries/auth/useSendMail';
+import useCheckMail from '@/queries/auth/useCheckMail';
 import AuthText from './AuthText';
 
 interface PropsState {
@@ -18,7 +20,7 @@ interface Props {
   emailCode: PropsState;
   isEmailCertified: boolean;
   setIsEmailCertified: (isEmailCertified: boolean) => void;
-  // setCertifiedToken: (certifiedToken: string) => void;
+  setCertifiedToken: (certifiedToken: string) => void;
 }
 
 const AuthEmailCertification = memo(
@@ -27,10 +29,35 @@ const AuthEmailCertification = memo(
     emailCode,
     isEmailCertified,
     setIsEmailCertified,
-    // setCertifiedToken,
+    setCertifiedToken,
   }: Props) => {
-    const [due, setDue] = useState(10);
+    const [due, setDue] = useState(0);
     const [viewEmailCode, setViewEmailCode] = useState(false);
+
+    const { mutate: sendMail } = useSendMail(() => {
+      if (!viewEmailCode) {
+        setViewEmailCode(true);
+      }
+      setDue(300);
+      emailCode.setIsValid(false);
+      emailCode.setValue('');
+    });
+
+    const { mutate: checkMail } = useCheckMail((token: string) => {
+      setIsEmailCertified(true);
+      setCertifiedToken(token);
+    });
+
+    const handleVerifyClick = useCallback(() => {
+      sendMail({ email: email.value });
+    }, [email.value, sendMail]);
+
+    const handleConfirmClick = useCallback(() => {
+      checkMail({
+        email: email.value,
+        emailCode: Number(emailCode.value),
+      });
+    }, [email.value, emailCode.value, checkMail]);
 
     useEffect(() => {
       if (!viewEmailCode || due === 0) return () => {};
@@ -45,23 +72,6 @@ const AuthEmailCertification = memo(
 
       return () => clearInterval(timer);
     }, [due, viewEmailCode]);
-
-    const handleVerifyClick = useCallback(() => {
-      // TODO: 인증 요청 로직 추가
-      if (!viewEmailCode) {
-        setViewEmailCode(true);
-      }
-
-      setDue(300);
-      emailCode.setIsValid(false);
-      emailCode.setValue('');
-    }, [emailCode, viewEmailCode]);
-
-    const handleConfirmClick = useCallback(() => {
-      // TODO: 인증 확인 로직 추가
-
-      setIsEmailCertified(true);
-    }, [setIsEmailCertified]);
 
     return (
       <div className="relative">

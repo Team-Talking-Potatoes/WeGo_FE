@@ -16,6 +16,7 @@ interface SignupRequestBody {
   nickname: string;
   birthDate: string;
   contact: string;
+  verifiedToken: string;
 }
 
 const signup = [
@@ -37,7 +38,6 @@ const signup = [
       return HttpResponse.json(
         {
           message: 'Email sent',
-          token: 'msw-token',
         },
         { status: 200 },
       );
@@ -46,16 +46,21 @@ const signup = [
 
   /* ------------------------------- 이메일 인증코드 확인 ------------------------------ */
   http.post<PathParams>(
-    `/api/auth/mail-check?emailCode=${FAKE_EMAIL_CODE}`,
+    `/api/auth/mail-check?verifyNumber=${FAKE_EMAIL_CODE}`,
     async ({ request }) => {
       const url = new URL(request.url);
-      const emailCode = url.searchParams.get('emailCode');
+      const emailCode = url.searchParams.get('verifyNumber');
 
       // 이메일 인증코드 확인 실패
-      if (emailCode !== FAKE_EMAIL_CODE.toString()) {
+      if (Number(emailCode) !== FAKE_EMAIL_CODE) {
         return HttpResponse.json(
-          { message: 'Invalid email code' },
-          { status: 400 },
+          {
+            message: 'Invalid email code',
+            fakeCode: FAKE_EMAIL_CODE,
+          },
+          {
+            status: 400,
+          },
         );
       }
 
@@ -72,42 +77,42 @@ const signup = [
 
   /* -------------------------------- 회원 가입 요청 -------------------------------- */
   http.post<SignupRequestBody, PathParams>(
-    `/api/auth/sign-up?verifiedToken=${FAKE_VERIFIED_TOKEN}`,
+    `/api/auth/sign-up`,
     async ({ request }) => {
-      const { email, password, name, nickname, birthDate, contact } =
-        await request.json();
-
-      // 회원 가입 실패
-      if (email === FAKE_USER_EMAIL) {
-        return HttpResponse.json(
-          {
-            message: 'Email already exists',
-          },
-          { status: 400 },
-        );
-      }
+      const {
+        email,
+        password,
+        name,
+        nickname,
+        birthDate,
+        contact,
+        verifiedToken,
+      } = await request.json();
 
       // 회원 가입 성공
-      return HttpResponse.json(
-        {
-          message: 'Sign up successful',
-          signupForm: {
-            email,
-            password,
-            name,
-            nickname,
-            birthDate,
-            contact,
-            verifiedToken: FAKE_VERIFIED_TOKEN,
+      if (
+        email &&
+        password &&
+        name &&
+        nickname &&
+        birthDate &&
+        contact &&
+        verifiedToken
+      ) {
+        return HttpResponse.json(
+          {
+            message: 'Sign up successful',
           },
-        },
-        {
-          status: 200,
-          headers: {
-            'Set-Cookie': 'access-token=msw-access, refresh-token=msw-refresh',
+          {
+            status: 200,
+            headers: {
+              'Set-Cookie':
+                'access-token=msw-access, refresh-token=msw-refresh',
+            },
           },
-        },
-      );
+        );
+      }
+      return HttpResponse.json({ message: 'Sign up failed' }, { status: 400 });
     },
   ),
 ];

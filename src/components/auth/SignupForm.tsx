@@ -5,13 +5,13 @@ import useAuthInput from '@/hooks/useAuthInput';
 import { Button } from '@/components/common/button/Button';
 import { useEffect, useState } from 'react';
 import validate from '@/utils/validateAuthInput';
+import useSignup from '@/queries/auth/useSignup';
 import AuthPassword from './input/AuthPassword';
 import AuthEmailCertification from './input/AuthEmailCertification';
 
 const SignupForm = () => {
   const [isEmailCertified, setIsEmailCertified] = useState(false);
-  // const [certifiedToken, setCertifiedToken] = useState('');
-
+  const [certifiedToken, setCertifiedToken] = useState('');
   const email = useAuthInput({ name: 'email' });
   const emailCode = useAuthInput({ name: 'emailCode' });
   const password = useAuthInput({ name: 'password' });
@@ -23,6 +23,7 @@ const SignupForm = () => {
   const nickname = useAuthInput({ name: 'nickname' });
   const birthDate = useAuthInput({ name: 'birthDate' });
   const contact = useAuthInput({ name: 'contact' });
+  const { mutate: signup } = useSignup();
 
   const isFormValid = () => {
     return (
@@ -36,17 +37,20 @@ const SignupForm = () => {
     );
   };
 
-  const handleEmailCertified = () => {
-    // const requestBody = {
-    //   certifiedToken,
-    //   email: email.value,
-    //   password: password.value,
-    //   name: name.value,
-    //   nickname: nickname.value,
-    //   birthDate: birthDate.value,
-    //   contact: contact.value,
-    // };
-    // 회원가입 form 제출 요청
+  const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const requestBody = {
+      verifiedToken: certifiedToken,
+      email: email.value,
+      password: password.value,
+      name: name.value,
+      nickname: nickname.value,
+      birthDate: Number(birthDate.value),
+      contact: contact.value,
+    };
+
+    signup(requestBody);
   };
 
   useEffect(() => {
@@ -62,13 +66,13 @@ const SignupForm = () => {
   }, [password.value, passwordConfirm]);
 
   return (
-    <form className="w-full">
+    <form onSubmit={handleSignup} className="w-full">
       <AuthEmailCertification
         email={email}
         emailCode={emailCode}
         isEmailCertified={isEmailCertified}
         setIsEmailCertified={setIsEmailCertified}
-        // setCertifiedToken={setCertifiedToken}
+        setCertifiedToken={setCertifiedToken}
       />
 
       <AuthPassword
@@ -129,9 +133,9 @@ const SignupForm = () => {
 
       <Button
         label="회원가입"
+        type="submit"
         className="mt-9"
         disabled={!isFormValid()}
-        handler={handleEmailCertified}
       />
     </form>
   );
