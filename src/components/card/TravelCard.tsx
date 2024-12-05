@@ -1,11 +1,9 @@
 import Image from 'next/image';
-// import Location from '@/assets/location.svg';
-// import Multiple from '@/assets/multiple.svg';
+import Location from '@/assets/location.svg';
+import Multiple from '@/assets/multiple.svg';
 import { Travel } from '@/@types/travel';
 import { useMemo } from 'react';
 import Link from 'next/link';
-// import Location from '../../assets/location.svg';
-import Multiple from '../../assets/multiple.svg';
 
 const TravelCard = ({
   // travelId,
@@ -44,7 +42,7 @@ const TravelCard = ({
         </div>
         <div className="flex items-center gap-[6px] text-xs font-semibold text-label-alternative">
           <div className={iconAndText}>
-            {/* <Location /> */}
+            <Location />
             {travelLocation}
           </div>
           <div className={iconAndText}>
