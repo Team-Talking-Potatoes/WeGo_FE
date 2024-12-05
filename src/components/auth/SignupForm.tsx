@@ -3,10 +3,16 @@
 import AuthText from '@/components/auth/input/AuthText';
 import useAuthInput from '@/hooks/useAuthInput';
 import { Button } from '@/components/common/button/Button';
+import { useState } from 'react';
 import AuthPassword from './input/AuthPassword';
-import AuthEmailSert from './input/AuthEmailSert';
+import AuthEmailCertification from './input/AuthEmailCertification';
 
 const SignupForm = () => {
+  const [isEmailCertified, setIsEmailCertified] = useState(false);
+  // const [certifiedToken, setCertifiedToken] = useState('');
+
+  const email = useAuthInput({ name: 'email' });
+  const emailCode = useAuthInput({ name: 'emailCode' });
   const password = useAuthInput({ name: 'password' });
   const passwordConfirm = useAuthInput({
     name: 'passwordConfirm',
@@ -16,9 +22,41 @@ const SignupForm = () => {
   const nickname = useAuthInput({ name: 'nickname' });
   const birthDate = useAuthInput({ name: 'birthDate' });
   const contact = useAuthInput({ name: 'contact' });
+
+  const isFormValid = () => {
+    return (
+      isEmailCertified &&
+      password.isValid &&
+      passwordConfirm.isValid &&
+      name.isValid &&
+      nickname.isValid &&
+      contact.isValid &&
+      birthDate.isValid
+    );
+  };
+
+  const handleEmailCertified = () => {
+    // const requestBody = {
+    //   certifiedToken,
+    //   email: email.value,
+    //   password: password.value,
+    //   name: name.value,
+    //   nickname: nickname.value,
+    //   birthDate: birthDate.value,
+    //   contact: contact.value,
+    // };
+    // 회원가입 form 제출 요청
+  };
+
   return (
     <form className="w-full">
-      <AuthEmailSert />
+      <AuthEmailCertification
+        email={email}
+        emailCode={emailCode}
+        isEmailCertified={isEmailCertified}
+        setIsEmailCertified={setIsEmailCertified}
+        // setCertifiedToken={setCertifiedToken}
+      />
 
       <AuthPassword
         name="password"
@@ -76,7 +114,12 @@ const SignupForm = () => {
         className="mb-6"
       />
 
-      <Button label="회원가입" className="mt-9" />
+      <Button
+        label="회원가입"
+        className="mt-9"
+        disabled={!isFormValid()}
+        handler={handleEmailCertified}
+      />
     </form>
   );
 };
