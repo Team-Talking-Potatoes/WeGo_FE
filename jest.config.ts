@@ -14,6 +14,11 @@ const config: Config = {
   testEnvironmentOptions: {
     customExportConditions: [''],
   },
+  moduleNameMapper: {
+    // '\\.svg': '<rootDir>/src/mocks/svg.js',
+    '\\.svg': '<rootDir>/__mocks__/svg.js',
+    // '\\.svg$': '<rootDir>/__mocks__/svg.js',
+  },
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
