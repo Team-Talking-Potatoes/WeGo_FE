@@ -2,7 +2,9 @@ import { Travel } from '@/@types/travel';
 
 export const fetchPopularTravel = async (): Promise<Travel[]> => {
   try {
-    const response = await fetch('/travles/popular', { cache: 'force-cache' });
+    const response = await fetch('/api/travles/popular', {
+      cache: 'force-cache',
+    });
     if (!response.ok) {
       throw new Error(
         `Server error: ${response.status} ${response.statusText}`,
