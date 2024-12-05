@@ -3,7 +3,8 @@
 import AuthText from '@/components/auth/input/AuthText';
 import useAuthInput from '@/hooks/useAuthInput';
 import { Button } from '@/components/common/button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import validate from '@/utils/validateAuthInput';
 import AuthPassword from './input/AuthPassword';
 import AuthEmailCertification from './input/AuthEmailCertification';
 
@@ -47,6 +48,18 @@ const SignupForm = () => {
     // };
     // 회원가입 form 제출 요청
   };
+
+  useEffect(() => {
+    if (passwordConfirm.value) {
+      passwordConfirm.setIsValid(
+        validate({
+          name: 'passwordConfirm',
+          value: passwordConfirm.value,
+          password: password.value,
+        }),
+      );
+    }
+  }, [password.value, passwordConfirm]);
 
   return (
     <form className="w-full">
