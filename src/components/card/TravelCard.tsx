@@ -13,7 +13,7 @@ const TravelCard = ({
   maxParticipant,
   currentParticipant,
   formattedStartDate,
-}: Omit<Travel, 'startDate'>) => {
+}: Travel) => {
   const progressRate = useMemo(
     () => Math.round((currentParticipant / maxParticipant) * 100),
     [currentParticipant, maxParticipant],
