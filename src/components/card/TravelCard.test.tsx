@@ -1,3 +1,5 @@
+console.error('');
+
 // import '@testing-library/jest-dom';
 // import { render, screen } from '@testing-library/react';
 // import TravelCard from './TravelCard';
