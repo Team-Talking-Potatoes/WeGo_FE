@@ -2,7 +2,9 @@ import { UserList } from '@/@types/user';
 
 export const fetchPopularUser = async (): Promise<UserList[]> => {
   try {
-    const response = await fetch('/users/popular', { cache: 'force-cache' });
+    const response = await fetch('/api/users/popular', {
+      cache: 'force-cache',
+    });
     if (!response.ok) {
       throw new Error(
         `Server error: ${response.status} ${response.statusText}`,
