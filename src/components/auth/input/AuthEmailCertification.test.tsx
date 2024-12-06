@@ -7,8 +7,10 @@ import {
   AUTH_PLACEHOLDER,
   AUTH_SUCCESS_MESSAGE,
 } from '@/constants/auth';
+import { useState } from 'react';
+import { FAKE_EMAIL_CODE } from '@/mocks/data/auth';
 import AuthEmailCertification from './AuthEmailCertification';
-// QueryClient 설정
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -224,57 +226,60 @@ describe('AuthEmailCertification', () => {
   //   });
   // });
 
-  // it('이메일 인증 완료 시 입력 필드들이 비활성화되어야 한다', async () => {
-  //   const TestComponent = () => {
-  //     const [isEmailCertified, setIsEmailCertified] = useState(false);
+  it('이메일 인증 완료 시 입력 필드들이 비활성화되어야 한다', async () => {
+    const TestComponent = () => {
+      const [isEmailCertified, setIsEmailCertified] = useState(false);
 
-  //     return (
-  //       <AuthEmailCertification
-  //         email={{
-  //           value: 'test@example.com',
-  //           isValid: true,
-  //           setValue: jest.fn(),
-  //           setIsValid: jest.fn(),
-  //           handleChange: jest.fn(),
-  //         }}
-  //         emailCode={{
-  //           value: String(FAKE_EMAIL_CODE),
-  //           isValid: true,
-  //           setValue: jest.fn(),
-  //           setIsValid: jest.fn(),
-  //           handleChange: jest.fn(),
-  //         }}
-  //         isEmailCertified={isEmailCertified}
-  //         setIsEmailCertified={setIsEmailCertified}
-  //         setCertifiedToken={jest.fn()}
-  //       />
-  //     );
-  //   };
-  //   const mockResponse = jest.spyOn(global, 'fetch');
+      return (
+        <AuthEmailCertification
+          email={{
+            value: 'test@example.com',
+            isValid: true,
+            setValue: jest.fn(),
+            setIsValid: jest.fn(),
+            handleChange: jest.fn(),
+          }}
+          emailCode={{
+            value: String(FAKE_EMAIL_CODE),
+            isValid: true,
+            setValue: jest.fn(),
+            setIsValid: jest.fn(),
+            handleChange: jest.fn(),
+          }}
+          isEmailCertified={isEmailCertified}
+          setIsEmailCertified={setIsEmailCertified}
+          setCertifiedToken={jest.fn()}
+        />
+      );
+    };
+    renderWithClient(<TestComponent />);
 
-  //   renderWithClient(<TestComponent />);
+    const verifyButton = screen.getByRole('button', { name: '인증' });
+    fireEvent.click(verifyButton);
 
-  //   const verifyButton = screen.getByRole('button', { name: '인증' });
-  //   fireEvent.click(verifyButton);
+    await waitFor(() => {
+      const codeInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode);
+      expect(codeInput).toBeInTheDocument();
+    });
 
-  //   await waitFor(() => {
-  //     const codeInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode);
-  //     expect(codeInput).toBeInTheDocument();
-  //   });
+    const confirmButton = await screen.findByRole('button', { name: '확인' });
 
-  //   const confirmButton = screen.getByRole('button', { name: '확인' });
-  //   fireEvent.click(confirmButton);
+    await waitFor(() => {
+      expect(confirmButton).toBeEnabled();
+    });
 
-  //   await waitFor(() => {
-  //     const emailInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.email);
-  //     const codeInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode);
+    fireEvent.click(confirmButton);
 
-  //     expect(emailInput).toBeDisabled();
-  //     expect(codeInput).toBeDisabled();
-  //     // expect(verifyButton).toBeDisabled();
-  //     // expect(confirmButton).toBeDisabled();
-  //   });
-  // });
+    await waitFor(() => {
+      const emailInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.email);
+      const codeInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode);
+
+      expect(emailInput).toBeDisabled();
+      expect(codeInput).toBeDisabled();
+      expect(verifyButton).toBeDisabled();
+      expect(confirmButton).toBeDisabled();
+    });
+  });
 
   it('재전송 버튼 클릭 시 타이머가 리셋되어야 한다', async () => {
     renderWithClient(
@@ -299,7 +304,6 @@ describe('AuthEmailCertification', () => {
       />,
     );
 
-    // 첫 인증 버튼 클릭
     const verifyButton = screen.getByRole('button', { name: '인증' });
     fireEvent.click(verifyButton);
 
@@ -308,7 +312,6 @@ describe('AuthEmailCertification', () => {
       fireEvent.click(resendButton);
     });
 
-    // 타이머가 리셋되어 다시 5분으로 설정되어야 함
     await waitFor(() => {
       expect(screen.getByText('05:00')).toBeInTheDocument();
     });
