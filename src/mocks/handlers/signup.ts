@@ -3,7 +3,7 @@ import {
   FAKE_EMAIL_CODE,
   FAKE_USER_EMAIL,
   FAKE_VERIFIED_TOKEN,
-} from '@/mocks/data/auth';
+} from '@/mocks/data/auth/auth';
 
 interface MailSendRequestBody {
   email: string;

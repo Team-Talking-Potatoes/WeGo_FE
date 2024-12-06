@@ -8,7 +8,7 @@ import {
   AUTH_SUCCESS_MESSAGE,
 } from '@/constants/auth';
 import { useState } from 'react';
-import { FAKE_EMAIL_CODE } from '@/mocks/data/auth';
+import { FAKE_EMAIL_CODE } from '@/mocks/data/auth/auth';
 import AuthEmailCertification from './AuthEmailCertification';
 
 const queryClient = new QueryClient({

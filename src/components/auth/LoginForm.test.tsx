@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { server } from '@/mocks/server';
 import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { FAKE_USER_EMAIL, FAKE_USER_PASSWORD } from '@/mocks/data/auth';
+import { FAKE_USER_EMAIL, FAKE_USER_PASSWORD } from '@/mocks/data/auth/auth';
 import { AUTH_ERROR_MESSAGE, AUTH_PLACEHOLDER } from '@/constants/auth';
 import LoginForm from './LoginForm';
 
