@@ -1,11 +1,9 @@
 import { http, HttpResponse } from 'msw';
-import travelList from '@/mocks/travel/travelList.json';
+import travelList from '@/mocks/data/travel/travelList.json';
 
 const popularTravel = [
-  http.get('/api/travles/popular', async () => {
-    return HttpResponse.json({
-      data: travelList,
-    });
+  http.get('/api/travels/popular', async () => {
+    return HttpResponse.json(travelList);
   }),
 ];
 
