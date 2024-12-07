@@ -51,6 +51,9 @@ export default {
       fontFamily: {
         pretendard: ['var(--font-pretendard)', 'sans-serif'],
       },
+      borderWidth: {
+        '0.5': '0.563px',
+      },
     },
   },
   plugins: [
