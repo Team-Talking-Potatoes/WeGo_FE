@@ -31,41 +31,39 @@ const UserPassword = () => {
   };
 
   return (
-    <div>
-      <div className="mx-auto mt-6 flex max-w-[335px] justify-center">
-        <form onSubmit={handleSubmit} className="w-full">
-          <AuthPassword
-            name="currentPassword"
-            value={currentPassword.value}
-            isValid={currentPassword.isValid}
-            important
-            onChange={currentPassword.handleChange}
-          />
+    <div className="mx-auto mt-6 flex max-w-[335px] justify-center">
+      <form onSubmit={handleSubmit} className="w-full">
+        <AuthPassword
+          name="currentPassword"
+          value={currentPassword.value}
+          isValid={currentPassword.isValid}
+          important
+          onChange={currentPassword.handleChange}
+        />
 
-          <AuthPassword
-            name="newPassword"
-            value={newPassword.value}
-            isValid={newPassword.isValid}
-            important
-            onChange={newPassword.handleChange}
-          />
+        <AuthPassword
+          name="newPassword"
+          value={newPassword.value}
+          isValid={newPassword.isValid}
+          important
+          onChange={newPassword.handleChange}
+        />
 
-          <AuthPassword
-            name="passwordConfirm"
-            value={passwordConfirm.value}
-            isValid={passwordConfirm.isValid}
-            important
-            onChange={passwordConfirm.handleChange}
-          />
+        <AuthPassword
+          name="passwordConfirm"
+          value={passwordConfirm.value}
+          isValid={passwordConfirm.isValid}
+          important
+          onChange={passwordConfirm.handleChange}
+        />
 
-          <Button
-            label="완료"
-            type="submit"
-            className="mt-[296px]"
-            disabled={!isFormValid()}
-          />
-        </form>
-      </div>
+        <Button
+          label="완료"
+          type="submit"
+          className="mt-[176px]"
+          disabled={!isFormValid()}
+        />
+      </form>
     </div>
   );
 };

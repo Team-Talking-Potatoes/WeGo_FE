@@ -19,12 +19,7 @@ const findPassword = http.post<MailSendRequestBody, PathParams>(
     }
 
     // 이메일 존재 확인
-    return HttpResponse.json(
-      {
-        message: 'Email sent',
-      },
-      { status: 200 },
-    );
+    return HttpResponse.json({ message: 'Email sent' }, { status: 200 });
   },
 );
 
