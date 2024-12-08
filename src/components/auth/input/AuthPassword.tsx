@@ -21,7 +21,7 @@ interface Props {
 const AuthPassword = memo(
   ({ name, value, isValid, important, onChange }: Props) => {
     return (
-      <div className="relative">
+      <div className="relative mb-6">
         <label htmlFor={name}>
           {AUTH_LABEL[name]}
           {important && (
@@ -42,7 +42,7 @@ const AuthPassword = memo(
         />
 
         <p
-          className={cn('mb-6 mt-1 text-xs', {
+          className={cn('mt-1 text-xs', {
             'text-red-500': value && isValid === false,
           })}
         >
