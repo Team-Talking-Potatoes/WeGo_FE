@@ -1,4 +1,4 @@
-import { useCallback, memo, useState, useEffect } from 'react';
+import { useCallback, memo, useEffect, useState } from 'react';
 
 import { Button } from '@/components/common/button/Button';
 import formatTimeToMMSS from '@/utils/formatTimeToMMSS';
@@ -19,7 +19,7 @@ interface Props {
   emailCode: PropsState;
   isEmailCertified: boolean | null;
   setIsEmailCertified: (isEmailCertified: boolean | null) => void;
-  setCertifiedToken: (certifiedToken: string) => void;
+  setCertifiedToken: (token: string) => void;
 }
 
 const AuthEmailCertification = memo(
@@ -83,7 +83,7 @@ const AuthEmailCertification = memo(
       }, 1000);
 
       return () => clearInterval(timer);
-    }, [due, isEmailCertified, successMailSend]);
+    }, [due, setDue, isEmailCertified, successMailSend]);
 
     return (
       <div className="relative mb-6">

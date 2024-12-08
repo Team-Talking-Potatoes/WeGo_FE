@@ -14,6 +14,7 @@ const SignupForm = () => {
     null,
   );
   const [certifiedToken, setCertifiedToken] = useState('');
+
   const email = useAuthInput({ name: 'email' });
   const emailCode = useAuthInput({ name: 'emailCode' });
   const password = useAuthInput({ name: 'password' });
@@ -25,6 +26,7 @@ const SignupForm = () => {
   const nickname = useAuthInput({ name: 'nickname' });
   const birthDate = useAuthInput({ name: 'birthDate' });
   const contact = useAuthInput({ name: 'contact' });
+
   const { mutate: signup } = useSignup();
 
   const isFormValid = () => {

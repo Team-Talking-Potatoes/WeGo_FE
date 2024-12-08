@@ -24,7 +24,7 @@ const sendMail = async (credentials: MailSendRequestBody) => {
     throw error;
   }
 
-  res.json();
+  return res.json();
 };
 
 /* ------------------------------- 이메일 인증코드 확인 ------------------------------ */
