@@ -1,8 +1,10 @@
-import login from './login';
-import signup from './signup';
+import login from './auth/login';
+import signup from './auth/signup';
 import popularTravel from './travel/popularTravel';
 import popularReview from './review/popularReview';
 import popularUser from './user/popularUser';
+import resetPassword from './auth/resetPassword';
+import findPassword from './auth/findPassword';
 
 export const handlers = [
   login,
@@ -10,4 +12,6 @@ export const handlers = [
   ...popularTravel,
   ...popularReview,
   ...popularUser,
+  ...resetPassword,
+  findPassword,
 ];
