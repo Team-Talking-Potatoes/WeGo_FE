@@ -65,7 +65,7 @@ const AuthText = memo(
               'disabled:border-status-infomative':
                 name === 'emailCode' && isValid === true,
               'border-status-error focus:border-status-error':
-                name !== 'emailCode' && Boolean(value) && isValid === false,
+                Boolean(value) && isValid !== null && isValid === false,
               'mx-0': Boolean(children),
             }}
             onChange={onChange}
@@ -74,14 +74,19 @@ const AuthText = memo(
         </div>
 
         <p
-          className={cn('absolute bottom-0 text-xs', {
-            'text-status-error':
-              name !== 'emailCode' && value && isValid === false,
+          className={cn('mb-6 mt-1 text-xs', {
+            'text-status-error': isValid === false,
           })}
         >
-          {name !== 'emailCode' && value && isValid === false
-            ? AUTH_ERROR_MESSAGE[name]
-            : null}
+          {(() => {
+            if (isValid === false) {
+              if (name === 'emailCode') {
+                return AUTH_ERROR_MESSAGE[name];
+              }
+              return value && AUTH_ERROR_MESSAGE[name];
+            }
+            return null;
+          })()}
           {name === 'emailCode' && isValid && AUTH_SUCCESS_MESSAGE[name]}
         </p>
       </div>

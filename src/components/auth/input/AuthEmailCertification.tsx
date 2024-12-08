@@ -18,8 +18,8 @@ interface PropsState {
 interface Props {
   email: PropsState;
   emailCode: PropsState;
-  isEmailCertified: boolean;
-  setIsEmailCertified: (isEmailCertified: boolean) => void;
+  isEmailCertified: boolean | null;
+  setIsEmailCertified: (isEmailCertified: boolean | null) => void;
   setCertifiedToken: (certifiedToken: string) => void;
 }
 
@@ -31,7 +31,7 @@ const AuthEmailCertification = memo(
     setIsEmailCertified,
     setCertifiedToken,
   }: Props) => {
-    const [due, setDue] = useState(0);
+    const [due, setDue] = useState(300);
     const [viewEmailCode, setViewEmailCode] = useState(false);
 
     const { mutate: sendMail } = useSendMail(() => {
@@ -43,10 +43,15 @@ const AuthEmailCertification = memo(
       emailCode.setValue('');
     });
 
-    const { mutate: checkMail } = useCheckMail((token: string) => {
-      setIsEmailCertified(true);
-      setCertifiedToken(token);
-    });
+    const { mutate: checkMail } = useCheckMail(
+      (token: string) => {
+        setIsEmailCertified(true);
+        setCertifiedToken(token);
+      },
+      () => {
+        setIsEmailCertified(false);
+      },
+    );
 
     const handleVerifyClick = useCallback(() => {
       sendMail({ email: email.value });
@@ -60,7 +65,8 @@ const AuthEmailCertification = memo(
     }, [email.value, emailCode.value, checkMail]);
 
     useEffect(() => {
-      if (!viewEmailCode || due === 0) return () => {};
+      if (!viewEmailCode || Boolean(isEmailCertified) || due === 0)
+        return () => {};
 
       const timer = setInterval(() => {
         if (due <= 0) {
@@ -71,7 +77,7 @@ const AuthEmailCertification = memo(
       }, 1000);
 
       return () => clearInterval(timer);
-    }, [due, viewEmailCode]);
+    }, [due, isEmailCertified, viewEmailCode]);
 
     return (
       <div className="relative">
@@ -83,14 +89,13 @@ const AuthEmailCertification = memo(
           isValid={email.isValid}
           important
           onChange={email.handleChange}
-          className="mb-6"
           size="withButton"
         >
           <Button
             label={viewEmailCode ? '재전송' : '인증'}
             handler={handleVerifyClick}
             size="addon"
-            disabled={!email.isValid || isEmailCertified}
+            disabled={!email.isValid || Boolean(isEmailCertified)}
             className="mt-[6px]"
           />
         </AuthText>
@@ -99,30 +104,32 @@ const AuthEmailCertification = memo(
           type="text"
           name="emailCode"
           value={emailCode.value}
-          disabled={due === 0 || isEmailCertified}
-          isValid={isEmailCertified}
+          disabled={due === 0 || Boolean(isEmailCertified)}
+          isValid={due === 0 ? false : isEmailCertified}
           onChange={emailCode.handleChange}
-          className="-mt-3 mb-6"
+          className="-mt-3"
           size="withButton"
           classNameCondition={{
             hidden: !viewEmailCode,
           }}
         >
+          {viewEmailCode && !isEmailCertified && (
+            <span className="absolute left-[174px] top-0.5 text-xs text-status-error">
+              {formatTimeToMMSS(due)}
+            </span>
+          )}
+
           <Button
             label="확인"
             handler={handleConfirmClick}
             size="addon"
-            disabled={!emailCode.isValid || due === 0 || isEmailCertified}
+            disabled={
+              !emailCode.isValid || due === 0 || Boolean(isEmailCertified)
+            }
             className="-mt-[12px]"
             classNameCondition={{ hidden: !viewEmailCode }}
           />
         </AuthText>
-
-        {viewEmailCode && !isEmailCertified && (
-          <span className="absolute bottom-0 text-xs text-status-error">
-            {due > 0 ? formatTimeToMMSS(due) : '인증 시간이 초과되었습니다.'}
-          </span>
-        )}
 
         {isEmailCertified && (
           <span className="absolute bottom-0 text-xs text-status-infomative">

@@ -228,7 +228,9 @@ describe('AuthEmailCertification', () => {
 
   it('이메일 인증 완료 시 입력 필드들이 비활성화되어야 한다', async () => {
     const TestComponent = () => {
-      const [isEmailCertified, setIsEmailCertified] = useState(false);
+      const [isEmailCertified, setIsEmailCertified] = useState<boolean | null>(
+        false,
+      );
 
       return (
         <AuthEmailCertification

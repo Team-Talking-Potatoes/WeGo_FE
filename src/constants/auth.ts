@@ -17,7 +17,7 @@ const AUTH_ERROR_MESSAGE = {
   nickname: '2-10자 사이로 입력해주세요',
   birthDate: '올바른 생년월일을 입력해주세요',
   contact: '올바른 연락처 번호를 입력해주세요',
-  emailCode: '인증번호 6자리를 입력해주세요.',
+  emailCode: '이메일 인증이 실패 하였습니다.',
 } as const;
 
 const REGEX = {
