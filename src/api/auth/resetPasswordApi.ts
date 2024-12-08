@@ -34,7 +34,7 @@ const resetAuthPassword = async (credentials: ResetAuthPasswordRequestBody) => {
 };
 
 const resetUserPassword = async (credentials: ResetUserPasswordRequestBody) => {
-  const res = await fetch('/api/user/password', {
+  const res = await fetch('/api/users/password', {
     method: 'PUT',
     credentials: 'include',
     headers: {
