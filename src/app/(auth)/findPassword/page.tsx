@@ -40,7 +40,9 @@ const FindPasswordPage = () => {
   );
 
   const clickNext = () => {
-    router.push(`/resetPassword?email=${email.value}&token=${certifiedToken}`);
+    router.push(
+      `/resetPassword/authPassword?email=${email.value}&token=${certifiedToken}`,
+    );
   };
 
   return (
