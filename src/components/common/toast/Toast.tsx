@@ -1,9 +1,9 @@
 'use client';
 
-import { useToastStore } from '@/store/toast';
+import { useToastStore } from '@/store/useToastStore';
 import cn from '@/utils/cn';
-import ToastErrorIcon from '@/assets/toast_error.svg';
-import ToastSuccessIcon from '@/assets/toast_success.svg';
+import ToastErrorIcon from '@/assets/toast/toast_error.svg';
+import ToastSuccessIcon from '@/assets/toast/toast_success.svg';
 
 const Toast = () => {
   const { toasts } = useToastStore();

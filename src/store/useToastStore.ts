@@ -15,7 +15,7 @@ interface ToastStore {
   removeToast: (id: string) => void;
 }
 
-export const useToastStore = create<ToastStore>((set) => ({
+const useToastStore = create<ToastStore>((set) => ({
   toasts: [],
   addToast: (message, type, duration = 3000) => {
     const id = Math.random().toString(36).substring(2, 9);
@@ -34,3 +34,5 @@ export const useToastStore = create<ToastStore>((set) => ({
       toasts: state.toasts.filter((toast) => toast.id !== id),
     })),
 }));
+
+export { useToastStore };
