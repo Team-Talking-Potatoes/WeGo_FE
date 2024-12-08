@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/common/button/Button';
 
+import usePasswordSendMail from '@/queries/auth/usePasswordSendMail';
+
 const FindPasswordPage = () => {
   const router = useRouter();
 
@@ -16,14 +18,28 @@ const FindPasswordPage = () => {
     null,
   );
   const [certifiedToken, setCertifiedToken] = useState('');
+  const [due, setDue] = useState(300);
+  const [successMailSend, setSuccessMailSend] = useState<boolean | null>(null);
 
   const isFormValid = () => {
     return isEmailCertified && email.isValid && emailCode.isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { mutate: passwordSendMail } = usePasswordSendMail(
+    () => {
+      if (!successMailSend) {
+        setSuccessMailSend(true);
+      }
+      setDue(300);
+      emailCode.setIsValid(false);
+      emailCode.setValue('');
+    },
+    () => {
+      setSuccessMailSend(false);
+    },
+  );
 
+  const clickNext = () => {
     router.push(`/resetPassword?email=${email.value}&token=${certifiedToken}`);
   };
 
@@ -32,11 +48,15 @@ const FindPasswordPage = () => {
       <FormHeader title="비밀번호 찾기" />
 
       <div className="mx-auto mt-10 flex max-w-[335px] justify-center">
-        <form onSubmit={handleSubmit} className="w-full">
+        <div className="w-full">
           <AuthEmailCertification
             email={email}
             emailCode={emailCode}
             isEmailCertified={isEmailCertified}
+            due={due}
+            setDue={setDue}
+            successMailSend={successMailSend}
+            sendMail={passwordSendMail}
             setIsEmailCertified={setIsEmailCertified}
             setCertifiedToken={setCertifiedToken}
           />
@@ -46,8 +66,9 @@ const FindPasswordPage = () => {
             type="submit"
             className="mt-[362px]"
             disabled={!isFormValid()}
+            handler={clickNext}
           />
-        </form>
+        </div>
       </div>
     </div>
   );

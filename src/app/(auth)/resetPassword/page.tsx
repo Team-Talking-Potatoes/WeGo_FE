@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import validate from '@/utils/validateAuthInput';
 import { Button } from '@/components/common/button/Button';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useResetAuthPassword } from '@/queries/auth/useResetPassword';
 
 const ResetPasswordPage = () => {
   const router = useRouter();
@@ -20,12 +21,20 @@ const ResetPasswordPage = () => {
     password: password.value,
   });
 
+  const { mutate: resetAuthPassword } = useResetAuthPassword();
+
   const isFormValid = () => {
     return password.isValid && passwordConfirm.isValid;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    resetAuthPassword({
+      email: email ?? '',
+      password: password.value,
+      token: token ?? '',
+    });
   };
 
   useEffect(() => {

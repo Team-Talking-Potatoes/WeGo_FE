@@ -14,7 +14,7 @@ interface ResetAuthSignupRequestBody {
 
 const resetPassword = [
   /* ------------------------ 토큰 (이메일 인증)을 통한 비밀번호 재설정 ------------------------ */
-  http.post<ResetAuthPasswordRequestBody, PathParams>(
+  http.put<ResetAuthPasswordRequestBody, PathParams>(
     '/api/auth/password',
     async ({ request }) => {
       const { email, password, token } = await request.json();
@@ -28,7 +28,7 @@ const resetPassword = [
 
       return HttpResponse.json(
         { message: 'Password reset failed' },
-        { status: 400 },
+        { status: 500 },
       );
     },
   ),
