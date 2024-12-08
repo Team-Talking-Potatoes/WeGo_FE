@@ -18,8 +18,8 @@ const useSignup = () => {
           showModal('네트워크를 확인해주세요.', '회원가입에 실패했습니다.', {
             icon: ModalErrorIcon,
             confirmText: '돌아가기',
-            titleHighlight: {
-              range: { start: 7, end: 9 },
+            messageHighlight: {
+              range: { start: 6, end: 8 },
               color: 'text-status-error',
             },
             onConfirm: () => {
