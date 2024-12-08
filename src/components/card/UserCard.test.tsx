@@ -12,7 +12,7 @@ import UserCard from './UserCard';
 
 describe('UserCard', () => {
   const user = mockUser[0];
-  it('사용자 프로필 정보를 렌더링합니다', () => {
+  it('사용자 프로필 정보를 렌더링합니다', async () => {
     render(
       <UserCard
         nickname={user.nickname}
@@ -25,7 +25,7 @@ describe('UserCard', () => {
     expect(screen.getByText('녹차라떼')).toBeInTheDocument();
 
     // 2. 프로필 이미지가 렌더링되는지 확인 (next이미지)
-    const profileImage = screen.findByAltText('녹차라떼의 프로필 사진');
+    const profileImage = await screen.findByAltText('녹차라떼의 프로필 이미지');
     expect(profileImage).toBeInTheDocument();
 
     // 3. openTravelCount와 reviewCount가 렌더링되는지 확인
