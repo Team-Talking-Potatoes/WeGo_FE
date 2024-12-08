@@ -3,7 +3,7 @@ import { useCallback, memo, useEffect, useState } from 'react';
 import { Button } from '@/components/common/button/Button';
 import formatTimeToMMSS from '@/utils/formatTimeToMMSS';
 import useSendMail from '@/queries/auth/useSendMail';
-import useCheckMail from '@/queries/auth/useCheckMail';
+import useCheckCode from '@/queries/auth/useCheckCode';
 import AuthText from './AuthText';
 
 interface PropsState {
@@ -49,7 +49,7 @@ const AuthEmailCertification = memo(
       },
     );
 
-    const { mutate: checkMail } = useCheckMail(
+    const { mutate: checkCode } = useCheckCode(
       (token: string) => {
         setIsEmailCertified(true);
         setCertifiedToken(token);
@@ -64,11 +64,11 @@ const AuthEmailCertification = memo(
     }, [email.value, sendMail]);
 
     const handleConfirmClick = useCallback(() => {
-      checkMail({
+      checkCode({
         email: email.value,
         emailCode: Number(emailCode.value),
       });
-    }, [email.value, emailCode.value, checkMail]);
+    }, [email.value, emailCode.value, checkCode]);
 
     useEffect(() => {
       if (!successMailSend || Boolean(isEmailCertified) || due === 0)
