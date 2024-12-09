@@ -1,20 +1,10 @@
+import { Participant } from '@/@types/travel';
 import UserIcon from './UserIcon';
 
-const UserIconList = () => {
-  const userList = [
-    { id: 1, profileImage: '/test1.png' },
-    { id: 2, profileImage: '' },
-    { id: 3, profileImage: '/user.jpg' },
-    { id: 4, profileImage: '/test4.jpg' },
-    { id: 5, profileImage: '' },
-    { id: 6, profileImage: '/test4.jpg' },
-    { id: 7, profileImage: '/test4.jpg' },
-    { id: 8, profileImage: '' },
-  ];
-
+const UserIconList = ({ participant }: { participant: Participant[] }) => {
   const maxVisible = 4;
-  const visibleUsers = userList.slice(0, maxVisible);
-  const extraCount = userList.length - maxVisible;
+  const visibleUsers = participant.slice(0, maxVisible);
+  const extraCount = participant.length - maxVisible;
 
   return (
     <div className="flex items-center space-x-[-12px]">
