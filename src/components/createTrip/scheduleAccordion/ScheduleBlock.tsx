@@ -1,6 +1,6 @@
 import TextareaWithLabel from '@/components/inputwithlabel/TextareaWithLabel';
 import { TextInputWithLabel } from '@/components/inputwithlabel/TextInputWithLabel';
-import ImageUploader from '@/components/imageuploader/ImageUploader';
+import ImageUploader from '@/components/createTrip/imageuploader/ImageUploader';
 
 interface Props {
   id: number;
