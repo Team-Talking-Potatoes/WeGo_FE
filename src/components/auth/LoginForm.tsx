@@ -14,10 +14,6 @@ const LoginForm = () => {
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!email.isValid || !password.isValid) {
-      return;
-    }
-
     login({
       email: email.value,
       password: password.value,
@@ -25,14 +21,17 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="mb-4 w-full" onSubmit={handleLogin}>
+    <form
+      className="mb-4 w-full"
+      onSubmit={handleLogin}
+      data-testid="login-form"
+    >
       <AuthText
         type="email"
         name="email"
         value={email.value}
         isValid={email.isValid}
         onChange={email.handleChange}
-        className="mb-6"
       />
 
       <AuthPassword
@@ -42,7 +41,12 @@ const LoginForm = () => {
         onChange={password.handleChange}
       />
 
-      <Button label="로그인" type="submit" className="mt-[180px]" />
+      <Button
+        label="로그인"
+        type="submit"
+        className="mt-[180px]"
+        disabled={!email.isValid || !password.isValid}
+      />
     </form>
   );
 };

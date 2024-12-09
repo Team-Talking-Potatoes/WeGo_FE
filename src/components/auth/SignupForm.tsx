@@ -6,12 +6,18 @@ import { Button } from '@/components/common/button/Button';
 import { useEffect, useState } from 'react';
 import validate from '@/utils/validateAuthInput';
 import useSignup from '@/queries/auth/useSignup';
+import useSendMail from '@/queries/auth/useSendMail';
 import AuthPassword from './input/AuthPassword';
 import AuthEmailCertification from './input/AuthEmailCertification';
 
 const SignupForm = () => {
-  const [isEmailCertified, setIsEmailCertified] = useState(false);
+  const [isEmailCertified, setIsEmailCertified] = useState<boolean | null>(
+    null,
+  );
   const [certifiedToken, setCertifiedToken] = useState('');
+  const [due, setDue] = useState(300);
+  const [successMailSend, setSuccessMailSend] = useState<boolean | null>(null);
+
   const email = useAuthInput({ name: 'email' });
   const emailCode = useAuthInput({ name: 'emailCode' });
   const password = useAuthInput({ name: 'password' });
@@ -23,6 +29,21 @@ const SignupForm = () => {
   const nickname = useAuthInput({ name: 'nickname' });
   const birthDate = useAuthInput({ name: 'birthDate' });
   const contact = useAuthInput({ name: 'contact' });
+
+  const { mutate: sendMail } = useSendMail(
+    () => {
+      if (!successMailSend) {
+        setSuccessMailSend(true);
+      }
+      setDue(300);
+      emailCode.setIsValid(false);
+      emailCode.setValue('');
+    },
+    () => {
+      setSuccessMailSend(false);
+    },
+  );
+
   const { mutate: signup } = useSignup();
 
   const isFormValid = () => {
@@ -66,11 +87,15 @@ const SignupForm = () => {
   }, [password.value, passwordConfirm]);
 
   return (
-    <form onSubmit={handleSignup} className="w-full">
+    <form onSubmit={handleSignup} className="w-full" data-testid="signup-form">
       <AuthEmailCertification
         email={email}
         emailCode={emailCode}
         isEmailCertified={isEmailCertified}
+        due={due}
+        setDue={setDue}
+        successMailSend={successMailSend}
+        sendMail={sendMail}
         setIsEmailCertified={setIsEmailCertified}
         setCertifiedToken={setCertifiedToken}
       />
@@ -97,7 +122,6 @@ const SignupForm = () => {
         value={name.value}
         isValid={name.isValid}
         important
-        className="mb-6"
         onChange={name.handleChange}
       />
 
@@ -107,7 +131,6 @@ const SignupForm = () => {
         value={contact.value}
         isValid={contact.isValid}
         important
-        className="mb-6"
         onChange={contact.handleChange}
       />
 
@@ -118,7 +141,6 @@ const SignupForm = () => {
         isValid={nickname.isValid}
         important
         onChange={nickname.handleChange}
-        className="mb-6"
       />
 
       <AuthText
@@ -128,7 +150,6 @@ const SignupForm = () => {
         isValid={birthDate.isValid}
         important
         onChange={birthDate.handleChange}
-        className="mb-6"
       />
 
       <Button
