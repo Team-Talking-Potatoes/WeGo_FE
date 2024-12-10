@@ -5,7 +5,6 @@ const EditProfile = () => {
   return (
     <div>
       <FormHeader title="프로필 수정" isConfigButton />
-
       <EditForm />
     </div>
   );
