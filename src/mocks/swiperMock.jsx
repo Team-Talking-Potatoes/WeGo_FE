@@ -1,11 +1,20 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Swiper = () => {
+const Swiper = ({ children }) => {
   return null;
 };
 
-const SwiperSlide = () => {
+Swiper.propTypes = {
+  children: PropTypes.node,
+};
+
+const SwiperSlide = ({ children }) => {
   return null;
+};
+
+SwiperSlide.propTypes = {
+  children: PropTypes.node,
 };
 
 const Pagination = () => {
