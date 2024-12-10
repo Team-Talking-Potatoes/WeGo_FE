@@ -1,19 +1,11 @@
 import PropTypes from 'prop-types';
 
-const Swiper = ({ children, ...props }) => {
+const Swiper = () => {
   return null;
 };
 
-Swiper.propTypes = {
-  children: PropTypes.node,
-};
-
-const SwiperSlide = ({ children, ...props }) => {
+const SwiperSlide = () => {
   return null;
-};
-
-SwiperSlide.propTypes = {
-  children: PropTypes.node,
 };
 
 const Pagination = () => {
