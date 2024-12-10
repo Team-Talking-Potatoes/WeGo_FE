@@ -5,7 +5,7 @@ import { useState } from 'react';
 import SelectTravelDetail from './SelectTravelDetail';
 import SelectTravelItinerary from './SelectTravelItinerary';
 import TravelButtons from './TravelButtons';
-import SelectTravelReview from './SelectTravelReview';
+import SelectTravelReviewContainer from './SelectTravelReviewContainer';
 
 type Props = Pick<
   TravelDetail,
@@ -36,7 +36,7 @@ const TravelDetailCategory = ({
   const endDate = new Date(endAt);
   const selectCss = 'border-b-[3px] border-label-normal text-label-normal';
   return (
-    <section>
+    <section className="pb-20">
       <div className="heading-1-b flex items-start gap-5 border-b px-5 text-label-alternative">
         <button
           type="button"
@@ -78,8 +78,8 @@ const TravelDetailCategory = ({
             startAt={startAt}
           />
         )}
-        {category === 2 && <SelectTravelReview />}
-        {(category === 1 || category === 0) && (
+        {category === 2 && <SelectTravelReviewContainer />}
+        {(category === 1 || category === 0) && now < endDate && (
           <TravelButtons organizer={organizer?.id} participant={participant} />
         )}
       </div>
