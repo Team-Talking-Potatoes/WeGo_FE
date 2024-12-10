@@ -1,0 +1,16 @@
+import { MainTab as MainTabType, SubTab as SubTabType } from '@/@types/mypage';
+
+const setDefaultSubTab = (
+  tab: MainTabType,
+  setSelectedSubTab: (subTab: SubTabType) => void,
+) => {
+  if (tab === 'myTravel') {
+    setSelectedSubTab('upcomming');
+  }
+  if (tab === 'myReview') {
+    setSelectedSubTab('writable');
+  }
+  return null;
+};
+
+export { setDefaultSubTab };
