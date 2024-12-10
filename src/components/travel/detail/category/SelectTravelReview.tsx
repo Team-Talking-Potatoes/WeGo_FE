@@ -16,6 +16,7 @@ const SelectTravelReview = ({ id }: { id: string }) => {
     queryKey: ['travels', { id }, 'reviews'],
     queryFn: () => getTravelReview({ id }),
   });
+
   if (error && !isFetching) {
     console.error('에러', { error });
     return (

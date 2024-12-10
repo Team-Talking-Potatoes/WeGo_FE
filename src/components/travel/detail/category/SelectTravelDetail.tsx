@@ -4,9 +4,9 @@ import BookMarkIcon from '@/assets/bookmark.svg';
 import { Participant } from '@/@types/travel';
 import { useState } from 'react';
 import Link from 'next/link';
-import ButtonRounded from '../../common/button/ButtonRounded';
-import TravelTag from '../../common/tag/TravelTag';
-import UserIcon from '../../common/user/UserIcon';
+import ButtonRounded from '../../../common/button/ButtonRounded';
+import TravelTag from '../../../common/tag/TravelTag';
+import UserIcon from '../../../common/user/UserIcon';
 
 const SelectTravelDetail = ({
   participant,
