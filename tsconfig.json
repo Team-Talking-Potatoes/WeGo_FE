@@ -30,7 +30,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/mocks/styleMock.js",
-    "src/mocks/swiperMock.js",
+    "src/mocks/swiperMock.jsx",
     "src/mocks/svg.js"
   ],
   "exclude": ["node_modules"]
