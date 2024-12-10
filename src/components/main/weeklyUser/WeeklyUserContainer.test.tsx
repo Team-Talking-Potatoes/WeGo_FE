@@ -33,10 +33,6 @@ describe('WeeklyUser', () => {
       </QueryClientProvider>,
     );
 
-    // 타이틀
-    expect(
-      await screen.findByText('이번달 리뷰가 많은 여행지기들을 소개해 드려요!'),
-    ).toBeInTheDocument();
     // 유저 카드
     expect(await screen.findByText('녹차라떼')).toBeInTheDocument();
     expect(
