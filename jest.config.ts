@@ -17,10 +17,10 @@ const config: Config = {
   moduleNameMapper: {
     '^.+\\.(svg)$': '<rootDir>/src/mocks/svg.js',
 
-    '^swiper/react$': '<rootDir>/src/mocks/swiperMock.js',
-    '^swiper$': '<rootDir>/src/mocks/swiperMock.js',
+    '^swiper/react$': '<rootDir>/src/mocks/swiperMock.jsx',
+    '^swiper$': '<rootDir>/src/mocks/swiperMock.jsx',
     '^swiper/css$': '<rootDir>/src/mocks/styleMock.js',
-    '^swiper/modules$': '<rootDir>/src/mocks/swiperMock.js',
+    '^swiper/modules$': '<rootDir>/src/mocks/swiperMock.jsx',
     '^swiper/css/pagination$': '<rootDir>/src/mocks/styleMock.js',
   },
 
