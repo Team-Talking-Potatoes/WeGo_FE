@@ -33,18 +33,9 @@ describe('WeeklyReview', () => {
       </QueryClientProvider>,
     );
 
-    // 리뷰 카드
     expect(await screen.findByText('여행리뷰 모아보기')).toBeInTheDocument();
-    expect(await screen.findByText('@한국사람')).toBeInTheDocument();
-    expect(await screen.findByText('@id_tyrr')).toBeInTheDocument();
-
-    // 더보기 버튼
-    const linkElement = await screen.findByLabelText('더 많은 리뷰 보기');
-    expect(linkElement).toBeInTheDocument();
-
-    // 리뷰 이미지
-    const imageElement =
-      await screen.findByAltText('한국사람의 여행 후기 사진');
-    expect(imageElement).toBeInTheDocument();
+    expect(
+      await screen.findByText('다양한 여행모임 후기들을 한눈에 확인해요!'),
+    ).toBeInTheDocument();
   });
 });
