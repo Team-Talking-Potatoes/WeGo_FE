@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Swiper = ({ children }) => {
-  return null;
+const Swiper = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };
 
 Swiper.propTypes = {
   children: PropTypes.node,
 };
 
-const SwiperSlide = ({ children }) => {
-  return null;
+const SwiperSlide = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };
 
 SwiperSlide.propTypes = {
