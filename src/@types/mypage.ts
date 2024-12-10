@@ -1,3 +1,9 @@
-type SelectedTab = 'myTravel' | 'myReview' | 'mySelfTravel';
+type MainTab = 'myTravel' | 'myReview' | 'mySelfTravel';
+type SubTab =
+  | 'upcomming'
+  | 'pastTravel'
+  | 'checkedTravel'
+  | 'writable'
+  | 'written';
 
-export type { SelectedTab };
+export type { MainTab, SubTab };

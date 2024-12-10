@@ -1,17 +1,30 @@
 'use client';
 
 import { useState } from 'react';
-import { SelectedTab } from '@/@types/mypage';
+import { MainTab as MainTabType, SubTab as SubTabType } from '@/@types/mypage';
+
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
+
+import SubTab from './SubTab';
 import MainTab from './MainTab';
 
 const TabSection = () => {
-  const [selectedTab, setSelectedTab] = useState<SelectedTab>('myTravel');
+  const [selectedTab, setSelectedTab] = useState<MainTabType>('myTravel');
+  const [selectedSubTab, setSelectedSubTab] = useState<SubTabType>('upcomming');
 
   return (
     <section className="flex flex-col">
-      <MainTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <HorizontalDivider className="mt-2.5" />
+      <MainTab
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
+        setSelectedSubTab={setSelectedSubTab}
+      />
+      <HorizontalDivider className="mb-6 mt-2.5" />
+      <SubTab
+        selectedTab={selectedTab}
+        selectedSubTab={selectedSubTab}
+        setSelectedSubTab={setSelectedSubTab}
+      />
     </section>
   );
 };
