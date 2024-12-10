@@ -30,7 +30,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/mocks/**/*.js",
-    "src/mocks/svg.js"
+    "src/mocks/*.js"
   ],
   "exclude": ["node_modules"]
 }
