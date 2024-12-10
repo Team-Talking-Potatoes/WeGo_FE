@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 
 const Swiper = ({ children, ...props }) => {
-  return null;
+  return <div {...props}>{children}</div>;
 };
 
 Swiper.propTypes = {
@@ -9,7 +9,7 @@ Swiper.propTypes = {
 };
 
 const SwiperSlide = ({ children, ...props }) => {
-  return null;
+  return <div {...props}>{children}</div>;
 };
 
 SwiperSlide.propTypes = {
