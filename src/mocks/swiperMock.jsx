@@ -1,19 +1,10 @@
-import React from 'react';
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const Swiper = ({ children, ...props }) => {
-  return <div {...props}>{children}</div>;
-};
-
-Swiper.propTypes = {
-  children: PropTypes.node,
+  return null;
 };
 
 const SwiperSlide = ({ children, ...props }) => {
-  return <div {...props}>{children}</div>;
-};
-
-SwiperSlide.propTypes = {
-  children: PropTypes.node,
+  return null;
 };
 
 const Pagination = () => {
@@ -21,3 +12,4 @@ const Pagination = () => {
 };
 
 export { Swiper, SwiperSlide, Pagination };
+/* eslint-enable @typescript-eslint/no-unused-vars */
