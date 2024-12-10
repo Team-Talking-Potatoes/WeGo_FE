@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Swiper = ({ ...props }) => {
-  return null;
+const Swiper = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };
 
-const SwiperSlide = ({ ...props }) => {
-  return null;
+const SwiperSlide = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };
 
 const Pagination = () => {
