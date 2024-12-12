@@ -1,0 +1,47 @@
+{
+  "total": 3,
+  "travels": [
+    {
+      "travelId": 13,
+      "travelName": "도쿄에서 즐기는 미식여행",
+      "expectedTripCost": 1000000,
+      "travelMateCount": 11,
+      "isDomestic": true,
+      "travelStatus": "예정",
+      "location": "도쿄시",
+      "image": "/test/travel/test1.jpg",
+      "startAt": "12/06",
+      "endAt": "12/06",
+      "maxTravelMateCount": 12,
+      "currentTravelMateCount": 11
+    },
+    {
+      "travelId": 12,
+      "travelName": "제주 한라산 등반 후 미식 여행.",
+      "expectedTripCost": 1000000,
+      "travelMateCount": 5,
+      "isDomestic": false,
+      "travelStatus": "예정",
+      "location": "제주",
+      "image": "/test/travel/test2.jpg",
+      "startAt": "12/03",
+      "endAt": "12/03",
+      "maxTravelMateCount": 6,
+      "currentTravelMateCount": 5
+    },
+    {
+      "travelId": 14,
+      "travelName": "제주 한라산 등반 후 미식 여행.",
+      "expectedTripCost": 1000000,
+      "travelMateCount": 5,
+      "isDomestic": false,
+      "travelStatus": "예정",
+      "location": "제주",
+      "image": "/test/travel/test3.jpg",
+      "startAt": "12/03",
+      "endAt": "12/03",
+      "maxTravelMateCount": 6,
+      "currentTravelMateCount": 5
+    }
+  ]
+}
