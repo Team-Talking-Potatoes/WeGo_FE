@@ -16,8 +16,10 @@ import pastTravel from './travel/mypage/pastTravel';
 import mySelfTravel from './travel/mypage/mySelfTravel';
 import checkedTravel from './travel/mypage/checkedTravel';
 import writableTravel from './travel/mypage/writableTravel';
+import myReview from './travel/mypage/myReview';
 
 export const handlers = [
+  myReview,
   pastTravel,
   checkedTravel,
   writableTravel,
