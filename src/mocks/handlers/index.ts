@@ -11,8 +11,10 @@ import travelDetail from './travel/travelDetail';
 import travelDetailReview from './review/travelDetailReview';
 import createTravel from './travel/createTravel';
 import getUserInfo from './user/getUserInfo';
+import upcommingTravel from './travel/mypage/upcommingTravel';
 
 export const handlers = [
+  upcommingTravel,
   // auth
   login,
   ...signup,
