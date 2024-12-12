@@ -2,7 +2,7 @@ const travelListMock = {
   upcomming: [
     {
       travelId: 13,
-      isDomestic: true,
+      isDomestic: false,
       travelName: '부여로 떠나는 다함께 시골투어',
       travelLocation: '충남 부여',
       maxParticipant: 6,

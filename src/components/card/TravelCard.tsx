@@ -7,6 +7,7 @@ import Link from 'next/link';
 import cn from '@/utils/cn';
 import DomesticTag from '../common/tag/DomesticTag';
 import ProgressBar from '../common/ProgressBar';
+import ExpiredTag from '../common/tag/ExpiredTag';
 
 interface Props extends Travel {
   closed?: boolean;
@@ -33,7 +34,7 @@ const TravelCard = ({
     <Link href="/" className="flex gap-4">
       <div
         className={cn('relative h-[120px] w-[100px] flex-shrink-0 rounded', {
-          'after:absolute after:inset-0 after:bg-black after:opacity-50':
+          'after:absolute after:inset-0 after:rounded after:bg-black after:opacity-50':
             closed,
         })}
       >
@@ -52,7 +53,10 @@ const TravelCard = ({
       </div>
       <div className="flex w-full flex-col justify-between">
         <div className="flex flex-col gap-1">
-          <DomesticTag isDomestic={isDomestic} />
+          <div className="flex items-center gap-1">
+            <DomesticTag isDomestic={isDomestic} />
+            {closed && <ExpiredTag />}
+          </div>
           <h3 className="line-clamp-2 font-bold">{travelName}</h3>
         </div>
         <div className="flex items-center gap-[6px] text-xs font-semibold text-label-alternative">

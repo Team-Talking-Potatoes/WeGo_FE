@@ -1,6 +1,7 @@
 import { SubTab as SubTabType } from '@/@types/mypage';
 import Upcomming from './content/Upcomming';
 import PastTravel from './content/pastTravel';
+import CheckedTravel from './content/checkedTravel';
 
 interface Props {
   selectedSubTab: SubTabType;
@@ -14,7 +15,7 @@ const TabContents = ({ selectedSubTab }: Props) => {
     return <PastTravel />;
   }
   if (selectedSubTab === 'checkedTravel') {
-    return <div>체크한 여행</div>;
+    return <CheckedTravel />;
   }
   if (selectedSubTab === 'writable') {
     return <div>작성가능한</div>;
