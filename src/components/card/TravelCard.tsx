@@ -95,7 +95,7 @@ const TravelCard = ({
           </div>
           <div className="">{formattedStartDate}</div>
         </div>
-        <ProgressBar progressRate={progressRate} />
+        {!closed && <ProgressBar progressRate={progressRate} />}
       </div>
     </Link>
   );
