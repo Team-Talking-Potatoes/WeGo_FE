@@ -39,7 +39,7 @@ const MyReviewCard = ({
             className="h-[210px] w-[160px] rounded object-cover"
           />
 
-          <div className="absolute bottom-0 z-10 flex h-[50px] w-full flex-col justify-center gap-0.5 bg-black/50 px-3 text-primary-white transition-all duration-200 group-hover:h-full group-hover:bg-black/70">
+          <div className="absolute bottom-0 z-10 flex h-[80px] w-full flex-col justify-end gap-0.5 bg-gradient-to-b from-black/0 to-black/80 px-3 pb-3 text-primary-white transition-all duration-200 group-hover:h-full group-hover:bg-black/50">
             <p className="body-3-m line-clamp-1 group-hover:opacity-0">
               {title}
             </p>
