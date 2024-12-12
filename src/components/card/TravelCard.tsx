@@ -5,6 +5,7 @@ import { Travel } from '@/@types/travel';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import cn from '@/utils/cn';
+import useBookmarkTravel from '@/queries/travel/useBookmarkTravel';
 import DomesticTag from '../common/tag/DomesticTag';
 import ProgressBar from '../common/ProgressBar';
 import ExpiredTag from '../common/tag/ExpiredTag';
@@ -39,11 +40,19 @@ const TravelCard = ({
   const iconAndText =
     "flex items-center gap-0.5 after:ml-[6px] after:text-line-normal after:content-['|']";
 
+  const { mutate: bookmarkTravel } = useBookmarkTravel();
+
   const handleCheckMark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setAnimate(true);
     setTimeout(() => setAnimate(false), 500);
-    // 자신의 체크한 목록에 추가 / 삭제
+
+    if (!isCheckedState) {
+      bookmarkTravel(travelId);
+    } else {
+      // unbookmarkTravel(travelId); api 추가 필요 명세 아직 없음
+    }
+
     setIsCheckedState(!isCheckedState);
   };
 
@@ -63,7 +72,7 @@ const TravelCard = ({
           className="h-full w-full rounded object-cover"
         />
         {closed && (
-          <div className="body-3-sb absolute inset-0 z-50 flex items-center justify-center text-primary-white">
+          <div className="body-3-sb absolute inset-0 z-10 flex items-center justify-center text-primary-white">
             마감된 여행
           </div>
         )}

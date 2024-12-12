@@ -118,10 +118,31 @@ const mySelfTravel = async (
   return res.json();
 };
 
+const bookmarkTravel = async (id: number) => {
+  const res = await fetch('/api/travels/bookmark', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ travelId: id }),
+  });
+
+  if (!res.ok) {
+    const error = new Error('Login failed') as MyTravelApiError;
+    error.status = res.status;
+    error.message = `Server error: ${res.status}`;
+    throw error;
+  }
+
+  return res.json();
+};
+
 export {
   upcommingTravel,
   pastTravel,
   checkedTravel,
   writableTravel,
   mySelfTravel,
+  bookmarkTravel,
 };
