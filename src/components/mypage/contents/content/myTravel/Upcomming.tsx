@@ -37,7 +37,7 @@ const Upcomming = () => {
         <NoTravel message="아직 참여한 여행이 없어요!" />
       )}
 
-      {totalPages > 4 && (
+      {totalPages > itemsPerPage && (
         <Pagenation
           totalPages={totalPages}
           currentPage={currentPage}

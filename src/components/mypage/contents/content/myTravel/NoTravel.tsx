@@ -1,5 +1,6 @@
 import EmptyShapes from '@/assets/icon/empty_shape.svg';
 import Dot from '@/assets/icon/dot.svg';
+import Link from 'next/link';
 
 interface PropsWithMessage {
   message: string;
@@ -16,12 +17,20 @@ type Props = PropsWithMessage | PropsWithTravelSuggestion;
 const NoTravel = ({ message, travelSuggestion }: Props) => {
   if (travelSuggestion)
     return (
-      <div className="mt-[80px]">
-        <div>
+      <div className="mt-[80px] flex flex-col items-center gap-4">
+        <div className="heading-1-sb text-center">
           나의 취향을 담은
           <br />
           여행 모임을 한번 만들어보세요.
         </div>
+        <Link href="/travel/new">
+          <button
+            type="button"
+            className="body-2-m h-9 w-32 rounded-[44px] bg-label-normal px-3 py-1 text-primary-white"
+          >
+            첫 여행모임 만들기
+          </button>
+        </Link>
       </div>
     );
 

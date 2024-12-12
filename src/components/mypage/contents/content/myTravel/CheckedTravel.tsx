@@ -5,6 +5,7 @@ import { formatStartDate } from '@/utils/dateChageKr';
 import { useState } from 'react';
 import NoTravel from './NoTravel';
 
+// 임시 선언 - 나중에 데이터 받아오면 삭제
 const total = 1;
 const travelList = travelListMock.checkedTravel;
 
@@ -38,7 +39,7 @@ const CheckedTravel = () => {
         <NoTravel message="아직 체크한 여행이 없어요!" />
       )}
 
-      {totalPages > 4 && (
+      {totalPages > itemsPerPage && (
         <Pagenation
           totalPages={totalPages}
           currentPage={currentPage}

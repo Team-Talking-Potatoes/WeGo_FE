@@ -38,7 +38,7 @@ const PastTravel = () => {
         <NoTravel message="아직 다녀온 여행이 없어요!" />
       )}
 
-      {totalPages > 4 && (
+      {totalPages > itemsPerPage && (
         <Pagenation
           totalPages={totalPages}
           currentPage={currentPage}
