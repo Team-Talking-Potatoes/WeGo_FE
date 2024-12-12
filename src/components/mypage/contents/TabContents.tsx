@@ -1,7 +1,7 @@
 import { SubTab as SubTabType } from '@/@types/mypage';
-import Upcomming from './content/Upcomming';
-import PastTravel from './content/pastTravel';
-import CheckedTravel from './content/checkedTravel';
+import Upcomming from './content/myTravel/Upcomming';
+import PastTravel from './content/myTravel/PastTravel';
+import CheckedTravel from './content/myTravel/CheckedTravel';
 
 interface Props {
   selectedSubTab: SubTabType;
