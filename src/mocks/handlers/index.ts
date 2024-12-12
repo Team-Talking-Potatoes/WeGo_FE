@@ -9,6 +9,8 @@ import deleteAccount from './auth/deleteAccount';
 import editProfile from './user/editProfile';
 import travelDetail from './travel/travelDetail';
 import travelDetailReview from './review/travelDetailReview';
+// import travelList from './travel/travelList';
+import travelListInfinity from './travel/travelListInfinity';
 
 export const handlers = [
   // auth
@@ -23,7 +25,9 @@ export const handlers = [
   findPassword,
   ...deleteAccount,
   editProfile,
-  // 여행[id]
+  // 여행
   ...travelDetail,
   ...travelDetailReview,
+  // ...travelList,
+  ...travelListInfinity,
 ];
