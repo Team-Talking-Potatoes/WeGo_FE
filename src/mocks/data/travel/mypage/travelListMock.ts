@@ -8,6 +8,7 @@ const travelListMock = {
       maxParticipant: 6,
       currentParticipant: 1,
       startDate: '12/03',
+      image: '/test/travel/test1.jpg',
     },
     {
       travelId: 14,
@@ -17,6 +18,7 @@ const travelListMock = {
       maxParticipant: 12,
       currentParticipant: 11,
       startDate: '12/06',
+      image: '/test/travel/test2.jpg',
     },
     {
       travelId: 15,
@@ -27,6 +29,7 @@ const travelListMock = {
       maxParticipant: 6,
       currentParticipant: 5,
       startDate: '12/03',
+      image: '/test/travel/test3.jpg',
     },
     {
       travelId: 16,
@@ -36,6 +39,7 @@ const travelListMock = {
       maxParticipant: 12,
       currentParticipant: 12,
       startDate: '12/06',
+      image: '/test/travel/test4.jpg',
     },
   ],
 
@@ -48,6 +52,7 @@ const travelListMock = {
       maxParticipant: 6,
       currentParticipant: 1,
       startDate: '12/03',
+      image: '/test/travel/test5.jpg',
     },
     {
       travelId: 16,
@@ -57,6 +62,7 @@ const travelListMock = {
       maxParticipant: 12,
       currentParticipant: 12,
       startDate: '12/06',
+      image: '/test/travel/test1.jpg',
     },
   ],
 
@@ -69,6 +75,7 @@ const travelListMock = {
       maxParticipant: 12,
       currentParticipant: 12,
       startDate: '12/06',
+      image: '/test/travel/test2.jpg',
     },
   ],
 
@@ -81,6 +88,7 @@ const travelListMock = {
       maxParticipant: 6,
       currentParticipant: 1,
       startDate: '12/03',
+      image: '/test/travel/test4.jpg',
     },
   ],
 };

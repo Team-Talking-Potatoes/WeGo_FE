@@ -26,6 +26,7 @@ const Upcomming = () => {
           isDomestic={travel.isDomestic}
           travelLocation={travel.travelLocation}
           currentParticipant={travel.currentParticipant}
+          image={travel.image}
           startDate={travel.startDate}
           formattedStartDate={formatStartDate(travel.startDate)}
         />

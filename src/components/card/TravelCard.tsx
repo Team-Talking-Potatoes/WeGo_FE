@@ -24,6 +24,7 @@ const TravelCard = ({
   maxParticipant,
   currentParticipant,
   formattedStartDate,
+  image,
   closed,
   checkMark,
   isChecked,

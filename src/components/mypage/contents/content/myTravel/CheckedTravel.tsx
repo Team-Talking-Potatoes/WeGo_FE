@@ -24,6 +24,7 @@ const CheckedTravel = () => {
           maxParticipant={travel.maxParticipant}
           isDomestic={travel.isDomestic}
           travelLocation={travel.travelLocation}
+          image={travel.image}
           currentParticipant={travel.currentParticipant}
           startDate={travel.startDate}
           formattedStartDate={formatStartDate(travel.startDate)}
