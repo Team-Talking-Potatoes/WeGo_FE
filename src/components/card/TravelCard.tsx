@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Location from '@/assets/location.svg';
-import Multiple from '@/assets/multiple.svg';
+import ProfileICon from '@/assets/profile.svg';
 import { Travel } from '@/@types/travel';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ interface Props extends Travel {
 }
 
 const TravelCard = ({
-  // travelId,
+  travelId,
   isDomestic,
   travelName,
   travelLocation,
@@ -47,7 +47,7 @@ const TravelCard = ({
   };
 
   return (
-    <Link href="/" className="flex gap-4">
+    <Link href={`/travel/${travelId}`} className="flex gap-4">
       <div
         className={cn('relative h-[120px] w-[100px] flex-shrink-0 rounded', {
           'after:absolute after:inset-0 after:rounded after:bg-black after:opacity-50':
@@ -55,7 +55,7 @@ const TravelCard = ({
         })}
       >
         <Image
-          src="/test2.png"
+          src={image}
           alt={`${travelName} - ${travelLocation} 여행 이미지`}
           width={100}
           height={120}
@@ -83,13 +83,13 @@ const TravelCard = ({
           </div>
           <h3 className="line-clamp-2 font-bold">{travelName}</h3>
         </div>
-        <div className="flex items-center gap-[6px] text-xs font-semibold text-label-alternative">
+        <div className="flex items-center gap-[6px] text-xs font-semibold text-gray-500">
           <div className={iconAndText}>
             <Location />
             {travelLocation}
           </div>
           <div className={iconAndText}>
-            <Multiple />
+            <ProfileICon />
             {`${currentParticipant}/${maxParticipant}`}
           </div>
           <div className="">{formattedStartDate}</div>
