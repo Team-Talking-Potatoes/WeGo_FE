@@ -8,7 +8,7 @@ const profileImage = '';
 const ProfileSection = () => {
   return (
     <section className="relative mx-auto h-[280px] max-w-[335px]">
-      <Link href="/mypage/editProfile" className="absolute top-3">
+      <Link href="/editProfile" className="absolute top-3">
         <ButtonRounded label="프로필 수정" type="profileEdit" />
       </Link>
 
