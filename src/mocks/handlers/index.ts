@@ -10,6 +10,7 @@ import editProfile from './user/editProfile';
 import travelDetail from './travel/travelDetail';
 import travelDetailReview from './review/travelDetailReview';
 import createTravel from './travel/createTravel';
+import getUserInfo from './user/getUserInfo';
 
 export const handlers = [
   // auth
@@ -29,4 +30,5 @@ export const handlers = [
   ...travelDetailReview,
   // 여행 등록
   createTravel,
+  getUserInfo,
 ];

@@ -7,7 +7,7 @@ import Pagenation from '@/components/common/pagenation/Pagenation';
 import NoTravel from '../myTravel/NoTravel';
 
 // 임시 선언 - 나중에 데이터 받아오면 삭제
-const total = 0;
+const total = 18;
 const travelList = travelListMock.upcomming;
 
 const MySelfTravel = () => {
