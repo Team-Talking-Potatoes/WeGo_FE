@@ -29,6 +29,7 @@ const TravelCard = ({
   isChecked,
 }: Props) => {
   const [isCheckedState, setIsCheckedState] = useState(isChecked);
+  const [animate, setAnimate] = useState(false);
 
   const progressRate = useMemo(
     () => Math.round((currentParticipant / maxParticipant) * 100),
@@ -39,6 +40,8 @@ const TravelCard = ({
 
   const handleCheckMark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 500);
     // 자신의 체크한 목록에 추가 / 삭제
     setIsCheckedState(!isCheckedState);
   };
@@ -66,6 +69,7 @@ const TravelCard = ({
         {checkMark && (
           <CheckMarkButton
             isChecked={isCheckedState}
+            animate={animate}
             handler={handleCheckMark}
           />
         )}
