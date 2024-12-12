@@ -28,7 +28,7 @@ const ProfileSection = () => {
 
         <p className="title-5-b mt-4">여행지기</p>
         <p className="body-3-r text-label-alternative">fake@email.com</p>
-        <p className="body-2-sb mt-6 flex h-[46px] w-[335px] items-center justify-center rounded bg-slate-600 text-primary-white">
+        <p className="body-2-sb mt-6 flex h-[46px] w-[335px] items-center justify-center rounded-[44px] bg-label-normal text-primary-white">
           &quot;여행을 너무 좋아하는 여행지기 입니다.&quot;
         </p>
       </div>
