@@ -45,3 +45,18 @@ export interface TravelDetail {
   travelPlan: TravelPlan[];
   participant: Participant[];
 }
+
+export interface TravelList {
+  travelId: number;
+  travelName: string;
+  expectedTripCost: number;
+  travelMateCount: number;
+  isDomestic: boolean;
+  travelStatus: string;
+  location: string;
+  image: string;
+  startAt: string;
+  endAt: string;
+  maxTravelMateCount: number;
+  currentTravelMateCount: number;
+}

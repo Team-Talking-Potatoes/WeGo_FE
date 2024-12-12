@@ -1,20 +1,7 @@
-interface MyTravelList {
-  travelId: number;
-  travelName: string;
-  expectedTripCost: number;
-  travelMateCount: number;
-  isDomestic: boolean;
-  travelStatus: string;
-  location: string;
-  image: string;
-  startAt: string;
-  endAt: string;
-  maxTravelMateCount: number;
-  currentTravelMateCount: number;
-}
+import { TravelList } from '@/@types/travel';
 
 interface MyTravel {
-  travels: MyTravelList[];
+  travels: TravelList[];
   total: number;
 }
 
@@ -23,6 +10,7 @@ interface MyTravelApiError extends Error {
   message: string;
 }
 
+/* ---------------------------------- 예정 여행 --------------------------------- */
 const upcommingTravel = async (
   limit: number,
   offset: number,
@@ -41,7 +29,99 @@ const upcommingTravel = async (
     error.message = `Server error: ${res.status}`;
     throw error;
   }
+
   return res.json();
 };
 
-export { upcommingTravel };
+/* --------------------------------- 다녀온 여행 --------------------------------- */
+const pastTravel = async (limit: number, offset: number): Promise<MyTravel> => {
+  const res = await fetch(
+    `/api/travels/finished?limit=${limit}&offset=${offset}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+    },
+  );
+  if (!res.ok) {
+    const error = new Error('Login failed') as MyTravelApiError;
+    error.status = res.status;
+    error.message = `Server error: ${res.status}`;
+    throw error;
+  }
+
+  return res.json();
+};
+
+/* --------------------------------- 체크한 여행 --------------------------------- */
+const checkedTravel = async (
+  limit: number,
+  offset: number,
+): Promise<MyTravel> => {
+  const res = await fetch(
+    `/api/travels/checked?limit=${limit}&offset=${offset}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+    },
+  );
+  if (!res.ok) {
+    const error = new Error('Login failed') as MyTravelApiError;
+    error.status = res.status;
+    error.message = `Server error: ${res.status}`;
+    throw error;
+  }
+
+  return res.json();
+};
+
+/* --------------------------------- 리뷰 작성 가능한 여행 --------------------------------- */
+const writableTravel = async (
+  limit: number,
+  offset: number,
+): Promise<MyTravel> => {
+  const res = await fetch(
+    `/api/travels/reviews/pending?limit=${limit}&offset=${offset}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+    },
+  );
+  if (!res.ok) {
+    const error = new Error('Login failed') as MyTravelApiError;
+    error.status = res.status;
+    error.message = `Server error: ${res.status}`;
+    throw error;
+  }
+
+  return res.json();
+};
+
+/* -------------------------------- 내가 만든 여행 -------------------------------- */
+const mySelfTravel = async (
+  limit: number,
+  offset: number,
+): Promise<MyTravel> => {
+  const res = await fetch(
+    `/api/travels/created?limit=${limit}&offset=${offset}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+    },
+  );
+  if (!res.ok) {
+    const error = new Error('Login failed') as MyTravelApiError;
+    error.status = res.status;
+    error.message = `Server error: ${res.status}`;
+    throw error;
+  }
+
+  return res.json();
+};
+
+export {
+  upcommingTravel,
+  pastTravel,
+  checkedTravel,
+  writableTravel,
+  mySelfTravel,
+};
