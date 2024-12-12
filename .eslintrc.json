@@ -27,10 +27,11 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [".ts", ".tsx"]
+        "extensions": [".ts", ".tsx", ".jsx", ".js"]
       }
     ],
     "react/require-default-props": "off",
@@ -79,5 +80,14 @@
     },
     "project": "./tsconfig.json"
   },
+  "overrides": [
+    {
+      "files": ["src/mocks/styleMock.js", "src/mocks/swiperMock.jsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "react/prop-types": "off"
+      }
+    }
+  ],
   "ignorePatterns": ["build", "dist", "public"]
 }
