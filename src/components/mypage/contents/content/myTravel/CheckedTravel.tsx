@@ -27,6 +27,8 @@ const CheckedTravel = () => {
           currentParticipant={travel.currentParticipant}
           startDate={travel.startDate}
           formattedStartDate={formatStartDate(travel.startDate)}
+          checkMark
+          isChecked
         />
       ))}
 

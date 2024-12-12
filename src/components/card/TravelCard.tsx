@@ -2,15 +2,18 @@ import Image from 'next/image';
 import Location from '@/assets/location.svg';
 import Multiple from '@/assets/multiple.svg';
 import { Travel } from '@/@types/travel';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import cn from '@/utils/cn';
 import DomesticTag from '../common/tag/DomesticTag';
 import ProgressBar from '../common/ProgressBar';
 import ExpiredTag from '../common/tag/ExpiredTag';
+import CheckMarkButton from '../common/button/CheckMarkButton';
 
 interface Props extends Travel {
   closed?: boolean;
+  checkMark?: boolean;
+  isChecked?: boolean;
 }
 
 const TravelCard = ({
@@ -22,13 +25,23 @@ const TravelCard = ({
   currentParticipant,
   formattedStartDate,
   closed,
+  checkMark,
+  isChecked,
 }: Props) => {
+  const [isCheckedState, setIsCheckedState] = useState(isChecked);
+
   const progressRate = useMemo(
     () => Math.round((currentParticipant / maxParticipant) * 100),
     [currentParticipant, maxParticipant],
   );
   const iconAndText =
     "flex items-center gap-0.5 after:ml-[6px] after:text-line-normal after:content-['|']";
+
+  const handleCheckMark = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // 자신의 체크한 목록에 추가 / 삭제
+    setIsCheckedState(!isCheckedState);
+  };
 
   return (
     <Link href="/" className="flex gap-4">
@@ -50,7 +63,14 @@ const TravelCard = ({
             마감된 여행
           </div>
         )}
+        {checkMark && (
+          <CheckMarkButton
+            isChecked={isCheckedState}
+            handler={handleCheckMark}
+          />
+        )}
       </div>
+
       <div className="flex w-full flex-col justify-between">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-1">
