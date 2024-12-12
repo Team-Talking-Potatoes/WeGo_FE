@@ -39,7 +39,7 @@ const CheckedTravel = () => {
         <NoTravel message="아직 체크한 여행이 없어요!" />
       )}
 
-      {totalPages > itemsPerPage && (
+      {totalPages > 1 && (
         <Pagenation
           totalPages={totalPages}
           currentPage={currentPage}
