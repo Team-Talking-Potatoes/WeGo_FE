@@ -7,6 +7,7 @@ import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
 
 import SubTab from './SubTab';
 import MainTab from './MainTab';
+import TabContents from '../contents/TabContents';
 
 const TabSection = () => {
   const [selectedTab, setSelectedTab] = useState<MainTabType>('myTravel');
@@ -25,6 +26,7 @@ const TabSection = () => {
         selectedSubTab={selectedSubTab}
         setSelectedSubTab={setSelectedSubTab}
       />
+      <TabContents selectedSubTab={selectedSubTab} />
     </section>
   );
 };

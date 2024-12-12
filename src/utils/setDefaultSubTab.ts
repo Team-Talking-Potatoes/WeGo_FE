@@ -10,6 +10,9 @@ const setDefaultSubTab = (
   if (tab === 'myReview') {
     setSelectedSubTab('writable');
   }
+  if (tab === 'mySelfTravel') {
+    setSelectedSubTab('mySelfTravel');
+  }
   return null;
 };
 

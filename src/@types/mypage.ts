@@ -4,6 +4,7 @@ type SubTab =
   | 'pastTravel'
   | 'checkedTravel'
   | 'writable'
-  | 'written';
+  | 'written'
+  | 'mySelfTravel';
 
 export type { MainTab, SubTab };

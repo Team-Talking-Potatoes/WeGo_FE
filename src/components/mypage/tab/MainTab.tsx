@@ -1,8 +1,9 @@
 import cn from '@/utils/cn';
 import { MainTab as MainTabType, SubTab as SubTabType } from '@/@types/mypage';
-import setMypageBarPosition from '@/utils/setMypageBarPosition';
 import { MY_PAGE_TABS_NAME } from '@/constants/mypage';
 import { setDefaultSubTab } from '@/utils/setDefaultSubTab';
+
+import Highlight from './bar/Highlight';
 
 interface Props {
   selectedTab: MainTabType;
@@ -34,9 +35,7 @@ const MainTab = ({ selectedTab, setSelectedTab, setSelectedSubTab }: Props) => {
         ))}
       </ul>
 
-      <div
-        className={`absolute -bottom-2.5 h-[3px] bg-label-normal transition-all duration-150 ease-in-out ${setMypageBarPosition(selectedTab)}`}
-      />
+      <Highlight selectedTab={selectedTab} />
     </div>
   );
 };
