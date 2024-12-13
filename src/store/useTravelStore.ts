@@ -8,11 +8,11 @@ interface TravelStore {
 
 export const useTravelStore = create<TravelStore>((set) => ({
   filters: {
-    searchText: '',
-    isDomestic: null,
-    sortOrder: null,
     startAt: '',
     endAt: '',
+    isDomestic: null,
+    sortOrder: null,
+    searchText: '',
   },
   setFilters: (filters) =>
     set((state) => ({

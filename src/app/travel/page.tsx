@@ -3,7 +3,7 @@ import TravelListContainer from '@/components/travel/list/TravelListContainer';
 
 const TravelPage = () => {
   return (
-    <section className="flex flex-col gap-6 px-5 pb-28 pt-9">
+    <section className="flex flex-col px-5 pb-[75px] pt-[60px]">
       <TravelHeader />
       <TravelListContainer />
     </section>
