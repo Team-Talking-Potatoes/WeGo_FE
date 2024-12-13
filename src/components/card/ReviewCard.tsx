@@ -2,11 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Review } from '@/@types/review';
 
-const ReviewCard = ({
-  reviewId,
-  nickname,
-  reviewImage,
-}: Omit<Review, 'score' | 'content'>) => {
+type Props = Pick<Review, 'reviewId' | 'nickname' | 'reviewImage'>;
+
+const ReviewCard = ({ reviewId, nickname, reviewImage }: Props) => {
   return (
     <article>
       <div className="h-[272px] w-[180px]">
@@ -22,7 +20,7 @@ const ReviewCard = ({
       </div>
       <Link href="/">
         <div className="inline-block pt-[10px] text-status-infomative">
-          @{nickname}
+          {nickname}
         </div>
       </Link>
     </article>

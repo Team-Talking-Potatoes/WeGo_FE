@@ -5,10 +5,7 @@ const UserSetting = () => {
   return (
     <div>
       <FormHeader title="설정" isConfigButton />
-
-      <div className="">
-        <SettingList />
-      </div>
+      <SettingList />
     </div>
   );
 };

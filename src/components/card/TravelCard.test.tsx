@@ -1,21 +1,26 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import TravelCard from './TravelCard';
 
 describe('TravelCard', () => {
   it('사용자 프로필 정보를 렌더링합니다', () => {
+    const queryClient = new QueryClient();
+
     render(
-      <TravelCard
-        travelId={12}
-        isDomestic
-        travelName="부여로 떠나는 다함께 시골투어"
-        travelLocation="충남 부여"
-        maxParticipant={6}
-        currentParticipant={1}
-        startDate="12/3"
-        formattedStartDate="12/03"
-        image="/test/travel/test1.png"
-      />,
+      <QueryClientProvider client={queryClient}>
+        <TravelCard
+          travelId={12}
+          isDomestic
+          travelName="부여로 떠나는 다함께 시골투어"
+          travelLocation="충남 부여"
+          maxParticipant={6}
+          currentParticipant={1}
+          startDate="12/3"
+          formattedStartDate="12/03"
+          image="/test/travel/test1.png"
+        />
+      </QueryClientProvider>,
     );
 
     // 1. 여행 이름이 렌더링되는지 확인

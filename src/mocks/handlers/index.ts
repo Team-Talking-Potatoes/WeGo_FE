@@ -11,8 +11,22 @@ import travelDetail from './travel/travelDetail';
 import travelDetailReview from './review/travelDetailReview';
 // import travelList from './travel/travelList';
 import travelListInfinity from './travel/travelListInfinity';
+import createTravel from './travel/createTravel';
+import getUserInfo from './user/getUserInfo';
+import upcommingTravel from './travel/mypage/upcommingTravel';
+import pastTravel from './travel/mypage/pastTravel';
+import mySelfTravel from './travel/mypage/mySelfTravel';
+import checkedTravel from './travel/mypage/checkedTravel';
+import writableTravel from './travel/mypage/writableTravel';
+import myReview from './travel/mypage/myReview';
 
 export const handlers = [
+  myReview,
+  pastTravel,
+  checkedTravel,
+  writableTravel,
+  mySelfTravel,
+  upcommingTravel,
   // auth
   login,
   ...signup,
@@ -30,4 +44,7 @@ export const handlers = [
   ...travelDetailReview,
   // ...travelList,
   ...travelListInfinity,
+  // 여행 등록
+  createTravel,
+  getUserInfo,
 ];

@@ -2,12 +2,15 @@ import { Review } from '@/@types/review';
 import StartIcon from '@/assets/blue_star.svg';
 import Image from 'next/image';
 
+interface Props
+  extends Pick<Review, 'nickname' | 'reviewImage' | 'content' | 'score'> {}
+
 const ReviewCardAddText = ({
   nickname,
   reviewImage,
   content,
   score,
-}: Omit<Review, 'reviewId'>) => {
+}: Props) => {
   return (
     <article className="flex gap-[18px]">
       <div className="relative h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded">

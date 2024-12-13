@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import lineClamp from '@tailwindcss/line-clamp';
 
 export default {
   content: [
@@ -67,15 +68,34 @@ export default {
           '0%': { transform: 'translateY(-100%)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        'check-shake': {
+          '0%': { transform: 'translateX(0) rotate(0deg) scale(1)' },
+          '20%': { transform: 'translateX(1px) rotate(5deg) scale(1.01)' },
+          '40%': { transform: 'translateX(-1px) rotate(-4deg) scale(1.02)' },
+          '60%': { transform: 'translateX(1px) rotate(3deg) scale(1.03)' },
+          '80%': { transform: 'translateX(-1px) rotate(-2deg) scale(1.04)' },
+          '100%': { transform: 'translateX(0) rotate(0deg) scale(1.05)' },
+        },
+        'check-shake-reverse': {
+          '0%': { transform: 'translateX(0) rotate(0deg) scale(1.05)' },
+          '20%': { transform: 'translateX(-1px) rotate(-5deg) scale(1.04)' },
+          '40%': { transform: 'translateX(1px) rotate(4deg) scale(1.03)' },
+          '60%': { transform: 'translateX(-1px) rotate(-3deg) scale(1.02)' },
+          '80%': { transform: 'translateX(1px) rotate(2deg) scale(1.01)' },
+          '100%': { transform: 'translateX(0) rotate(0deg) scale(1)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 0.3s ease-out',
         'slide-up': 'slide-up 0.3s ease-out',
         'slide-down': 'slide-down 0.3s ease-out forwards',
+        'check-shake': 'check-shake 0.5s ease-in-out forwards',
+        'check-shake-reverse': 'check-shake-reverse 0.5s ease-in-out forwards',
       },
     },
   },
   plugins: [
+    lineClamp,
     plugin(({ addComponents }) => {
       addComponents({
         // title

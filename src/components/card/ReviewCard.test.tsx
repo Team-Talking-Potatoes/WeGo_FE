@@ -28,7 +28,7 @@ describe('ReviewCard', () => {
       `${mockReview.nickname}의 여행 후기 사진`,
     );
 
-    const nicknameText = screen.getByText(`@${mockReview.nickname}`);
+    const nicknameText = screen.getByText(`${mockReview.nickname}`);
     expect(nicknameText).toBeInTheDocument();
 
     // 링크가 제대로 작동하는지 확인
