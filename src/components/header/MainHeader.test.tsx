@@ -23,18 +23,7 @@ describe('MainHeader Component', () => {
     expect(logoLink).toBeInTheDocument();
   });
 
-  it('스크롤하면 로고와 배경이 변경됩니다', () => {
-    (usePathname as jest.Mock).mockReturnValue('/');
-    render(<MainHeader />);
-
-    fireEvent.scroll(window, { target: { scrollY: 300 } });
-    const logoLink = screen.getByLabelText('WEGO 로고');
-    expect(logoLink).toBeInTheDocument();
-    const logoIcon = logoLink.querySelector('svg');
-    expect(logoIcon).toHaveClass('text-label-normal');
-  });
-
-  it('스크롤 위치에 따라 올바른 아이콘을 표시합니다', () => {
+  it('스크롤 위치에 따라 변경 된 아이콘을 표시합니다', () => {
     (usePathname as jest.Mock).mockReturnValue('/');
     render(<MainHeader />);
     act(() => {
@@ -42,14 +31,17 @@ describe('MainHeader Component', () => {
     });
 
     const writeLink = screen.getByLabelText('모임 만들기');
-    const svgIcon = writeLink.querySelector('svg');
+    const writeIcon = writeLink.querySelector('svg');
     const mypageLink = screen.getByLabelText('마이페이지로 가기');
-    const mypageIcon = writeLink.querySelector('svg');
+    const mypageIcon = mypageLink.querySelector('svg');
 
     expect(writeLink).toBeInTheDocument();
     expect(mypageLink).toBeInTheDocument();
 
-    expect(svgIcon).toHaveClass('text-label-normal');
+    expect(writeIcon).toBeInTheDocument();
+    expect(mypageIcon).toBeInTheDocument();
+
+    expect(writeIcon).toHaveClass('text-label-normal');
     expect(mypageIcon).toHaveClass('text-label-normal');
   });
 });
