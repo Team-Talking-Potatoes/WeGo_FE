@@ -15,8 +15,7 @@ const MainNavigation = () => {
 
   const isPathIncluded =
     includedPaths.includes(pathname) ||
-    (pathname.startsWith('/travel') && pathname !== '/travel/new') ||
-    (pathname.startsWith('/chat') && pathname !== '/chat/');
+    (pathname.startsWith('/travel') && pathname !== '/travel/new');
 
   if (!isPathIncluded) {
     return null;
