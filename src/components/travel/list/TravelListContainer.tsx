@@ -4,22 +4,15 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { getTravels } from '@/api/travelApi';
+import { InitialFilters } from '@/@types/travel';
 import TravelFilter from './TravelFilter';
 import TravelList from './TravelList';
 
 const TravelListContainer = async () => {
-  const initial = {
-    startAt: '',
-    endAt: '',
-    isDomestic: null,
-    sortOrder: null,
-    searchText: '',
-  };
-
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ['travels', initial],
-    queryFn: () => getTravels({ ...initial }),
+    queryKey: ['travels', InitialFilters],
+    queryFn: () => getTravels({ ...InitialFilters }),
   });
 
   return (

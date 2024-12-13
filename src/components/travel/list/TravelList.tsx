@@ -79,7 +79,7 @@ const TravelList = () => {
             )}
           </section>
         ))}
-      {hasNextPage && (
+      {hasNextPage ? (
         <div
           ref={ref}
           className="flex h-16 w-full justify-center p-5"
@@ -87,6 +87,8 @@ const TravelList = () => {
         >
           <LeftIcon className="animate-spin" />
         </div>
+      ) : (
+        <div aria-label="마지막 페이지 입니다" />
       )}
     </div>
   );

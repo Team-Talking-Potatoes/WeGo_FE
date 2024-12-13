@@ -55,6 +55,14 @@ export interface Filters {
   searchText: string;
 }
 
+export const InitialFilters = {
+  startAt: '',
+  endAt: '',
+  isDomestic: null,
+  sortOrder: null,
+  searchText: '',
+} as const;
+
 export interface TravelParams {
   pageParam: number;
   filters?: Filters;

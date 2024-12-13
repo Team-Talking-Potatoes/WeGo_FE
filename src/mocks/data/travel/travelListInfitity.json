@@ -7,8 +7,8 @@
     {
       "travelId": 1,
       "isDomestic": false,
-      "travelName": "부여로 떠나는 다함께 시골투어",
-      "travelLocation": "충남 부여",
+      "travelName": "시골투어 같이 갈사람!",
+      "travelLocation": "강원도",
       "maxParticipant": 6,
       "currentParticipant": 5,
       "startDate": "12.11",
