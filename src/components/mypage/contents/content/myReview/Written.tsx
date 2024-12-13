@@ -1,6 +1,6 @@
 import Pagenation from '@/components/common/pagenation/Pagenation';
 import { useState } from 'react';
-import MyReviewCard from '@/components/card/myReview/MyReviewCard';
+import ReviewCard from '@/components/card/Review/ReviewCard';
 import useMyReview from '@/queries/review/useMyReview';
 import NoTravel from '../myTravel/NoTravel';
 
@@ -17,7 +17,7 @@ const Written = () => {
       <div className="grid grid-cols-2 gap-4 pb-4">
         {reviews &&
           reviews.reviews.map((review) => (
-            <MyReviewCard
+            <ReviewCard
               key={review.reviewId}
               reviewId={review.reviewId}
               image={review.reviewImage}
