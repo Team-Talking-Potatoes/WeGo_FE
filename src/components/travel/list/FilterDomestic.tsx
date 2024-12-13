@@ -45,7 +45,7 @@ const FilterDomestic = () => {
         </ListboxOption>
         <ListboxOption
           value
-          className={`cursor-pointer py-2.5 ${domestic === true && 'text-label-normal'}`}
+          className={`cursor-pointer py-2.5 ${domestic && 'text-label-normal'}`}
         >
           해외
         </ListboxOption>

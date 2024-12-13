@@ -6,11 +6,7 @@ const Listbox = ({ children, ...props }) => {
   );
 };
 const ListboxButton = ({ children, ...props }) => {
-  return (
-    <button type="button" {...props}>
-      {children}
-    </button>
-  );
+  return <div {...props}>{children}</div>;
 };
 const ListboxOption = ({ children, ...props }) => {
   return <div {...props}>{children}</div>;
