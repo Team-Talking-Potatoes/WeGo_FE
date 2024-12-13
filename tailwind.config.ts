@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import lineClamp from '@tailwindcss/line-clamp';
 
 export default {
   content: [
@@ -94,6 +95,7 @@ export default {
     },
   },
   plugins: [
+    lineClamp,
     plugin(({ addComponents }) => {
       addComponents({
         // title

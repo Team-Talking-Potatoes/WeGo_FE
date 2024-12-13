@@ -2,6 +2,9 @@ import { SubTab as SubTabType } from '@/@types/mypage';
 import Upcomming from './content/myTravel/Upcomming';
 import PastTravel from './content/myTravel/PastTravel';
 import CheckedTravel from './content/myTravel/CheckedTravel';
+import Writable from './content/myReview/Writable';
+import Written from './content/myReview/Written';
+import MySelfTravel from './content/mySelfTravel/MySelfTravel';
 
 interface Props {
   selectedSubTab: SubTabType;
@@ -18,13 +21,13 @@ const TabContents = ({ selectedSubTab }: Props) => {
     return <CheckedTravel />;
   }
   if (selectedSubTab === 'writable') {
-    return <div>작성가능한</div>;
+    return <Writable />;
   }
   if (selectedSubTab === 'written') {
-    return <div>작성한</div>;
+    return <Written />;
   }
   if (selectedSubTab === 'mySelfTravel') {
-    return <div>내가 만든 여행</div>;
+    return <MySelfTravel />;
   }
 
   return null;

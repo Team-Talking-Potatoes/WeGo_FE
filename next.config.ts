@@ -33,6 +33,19 @@ const nextConfig: NextConfig = {
     return config;
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+
   async rewrites() {
     return [
       {

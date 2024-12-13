@@ -5,6 +5,7 @@ const UserIconVariants = cva('rounded-full overflow-hidden', {
   variants: {
     size: {
       default: 'w-16 h-16', // 64px
+      xs: 'w-6 h-6', // 24px
       sm: 'w-9 h-9', // 36px
       lg: 'w-20 h-20', // 80px
     },
@@ -21,6 +22,7 @@ interface Props extends VariantProps<typeof UserIconVariants> {
 
 const sizeMapping = {
   default: 64,
+  xs: 24,
   sm: 36,
   lg: 80,
 };
