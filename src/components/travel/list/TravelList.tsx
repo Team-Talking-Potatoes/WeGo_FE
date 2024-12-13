@@ -2,6 +2,7 @@
 
 import { getTravels } from '@/api/travelApi';
 import TravelCard from '@/components/card/TravelCard';
+import NoReault from '@/components/common/NoReault';
 import { useTravelStore } from '@/store/useTravelStore';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
@@ -47,14 +48,16 @@ const TravelList = () => {
   if (isError) return <div>에러</div>;
 
   return (
-    <div>
+    <div className="h-full">
       {travelListData &&
         travelListData.pages.map((page) => (
           <section
-            key={`page-${page.travels[0].travelId}`}
+            key={page.travels ? `page-${page.travels[0]?.travelId}` : 'page'}
             className="flex flex-col justify-center gap-6 px-5 py-[50px]"
           >
-            {page &&
+            {page.travels.length === 0 ? (
+              <NoReault label="아직 등록된 여행이 없어요!" height="h-64" />
+            ) : (
               page.travels.map((travel) => (
                 <TravelCard
                   key={travel.travelId}
@@ -68,10 +71,11 @@ const TravelList = () => {
                   startDate={travel.startDate}
                   formattedStartDate={travel.formattedStartDate}
                 />
-              ))}
+              ))
+            )}
           </section>
         ))}
-      <div ref={ref} className="h-12">
+      <div ref={ref} className="h-6">
         여기
       </div>
     </div>
