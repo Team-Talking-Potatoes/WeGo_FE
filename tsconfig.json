@@ -31,7 +31,8 @@
     ".next/types/**/*.ts",
     "src/mocks/styleMock.js",
     "src/mocks/swiperMock.jsx",
-    "src/mocks/svg.js"
+    "src/mocks/svg.js",
+    "src/mocks/headlessUIMock.jsx"
   ],
   "exclude": ["node_modules"]
 }

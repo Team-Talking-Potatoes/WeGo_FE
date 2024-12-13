@@ -8,6 +8,7 @@ export interface Travel {
   currentParticipant: number;
   startDate: string;
   formattedStartDate?: string;
+  expectedTripCost?: number;
 }
 
 export interface TravelPlan {
@@ -41,11 +42,39 @@ export interface TravelDetail {
   startAt: string;
   endAt: string;
   registrationEnd: string;
-  tripDuration: number; // 여행 기간
+  tripDuration: number;
   travelPlan: TravelPlan[];
   participant: Participant[];
 }
 
+export interface Filters {
+  startAt: string;
+  endAt: string;
+  isDomestic: boolean | null;
+  sortOrder: 'popular' | 'registrationEnd' | null;
+  searchText: string;
+}
+
+export const InitialFilters = {
+  startAt: '',
+  endAt: '',
+  isDomestic: null,
+  sortOrder: null,
+  searchText: '',
+} as const;
+
+export interface TravelParams {
+  pageParam: number;
+  filters?: Filters;
+}
+
+export interface TravelFilterResponse {
+  travels: Travel[];
+  currentPage: number;
+  size: number;
+  isFirst: boolean;
+  isLast: boolean;
+}
 export interface TravelList {
   travelId: number;
   travelName: string;
