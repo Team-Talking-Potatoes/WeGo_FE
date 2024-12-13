@@ -12,6 +12,12 @@ interface CalendarEvents {
   adjustMonth: (offset: number) => void;
 }
 
+interface InputEvents {
+  openCalendar: () => void;
+  confirmSelection: () => void;
+  cancelSelection: () => void;
+}
+
 interface Schedule {
   id: number;
   destination: string;
@@ -19,4 +25,4 @@ interface Schedule {
   dayIndex: number;
 }
 
-export type { Day, CalendarEvents, Schedule };
+export type { Day, CalendarEvents, InputEvents, Schedule };
