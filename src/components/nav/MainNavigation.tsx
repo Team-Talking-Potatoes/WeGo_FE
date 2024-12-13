@@ -16,15 +16,14 @@ const MainNavigation = () => {
     pathname === '/login' ||
     pathname === '/signup' ||
     pathname === '/resetPassword/authPassword' ||
-    pathname === '/write' ||
-    (pathname.startsWith('/chat/') && pathname !== '/chat') ||
+    pathname.startsWith('/chat/') ||
     pathname.startsWith('/travel/new')
   ) {
     return null;
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-20 flex h-20 items-center justify-between bg-black px-[29px] py-3.5 text-primary-white">
+    <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-20 items-center justify-between bg-black px-[29px] py-3.5 text-primary-white">
       <NavLink
         href="/reviews"
         icon={<Start />}
