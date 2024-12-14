@@ -6,203 +6,58 @@
   "travels": [
     {
       "travelId": 1,
-      "isDomestic": false,
       "travelName": "시골투어 같이 갈사람!",
-      "travelLocation": "강원도",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.11",
-      "image": "/test/travel/test1.jpg"
+      "isDomestic": false,
+      "location": "강원도",
+      "image": "/test/travel/test1.jpg",
+      "startAt": "2024-12-11",
+      "endAt": "2024-12-13",
+      "maxTravelMateCount": 6,
+      "currentTravelMateCount": 5
     },
     {
       "travelId": 2,
-      "isDomestic": true,
       "travelName": "도쿄에서 즐기는 미식여행",
-      "travelLocation": "도쿄시",
-      "maxParticipant": 12,
-      "currentParticipant": 11,
-      "startDate": "12.06",
-      "image": "/test/travel/test2.jpg"
+      "isDomestic": true,
+      "location": "도쿄시",
+      "image": "/test/travel/test2.jpg",
+      "startAt": "2024-12-06",
+      "endAt": "2024-12-10",
+      "maxTravelMateCount": 12,
+      "currentTravelMateCount": 11
     },
     {
       "travelId": 3,
-      "isDomestic": false,
       "travelName": "당일치기 남산타워 보러가기",
-      "travelLocation": "용산구",
-      "maxParticipant": 10,
-      "currentParticipant": 10,
-      "startDate": "01.03",
-      "image": "/test/travel/test3.jpg"
+      "isDomestic": false,
+      "location": "용산구",
+      "image": "/test/travel/test3.jpg",
+      "startAt": "2025-01-03",
+      "endAt": "2025-01-03",
+      "maxTravelMateCount": 10,
+      "currentTravelMateCount": 10
     },
     {
       "travelId": 4,
-      "isDomestic": true,
       "travelName": "지하철로 떠나는 일본 도심 투어",
-      "travelLocation": "오사카",
-      "maxParticipant": 6,
-      "currentParticipant": 3,
-      "startDate": "12.31",
-      "image": "/test/travel/test4.jpg"
+      "isDomestic": true,
+      "location": "오사카",
+      "image": "/test/travel/test4.jpg",
+      "startAt": "2024-12-31",
+      "endAt": "2025-01-02",
+      "maxTravelMateCount": 6,
+      "currentTravelMateCount": 3
     },
     {
       "travelId": 5,
-      "isDomestic": false,
       "travelName": "겨울에만 즐길 수 있는 고즈넉한 한옥 스테이",
-      "travelLocation": "북촌",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.24",
-      "image": "/test/travel/test5.jpg"
-    },
-    {
-      "travelId": 6,
       "isDomestic": false,
-      "travelName": "부여로 떠나는 다함께 시골투어",
-      "travelLocation": "충남 부여",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.11",
-      "image": "/test/travel/test1.jpg"
-    },
-    {
-      "travelId": 7,
-      "isDomestic": true,
-      "travelName": "도쿄에서 즐기는 미식여행",
-      "travelLocation": "도쿄시",
-      "maxParticipant": 12,
-      "currentParticipant": 11,
-      "startDate": "12.06",
-      "image": "/test/travel/test2.jpg"
-    },
-    {
-      "travelId": 8,
-      "isDomestic": false,
-      "travelName": "당일치기 남산타워 보러가기",
-      "travelLocation": "용산구",
-      "maxParticipant": 10,
-      "currentParticipant": 10,
-      "startDate": "01.03",
-      "image": "/test/travel/test3.jpg"
-    },
-    {
-      "travelId": 9,
-      "isDomestic": true,
-      "travelName": "지하철로 떠나는 일본 도심 투어",
-      "travelLocation": "오사카",
-      "maxParticipant": 6,
-      "currentParticipant": 3,
-      "startDate": "12.31",
-      "image": "/test/travel/test4.jpg"
-    },
-    {
-      "travelId": 10,
-      "isDomestic": false,
-      "travelName": "겨울에만 즐길 수 있는 고즈넉한 한옥 스테이",
-      "travelLocation": "북촌",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.24",
-      "image": "/test/travel/test5.jpg"
-    },
-    {
-      "travelId": 11,
-      "isDomestic": false,
-      "travelName": "부여로 떠나는 다함께 시골투어",
-      "travelLocation": "충남 부여",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.11",
-      "image": "/test/travel/test1.jpg"
-    },
-    {
-      "travelId": 12,
-      "isDomestic": true,
-      "travelName": "도쿄에서 즐기는 미식여행",
-      "travelLocation": "도쿄시",
-      "maxParticipant": 12,
-      "currentParticipant": 11,
-      "startDate": "12.06",
-      "image": "/test/travel/test2.jpg"
-    },
-    {
-      "travelId": 13,
-      "isDomestic": false,
-      "travelName": "당일치기 남산타워 보러가기",
-      "travelLocation": "용산구",
-      "maxParticipant": 10,
-      "currentParticipant": 10,
-      "startDate": "01.03",
-      "image": "/test/travel/test3.jpg"
-    },
-    {
-      "travelId": 14,
-      "isDomestic": true,
-      "travelName": "지하철로 떠나는 일본 도심 투어",
-      "travelLocation": "오사카",
-      "maxParticipant": 6,
-      "currentParticipant": 3,
-      "startDate": "12.31",
-      "image": "/test/travel/test4.jpg"
-    },
-    {
-      "travelId": 15,
-      "isDomestic": false,
-      "travelName": "겨울에만 즐길 수 있는 고즈넉한 한옥 스테이",
-      "travelLocation": "북촌",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.24",
-      "image": "/test/travel/test5.jpg"
-    },
-    {
-      "travelId": 16,
-      "isDomestic": false,
-      "travelName": "부여로 떠나는 다함께 시골투어",
-      "travelLocation": "충남 부여",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.11",
-      "image": "/test/travel/test1.jpg"
-    },
-    {
-      "travelId": 17,
-      "isDomestic": true,
-      "travelName": "도쿄에서 즐기는 미식여행",
-      "travelLocation": "도쿄시",
-      "maxParticipant": 12,
-      "currentParticipant": 11,
-      "startDate": "12.06",
-      "image": "/test/travel/test2.jpg"
-    },
-    {
-      "travelId": 18,
-      "isDomestic": false,
-      "travelName": "당일치기 남산타워 보러가기",
-      "travelLocation": "용산구",
-      "maxParticipant": 10,
-      "currentParticipant": 10,
-      "startDate": "01.03",
-      "image": "/test/travel/test3.jpg"
-    },
-    {
-      "travelId": 19,
-      "isDomestic": true,
-      "travelName": "지하철로 떠나는 일본 도심 투어",
-      "travelLocation": "오사카",
-      "maxParticipant": 6,
-      "currentParticipant": 3,
-      "startDate": "12.31",
-      "image": "/test/travel/test4.jpg"
-    },
-    {
-      "travelId": 20,
-      "isDomestic": false,
-      "travelName": "겨울에만 즐길 수 있는 고즈넉한 한옥 스테이",
-      "travelLocation": "북촌",
-      "maxParticipant": 6,
-      "currentParticipant": 5,
-      "startDate": "12.24",
-      "image": "/test/travel/test5.jpg"
+      "location": "북촌",
+      "image": "/test/travel/test5.jpg",
+      "startAt": "2024-12-24",
+      "endAt": "2024-12-26",
+      "maxTravelMateCount": 6,
+      "currentTravelMateCount": 5
     }
   ]
 }

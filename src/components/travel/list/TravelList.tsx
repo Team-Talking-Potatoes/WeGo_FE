@@ -66,10 +66,11 @@ const TravelList = () => {
                     image={travel.image}
                     isDomestic={travel.isDomestic}
                     travelName={travel.travelName}
-                    travelLocation={travel.travelLocation}
-                    maxParticipant={travel.maxParticipant}
-                    currentParticipant={travel.currentParticipant}
-                    startDate={travel.startDate}
+                    location={travel.location}
+                    maxTravelMateCount={travel.maxTravelMateCount}
+                    currentTravelMateCount={travel.currentTravelMateCount}
+                    startAt={travel.startAt}
+                    endAt={travel.endAt}
                     formattedStartDate={travel.formattedStartDate}
                     checkMark
                     isChecked
