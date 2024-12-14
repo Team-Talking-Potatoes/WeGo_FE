@@ -1,5 +1,6 @@
 import Error from '@/assets/error.svg';
 import Square from '@/assets/square.svg';
+import RoundCheck from '@/assets/round_check.svg';
 import { Participant } from '@/@types/travel';
 import ProgressBar from '../../common/ProgressBar';
 import UserIconList from '../../common/user/UserIconList';
@@ -31,8 +32,17 @@ const RecruimentBox = ({
     <div className="flex flex-col rounded bg-slate-50 px-5 py-4">
       <div className="flex justify-between pb-3">
         <span className="flex items-center gap-1.5">
-          <Square />
-          <span className="body-2-sb text-label-neutral">모집 중</span>
+          {participant.length === maxTravelMateCount ? (
+            <>
+              <RoundCheck />
+              <span className="body-2-sb text-label-neutral">모집 완료!</span>
+            </>
+          ) : (
+            <>
+              <Square />
+              <span className="body-2-sb text-label-neutral">모집 중</span>
+            </>
+          )}
         </span>
         <UserIconList participant={participant} />
       </div>

@@ -22,6 +22,8 @@ const config: Config = {
     '^swiper/css$': '<rootDir>/src/mocks/styleMock.js',
     '^swiper/modules$': '<rootDir>/src/mocks/swiperMock.jsx',
     '^swiper/css/pagination$': '<rootDir>/src/mocks/styleMock.js',
+
+    '^@headlessui/react$': '<rootDir>/src/mocks/headlessUIMock.jsx',
   },
 
   // Add more setup options before each test is run
