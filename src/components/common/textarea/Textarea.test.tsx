@@ -60,7 +60,7 @@ describe('Textarea 컴포넌트', () => {
     );
     const textarea = screen.getByRole('textbox');
 
-    expect(textarea).toHaveClass('w-[295px]');
+    expect(textarea).toHaveClass('h-[60px]');
   });
 
   it('추가 className이 정상적으로 적용되어야 한다', () => {
