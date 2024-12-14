@@ -61,9 +61,9 @@
     },
     {
       "travelId": 6,
-      "travelName": "시골투어 같이 갈사람!",
+      "travelName": "시골투어",
       "isDomestic": false,
-      "location": "강원도",
+      "location": "원주",
       "image": "/test/travel/test1.jpg",
       "startAt": "2024.12.11",
       "endAt": "2024.12.13",
