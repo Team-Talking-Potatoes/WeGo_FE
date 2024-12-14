@@ -17,7 +17,7 @@ const score = 5;
 const createdAt = '2024-04-01';
 
 // props {nickname, profileImage, title, reviewImages, liked, content, score, travelLocation, createdAt }
-const ReviewContainer = () => {
+const ReviewDetailContainer = () => {
   // const handleLike = () => {
   // 좋아요 api 호출
   // };
@@ -55,4 +55,4 @@ const ReviewContainer = () => {
   );
 };
 
-export default ReviewContainer;
+export default ReviewDetailContainer;
