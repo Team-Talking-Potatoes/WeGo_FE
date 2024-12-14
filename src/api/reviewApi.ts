@@ -1,14 +1,40 @@
-import { Review } from '@/@types/review';
+import { Review, ReviewResponse } from '@/@types/review';
 
-interface MyReviewError extends Error {
-  status?: number;
-  message: string;
+interface ReviewParams {
+  pageParam: number;
+  sortOrder: string;
 }
 
 interface MyReview {
   total: number;
   reviews: Review[];
 }
+
+interface ReviewError extends Error {
+  status?: number;
+  message: string;
+}
+
+export const getReview = async ({
+  pageParam,
+  sortOrder,
+}: ReviewParams): Promise<ReviewResponse> => {
+  const res = await fetch(
+    `/api/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
+    {
+      method: 'GET',
+      credentials: 'include',
+    },
+  );
+
+  if (!res.ok) {
+    const error = new Error('Login failed') as ReviewError;
+    error.status = res.status;
+    error.message = `Server error: ${res.status}`;
+    throw error;
+  }
+  return res.json();
+};
 
 export const fetchPopularReview = async (): Promise<Review[]> => {
   const response = await fetch('/api/review/popular');
@@ -43,7 +69,7 @@ export const getMyReview = async (
   );
 
   if (!res.ok) {
-    const error = new Error('Login failed') as MyReviewError;
+    const error = new Error('Login failed') as ReviewError;
     error.status = res.status;
     error.message = `Server error: ${res.status}`;
     throw error;

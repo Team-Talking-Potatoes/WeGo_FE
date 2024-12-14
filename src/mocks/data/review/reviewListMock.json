@@ -1,0 +1,62 @@
+[
+  {
+    "reviewId": 1,
+    "title": "정선 겨울 여행갔다왔어요.",
+    "nickname": "여행 토끼",
+    "reviewImage": "/test1.png",
+    "content": "정선의 겨울은 너무 아름다웠어요! 특히 눈 내린 풍경이 인상 깊었습니다. 다시 가고 싶어요.",
+    "score": 5,
+    "travelLocation": "강원도 정선",
+    "createdAt": "2024-04-01"
+  },
+  {
+    "reviewId": 2,
+    "title": "재밌게 놀다 옵니다.",
+    "nickname": "여행 토끼",
+    "reviewImage": "/test2.png",
+    "content": "따듯한 모임이였습니다! 다들 한번 체험 해 보셨으면 좋겠어요.",
+    "score": 4,
+    "travelLocation": "강원도 춘천",
+    "createdAt": "2024-02-01"
+  },
+  {
+    "reviewId": 3,
+    "title": "지금 요맘때가 가장 피크인 여행지에요!",
+    "nickname": "여행 토끼",
+    "reviewImage": "/test3.png",
+    "content": "여유를 만끽할 수 있었던 여행이었어요. 좋은 사람들과 좋은 시간 잘 보내다 왔습니다.",
+    "score": 5,
+    "travelLocation": "강원도 속초",
+    "createdAt": "2024-01-28"
+  },
+  {
+    "reviewId": 4,
+    "title": "정선 겨울 여행갔다왔어요.",
+    "nickname": "여행 토끼",
+    "reviewImage": "/test1.png",
+    "content": "정선의 겨울은 너무 아름다웠어요! 특히 눈 내린 풍경이 인상 깊었습니다. 다시 가고 싶어요.",
+    "score": 4,
+    "travelLocation": "강원도 정선",
+    "createdAt": "2024-01-19"
+  },
+  {
+    "reviewId": 5,
+    "title": "정선 겨울 여행갔다왔어요.",
+    "nickname": "여행 토끼",
+    "reviewImage": "/test1.png",
+    "content": "정선의 겨울은 너무 아름다웠어요! 특히 눈 내린 풍경이 인상 깊었습니다. 다시 가고 싶어요.",
+    "score": 4,
+    "travelLocation": "강원도 정선",
+    "createdAt": "2024-01-01"
+  },
+  {
+    "reviewId": 6,
+    "title": "재밌게 놀다 옵니다.",
+    "nickname": "여행 토끼",
+    "reviewImage": "/test2.png",
+    "content": "따듯한 모임이였습니다! 다들 한번 체험 해 보셨으면 좋겠어요.",
+    "score": 4,
+    "travelLocation": "강원도 춘천",
+    "createdAt": "2023-12-21"
+  }
+]

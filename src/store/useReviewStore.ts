@@ -2,7 +2,7 @@ import { Filters } from '@/@types/review';
 import { create } from 'zustand';
 
 interface ReviewStore {
-  filters: Partial<Filters>;
+  filters: Filters;
   setFilters: (filters: Filters) => void;
 }
 

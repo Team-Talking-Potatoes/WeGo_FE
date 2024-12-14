@@ -28,7 +28,7 @@ const MyReviewCard = ({
   createdAt,
 }: Props) => {
   return (
-    <Link href={`/review/${reviewId}`} className="">
+    <Link href={`/review/${reviewId}`} className="flex-1">
       <div className="group relative h-[242px] w-[160px]">
         <div className="relative">
           <Image

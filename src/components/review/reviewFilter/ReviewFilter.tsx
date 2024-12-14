@@ -7,7 +7,7 @@ const ReviewFilter = () => {
   const sortOrder = useReviewStore((state) => state.filters.sortOrder);
   const setFilters = useReviewStore((state) => state.setFilters);
 
-  const handleSortOrder = (value: 'createdAt' | 'popular' | null) => {
+  const handleSortOrder = (value: 'createdAt' | 'popular') => {
     setFilters({ sortOrder: value });
   };
 
