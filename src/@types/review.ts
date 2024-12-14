@@ -21,3 +21,20 @@ export interface ReviewResponse {
 export interface Filters {
   sortOrder: 'createdAt' | 'popular';
 }
+
+interface ReviewUser {
+  nickname: string;
+  profileImage: string;
+}
+
+export interface ReviewDetail {
+  reviewId: number;
+  user: ReviewUser;
+  title: string;
+  reviewImages: string[];
+  liked: boolean;
+  content: string;
+  score: number;
+  travelLocation: string;
+  createdAt: string;
+}
