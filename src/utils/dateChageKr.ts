@@ -31,10 +31,16 @@ export const getWeekNumber = (dateFrom = new Date()) => {
   return Math.floor((offset + currentDate) / 7) + 1;
 };
 
-// 2024.12.03 -> 12.03(화) 변환
+/**
+ * @param dateString 변환하려는 날짜(2024.12.03)
+ * @param offsetDays dateString을 기준으로 더하고 싶은 숫자
+ * @param includeYear 연도 포함 여부
+ * @return 2024.12.03(화) 혹은 12.03(화)
+ */
 export const formatDateToShortWithDay = (
   dateString: string,
   offsetDays?: number,
+  includeYear?: boolean,
 ): string => {
   const date = new Date(dateString);
   if (offsetDays) {
@@ -44,6 +50,9 @@ export const formatDateToShortWithDay = (
   const dayName = new Intl.DateTimeFormat('ko-KR', option).format(date);
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
 
-  return `${month}.${day}(${dayName})`;
+  return includeYear
+    ? `${year}.${month}.${day}(${dayName})`
+    : `${month}.${day}(${dayName})`;
 };
