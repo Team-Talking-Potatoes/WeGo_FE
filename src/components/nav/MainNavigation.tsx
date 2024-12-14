@@ -11,14 +11,14 @@ import NavLink from './NavigationLink';
 
 const MainNavigation = () => {
   const pathname = usePathname();
+  const includedPaths = ['/', '/travel', '/mypage', '/reviews', '/chat'];
 
-  if (
-    pathname === '/login' ||
-    pathname === '/signup' ||
-    pathname === '/resetPassword/authPassword' ||
-    pathname.startsWith('/chat/') ||
-    pathname.startsWith('/travel/new')
-  ) {
+  const isPathIncluded =
+    includedPaths.includes(pathname) ||
+    (pathname.startsWith('/travel') && pathname !== '/travel/new') ||
+    (pathname.startsWith('/reviews') && pathname !== '/reviews/new');
+
+  if (!isPathIncluded) {
     return null;
   }
 

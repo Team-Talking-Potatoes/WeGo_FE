@@ -39,23 +39,28 @@ const WeeklyPopular = () => {
     );
   }
   return (
-    <section className="flex flex-col justify-center gap-6 px-5 py-[50px]">
+    <section className="flex flex-col justify-center px-5 pb-8 pt-[50px]">
       <WeeklyHeader month={month} week={week} />
       {isLoading && <div>로딩중 WeeklyPopular</div>}
-      {startDateFormatted.map((travel) => (
-        <TravelCard
-          key={travel.travelId}
-          travelId={travel.travelId}
-          image={travel.image}
-          isDomestic={travel.isDomestic}
-          travelName={travel.travelName}
-          travelLocation={travel.travelLocation}
-          maxParticipant={travel.maxParticipant}
-          currentParticipant={travel.currentParticipant}
-          startDate={travel.startDate}
-          formattedStartDate={travel.formattedStartDate}
-        />
-      ))}
+      <div className="flex flex-col divide-y divide-line-normal">
+        {startDateFormatted.map((travel) => (
+          <article key={travel.travelId} className="py-5">
+            <TravelCard
+              travelId={travel.travelId}
+              image={travel.image}
+              isDomestic={travel.isDomestic}
+              travelName={travel.travelName}
+              travelLocation={travel.travelLocation}
+              maxParticipant={travel.maxParticipant}
+              currentParticipant={travel.currentParticipant}
+              startDate={travel.startDate}
+              formattedStartDate={travel.formattedStartDate}
+              checkMark
+              isChecked
+            />
+          </article>
+        ))}
+      </div>
     </section>
   );
 };
