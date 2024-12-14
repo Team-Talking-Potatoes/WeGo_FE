@@ -7,7 +7,7 @@ import { useTravelStore } from '@/store/useTravelStore';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import LeftIcon from '@/assets/left.svg';
+import SpinnerIcon from '@/assets/spinner_round.svg';
 
 const TravelList = () => {
   const { ref, inView } = useInView();
@@ -85,7 +85,7 @@ const TravelList = () => {
           className="flex h-16 w-full justify-center p-5"
           aria-label="여행 정보를 불러오는 중입니다."
         >
-          <LeftIcon className="animate-spin" />
+          <SpinnerIcon className="animate-spin" />
         </div>
       ) : (
         <div aria-label="마지막 페이지 입니다" />
