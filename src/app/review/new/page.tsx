@@ -3,16 +3,16 @@
 import CreateReviewHeader from '@/components/review/new/CreateReviewHeader';
 import { Textarea } from '@headlessui/react';
 import BlueStart from '@/assets/star_24px.svg';
-import { useState } from 'react';
 import InputImage from '@/components/review/new/InputImage';
 import CreateReviewButtons from '@/components/review/new/CreateReviewButtons';
+import useCreateReviewStore from '@/store/useCreateReview';
 
 const CreateReviewPage = () => {
-  const [textValue, setTextValue] = useState('');
-  const [selectedStars, setSelectedStars] = useState(0);
+  const { countStar, textValue, setCountStar, setTextValue } =
+    useCreateReviewStore();
 
   const handleClick = (index: number) => {
-    setSelectedStars(index + 1);
+    setCountStar(index + 1);
   };
 
   const sectionCss = 'flex w-full flex-col gap-3';
@@ -32,7 +32,7 @@ const CreateReviewPage = () => {
           {[1, 2, 3, 4, 5].map((v, index) => (
             <BlueStart
               key={`star-${v}`}
-              className={`cursor-pointer ${index < selectedStars ? 'text-primary-normal' : 'text-label-disable'}`}
+              className={`cursor-pointer ${index < countStar ? 'text-primary-normal' : 'text-label-disable'}`}
               onClick={() => handleClick(index)}
               aria-label={`${v}점`}
             />
