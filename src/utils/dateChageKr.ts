@@ -11,11 +11,10 @@ export const formatStartDate = (startDate: string): string => {
     parseInt(day, 10),
   );
 
-  if (
-    startDateObj.getDate() === tomorrow.getDate() &&
-    startDateObj.getMonth() === tomorrow.getMonth() &&
-    startDateObj.getFullYear() === tomorrow.getFullYear()
-  ) {
+  const startDateISO = new Date(startDateObj.setHours(0, 0, 0, 0));
+  const tomorrowISO = new Date(tomorrow.setHours(0, 0, 0, 0));
+
+  if (startDateISO.toISOString() === tomorrowISO.toISOString()) {
     return '내일';
   }
   return startDate;
