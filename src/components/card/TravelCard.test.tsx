@@ -13,10 +13,11 @@ describe('TravelCard', () => {
           travelId={12}
           isDomestic
           travelName="부여로 떠나는 다함께 시골투어"
-          travelLocation="충남 부여"
-          maxParticipant={6}
-          currentParticipant={1}
-          startDate="12/3"
+          location="충남 부여"
+          maxTravelMateCount={6}
+          currentTravelMateCount={1}
+          startAt="12/3"
+          endAt="12/20"
           formattedStartDate="12/03"
           image="/test/travel/test1.png"
         />
