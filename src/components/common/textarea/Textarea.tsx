@@ -1,15 +1,30 @@
 import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
-const TextareaVariants = cva(
-  'rounded border py-3 px-4 outline-none text-sm resize-none ',
+const TextareaContainerVariants = cva(
+  'relative inline-block rounded border transition-colors ',
   {
     variants: {
       size: {
         default:
-          'w-[335px] h-[160px] border-line-strong placeholder-shown:border-line-normal focus:border-line-strong',
+          'w-[335px] h-[160px] focus-within:border-line-strong border-line-normal',
         small:
-          'w-[295px] h-[90px] border-label-assistive placeholder-shown:border-background-alternative focus:border-label-neutral',
+          'w-[295px] h-[90px] focus-within:border-label-neutral border-background-alternative',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  },
+);
+
+const TextareaVariants = cva(
+  'rounded py-3 px-4 outline-none text-sm resize-none pb-0 placeholder-shown:border-none w-full',
+  {
+    variants: {
+      size: {
+        default: 'h-[130px]',
+        small: 'h-[60px]',
       },
     },
     defaultVariants: {
@@ -34,14 +49,22 @@ const Textarea = ({
   value,
   placeholder,
   maxLength = 100,
-  size,
+  size = 'default',
   className,
   classNameCondition,
   onChange,
 }: Props) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const inputValue = e.target.value;
+    if (inputValue.length <= maxLength) {
+      onChange(e);
+    }
+  };
   return (
     <div
-      className={`relative inline-block ${size === 'default' ? 'h-[160px]' : 'h-[90px]'}`}
+      className={cn(TextareaContainerVariants({ size }), {
+        'border-line-strong': !!value,
+      })}
     >
       <textarea
         id={name}
@@ -54,10 +77,10 @@ const Textarea = ({
           TextareaVariants({ size, className }),
           classNameCondition,
         )}
-        onChange={onChange}
+        onChange={handleChange}
         aria-label={`최대 ${maxLength}자 입력 가능 textarea`}
       />
-      <span className="absolute bottom-5 right-4 text-xs text-[#989BA1]">
+      <span className="absolute bottom-3 right-4 text-xs text-[#989BA1]">
         {value.length}/{maxLength}
       </span>
     </div>
