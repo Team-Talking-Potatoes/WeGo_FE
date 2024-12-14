@@ -4,7 +4,7 @@ export const formatStartDate = (startDate: string): string => {
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
 
-  const [month, day] = startDate.split('/');
+  const [month, day] = startDate.split('.');
   const startDateObj = new Date(
     today.getFullYear(),
     parseInt(month, 10) - 1,
