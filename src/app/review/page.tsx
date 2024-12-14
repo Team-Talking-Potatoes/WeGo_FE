@@ -1,5 +1,5 @@
-import ReviewHeader from '@/components/review/reviewHeader/ReviewHeader';
 import ReviewList from '@/components/review/reviewList/ReviewList';
+import ReviewHeader from '@/components/review/reviewList/reviewHeader/ReviewHeader';
 
 const ReviewPage = () => {
   return (

@@ -1,5 +1,5 @@
-import ReviewContents from '../reviewContents/ReviewContents';
-import ReviewFilter from '../reviewFilter/ReviewFilter';
+import ReviewContents from './reviewContents/ReviewContents';
+import ReviewFilter from './reviewFilter/ReviewFilter';
 
 const ReviewList = () => {
   return (
