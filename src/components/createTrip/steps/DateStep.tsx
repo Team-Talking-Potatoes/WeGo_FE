@@ -65,6 +65,7 @@ const DateStep = ({
         }}
         onChange={handleDatePickerChange}
         isRangeSelectable
+        isKeeping
       />
       <div className="flex flex-col items-start gap-1.5">
         {endAt && (

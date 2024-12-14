@@ -7,13 +7,15 @@ const useDatePicker = (
     endDate: Date | null;
   },
   onChange: (value: { startDate: Date | null; endDate: Date | null }) => void,
-  isRangeSelectable: boolean = true,
+  isRangeSelectable: boolean,
+  isKeeping: boolean,
 ) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date()); // 선택된 연/월을 위한 상태
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [dragStart, setDragStart] = useState<Date | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { startDate, endDate } = value;
 
@@ -104,27 +106,66 @@ const useDatePicker = (
     },
 
     confirmSelection: () => {
-      onChange({ startDate: selectedStartDate, endDate: selectedEndDate });
+      onChange({
+        startDate: selectedStartDate,
+        endDate: selectedEndDate,
+      });
       setSelectedStartDate(null);
       setSelectedEndDate(null);
+      setCurrentDate(new Date());
     },
 
     cancelSelection: () => {
       setSelectedStartDate(null);
       setSelectedEndDate(null);
+      setCurrentDate(new Date());
+    },
+
+    initSelection: () => {
+      onChange({
+        startDate: null,
+        endDate: null,
+      });
+      setSelectedStartDate(null);
+      setSelectedEndDate(null);
+      setCurrentDate(new Date());
     },
   };
 
-  return {
+  const openCalendar = () => {
+    if (isKeeping) inputEvents.openCalendar();
+    setIsOpen(true);
+  };
+
+  const closeCalendar = () => {
+    inputEvents.cancelSelection();
+    setIsOpen(false);
+  };
+
+  const confirmCalendar = () => {
+    inputEvents.confirmSelection();
+    setIsOpen(false);
+  };
+
+  const initCalendar = () => {
+    inputEvents.initSelection();
+  };
+
+  const calendarInfo = {
     currentDate,
     selectedStartDate,
     selectedEndDate,
     days,
     calendarEvents,
-    inputEvents,
-    setSelectedStartDate,
-    setSelectedEndDate,
+    isOpen,
+    isRangeSelectable,
+    openCalendar,
+    closeCalendar,
+    confirmCalendar,
+    initCalendar,
   };
+
+  return calendarInfo;
 };
 
 export default useDatePicker;

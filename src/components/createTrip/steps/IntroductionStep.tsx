@@ -103,6 +103,7 @@ const IntroductionStep = ({
           onChange('registrationEnd', value);
         }}
         isRangeSelectable={false}
+        isKeeping={false}
       />
       <TextareaWithLabel
         label="여행 소개"
