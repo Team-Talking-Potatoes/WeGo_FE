@@ -2,8 +2,8 @@
 
 import { getTravelReview } from '@/api/reviewApi';
 import ReviewCardAddText from '@/components/card/ReviewCardAddText';
-import BlankIcon from '@/assets/blank.svg';
 import { useQuery } from '@tanstack/react-query';
+import NoReault from '@/components/common/NoReault';
 import ScoreBox from './ScoreBox';
 
 const SelectTravelReview = ({ id }: { id: string }) => {
@@ -28,12 +28,7 @@ const SelectTravelReview = ({ id }: { id: string }) => {
   }
 
   if (reviewList && reviewList.length === 0) {
-    return (
-      <div className="heading-1-sb flex h-64 flex-col items-center justify-center gap-4 text-label-alternative">
-        <BlankIcon />
-        <div>아직 작성된 리뷰가 없어요!</div>
-      </div>
-    );
+    return <NoReault label="아직 작성된 리뷰가 없어요!" height="h-64" />;
   }
 
   const totalScore =

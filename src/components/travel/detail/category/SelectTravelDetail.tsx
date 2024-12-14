@@ -46,7 +46,14 @@ const SelectTravelDetail = ({
         <div className="flex items-center gap-2.5">
           {organizer?.id !== userId && (
             <button onClick={onClickBookMark} type="button" aria-label="북마크">
-              <BookMarkIcon fill={isBookmarked ? '#F87171' : 'white'} />
+              <BookMarkIcon
+                fill={isBookmarked ? '#F87171' : 'white'}
+                className={
+                  isBookmarked
+                    ? 'animate-check-shake'
+                    : 'animate-check-shake-reverse'
+                }
+              />
             </button>
           )}
 

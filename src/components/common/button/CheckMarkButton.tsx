@@ -12,7 +12,7 @@ const CheckMarkButton = ({ isChecked, animate, handler }: Props) => {
     <button
       type="button"
       onClick={handler}
-      className={cn('absolute left-0 top-0 z-[100] p-2')}
+      className={cn('absolute left-0 top-0 z-10 p-2')}
     >
       <CheckMark
         className={cn('forwards transition-all duration-100', {

@@ -12,7 +12,7 @@ describe('MainNavigation Component', () => {
     jest.clearAllMocks();
   });
 
-  it('현재 경로에 따라 네비게이션을 렌더링하지 않는다 (login, signup, write, chat 제외)', () => {
+  it('현재 경로에 따라 네비게이션을 렌더링하지 않는다 (login, signup, travel/new, chat 제외)', () => {
     // 로그인 페이지 경로로 설정
     (usePathname as jest.Mock).mockReturnValue('/login');
     render(<MainNavigation />);
@@ -24,7 +24,7 @@ describe('MainNavigation Component', () => {
     expect(screen.queryByRole('navigation')).toBeNull();
 
     // 글쓰기 페이지 경로로 설정
-    (usePathname as jest.Mock).mockReturnValue('/write');
+    (usePathname as jest.Mock).mockReturnValue('/travel/new');
     render(<MainNavigation />);
     expect(screen.queryByRole('navigation')).toBeNull();
 
