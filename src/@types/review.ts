@@ -8,3 +8,7 @@ export interface Review {
   travelLocation: string;
   createdAt: string;
 }
+
+export interface Filters {
+  sortOrder: 'createdAt' | 'popular' | null;
+}
