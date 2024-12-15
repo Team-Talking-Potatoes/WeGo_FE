@@ -7,6 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import MainHeader from '@/components/header/MainHeader';
 import MainNavigation from '@/components/nav/MainNavigation';
 import ZustandProvider from '@/providers/ZustandProvider';
+import { Suspense } from 'react';
 
 const pretendard = localFont({
   src: '../assets/fonts/PretendardVariable.woff2',
@@ -36,7 +37,7 @@ const RootLayout = async ({
         <QueryProviders>
           <ZustandProvider>
             <MainHeader />
-            {children}
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
             <MainNavigation />
           </ZustandProvider>
         </QueryProviders>
