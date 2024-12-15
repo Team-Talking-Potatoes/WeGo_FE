@@ -19,9 +19,11 @@ import mySelfTravel from './travel/mypage/mySelfTravel';
 import checkedTravel from './travel/mypage/checkedTravel';
 import writableTravel from './travel/mypage/writableTravel';
 import myReview from './travel/mypage/myReview';
+import reviewList from './review/reviewList';
 import CreateReview from './review/createReview';
 
 export const handlers = [
+  ...reviewList,
   myReview,
   pastTravel,
   checkedTravel,

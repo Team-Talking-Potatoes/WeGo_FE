@@ -29,7 +29,7 @@ const MainHeader = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (pathname === '/travel') {
+  if (pathname === '/travel' || pathname === '/review') {
     return (
       <header className={`${headerCss} border-b border-line-neutral bg-white`}>
         <Link href="/" aria-label="WEGO 로고">

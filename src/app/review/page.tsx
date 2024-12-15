@@ -1,12 +1,13 @@
-import Link from 'next/link';
+import ReviewList from '@/components/review/reviewList/ReviewList';
+import ReviewHeader from '@/components/review/reviewList/reviewHeader/ReviewHeader';
 
-function page() {
+const ReviewPage = () => {
   return (
-    <div>
-      <h1>모달 테스트</h1>
-      <Link href="/review/new">클릭</Link>
+    <div className="flex flex-col px-5 pb-[104px] pt-[60px]">
+      <ReviewHeader />
+      <ReviewList />
     </div>
   );
-}
+};
 
-export default page;
+export default ReviewPage;
