@@ -38,9 +38,9 @@ describe('WeeklyPopular', () => {
       await screen.findByText('부여로 떠나는 다함께 시골투어'),
     ).toBeInTheDocument();
     expect(await screen.findByText('충남 부여')).toBeInTheDocument();
-    expect(await screen.findByText('11/12')).toBeInTheDocument();
-    const elements = await screen.findAllByText('12.24');
-    expect(elements).toHaveLength(1);
+    expect(
+      await screen.findByText('2024.12.31(화) - 2025.01.12(일)'),
+    ).toBeInTheDocument();
 
     expect(
       await screen.findByText('도쿄에서 즐기는 미식여행'),

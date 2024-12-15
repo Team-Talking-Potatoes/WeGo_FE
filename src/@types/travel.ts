@@ -1,12 +1,14 @@
 export interface Travel {
   travelId: number;
-  isDomestic: boolean;
-  image: string;
   travelName: string;
-  travelLocation: string;
-  maxParticipant: number;
-  currentParticipant: number;
-  startDate: string;
+  isDomestic: boolean;
+  travelStatus?: string;
+  location: string;
+  image: string;
+  startAt: string;
+  endAt: string;
+  maxTravelMateCount: number;
+  currentTravelMateCount: number;
   formattedStartDate?: string;
   expectedTripCost?: number;
 }

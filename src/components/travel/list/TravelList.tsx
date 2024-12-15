@@ -8,6 +8,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import SpinnerIcon from '@/assets/spinner_round.svg';
+import { formatStartDate } from '@/utils/dateChageKr';
 
 const TravelList = () => {
   const { ref, inView } = useInView();
@@ -45,7 +46,13 @@ const TravelList = () => {
     return undefined;
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isLoading) return <div>로딩중</div>;
+  if (isLoading)
+    return (
+      <div className="flex w-full flex-col items-center justify-center gap-5 p-8">
+        Loading...
+        <SpinnerIcon className="animate-spin" />
+      </div>
+    );
   if (isError) return <div>에러</div>;
 
   return (
@@ -66,11 +73,12 @@ const TravelList = () => {
                     image={travel.image}
                     isDomestic={travel.isDomestic}
                     travelName={travel.travelName}
-                    travelLocation={travel.travelLocation}
-                    maxParticipant={travel.maxParticipant}
-                    currentParticipant={travel.currentParticipant}
-                    startDate={travel.startDate}
-                    formattedStartDate={travel.formattedStartDate}
+                    location={travel.location}
+                    maxTravelMateCount={travel.maxTravelMateCount}
+                    currentTravelMateCount={travel.currentTravelMateCount}
+                    startAt={travel.startAt}
+                    endAt={travel.endAt}
+                    formattedStartDate={formatStartDate(travel.startAt)}
                     checkMark
                     isChecked
                   />
@@ -82,7 +90,7 @@ const TravelList = () => {
       {hasNextPage ? (
         <div
           ref={ref}
-          className="flex h-16 w-full justify-center p-5"
+          className="mb-20 flex h-6 w-full justify-center p-5"
           aria-label="여행 정보를 불러오는 중입니다."
         >
           <SpinnerIcon className="animate-spin" />
