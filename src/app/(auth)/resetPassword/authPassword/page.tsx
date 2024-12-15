@@ -2,7 +2,7 @@
 
 import AuthPassword from '@/components/auth/input/AuthPassword';
 import useAuthInput from '@/hooks/useAuthInput';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import validate from '@/utils/validateAuthInput';
 import { Button } from '@/components/common/button/Button';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -56,7 +56,7 @@ const AuthPasswordPage = () => {
   }, [password.value, passwordConfirm]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <>
       <FormHeader title="비밀번호 변경" />
 
       <h1 className="title-5-sb mx-auto mt-10 max-w-[335px]">
@@ -89,7 +89,7 @@ const AuthPasswordPage = () => {
           />
         </form>
       </div>
-    </Suspense>
+    </>
   );
 };
 
