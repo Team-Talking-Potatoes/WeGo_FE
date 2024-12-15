@@ -50,3 +50,16 @@ export const getMyReview = async (
   }
   return res.json();
 };
+
+export const createReview = async (formData: FormData) => {
+  const response = await fetch(`/api/reviews/create`, {
+    method: 'POST',
+    // credentials: 'include',
+    body: formData,
+  });
+  if (!response.ok) {
+    throw new Error('리뷰 생성에 실패했습니다.');
+  }
+
+  return response.json();
+};

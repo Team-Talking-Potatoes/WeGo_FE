@@ -19,6 +19,7 @@ import mySelfTravel from './travel/mypage/mySelfTravel';
 import checkedTravel from './travel/mypage/checkedTravel';
 import writableTravel from './travel/mypage/writableTravel';
 import myReview from './travel/mypage/myReview';
+import CreateReview from './review/createReview';
 
 export const handlers = [
   myReview,
@@ -47,4 +48,6 @@ export const handlers = [
   // 여행 등록
   createTravel,
   getUserInfo,
+  // 리뷰
+  CreateReview,
 ];
