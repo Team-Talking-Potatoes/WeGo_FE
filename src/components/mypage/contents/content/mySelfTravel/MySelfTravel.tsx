@@ -23,12 +23,13 @@ const MySelfTravel = () => {
             key={travel.travelId}
             travelId={travel.travelId}
             travelName={travel.travelName}
-            maxParticipant={travel.maxTravelMateCount}
+            maxTravelMateCount={travel.maxTravelMateCount}
+            currentTravelMateCount={travel.currentTravelMateCount}
             isDomestic={travel.isDomestic}
-            travelLocation={travel.location}
-            currentParticipant={travel.currentTravelMateCount}
+            location={travel.location}
             image={travel.image}
-            startDate={travel.startAt}
+            startAt={travel.startAt}
+            endAt={travel.endAt}
             formattedStartDate={formatStartDate(travel.startAt)}
           />
         ))

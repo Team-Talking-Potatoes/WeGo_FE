@@ -5,14 +5,20 @@ interface Props {
   isChecked?: boolean;
   animate?: boolean;
   handler: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  locatedRight?: boolean;
 }
 
-const CheckMarkButton = ({ isChecked, animate, handler }: Props) => {
+const CheckMarkButton = ({
+  isChecked,
+  animate,
+  handler,
+  locatedRight,
+}: Props) => {
   return (
     <button
       type="button"
       onClick={handler}
-      className={cn('absolute left-0 top-0 z-10 p-2')}
+      className={`absolute top-0 z-10 m-2 flex h-9 w-9 items-center justify-center rounded bg-black bg-opacity-30 p-2 ${locatedRight ? 'right-0' : 'left-0'}`}
     >
       <CheckMark
         className={cn('forwards transition-all duration-100', {

@@ -28,7 +28,7 @@ const ButtonVariants = cva(
 
 interface Props extends VariantProps<typeof ButtonVariants> {
   label?: string;
-  type?: 'submit';
+  type?: 'submit' | 'button';
   children?: React.ReactNode;
   className?: string;
   classNameCondition?: Record<string, boolean>;

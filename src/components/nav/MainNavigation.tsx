@@ -11,19 +11,12 @@ import NavLink from './NavigationLink';
 
 const MainNavigation = () => {
   const pathname = usePathname();
-  const includedPaths = [
-    '/',
-    '/travel',
-    '/mypage',
-    '/reviews',
-    '/chat',
-    '/review',
-  ];
+  const includedPaths = ['/', '/travel', '/mypage', '/review', '/chat'];
 
   const isPathIncluded =
     includedPaths.includes(pathname) ||
     (pathname.startsWith('/travel') && pathname !== '/travel/new') ||
-    (pathname.startsWith('/reviews') && pathname !== '/reviews/new');
+    pathname.startsWith('/review');
 
   if (!isPathIncluded) {
     return null;

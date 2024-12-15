@@ -38,3 +38,9 @@ export interface ReviewDetail {
   travelLocation: string;
   createdAt: string;
 }
+
+export interface CreateReview {
+  score: number;
+  content: string;
+  reviewImage: File[];
+}
