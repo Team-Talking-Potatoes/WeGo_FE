@@ -22,7 +22,6 @@ import myReview from './travel/mypage/myReview';
 import reviewList from './review/reviewList';
 import CreateReview from './review/createReview';
 
-
 export const handlers = [
   ...reviewList,
   myReview,
