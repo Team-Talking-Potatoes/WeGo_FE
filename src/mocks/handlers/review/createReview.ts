@@ -6,8 +6,8 @@ interface ReviewSendRequestBody {
   images: string[];
 }
 
-const CreateReview = http.post<ReviewSendRequestBody, PathParams>(
-  '/api/reviews/create',
+export const createReview = http.post<ReviewSendRequestBody, PathParams>(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/create`,
   async ({ request }) => {
     const formData = await request.formData();
 
@@ -25,5 +25,3 @@ const CreateReview = http.post<ReviewSendRequestBody, PathParams>(
     );
   },
 );
-
-export default CreateReview;
