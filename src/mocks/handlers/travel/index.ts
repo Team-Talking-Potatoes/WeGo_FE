@@ -7,8 +7,8 @@ import { myPageTravel } from './mypage';
 
 export const travel = [
   createTravel,
-  travelDetail,
   travelList,
+  travelDetail,
   travelListInfinity,
   popularTravel,
   ...myPageTravel,

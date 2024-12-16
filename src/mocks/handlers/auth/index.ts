@@ -4,4 +4,10 @@ import { resetPassword } from './resetPassword';
 import { deleteAccount } from './deleteAccount';
 import { findPassword } from './findPassword';
 
-export const auth = [login, signup, resetPassword, deleteAccount, findPassword];
+export const auth = [
+  login,
+  findPassword,
+  ...resetPassword,
+  ...signup,
+  ...deleteAccount,
+];
