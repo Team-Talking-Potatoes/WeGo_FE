@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '@/globals.css';
 import { MswComponent } from '@/mocks/msw.component';
-import QueryProviders from '@/utils/queryProvider';
+import QueryProviders from '@/providers/QueryProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import MainHeader from '@/components/header/MainHeader';
 import MainNavigation from '@/components/nav/MainNavigation';
