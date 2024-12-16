@@ -21,7 +21,7 @@ const buildTravelUrl = ({
   if (sortOrder !== null) params.append('sortOrder', String(sortOrder));
   if (searchText) params.append('query', searchText);
 
-  return `/api/travels?${params.toString()}`;
+  return `${process.env.NEXT_PUBLIC_BASE_URL}/travels?${params.toString()}`;
 };
 
 export default buildTravelUrl;

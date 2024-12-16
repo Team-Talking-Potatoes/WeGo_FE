@@ -3,8 +3,7 @@ interface SignupError extends Error {
   message: string;
 }
 
-/* -------------------------------- 회원 가입 요청 -------------------------------- */
-type SignupRequestBody = {
+interface SignupRequestBody {
   email: string;
   password: string;
   name: string;
@@ -12,26 +11,27 @@ type SignupRequestBody = {
   birthDate: number;
   contact: string;
   verifiedToken: string;
-};
+}
 
-const signup = async (credentials: SignupRequestBody) => {
-  const res = await fetch('/api/auth/sign-up', {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
+export const signup = async (credentials: SignupRequestBody) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up`,
+    {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
     },
-    body: JSON.stringify(credentials),
-  });
+  );
 
-  if (!res.ok) {
+  if (!response.ok) {
     const error = new Error('Signup failed') as SignupError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
-
-export default signup;
