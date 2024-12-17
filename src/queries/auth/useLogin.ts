@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import loginApi from '@/api/auth/loginApi';
+import { login } from '@/api/auth/loginApi';
 import { QueryError } from '@/@types/query';
 import useToast from '@/hooks/useToast';
 
@@ -9,7 +9,7 @@ const useLogin = () => {
   const { showToast } = useToast();
 
   return useMutation({
-    mutationFn: loginApi,
+    mutationFn: login,
     onError: (error: QueryError) => {
       switch (error.status) {
         case 401:

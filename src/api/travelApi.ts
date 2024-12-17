@@ -4,17 +4,23 @@ import {
   TravelDetail,
   TravelFilterResponse,
 } from '@/@types/travel';
+import { APIError } from '@/@types/api';
 import buildTravelUrl from '@/utils/buildTravelUrl';
 
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
-    throw new Error(`Server error: ${response.status} ${response.statusText}`);
+    const error = new Error('Get travel detail failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
+    throw error;
   }
   return response.json();
 };
 
 export const fetchPopularTravel = async (): Promise<Travel[]> => {
-  const response = await fetch('/api/travels/popular');
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/popular`,
+  );
   return handleResponse(response);
 };
 
@@ -23,7 +29,9 @@ export const getTravelDetail = async ({
 }: {
   id: string;
 }): Promise<TravelDetail> => {
-  const response = await fetch(`/api/travels/${id}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/detail/${id}`,
+  );
   return handleResponse(response);
 };
 

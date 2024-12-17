@@ -1,8 +1,9 @@
 import { http, HttpResponse } from 'msw';
 import travelData from '@/mocks/data/travel/travelListInfitity.json';
 
-const travelListInfinity = [
-  http.get('/api/travels', async ({ request }) => {
+export const travelListInfinity = http.get(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/travels`,
+  async ({ request }) => {
     const url = new URL(request.url);
     const page = parseInt(url.searchParams.get('page') || '1', 10);
     const isDomestic = url.searchParams.get('isDomestic') === 'true';
@@ -61,7 +62,7 @@ const travelListInfinity = [
     };
 
     return HttpResponse.json(response);
-  }),
-];
+  },
+);
 
 export default travelListInfinity;

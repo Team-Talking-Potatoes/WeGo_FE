@@ -1,7 +1,4 @@
-interface ResetPasswordError extends Error {
-  status?: number;
-  message: string;
-}
+import { APIError } from '@/@types/api';
 
 interface ResetAuthPasswordRequestBody {
   email: string;
@@ -14,43 +11,51 @@ interface ResetUserPasswordRequestBody {
   newPassword: string;
 }
 
-const resetAuthPassword = async (credentials: ResetAuthPasswordRequestBody) => {
-  const res = await fetch('/api/auth/password', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
+export const resetAuthPassword = async (
+  credentials: ResetAuthPasswordRequestBody,
+) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/password`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
     },
-    body: JSON.stringify(credentials),
-  });
+  );
 
-  if (!res.ok) {
-    const error = new Error('Reset Auth Password failed') as ResetPasswordError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Reset Auth Password failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
 
-const resetUserPassword = async (credentials: ResetUserPasswordRequestBody) => {
-  const res = await fetch('/api/users/password', {
-    method: 'PUT',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
+export const resetUserPassword = async (
+  credentials: ResetUserPasswordRequestBody,
+) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/users/password`,
+    {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
     },
-    body: JSON.stringify(credentials),
-  });
+  );
 
-  if (!res.ok) {
-    const error = new Error('Reset User Password failed') as ResetPasswordError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Reset User Password failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
-
-export { resetAuthPassword, resetUserPassword };

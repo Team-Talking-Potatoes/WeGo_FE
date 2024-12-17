@@ -5,8 +5,8 @@ interface MailSendRequestBody {
   email: string;
 }
 
-const findPassword = http.post<MailSendRequestBody, PathParams>(
-  '/api/auth/password/emails',
+export const findPassword = http.post<MailSendRequestBody, PathParams>(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/auth/password/emails`,
   async ({ request }) => {
     const { email } = await request.json();
 
@@ -22,5 +22,3 @@ const findPassword = http.post<MailSendRequestBody, PathParams>(
     return HttpResponse.json({ message: 'Email sent' }, { status: 200 });
   },
 );
-
-export default findPassword;

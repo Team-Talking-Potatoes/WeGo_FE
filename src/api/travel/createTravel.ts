@@ -1,12 +1,8 @@
+import { APIError } from '@/@types/api';
 import { FormTravelData } from '@/@types/travelForm';
 import { formatDateToString } from '@/utils/calendarHelper';
 
-interface CreateTravelError extends Error {
-  status?: number;
-  message: string;
-}
-
-const createTravel = async (data: FormTravelData) => {
+export const createTravel = async (data: FormTravelData) => {
   const formData = new FormData();
 
   formData.append('travelName', data.travelName);
@@ -52,20 +48,18 @@ const createTravel = async (data: FormTravelData) => {
     }
   });
 
-  const res = await fetch('/api/travels', {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/travels`, {
     method: 'POST',
     credentials: 'include',
     body: formData,
   });
 
-  if (!res.ok) {
-    const error = new Error('Create travel failed') as CreateTravelError;
-    error.status = res.status;
-    error.message = `Request failed: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Create travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Request failed: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
-
-export default createTravel;

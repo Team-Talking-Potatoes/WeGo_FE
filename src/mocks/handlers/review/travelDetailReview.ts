@@ -1,10 +1,8 @@
 import { http, HttpResponse } from 'msw';
 import reviewList from '@/mocks/data/review/travelReviewList.json';
 
-const travelDetailReview = [
-  http.get('/api/review', async () => {
+export const travelDetailReview = [
+  http.get(`${process.env.NEXT_PUBLIC_BASE_URL}/review`, async () => {
     return HttpResponse.json(reviewList);
   }),
 ];
-
-export default travelDetailReview;

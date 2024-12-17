@@ -19,10 +19,10 @@ interface SignupRequestBody {
   verifiedToken: string;
 }
 
-const signup = [
+export const signup = [
   /* -------------------------------- 인증 이메일 전송 ------------------------------- */
   http.post<MailSendRequestBody, PathParams>(
-    '/api/auth/sign-up/emails',
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up/emails`,
     async ({ request }) => {
       const { email } = await request.json();
 
@@ -45,35 +45,38 @@ const signup = [
   ),
 
   /* ------------------------------- 이메일 인증코드 확인 ------------------------------ */
-  http.post<PathParams>(`/api/auth/emails/verify`, async ({ request }) => {
-    const url = new URL(request.url);
-    const emailCode = url.searchParams.get('verifyNumber');
+  http.post<PathParams>(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/emails/verify`,
+    async ({ request }) => {
+      const url = new URL(request.url);
+      const emailCode = url.searchParams.get('verifyNumber');
 
-    // 이메일 인증코드 확인 실패
-    if (Number(emailCode) !== FAKE_EMAIL_CODE) {
+      // 이메일 인증코드 확인 실패
+      if (Number(emailCode) !== FAKE_EMAIL_CODE) {
+        return HttpResponse.json(
+          {
+            message: 'Invalid email code',
+          },
+          {
+            status: 400,
+          },
+        );
+      }
+
+      // 이메일 인증코드 확인 성공
       return HttpResponse.json(
         {
-          message: 'Invalid email code',
+          message: 'Email code verified',
+          verifiedToken: FAKE_VERIFIED_TOKEN,
         },
-        {
-          status: 400,
-        },
+        { status: 200 },
       );
-    }
-
-    // 이메일 인증코드 확인 성공
-    return HttpResponse.json(
-      {
-        message: 'Email code verified',
-        verifiedToken: FAKE_VERIFIED_TOKEN,
-      },
-      { status: 200 },
-    );
-  }),
+    },
+  ),
 
   /* -------------------------------- 회원 가입 요청 -------------------------------- */
   http.post<SignupRequestBody, PathParams>(
-    `/api/auth/sign-up`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up`,
     async ({ request }) => {
       const {
         email,
@@ -112,5 +115,3 @@ const signup = [
     },
   ),
 ];
-
-export default signup;

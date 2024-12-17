@@ -1,3 +1,4 @@
+import { APIError } from '@/@types/api';
 import { TravelList } from '@/@types/travel';
 
 interface MyTravel {
@@ -5,144 +6,137 @@ interface MyTravel {
   total: number;
 }
 
-interface MyTravelApiError extends Error {
-  status?: number;
-  message: string;
-}
-
 /* ---------------------------------- 예정 여행 --------------------------------- */
-const upcommingTravel = async (
+export const upcommingTravel = async (
   limit: number,
   offset: number,
 ): Promise<MyTravel> => {
-  const res = await fetch(
-    `/api/travels/scheduled?limit=${limit}&offset=${offset}`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/scheduled?limit=${limit}&offset=${offset}`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
 
-  if (!res.ok) {
-    const error = new Error('Login failed') as MyTravelApiError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get upcomming travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
 
 /* --------------------------------- 다녀온 여행 --------------------------------- */
-const pastTravel = async (limit: number, offset: number): Promise<MyTravel> => {
-  const res = await fetch(
-    `/api/travels/finished?limit=${limit}&offset=${offset}`,
+export const pastTravel = async (
+  limit: number,
+  offset: number,
+): Promise<MyTravel> => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/finished?limit=${limit}&offset=${offset}`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
-  if (!res.ok) {
-    const error = new Error('Login failed') as MyTravelApiError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get past travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
 
 /* --------------------------------- 체크한 여행 --------------------------------- */
-const checkedTravel = async (
+export const checkedTravel = async (
   limit: number,
   offset: number,
 ): Promise<MyTravel> => {
-  const res = await fetch(
-    `/api/travels/checked?limit=${limit}&offset=${offset}`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/checked?limit=${limit}&offset=${offset}`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
-  if (!res.ok) {
-    const error = new Error('Login failed') as MyTravelApiError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get checked travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
 
 /* --------------------------------- 리뷰 작성 가능한 여행 --------------------------------- */
-const writableTravel = async (
+export const writableTravel = async (
   limit: number,
   offset: number,
 ): Promise<MyTravel> => {
-  const res = await fetch(
-    `/api/travels/reviews/pending?limit=${limit}&offset=${offset}`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/reviews/pending?limit=${limit}&offset=${offset}`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
-  if (!res.ok) {
-    const error = new Error('Login failed') as MyTravelApiError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get writable travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
 
 /* -------------------------------- 내가 만든 여행 -------------------------------- */
-const mySelfTravel = async (
+export const mySelfTravel = async (
   limit: number,
   offset: number,
 ): Promise<MyTravel> => {
-  const res = await fetch(
-    `/api/travels/created?limit=${limit}&offset=${offset}`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/created?limit=${limit}&offset=${offset}`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
-  if (!res.ok) {
-    const error = new Error('Login failed') as MyTravelApiError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get my self travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
 
-const bookmarkTravel = async (id: number) => {
-  const res = await fetch('/api/travels/bookmark', {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
+/* --------------------------------- 북마크 여행 --------------------------------- */
+export const bookmarkTravel = async (id: number) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/bookmark`,
+    {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ travelId: id }),
     },
-    body: JSON.stringify({ travelId: id }),
-  });
+  );
 
-  if (!res.ok) {
-    const error = new Error('Login failed') as MyTravelApiError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Bookmark travel failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
-};
-
-export {
-  upcommingTravel,
-  pastTravel,
-  checkedTravel,
-  writableTravel,
-  mySelfTravel,
-  bookmarkTravel,
+  return response.json();
 };

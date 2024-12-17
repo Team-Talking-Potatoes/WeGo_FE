@@ -5,9 +5,9 @@ interface CheckPasswordRequestBody {
   password: string;
 }
 
-const deleteAccount = [
+export const deleteAccount = [
   http.post<CheckPasswordRequestBody, PathParams>(
-    '/api/users/check/password',
+    `${process.env.NEXT_PUBLIC_BASE_URL}/users/check/password`,
     async ({ request }) => {
       const { password } = await request.json();
 
@@ -25,23 +25,24 @@ const deleteAccount = [
     },
   ),
 
-  http.delete<PathParams>('/api/users', async () => {
-    const response = HttpResponse.json(
-      { message: 'Account deleted' },
-      { status: 200 },
-    );
+  http.delete<PathParams>(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/users`,
+    async () => {
+      const response = HttpResponse.json(
+        { message: 'Account deleted' },
+        { status: 200 },
+      );
 
-    response.headers.set(
-      'Set-Cookie',
-      `accessToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
-    );
-    response.headers.set(
-      'Set-Cookie',
-      `refreshToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
-    );
+      response.headers.set(
+        'Set-Cookie',
+        `accessToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
+      );
+      response.headers.set(
+        'Set-Cookie',
+        `refreshToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
+      );
 
-    return response;
-  }),
+      return response;
+    },
+  ),
 ];
-
-export default deleteAccount;

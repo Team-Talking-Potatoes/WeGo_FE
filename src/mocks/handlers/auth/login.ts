@@ -6,8 +6,8 @@ interface LoginRequestBody {
   password: string;
 }
 
-const login = http.post<LoginRequestBody, PathParams>(
-  '/api/auth/sign-in',
+export const login = http.post<LoginRequestBody, PathParams>(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in`,
   async ({ request }) => {
     const { email, password } = await request.json();
 
@@ -29,5 +29,3 @@ const login = http.post<LoginRequestBody, PathParams>(
     );
   },
 );
-
-export default login;
