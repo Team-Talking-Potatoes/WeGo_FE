@@ -45,15 +45,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://api.we-go.world/:path*',
-      },
-    ];
-  },
 };
 
 export default nextConfig;

@@ -1,3 +1,5 @@
+import { APIError } from '@/@types/api';
+
 interface UserInfo {
   nickname: string;
   email: string;
@@ -5,25 +7,18 @@ interface UserInfo {
   profileImage: string;
 }
 
-interface GetUserInfoError extends Error {
-  status?: number;
-  message: string;
-}
-
-const getUserInfo = async (): Promise<UserInfo> => {
-  const res = await fetch('/api/users', {
+export const getUserInfo = async (): Promise<UserInfo> => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users`, {
     method: 'GET',
     credentials: 'include',
   });
 
-  if (!res.ok) {
-    const error = new Error('Login failed') as GetUserInfoError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get user info failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
-
-export default getUserInfo;

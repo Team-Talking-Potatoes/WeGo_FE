@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import createTravel from '@/api/travel/createTravel';
+import { createTravel } from '@/api/travel/createTravel';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
 import ModalTravelSuccessIcon from '@/assets/modal/modal_travel_success.svg';

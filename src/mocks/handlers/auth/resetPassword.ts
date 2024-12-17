@@ -12,10 +12,10 @@ interface ResetAuthSignupRequestBody {
   newPassword: string;
 }
 
-const resetPassword = [
+export const resetPassword = [
   /* ------------------------ 토큰 (이메일 인증)을 통한 비밀번호 재설정 ------------------------ */
   http.put<ResetAuthPasswordRequestBody, PathParams>(
-    '/api/auth/password',
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/password`,
     async ({ request }) => {
       const { email, password, token } = await request.json();
 
@@ -35,7 +35,7 @@ const resetPassword = [
 
   /* --------------------------- 로그인 된 사용자의 비밀번호 재설정 -------------------------- */
   http.put<ResetAuthSignupRequestBody, PathParams>(
-    '/api/users/password',
+    `${process.env.NEXT_PUBLIC_BASE_URL}/users/password`,
     async ({ request, cookies }) => {
       const token = cookies['access-token'];
       const { currentPassword, newPassword } = await request.json();
@@ -65,5 +65,3 @@ const resetPassword = [
     },
   ),
 ];
-
-export default resetPassword;

@@ -1,23 +1,18 @@
-interface EditProfileError extends Error {
-  status?: number;
-  message: string;
-}
+import { APIError } from '@/@types/api';
 
-const editProfile = async (formData: FormData) => {
-  const res = await fetch('/api/users', {
+export const editProfile = async (formData: FormData) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users`, {
     method: 'PUT',
     credentials: 'include',
     body: formData,
   });
 
-  if (!res.ok) {
-    const error = new Error('Login failed') as EditProfileError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Edit profile failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
 
-  return res.json();
+  return response.json();
 };
-
-export default editProfile;

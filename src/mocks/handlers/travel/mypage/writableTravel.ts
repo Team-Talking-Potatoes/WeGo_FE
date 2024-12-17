@@ -1,8 +1,8 @@
 import { HttpResponse, http } from 'msw';
 import writableTravelListMock from '@/mocks/data/travel/mypage/writableTravelListMock.json';
 
-const writableTravel = http.get(
-  '/api/travels/reviews/pending',
+export const writableTravel = http.get(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/travels/reviews/pending`,
   async ({ request }) => {
     const url = new URL(request.url);
     const limit = url.searchParams.get('limit');
@@ -18,5 +18,3 @@ const writableTravel = http.get(
     });
   },
 );
-
-export default writableTravel;

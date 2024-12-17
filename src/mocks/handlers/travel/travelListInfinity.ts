@@ -3,8 +3,9 @@ import travelData from '@/mocks/data/travel/travelListInfitity.json';
 
 let currentPageState = 1;
 
-const travelListInfinity = [
-  http.get('/api/travels', async ({ request }) => {
+export const travelListInfinity = http.get(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/travels`,
+  async ({ request }) => {
     const url = new URL(request.url);
     const requestedPage = parseInt(url.searchParams.get('page') || '1', 10);
 
@@ -22,7 +23,5 @@ const travelListInfinity = [
     }
 
     return HttpResponse.error();
-  }),
-];
-
-export default travelListInfinity;
+  },
+);

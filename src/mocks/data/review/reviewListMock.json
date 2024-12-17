@@ -1,6 +1,6 @@
 [
   {
-    "reviewId": 1,
+    "reviewId": 122,
     "title": "정선 겨울 여행갔다왔어요.",
     "nickname": "여행 토끼",
     "reviewImage": "/test1.png",
@@ -10,7 +10,7 @@
     "createdAt": "2024-04-01"
   },
   {
-    "reviewId": 2,
+    "reviewId": 222,
     "title": "재밌게 놀다 옵니다.",
     "nickname": "여행 토끼",
     "reviewImage": "/test2.png",
@@ -20,7 +20,7 @@
     "createdAt": "2024-02-01"
   },
   {
-    "reviewId": 3,
+    "reviewId": 322,
     "title": "지금 요맘때가 가장 피크인 여행지에요!",
     "nickname": "여행 토끼",
     "reviewImage": "/test3.png",
@@ -30,7 +30,7 @@
     "createdAt": "2024-01-28"
   },
   {
-    "reviewId": 4,
+    "reviewId": 422,
     "title": "정선 겨울 여행갔다왔어요.",
     "nickname": "여행 토끼",
     "reviewImage": "/test1.png",
@@ -40,7 +40,7 @@
     "createdAt": "2024-01-19"
   },
   {
-    "reviewId": 5,
+    "reviewId": 522,
     "title": "정선 겨울 여행갔다왔어요.",
     "nickname": "여행 토끼",
     "reviewImage": "/test1.png",
@@ -50,7 +50,7 @@
     "createdAt": "2024-01-01"
   },
   {
-    "reviewId": 6,
+    "reviewId": 622,
     "title": "재밌게 놀다 옵니다.",
     "nickname": "여행 토끼",
     "reviewImage": "/test2.png",

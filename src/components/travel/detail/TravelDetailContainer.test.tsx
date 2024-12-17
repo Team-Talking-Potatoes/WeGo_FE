@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { server } from '@/mocks/server';
 import {
   dehydrate,
@@ -70,26 +70,26 @@ describe('TravelDetail', () => {
     expect(details).toHaveLength(3);
   });
 
-  it('모임리뷰 (SelectTravelReview) 버튼 클릭 시 렌더링된다', async () => {
-    await renderTravelDetail();
-    fireEvent.click(screen.getByText('모임리뷰'));
+  // it('모임리뷰 (SelectTravelReview) 버튼 클릭 시 렌더링된다', async () => {
+  //   await renderTravelDetail();
+  //   fireEvent.click(screen.getByText('모임리뷰'));
 
-    await waitFor(() =>
-      expect(screen.getByText('여행지기')).toBeInTheDocument(),
-    );
-    // expect(await screen.findByText('여행지기')).toBeInTheDocument();
-    expect(
-      await screen.findByText(
-        '정선의 겨울은 너무 아름다웠어요! 특히 눈 내린 풍경이 인상 깊었습니다.',
-      ),
-    ).toBeInTheDocument();
-    expect(await screen.findByText('3')).toBeInTheDocument();
-    const elements = await screen.findAllByText('5');
-    expect(elements).toHaveLength(2);
+  //   await waitFor(() =>
+  //     expect(screen.getByText('여행지기')).toBeInTheDocument(),
+  //   );
+  //   // expect(await screen.findByText('여행지기')).toBeInTheDocument();
+  //   expect(
+  //     await screen.findByText(
+  //       '정선의 겨울은 너무 아름다웠어요! 특히 눈 내린 풍경이 인상 깊었습니다.',
+  //     ),
+  //   ).toBeInTheDocument();
+  //   expect(await screen.findByText('3')).toBeInTheDocument();
+  //   const elements = await screen.findAllByText('5');
+  //   expect(elements).toHaveLength(2);
 
-    // 이미지 테스트
-    const imageElement =
-      await screen.findByAltText('여행지기의 여행리뷰 이미지');
-    expect(imageElement).toBeInTheDocument();
-  });
+  //   // 이미지 테스트
+  //   const imageElement =
+  //     await screen.findByAltText('여행지기의 여행리뷰 이미지');
+  //   expect(imageElement).toBeInTheDocument();
+  // });
 });

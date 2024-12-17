@@ -1,3 +1,4 @@
+import { APIError } from '@/@types/api';
 import { Review, ReviewResponse } from '@/@types/review';
 
 interface ReviewParams {
@@ -10,36 +11,36 @@ interface MyReview {
   reviews: Review[];
 }
 
-interface ReviewError extends Error {
-  status?: number;
-  message: string;
-}
-
 export const getReview = async ({
   pageParam,
   sortOrder,
 }: ReviewParams): Promise<ReviewResponse> => {
-  const res = await fetch(
-    `/api/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
 
-  if (!res.ok) {
-    const error = new Error('Login failed') as ReviewError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get review failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
-  return res.json();
+  return response.json();
 };
 
 export const fetchPopularReview = async (): Promise<Review[]> => {
-  const response = await fetch('/api/review/popular');
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/popular`,
+  );
   if (!response.ok) {
-    throw new Error(`Server error: ${response.status} ${response.statusText}`);
+    const error = new Error('Get popular review failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
+    throw error;
   }
   return response.json();
 };
@@ -49,9 +50,14 @@ export const getTravelReview = async ({
 }: {
   id: string;
 }): Promise<Review[]> => {
-  const response = await fetch(`/api/review?id=${id}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?id=${id}`,
+  );
   if (!response.ok) {
-    throw new Error(`Server error: ${response.status} ${response.statusText}`);
+    const error = new Error('Get travel review failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
+    throw error;
   }
   return response.json();
 };
@@ -60,31 +66,38 @@ export const getMyReview = async (
   limit: number,
   offset: number,
 ): Promise<MyReview> => {
-  const res = await fetch(
-    `/api/reviews/published?limit=${limit}&offset=${offset}`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/published?limit=${limit}&offset=${offset}`,
     {
       method: 'GET',
       credentials: 'include',
     },
   );
 
-  if (!res.ok) {
-    const error = new Error('Login failed') as ReviewError;
-    error.status = res.status;
-    error.message = `Server error: ${res.status}`;
+  if (!response.ok) {
+    const error = new Error('Get my review failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
     throw error;
   }
-  return res.json();
+  return response.json();
 };
 
 export const createReview = async (formData: FormData) => {
-  const response = await fetch(`/api/reviews/create`, {
-    method: 'POST',
-    // credentials: 'include',
-    body: formData,
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/create`,
+    {
+      method: 'POST',
+      credentials: 'include',
+      body: formData,
+    },
+  );
+
   if (!response.ok) {
-    throw new Error('리뷰 생성에 실패했습니다.');
+    const error = new Error('Create review failed') as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
+    throw error;
   }
 
   return response.json();

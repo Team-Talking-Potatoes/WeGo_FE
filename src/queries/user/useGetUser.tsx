@@ -1,4 +1,4 @@
-import getUserInfo from '@/api/user/userInfoApi';
+import { getUserInfo } from '@/api/user/userInfoApi';
 import { useQuery } from '@tanstack/react-query';
 
 const useGetUser = () => {
