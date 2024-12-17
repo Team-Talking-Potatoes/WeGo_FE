@@ -15,15 +15,16 @@ const config: Config = {
     customExportConditions: [''],
   },
   moduleNameMapper: {
-    '^.+\\.(svg)$': '<rootDir>/src/mocks/svg.js',
+    '^.+\\.(svg)$': '<rootDir>/src/mocks/librarymocks/svg.js',
 
-    '^swiper/react$': '<rootDir>/src/mocks/swiperMock.jsx',
-    '^swiper$': '<rootDir>/src/mocks/swiperMock.jsx',
-    '^swiper/css$': '<rootDir>/src/mocks/styleMock.js',
-    '^swiper/modules$': '<rootDir>/src/mocks/swiperMock.jsx',
-    '^swiper/css/pagination$': '<rootDir>/src/mocks/styleMock.js',
+    '^swiper/react$': '<rootDir>/src/mocks/librarymocks/swiperMock.jsx',
+    '^swiper$': '<rootDir>/src/mocks/librarymocks/swiperMock.jsx',
+    '^swiper/css$': '<rootDir>/src/mocks/librarymocks/styleMock.js',
+    '^swiper/modules$': '<rootDir>/src/mocks/librarymocks/swiperMock.jsx',
+    '^swiper/css/pagination$': '<rootDir>/src/mocks/librarymocks/styleMock.js',
 
-    '^@headlessui/react$': '<rootDir>/src/mocks/headlessUIMock.jsx',
+    '^@headlessui/react$':
+      '<rootDir>/src/mocks/librarymocks/headlessUIMock.jsx',
   },
 
   // Add more setup options before each test is run
