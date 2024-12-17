@@ -1,5 +1,5 @@
 import ArrowIcon from '@/assets/arrow_down.svg';
-import { useTravelStore } from '@/store/useTravelStore';
+import { useTravelListStore } from '@/store/useTravelListStore';
 import {
   Listbox,
   ListboxButton,
@@ -8,8 +8,8 @@ import {
 } from '@headlessui/react';
 
 const FilterDomestic = () => {
-  const domestic = useTravelStore((state) => state.filters).isDomestic;
-  const setFilters = useTravelStore((state) => state.setFilters);
+  const domestic = useTravelListStore((state) => state.filters).isDomestic;
+  const setFilters = useTravelListStore((state) => state.setFilters);
   let display;
 
   const handleDomestic = (value: boolean | null) => {
@@ -29,7 +29,7 @@ const FilterDomestic = () => {
       <ListboxOptions
         anchor="bottom"
         transition
-        className="body-2-m flex w-[90px] flex-col items-center justify-center rounded border-line-normal bg-white text-label-alternative shadow-custom transition duration-100 ease-in [--anchor-gap:4px] [--anchor-padding:20px]"
+        className="body-2-m z-20 flex w-[90px] flex-col items-center justify-center rounded border-line-normal bg-white text-label-alternative shadow-custom transition duration-100 ease-in [--anchor-gap:4px] [--anchor-padding:20px]"
       >
         <ListboxOption
           value={null}

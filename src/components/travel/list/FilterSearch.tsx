@@ -1,10 +1,10 @@
 import SearchIcon from '@/assets/search.svg';
-import { useTravelStore } from '@/store/useTravelStore';
+import { useTravelListStore } from '@/store/useTravelListStore';
 import { useState } from 'react';
 
 const FilterSearch = () => {
   const [localSearchText, setLocalSearchText] = useState<string>('');
-  const setFilters = useTravelStore((state) => state.setFilters);
+  const setFilters = useTravelListStore((state) => state.setFilters);
 
   const handleSearch = () => {
     const encodedSearchText = encodeURIComponent(localSearchText);

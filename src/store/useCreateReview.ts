@@ -2,22 +2,26 @@ import { create } from 'zustand';
 
 interface CreateReviewStore {
   countStar: number;
-  textValue: string;
+  title: string;
+  comment: string;
   selectedFiles: File[];
   setCountStar: (countStar: number) => void;
-  setTextValue: (textValue: string) => void;
+  setTitle: (title: string) => void;
+  setComment: (comment: string) => void;
   setSelectedFiles: (selectedFiles: File[]) => void;
   resetStore: () => void;
 }
 
 const useCreateReviewStore = create<CreateReviewStore>((set) => ({
   countStar: 0,
-  textValue: '',
+  title: '',
+  comment: '',
   selectedFiles: [],
   setCountStar: (countStar) => set({ countStar }),
-  setTextValue: (textValue) => set({ textValue }),
+  setTitle: (title) => set({ title }),
+  setComment: (comment) => set({ comment }),
   setSelectedFiles: (selectedFiles) => set({ selectedFiles }),
-  resetStore: () => set({ countStar: 0, textValue: '', selectedFiles: [] }),
+  resetStore: () => set({ countStar: 0, comment: '', selectedFiles: [] }),
 }));
 
 export default useCreateReviewStore;
