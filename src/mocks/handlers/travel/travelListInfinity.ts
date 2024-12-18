@@ -1,68 +1,50 @@
 import { http, HttpResponse } from 'msw';
 import travelData from '@/mocks/data/travel/travelListInfitity.json';
 
+let currentPageState = 1;
+
 export const travelListInfinity = http.get(
   `${process.env.NEXT_PUBLIC_BASE_URL}/travels`,
   async ({ request }) => {
     const url = new URL(request.url);
+    const params = url.searchParams;
+    const startAt = params.get('startAt');
+    const endAt = params.get('endAt');
+    const isDomestic = params.get('isDomestic');
+    const searchText = params.get('query');
     const page = parseInt(url.searchParams.get('page') || '1', 10);
-    const isDomestic = url.searchParams.get('isDomestic') === 'true';
-    const startAt = url.searchParams.get('startAt');
-    const endAt = url.searchParams.get('endAt');
-    const sortOrder = url.searchParams.get('sortOrder');
-    const query = url.searchParams.get('query');
 
-    let filteredTravels = travelData.travels;
-
-    if (isDomestic !== undefined) {
-      filteredTravels = filteredTravels.filter(
-        (travel) => travel.isDomestic === isDomestic,
-      );
-    }
-
+    let filteredData = [...travelData.travels];
     if (startAt) {
-      filteredTravels = filteredTravels.filter(
+      filteredData = filteredData.filter(
         (travel) => new Date(travel.startAt) >= new Date(startAt),
       );
     }
-
     if (endAt) {
-      filteredTravels = filteredTravels.filter(
+      filteredData = filteredData.filter(
         (travel) => new Date(travel.endAt) <= new Date(endAt),
       );
     }
-
-    if (sortOrder) {
-      filteredTravels = filteredTravels.reverse();
+    if (isDomestic !== null) {
+      filteredData = filteredData.filter(
+        (travel) => String(travel.isDomestic) === isDomestic,
+      );
     }
-
-    if (query) {
-      filteredTravels = filteredTravels.filter(
-        (travel) =>
-          travel.travelName.toLowerCase().includes(query.toLowerCase()) ||
-          travel.location.toLowerCase().includes(query.toLowerCase()),
+    if (searchText) {
+      filteredData = filteredData.filter((travel) =>
+        travel.travelName.toLowerCase().includes(searchText.toLowerCase()),
       );
     }
 
-    const pageSize = 5;
-    const totalPages = Math.ceil(filteredTravels.length / pageSize);
-    const isLastPage = page * pageSize >= filteredTravels.length;
-
-    const paginatedTravels = filteredTravels.slice(
-      (page - 1) * pageSize,
-      page * pageSize,
-    );
-
-    const response = {
-      currentPage: page,
-      totalPages,
-      isFirst: page === 1,
-      isLast: isLastPage,
-      travels: paginatedTravels,
-    };
-
-    return HttpResponse.json(response);
+    if (page === currentPageState) {
+      const response = {
+        currentPage: travelData.currentPage,
+        hasNext: travelData.hasNext,
+        travels: filteredData,
+      };
+      currentPageState += 1;
+      return HttpResponse.json(response);
+    }
+    return HttpResponse.error();
   },
 );
-
-export default travelListInfinity;
