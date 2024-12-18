@@ -7,7 +7,7 @@ import {
   ListboxOptions,
 } from '@headlessui/react';
 
-function FilterSort() {
+const FilterSort = () => {
   const sort = useTravelListStore((state) => state.filters).sortOrder;
   const setFilters = useTravelListStore((state) => state.setFilters);
   const handleSort = (value: 'popular' | 'registrationEnd' | null) => {
@@ -48,6 +48,6 @@ function FilterSort() {
       </ListboxOptions>
     </Listbox>
   );
-}
+};
 
 export default FilterSort;

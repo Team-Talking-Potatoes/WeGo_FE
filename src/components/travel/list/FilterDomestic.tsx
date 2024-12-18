@@ -22,7 +22,10 @@ const FilterDomestic = () => {
 
   return (
     <Listbox value={domestic} onChange={handleDomestic}>
-      <ListboxButton className="flex w-[69px] items-center justify-between gap-1">
+      <ListboxButton
+        className="flex w-[69px] items-center justify-between gap-1"
+        aria-label="국내, 해외 선택 버튼"
+      >
         <span className="w-[49px]">{display}</span>
         <ArrowIcon className="" aria-hidden="true" />
       </ListboxButton>
