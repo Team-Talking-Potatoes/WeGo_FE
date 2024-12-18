@@ -85,11 +85,13 @@
       "files": [
         "src/mocks/styleMock.js",
         "src/mocks/swiperMock.jsx",
-        "headlessUIMock.jsx"
+        "headlessUIMock.jsx",
+        "zustand.ts"
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "import/newline-after-import": "off"
       }
     }
   ],

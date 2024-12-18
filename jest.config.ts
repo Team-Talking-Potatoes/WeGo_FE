@@ -25,9 +25,12 @@ const config: Config = {
 
     '^@headlessui/react$':
       '<rootDir>/src/mocks/librarymocks/headlessUIMock.jsx',
+
+    '@/utils/compressImage$':
+      '<rootDir>/src/mocks/librarymocks/compressImage.ts',
   },
 
-  // Add more setup options before each test is run
+  setupFilesAfterEnv: ['<rootDir>/src/mocks/zustand.ts'],
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
 
