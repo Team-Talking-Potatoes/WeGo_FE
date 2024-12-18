@@ -7,10 +7,10 @@ const useGetTravelsList = () => {
 
   return useInfiniteQuery({
     queryKey: ['travels', filters],
-    queryFn: ({ pageParam = 1 }) => getTravels({ pageParam, ...filters }),
+    queryFn: ({ pageParam }) => getTravels({ pageParam, ...filters }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
-      return !lastPage.isLast ? pages.length + 1 : undefined;
+      return lastPage.hasNext ? pages.length + 1 : undefined;
     },
   });
 };
