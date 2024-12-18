@@ -3,10 +3,10 @@
 import TravelCard from '@/components/card/TravelCard';
 import NoReault from '@/components/common/NoReault';
 import { useTravelListStore } from '@/store/useTravelListStore';
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import SpinnerIcon from '@/assets/spinner_round.svg';
-import { formatStartDate } from '@/utils/dateChageKr';
+import { checkTomorrow } from '@/utils/dateChageKr';
 import useGetTravelsList from '@/queries/travel/useGetTravelsList';
 import { InitialFilters } from '@/@types/travel';
 
@@ -18,6 +18,7 @@ const TravelList = () => {
     data: travelListData,
     isLoading,
     isError,
+    error,
     hasNextPage,
     fetchNextPage,
   } = useGetTravelsList();
@@ -40,14 +41,16 @@ const TravelList = () => {
     return undefined;
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="flex w-full flex-col items-center justify-center gap-5 p-8">
         Loading...
         <SpinnerIcon className="animate-spin" />
       </div>
     );
-  if (isError) return <div>에러</div>;
+  }
+
+  if (isError) return <div>에러{error?.message}</div>;
 
   return (
     <>
@@ -73,7 +76,7 @@ const TravelList = () => {
                     currentTravelMateCount={travel.currentTravelMateCount}
                     startAt={travel.startAt}
                     endAt={travel.endAt}
-                    formattedStartDate={formatStartDate(travel.startAt)}
+                    formattedStartDate={checkTomorrow(travel.startAt)}
                     checkMark
                     isChecked
                   />
