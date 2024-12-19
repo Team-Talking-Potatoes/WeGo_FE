@@ -83,10 +83,10 @@
   "overrides": [
     {
       "files": [
-        "src/mocks/styleMock.js",
-        "src/mocks/swiperMock.jsx",
-        "headlessUIMock.jsx",
-        "zustand.ts"
+        "src/mocks/library/styleMock.js",
+        "src/mocks/library/swiperMock.jsx",
+        "src/mocks/library/headlessUIMock.jsx",
+        "src/mocks/zustand.ts"
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
