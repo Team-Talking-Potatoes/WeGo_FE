@@ -83,13 +83,15 @@
   "overrides": [
     {
       "files": [
-        "src/mocks/styleMock.js",
-        "src/mocks/swiperMock.jsx",
-        "headlessUIMock.jsx"
+        "src/mocks/librarymocks/styleMock.js",
+        "src/mocks/librarymocks/swiperMock.jsx",
+        "src/mocks/librarymocks/headlessUIMock.jsx",
+        "src/mocks/zustand.ts"
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "import/newline-after-import": "off"
       }
     }
   ],
