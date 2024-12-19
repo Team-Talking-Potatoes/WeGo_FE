@@ -83,9 +83,9 @@
   "overrides": [
     {
       "files": [
-        "src/mocks/library/styleMock.js",
-        "src/mocks/library/swiperMock.jsx",
-        "src/mocks/library/headlessUIMock.jsx",
+        "src/mocks/librarymocks/styleMock.js",
+        "src/mocks/librarymocks/swiperMock.jsx",
+        "src/mocks/librarymocks/headlessUIMock.jsx",
         "src/mocks/zustand.ts"
       ],
       "rules": {
