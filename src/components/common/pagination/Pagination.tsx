@@ -4,7 +4,7 @@ interface Props {
   paginate: (pageNumber: number) => void;
 }
 
-const Pagenation = ({ totalPages, currentPage, paginate }: Props) => {
+const Pagination = ({ totalPages, currentPage, paginate }: Props) => {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
@@ -30,4 +30,4 @@ const Pagenation = ({ totalPages, currentPage, paginate }: Props) => {
   );
 };
 
-export default Pagenation;
+export default Pagination;

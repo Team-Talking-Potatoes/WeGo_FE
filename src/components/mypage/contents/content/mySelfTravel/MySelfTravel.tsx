@@ -2,7 +2,7 @@ import { checkTomorrow } from '@/utils/dateChageKr';
 
 import { useState } from 'react';
 import TravelCard from '@/components/card/TravelCard';
-import Pagenation from '@/components/common/pagenation/Pagenation';
+import Pagination from '@/components/common/pagination/Pagination';
 import { useMySelfTravel } from '@/queries/travel/useGetMyTravel';
 import { TravelList } from '@/@types/travel';
 import NoTravel from '../myTravel/NoTravel';
@@ -38,7 +38,7 @@ const MySelfTravel = () => {
       )}
 
       {totalPages > 1 && (
-        <Pagenation
+        <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
           paginate={paginate}

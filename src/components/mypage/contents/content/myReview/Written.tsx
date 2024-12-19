@@ -1,4 +1,4 @@
-import Pagenation from '@/components/common/pagenation/Pagenation';
+import Pagination from '@/components/common/pagination/Pagination';
 import { useState } from 'react';
 import ReviewCard from '@/components/card/Review/ReviewCard';
 import useMyReview from '@/queries/review/useMyReview';
@@ -34,7 +34,7 @@ const Written = () => {
       )}
 
       {totalPages > 1 && (
-        <Pagenation
+        <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
           paginate={paginate}

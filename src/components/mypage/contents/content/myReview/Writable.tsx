@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import TravelCard from '@/components/card/TravelCard';
-import Pagenation from '@/components/common/pagenation/Pagenation';
 import { checkTomorrow } from '@/utils/dateChageKr';
 import Link from 'next/link';
 import { TravelList } from '@/@types/travel';
 import { useWritableTravel } from '@/queries/travel/useGetMyTravel';
+import Pagination from '@/components/common/pagination/Pagination';
 import NoTravel from '../myTravel/NoTravel';
 
 const Writable = () => {
@@ -50,7 +50,7 @@ const Writable = () => {
       )}
 
       {totalPages > 1 && (
-        <Pagenation
+        <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
           paginate={paginate}

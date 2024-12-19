@@ -1,5 +1,5 @@
 import TravelCard from '@/components/card/TravelCard';
-import Pagenation from '@/components/common/pagenation/Pagenation';
+import Pagination from '@/components/common/pagination/Pagination';
 import { checkTomorrow } from '@/utils/dateChageKr';
 import { useState } from 'react';
 import { useUpcommingTravel } from '@/queries/travel/useGetMyTravel';
@@ -37,7 +37,7 @@ const Upcomming = () => {
       )}
 
       {totalPages > 1 && (
-        <Pagenation
+        <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
           paginate={paginate}
