@@ -8,7 +8,7 @@ const Pagination = ({ totalPages, currentPage, paginate }: Props) => {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <nav className="mt-4 flex justify-center">
+    <nav className="mt-4 flex justify-center" data-testid="mypage-pagination">
       <ul className="body-2-sb inline-flex -space-x-px">
         {pageNumbers.map((number) => (
           <li key={number}>

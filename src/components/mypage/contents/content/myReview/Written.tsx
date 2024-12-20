@@ -13,7 +13,7 @@ const Written = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <section className="mx-auto w-[335px] pb-10">
+    <section className="mx-auto w-[335px] pb-10" data-testid="written-reviews">
       <div className="grid grid-cols-2 gap-4 pb-4">
         {reviews &&
           reviews.reviews.map((review) => (
