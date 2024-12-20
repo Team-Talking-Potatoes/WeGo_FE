@@ -38,7 +38,10 @@ const NoTravel = ({ message, travelSuggestion }: Props) => {
     );
 
   return (
-    <div className="mt-[80px] flex flex-col items-center">
+    <div
+      className="mt-[80px] flex flex-col items-center"
+      data-testid="no-travel-message"
+    >
       <div className="relative h-9 w-9">
         <EmptyShapes className="absolute inset-0" />
         <div className="absolute inset-0 flex items-center justify-center gap-1">

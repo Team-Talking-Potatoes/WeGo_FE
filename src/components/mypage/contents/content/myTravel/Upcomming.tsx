@@ -15,7 +15,10 @@ const Upcomming = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <section className="mx-auto flex w-[335px] flex-col justify-center gap-6 pb-10">
+    <section
+      className="mx-auto flex w-[335px] flex-col justify-center gap-6 pb-10"
+      data-testid="upcomming-travels"
+    >
       {travels && travels.total > 0 ? (
         travels.travels.map((travel: TravelList) => (
           <TravelCard
