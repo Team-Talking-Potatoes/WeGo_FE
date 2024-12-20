@@ -17,7 +17,10 @@ type Props = PropsWithMessage | PropsWithTravelSuggestion;
 const NoTravel = ({ message, travelSuggestion }: Props) => {
   if (travelSuggestion)
     return (
-      <div className="mt-[80px] flex flex-col items-center gap-4">
+      <div
+        className="mt-[80px] flex flex-col items-center gap-4"
+        data-testid="no-travel-suggestion"
+      >
         <div className="heading-1-sb text-center">
           나의 취향을 담은
           <br />
