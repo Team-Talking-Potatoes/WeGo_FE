@@ -4,7 +4,7 @@ const SettingList = () => {
   return (
     <ul className="mt-5 w-full divide-y px-5" aria-label="설정 목록">
       <SettingItem
-        destination="#"
+        destination="/preparing"
         title="문의하기"
         description="궁금한 내용이 있으신가요?"
       />

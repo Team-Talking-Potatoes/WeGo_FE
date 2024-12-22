@@ -1,17 +1,29 @@
 import ErrorIcon from '@/assets/error_triangle.svg';
 import Link from 'next/link';
+import { headers } from 'next/headers';
 
-const Custom404 = () => {
+const Custom404 = async () => {
   const textCss = 'text-label-neutral body-2-r';
+  const headersList = await headers();
+  const path = headersList.get('x-pathname') || '';
+  const isPreparing = path === '/preparing';
+
   return (
     <section className="flex h-screen flex-col items-center justify-between">
       <main className="flex h-screen flex-col items-center justify-center gap-6">
         <ErrorIcon />
         <div className="flex flex-col items-center">
           <header className="title-4-b text-red-500">404 ERROR</header>
-          <header className="title-4-b">페이지를 찾을 수 없습니다.</header>
-          <span className={`pt-2 ${textCss}`}>이전 페이지로 가시거나,</span>
-          <span className={textCss}>새로고침을 해 주세요.</span>
+
+          {isPreparing ? (
+            <header className="title-4-b">준비중인 기능입니다.</header>
+          ) : (
+            <>
+              <header className="title-4-b">페이지를 찾을 수 없습니다.</header>
+              <span className={`pt-2 ${textCss}`}>이전 페이지로 가시거나,</span>
+              <span className={textCss}>새로고침을 해 주세요.</span>
+            </>
+          )}
         </div>
       </main>
       <Link

@@ -27,7 +27,7 @@ const Login = () => {
           </Link>
 
           <div className="mt-6 flex justify-center divide-x text-sm">
-            <Link href="/find-id" className="pr-2.5 text-label-alternative">
+            <Link href="/preparing" className="pr-2.5 text-label-alternative">
               아이디 찾기
             </Link>
             <Link
