@@ -27,11 +27,14 @@ const redirectToLogin = async (
     });
     return response;
   } catch (error) {
-    return NextResponse.redirect('http://localhost:3000/login');
+    if (process.env.NODE_ENV === 'development') {
+      return NextResponse.redirect('http://localhost:3000/login');
+    }
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/login`);
   }
 };
 
-export const middleware = async (request: NextRequest) => {
+export const middleware = (request: NextRequest) => {
   const response = NextResponse.next();
 
   // 서버 컴포넌트에서 pathname을 가져오기 위해 헤더에 설정
