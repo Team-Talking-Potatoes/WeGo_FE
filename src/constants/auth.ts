@@ -67,6 +67,13 @@ const NEED_LOGIN_PATH = {
   chat: '/chat',
 } as const;
 
+const NEED_LOGOUT_PATH = {
+  login: '/login',
+  signup: '/signup',
+  resetPassword: '/resetPassword/authPassword',
+  findPassword: '/findPassword',
+} as const;
+
 export {
   AUTH_LABEL,
   AUTH_ERROR_MESSAGE,
@@ -74,4 +81,5 @@ export {
   AUTH_PLACEHOLDER,
   AUTH_SUCCESS_MESSAGE,
   NEED_LOGIN_PATH,
+  NEED_LOGOUT_PATH,
 };
