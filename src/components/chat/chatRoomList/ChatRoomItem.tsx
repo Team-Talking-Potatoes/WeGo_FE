@@ -6,7 +6,7 @@ import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react';
 import { useState, useRef } from 'react';
 import { Button } from '@/components/common/button/Button';
 
-type ChatRoomItemProps = {
+interface Props {
   id: string;
   title: string;
   host: string;
@@ -15,7 +15,7 @@ type ChatRoomItemProps = {
   membersCount: number;
   messageCount: number;
   onExit: (id: string) => void;
-};
+}
 
 const ChatRoomItem = ({
   id,
@@ -26,7 +26,7 @@ const ChatRoomItem = ({
   membersCount,
   messageCount,
   onExit,
-}: ChatRoomItemProps) => {
+}: Props) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 

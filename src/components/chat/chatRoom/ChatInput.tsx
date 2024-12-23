@@ -6,12 +6,12 @@ import Image from 'next/image';
 import useModal from '@/hooks/useModal';
 import Photo from '@/assets/modal/modal_photo.svg';
 
-type ChatInputProps = {
+interface Props {
   onSendMessage: (message: string, images: File[]) => void;
   onHeightChange: (height: number) => void;
-};
+}
 
-const ChatInput = ({ onSendMessage, onHeightChange }: ChatInputProps) => {
+const ChatInput = ({ onSendMessage, onHeightChange }: Props) => {
   const [message, setMessage] = useState('');
   const [imageUrls, setImageUrls] = useState<File[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
