@@ -42,7 +42,7 @@ const ChatInput = ({ onSendMessage, onHeightChange }: Props) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [message]);
 
   const handleSend = () => {
     if (message.trim() || imageUrls.length) {
