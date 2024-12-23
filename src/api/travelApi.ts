@@ -7,9 +7,9 @@ import {
 import { APIError } from '@/@types/api';
 import buildTravelUrl from '@/utils/buildTravelUrl';
 
-const handleResponse = async (response: Response) => {
+const handleResponse = async (response: Response, callName: string) => {
   if (!response.ok) {
-    const error = new Error('Get travel detail failed') as APIError;
+    const error = new Error(`Get travel data failed: ${callName}`) as APIError;
     error.status = response.status;
     error.message = `Server error: ${response.status}`;
     throw error;
@@ -17,11 +17,11 @@ const handleResponse = async (response: Response) => {
   return response.json();
 };
 
-export const fetchPopularTravel = async (): Promise<Travel[]> => {
+export const getPopularTravel = async (): Promise<Travel[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/travels/popular`,
   );
-  return handleResponse(response);
+  return handleResponse(response, 'getPopularTravel');
 };
 
 export const getTravelDetail = async ({
@@ -32,7 +32,7 @@ export const getTravelDetail = async ({
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/travels/detail/${id}`,
   );
-  return handleResponse(response);
+  return handleResponse(response, 'getTravelDetail');
 };
 
 export const getTravels = async ({
@@ -44,7 +44,7 @@ export const getTravels = async ({
   const page = pageParam && pageParam !== 1 ? `&page=${pageParam}` : '';
   const url = buildTravelUrl(rest) + page;
   const response = await fetch(url);
-  return handleResponse(response);
+  return handleResponse(response, 'getTravels');
 };
 
 export const postTravelBookMark = async (id: number) => {
@@ -55,7 +55,7 @@ export const postTravelBookMark = async (id: number) => {
       credentials: 'include',
     },
   );
-  return handleResponse(response);
+  return handleResponse(response, 'postTravelBookMark');
 };
 
 export const deleteTravelBookMark = async (id: number) => {
@@ -66,5 +66,5 @@ export const deleteTravelBookMark = async (id: number) => {
       credentials: 'include',
     },
   );
-  return handleResponse(response);
+  return handleResponse(response, 'postTravelBookMark');
 };

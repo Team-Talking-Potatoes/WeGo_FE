@@ -1,7 +1,7 @@
 import { APIError } from '@/@types/api';
 import { UserList } from '@/@types/user';
 
-export const fetchPopularUser = async (): Promise<UserList[]> => {
+export const getPopularUser = async (): Promise<UserList[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/users/popular`,
   );
