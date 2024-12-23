@@ -2,29 +2,31 @@
 
 import { useEffect, useState } from 'react';
 import ToTopIcon from '@/assets/to_top.svg';
+import { throttle } from 'lodash';
 
 const ToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollToTop = throttle(() => {
       if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
-    };
+    }, 200);
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScrollToTop);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScrollToTop);
     };
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
   return (
     isVisible && (
       <button

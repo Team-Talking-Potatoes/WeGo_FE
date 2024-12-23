@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <main>
       <HeroSection />
+      <ToTop />
       <WeeklyPopularContainer />
       <WeeklyReviewContainer />
       <WeeklyUserContainer />
-      <ToTop />
     </main>
   );
 };
