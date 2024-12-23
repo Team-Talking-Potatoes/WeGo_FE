@@ -1,12 +1,11 @@
+import { Filters } from '@/@types/travel';
 import { getTravels } from '@/api/travelApi';
-import { useTravelListStore } from '@/store/useTravelListStore';
+import { QUERY_KEYS } from '@/constants/querykeys';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const useGetTravelsList = () => {
-  const filters = useTravelListStore((state) => state.filters);
-
+const useGetTravelsList = (filters: Filters) => {
   return useInfiniteQuery({
-    queryKey: ['travels', filters],
+    queryKey: QUERY_KEYS.TRAVEL.travelList(filters),
     queryFn: ({ pageParam }) => getTravels({ pageParam, ...filters }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {

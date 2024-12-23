@@ -5,17 +5,19 @@ import ReviewCardAddText from '@/components/card/ReviewCardAddText';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import NoReault from '@/components/common/NoReault';
+import { QUERY_KEYS } from '@/constants/querykeys';
 import ScoreBox from './ScoreBox';
 
 const SelectTravelReview = () => {
   const { id } = useParams();
+
   const {
     data: reviewList,
     isFetching,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['travels', { id }, 'reviews'],
+    queryKey: QUERY_KEYS.TRAVEL.travelDetailReview(`${id}`),
     queryFn: () => getTravelReview({ id }),
   });
 

@@ -1,4 +1,5 @@
-import { fetchPopularUser } from '@/api/userApi';
+import { getPopularUser } from '@/api/user/userList';
+import { QUERY_KEYS } from '@/constants/querykeys';
 import {
   dehydrate,
   HydrationBoundary,
@@ -9,8 +10,8 @@ import WeeklyUser from './WeeklyUser';
 const WeeklyUserContainer = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ['users', 'popular'],
-    queryFn: fetchPopularUser,
+    queryKey: QUERY_KEYS.USER.popularUser,
+    queryFn: getPopularUser,
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

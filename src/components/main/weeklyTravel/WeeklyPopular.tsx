@@ -4,7 +4,8 @@ import { getWeekNumber } from '@/utils/dateChageKr';
 import { useMemo } from 'react';
 import TravelCardBig from '@/components/card/TravelCardBig';
 import { useQuery } from '@tanstack/react-query';
-import { fetchPopularTravel } from '@/api/travelApi';
+import { QUERY_KEYS } from '@/constants/querykeys';
+import { getPopularTravel } from '@/api/travelApi';
 import WeeklyHeader from './WeeklyHeader';
 
 const WeeklyPopular = () => {
@@ -14,8 +15,8 @@ const WeeklyPopular = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['travels', 'popular'],
-    queryFn: fetchPopularTravel,
+    queryKey: QUERY_KEYS.TRAVEL.popularTravel,
+    queryFn: getPopularTravel,
   });
 
   const month = new Date().getMonth() + 1;

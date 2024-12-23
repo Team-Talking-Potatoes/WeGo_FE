@@ -21,7 +21,7 @@ const TravelList = () => {
     error,
     hasNextPage,
     fetchNextPage,
-  } = useGetTravelsList();
+  } = useGetTravelsList(filters);
 
   useEffect(() => {
     if (filters !== InitialFilters) {

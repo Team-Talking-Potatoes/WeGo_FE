@@ -7,8 +7,9 @@ import { Pagination } from 'swiper/modules';
 import ReviewCard from '@/components/card/ReviewCard';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { fetchPopularReview } from '@/api/reviewApi';
+import { getPopularReview } from '@/api/reviewApi';
 import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/constants/querykeys';
 
 const WeeklyReview = () => {
   const {
@@ -17,8 +18,8 @@ const WeeklyReview = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['reviews', 'popular'],
-    queryFn: fetchPopularReview,
+    queryKey: QUERY_KEYS.REVIEW.popularReview,
+    queryFn: getPopularReview,
   });
   if (error && !isFetching) {
     console.error('에러', { error });

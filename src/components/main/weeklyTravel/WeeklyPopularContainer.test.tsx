@@ -8,7 +8,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { fetchPopularTravel } from '@/api/travelApi';
+import { getPopularTravel } from '@/api/travelApi';
+import { QUERY_KEYS } from '@/constants/querykeys';
 import WeeklyPopular from './WeeklyPopular';
 
 describe('WeeklyPopular', () => {
@@ -18,9 +19,10 @@ describe('WeeklyPopular', () => {
 
   it('여행 데이터를 불러와 WeeklyPopularContainer 컴포넌트를 렌더링한다', async () => {
     const queryClient = new QueryClient();
+    const queryKey = QUERY_KEYS.TRAVEL.popularTravel;
     await queryClient.prefetchQuery({
-      queryKey: ['travels', 'popular'],
-      queryFn: fetchPopularTravel,
+      queryKey,
+      queryFn: getPopularTravel,
     });
 
     render(

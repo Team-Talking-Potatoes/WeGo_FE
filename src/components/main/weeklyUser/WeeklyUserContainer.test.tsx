@@ -8,7 +8,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { fetchPopularUser } from '@/api/userApi';
+import { QUERY_KEYS } from '@/constants/querykeys';
+import { getPopularUser } from '@/api/user/userList';
 import WeeklyUser from './WeeklyUser';
 
 describe('WeeklyUser', () => {
@@ -18,9 +19,10 @@ describe('WeeklyUser', () => {
 
   it('유저 데이터를 불러와 WeeklyUser 컴포넌트를 렌더링한다', async () => {
     const queryClient = new QueryClient();
+    const queryKey = QUERY_KEYS.REVIEW.popularReview;
     await queryClient.prefetchQuery({
-      queryKey: ['users', 'popular'],
-      queryFn: fetchPopularUser,
+      queryKey,
+      queryFn: getPopularUser,
     });
 
     render(

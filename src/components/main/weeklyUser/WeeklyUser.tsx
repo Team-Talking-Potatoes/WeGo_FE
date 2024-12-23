@@ -1,19 +1,21 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { fetchPopularUser } from '@/api/userApi';
+import { getPopularUser } from '@/api/user/userList';
 import MoreButton from '@/components/common/button/MoreButton';
+import { QUERY_KEYS } from '@/constants/querykeys';
 import UserCard from '../../card/UserCard';
 
 const WeeklyUser = () => {
+  const queryKey = QUERY_KEYS.USER.popularUser;
   const {
     data: userList,
     isFetching,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['users', 'popular'],
-    queryFn: fetchPopularUser,
+    queryKey,
+    queryFn: getPopularUser,
   });
 
   const currentMonth = new Date().getMonth() + 1;
