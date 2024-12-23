@@ -16,7 +16,7 @@ interface Props {
   onExit: (id: string) => void;
 }
 
-export default function ChatRoomList({ rooms, onExit }: Props) {
+const ChatRoomList = ({ rooms, onExit }: Props) => {
   return (
     <ul
       className="overflow-y-auto custom-scrollbar"
@@ -39,4 +39,6 @@ export default function ChatRoomList({ rooms, onExit }: Props) {
       ))}
     </ul>
   );
-}
+};
+
+export default ChatRoomList;

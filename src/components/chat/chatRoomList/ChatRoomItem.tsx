@@ -17,7 +17,7 @@ type ChatRoomItemProps = {
   onExit: (id: string) => void;
 };
 
-export default function ChatRoomItem({
+const ChatRoomItem = ({
   id,
   title,
   host,
@@ -26,7 +26,7 @@ export default function ChatRoomItem({
   membersCount,
   messageCount,
   onExit,
-}: ChatRoomItemProps) {
+}: ChatRoomItemProps) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -104,4 +104,6 @@ export default function ChatRoomItem({
       </Dialog>
     </>
   );
-}
+};
+
+export default ChatRoomItem;
