@@ -7,7 +7,7 @@ type Props = Pick<Review, 'reviewId' | 'nickname' | 'reviewImage'>;
 const ReviewCard = ({ reviewId, nickname, reviewImage }: Props) => {
   return (
     <article>
-      <div className="h-[272px] w-[180px]">
+      <div className="h-[272px] w-[180px] md:h-[260px] md:w-[200px]">
         <Link href={`/${reviewId}`}>
           <Image
             src={reviewImage}
