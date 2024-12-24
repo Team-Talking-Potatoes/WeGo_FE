@@ -9,6 +9,7 @@ import SelectTravelReview from './category/SelectTravelReview';
 
 type Props = Pick<
   TravelDetail,
+  | 'travelId'
   | 'hashTags'
   | 'participant'
   | 'description'
@@ -20,6 +21,7 @@ type Props = Pick<
 type Category = 'details' | 'itinerary' | 'review';
 
 const TravelDetailCategory = ({
+  travelId,
   hashTags,
   participant,
   description,
@@ -49,22 +51,22 @@ const TravelDetailCategory = ({
 
   return (
     <section className="pb-20">
-      <header className="heading-1-b flex items-start gap-5 border-b px-5 text-label-alternative">
+      <header className="heading-1-b z-20 flex items-start gap-5 border-b px-5 text-label-alternative md:gap-8">
         {categories.map(
-          ({ label, value, disabled }) =>
+          ({ label, value, disabled }, index) =>
             !disabled && (
               <button
                 key={value}
                 type="button"
                 onClick={() => !disabled && onClickCategory(value as Category)}
-                className={`cursor-pointer pb-2.5 ${category === value || isPending ? selectCss : ''}`}
+                className={`cursor-pointer pb-2.5 ${index === 0 ? 'md:ml-5' : ''} ${category === value || isPending ? selectCss : ''}`}
               >
                 {label}
               </button>
             ),
         )}
       </header>
-      <div className="px-5 pb-10 pt-6">
+      <div className="px-5 pb-10 pt-6 md:px-10">
         {category === 'details' && (
           <SelectTravelDetail
             participant={false}
@@ -80,10 +82,11 @@ const TravelDetailCategory = ({
             startAt={startAt}
           />
         )}
-        {category === 'review' && <SelectTravelReview />}
+        {category === 'review' && <SelectTravelReview travelId={travelId} />}
         {(category === 'itinerary' || category === 'details') &&
           now < endDate && (
             <TravelButtons
+              travelId={travelId}
               organizer={organizer?.id}
               participant={participant}
             />

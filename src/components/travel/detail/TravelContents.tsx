@@ -36,8 +36,8 @@ const TravelContents = ({
   const isDateOver = now > endDate;
   const info = 'flex items-center justify-start text-gray-500';
   return (
-    <main>
-      <figure className="relative flex h-[250px] w-full flex-col items-center justify-center overflow-hidden">
+    <main className="flex flex-col items-center justify-center md:flex-row md:gap-6 md:px-10 md:pt-10">
+      <figure className="relative flex h-[250px] w-[375px] flex-shrink-0 flex-col overflow-hidden md:h-[277px] md:w-[309px]">
         <Image
           src={image}
           alt={`${name} 이미지`}
@@ -47,7 +47,7 @@ const TravelContents = ({
         />
         {now >= endDate && <DateOverTag endAt={endAt} />}
       </figure>
-      <div className="flex flex-col px-5 pb-8 pt-6">
+      <div className="flex w-full flex-col px-5 pt-6 md:px-0">
         <DomesticTag isDomestic={isDomestic} />
         <h2 className="title-4-b border-b border-line-normal pb-4 pt-1.5 font-bold">
           {name}

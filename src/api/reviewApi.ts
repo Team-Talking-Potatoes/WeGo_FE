@@ -42,11 +42,7 @@ export const getPopularReview = async (): Promise<Review[]> => {
   return handleResponse(response, 'getPopularReview');
 };
 
-export const getTravelReview = async ({
-  id,
-}: {
-  id: any;
-}): Promise<Review[]> => {
+export const getTravelReview = async (id: number): Promise<Review[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?id=${id}`,
   );

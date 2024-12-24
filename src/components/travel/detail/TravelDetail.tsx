@@ -26,10 +26,10 @@ const TravelDetail = ({ id }: { id: string }) => {
   }
 
   return (
-    <article>
+    <>
       {isLoading && <div>로딩중</div>}
       {travelDetail && (
-        <>
+        <article className="flex flex-col gap-[22px] md:gap-8">
           <TravelContents
             name={travelDetail.name}
             image={travelDetail.image}
@@ -42,6 +42,7 @@ const TravelDetail = ({ id }: { id: string }) => {
             participant={travelDetail.participant}
           />
           <TravelDetailCategory
+            travelId={travelDetail.travelId}
             hashTags={travelDetail.hashTags}
             participant={travelDetail.participant}
             description={travelDetail.description}
@@ -50,9 +51,9 @@ const TravelDetail = ({ id }: { id: string }) => {
             startAt={travelDetail.startAt}
             endAt={travelDetail.endAt}
           />
-        </>
+        </article>
       )}
-    </article>
+    </>
   );
 };
 export default TravelDetail;

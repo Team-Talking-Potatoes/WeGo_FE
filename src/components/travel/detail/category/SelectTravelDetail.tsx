@@ -33,7 +33,7 @@ const SelectTravelDetail = ({
   const userId = 4;
 
   return (
-    <section className="pb-6">
+    <section>
       <div className="flex items-center justify-between pb-[18px]">
         <div className="flex gap-[7px]">
           <UserIcon size="sm" />

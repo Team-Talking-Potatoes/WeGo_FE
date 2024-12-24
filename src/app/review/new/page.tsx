@@ -6,8 +6,9 @@ import InputImage from '@/components/review/new/InputImage';
 import CreateReviewButtons from '@/components/review/new/CreateReviewButtons';
 import useCreateReviewStore from '@/store/useCreateReview';
 import ReviewComment from '@/components/review/new/ReviewComment';
+import SelectTravel from '@/components/review/new/SelectTravel';
 
-const CreateReviewPage = () => {
+const CreateReviewPage = ({ id }: { id?: string }) => {
   const { countStar, setCountStar } = useCreateReviewStore();
 
   const handleClick = (index: number) => {
@@ -22,6 +23,7 @@ const CreateReviewPage = () => {
       className="heading-1-sb flex w-full flex-col px-6 py-8 text-label-normal"
     >
       <CreateReviewHeader />
+      <SelectTravel id={id} />
       <span className="body-2-m mb-4 mt-2.5 w-full bg-blue-50 py-2 text-center text-primary-normal">
         리뷰를 작성하고, 당신만의 여행피드를 완성하세요!
       </span>
