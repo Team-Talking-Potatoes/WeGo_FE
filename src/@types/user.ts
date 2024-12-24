@@ -15,6 +15,7 @@ export interface User {
 }
 
 export interface UserList {
+  userId: number;
   profileImage: string;
   nickname: string;
   openTravelCount: number;
