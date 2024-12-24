@@ -43,7 +43,7 @@ const TravelCardBig = ({
     [currentTravelMateCount, maxTravelMateCount],
   );
 
-  const { mutate: postTravelBookMark } = useBookmarkTravel();
+  const { mutate: postBookMark } = useBookmarkTravel();
   const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
 
   const handleCheckMark = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,7 +52,7 @@ const TravelCardBig = ({
     setTimeout(() => setAnimate(false), 500);
 
     if (!isCheckedState) {
-      postTravelBookMark(travelId, {
+      postBookMark(travelId, {
         onError: () => setIsCheckedState(false),
       });
     } else {
