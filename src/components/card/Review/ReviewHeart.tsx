@@ -21,7 +21,7 @@ const ReviewHeart = ({ isLiked, red }: Props) => {
     <button
       type="button"
       onClick={handleClick}
-      className="absolute right-2 top-2 z-50 flex h-9 w-9 items-center justify-center rounded bg-black/30"
+      className="absolute right-2 top-2 z-30 flex h-9 w-9 items-center justify-center rounded bg-black/30"
     >
       <HeartIcon
         data-testid="heart-icon"
