@@ -69,6 +69,7 @@ const TravelDetailCategory = ({
       <div className="px-5 pb-10 pt-6 md:px-10">
         {category === 'details' && (
           <SelectTravelDetail
+            travelId={travelId}
             participant={false}
             organizer={organizer}
             hashTags={hashTags}

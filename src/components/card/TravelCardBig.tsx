@@ -5,8 +5,10 @@ import { Travel } from '@/@types/travel';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import cn from '@/utils/cn';
-import { deleteTravelBookMark, postTravelBookMark } from '@/api/travelApi';
-import useBookmarkTravel from '@/queries/travel/useBookmarkTravel';
+import {
+  useBookmarkTravel,
+  useDeleteBookmarkTravel,
+} from '@/queries/travel/useBookmarkTravel';
 import { formatDateToShortWithDay } from '@/utils/dateChageKr';
 import DomesticTag from '../common/tag/DomesticTag';
 import ProgressBar from '../common/ProgressBar';
@@ -41,7 +43,8 @@ const TravelCardBig = ({
     [currentTravelMateCount, maxTravelMateCount],
   );
 
-  const { mutate: bookmarkTravel } = useBookmarkTravel();
+  const { mutate: postTravelBookMark } = useBookmarkTravel();
+  const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
 
   const handleCheckMark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -49,12 +52,14 @@ const TravelCardBig = ({
     setTimeout(() => setAnimate(false), 500);
 
     if (!isCheckedState) {
-      bookmarkTravel(travelId);
-      postTravelBookMark(travelId);
+      postTravelBookMark(travelId, {
+        onError: () => setIsCheckedState(false),
+      });
     } else {
-      deleteTravelBookMark(travelId);
+      deleteBookMark(travelId, {
+        onError: () => setIsCheckedState(true),
+      });
     }
-
     setIsCheckedState(!isCheckedState);
   };
 

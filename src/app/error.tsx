@@ -32,7 +32,7 @@ export default function Error({
         closeModal();
       },
     });
-  }, [error, showModal, router, reset]);
+  }, []);
 
   return null;
 }
