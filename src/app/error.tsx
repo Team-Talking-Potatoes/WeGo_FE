@@ -12,7 +12,7 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
-  const { showModal } = useModal();
+  const { showModal, closeModal } = useModal();
   const router = useRouter();
 
   useEffect(() => {
@@ -27,6 +27,9 @@ export default function Error({
           router.refresh();
           reset();
         });
+      },
+      onCancel: () => {
+        closeModal();
       },
     });
   }, [error, showModal, router, reset]);
