@@ -19,7 +19,7 @@ describe('WeeklyPopular', () => {
 
   it('여행 데이터를 불러와 WeeklyPopularContainer 컴포넌트를 렌더링한다', async () => {
     const queryClient = new QueryClient();
-    const queryKey = QUERY_KEYS.TRAVEL.popularTravel;
+    const queryKey = QUERY_KEYS.TRAVEL.POPULAR_TRAVEL;
     await queryClient.prefetchQuery({
       queryKey,
       queryFn: getPopularTravel,

@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import UserCard from '../../card/UserCard';
 
 const WeeklyUser = () => {
-  const queryKey = QUERY_KEYS.USER.popularUser;
+  const queryKey = QUERY_KEYS.USER.POPULAR_USER;
   const {
     data: userList,
     isFetching,

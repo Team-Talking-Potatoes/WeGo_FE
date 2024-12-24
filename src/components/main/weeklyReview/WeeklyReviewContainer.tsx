@@ -10,7 +10,7 @@ import WeeklyReview from './WeeklyReview';
 const WeeklyReviewContainer = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: QUERY_KEYS.REVIEW.popularReview,
+    queryKey: QUERY_KEYS.REVIEW.POPULAR_REVIEW,
     queryFn: getPopularReview,
   });
   return (

@@ -15,7 +15,7 @@ const WeeklyPopular = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: QUERY_KEYS.TRAVEL.popularTravel,
+    queryKey: QUERY_KEYS.TRAVEL.POPULAR_TRAVEL,
     queryFn: getPopularTravel,
   });
 

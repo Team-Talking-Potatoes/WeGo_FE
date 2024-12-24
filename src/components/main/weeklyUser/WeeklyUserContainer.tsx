@@ -10,7 +10,7 @@ import WeeklyUser from './WeeklyUser';
 const WeeklyUserContainer = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: QUERY_KEYS.USER.popularUser,
+    queryKey: QUERY_KEYS.USER.POPULAR_USER,
     queryFn: getPopularUser,
   });
   return (

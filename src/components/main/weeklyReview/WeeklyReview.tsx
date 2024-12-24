@@ -18,7 +18,7 @@ const WeeklyReview = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: QUERY_KEYS.REVIEW.popularReview,
+    queryKey: QUERY_KEYS.REVIEW.POPULAR_REVIEW,
     queryFn: getPopularReview,
   });
   if (error && !isFetching) {

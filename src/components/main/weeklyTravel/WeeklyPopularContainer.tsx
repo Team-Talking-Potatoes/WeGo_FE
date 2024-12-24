@@ -10,7 +10,7 @@ import WeeklyPopular from './WeeklyPopular';
 const WeeklyPopularContainer = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: QUERY_KEYS.TRAVEL.popularTravel,
+    queryKey: QUERY_KEYS.TRAVEL.POPULAR_TRAVEL,
     queryFn: getPopularTravel,
   });
   return (

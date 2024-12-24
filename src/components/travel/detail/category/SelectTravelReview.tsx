@@ -12,7 +12,7 @@ const SelectTravelReview = ({ travelId }: { travelId: number }) => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: QUERY_KEYS.TRAVEL.travelDetailReview(`${travelId}`),
+    queryKey: QUERY_KEYS.TRAVEL.TRAVEL_DETAIL_REVIEW(`${travelId}`),
     queryFn: () => getTravelReview(travelId),
   });
 

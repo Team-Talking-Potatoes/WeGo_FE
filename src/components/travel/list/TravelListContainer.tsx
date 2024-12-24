@@ -12,7 +12,7 @@ import TravelList from './TravelList';
 const TravelListContainer = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: QUERY_KEYS.TRAVEL.travelList(InitialFilters),
+    queryKey: QUERY_KEYS.TRAVEL.TRAVEL_LIST(InitialFilters),
     queryFn: () => getTravels({ ...InitialFilters }),
   });
 

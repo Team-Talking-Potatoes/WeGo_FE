@@ -19,7 +19,7 @@ describe('WeeklyReview', () => {
 
   it('리뷰 데이터를 불러와 WeeklyReview 컴포넌트를 렌더링한다', async () => {
     const queryClient = new QueryClient();
-    const queryKey = QUERY_KEYS.REVIEW.popularReview;
+    const queryKey = QUERY_KEYS.REVIEW.POPULAR_REVIEW;
     await queryClient.prefetchQuery({
       queryKey,
       queryFn: getPopularReview,
