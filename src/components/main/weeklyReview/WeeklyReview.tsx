@@ -32,7 +32,7 @@ const WeeklyReview = () => {
   }
 
   return (
-    <section className="flex flex-col justify-start gap-5 bg-black py-10 pl-5">
+    <section className="flex flex-col justify-start gap-5 bg-black px-5 py-10 md:px-10">
       <header>
         <h2 className="title-3-eb pb-1.5 text-white">여행리뷰 모아보기</h2>
         <p className="body-2-m text-label-alternative">
@@ -46,11 +46,19 @@ const WeeklyReview = () => {
           spaceBetween={16}
           grabCursor
           modules={[Pagination]}
-          style={{ width: '375px' }}
+          style={{ width: '100%', height: 'auto' }}
+          breakpoints={{
+            768: {
+              spaceBetween: 24,
+            },
+          }}
         >
           {reviewList &&
             reviewList.map((review) => (
-              <SwiperSlide key={review.reviewId} style={{ width: '180px' }}>
+              <SwiperSlide
+                key={review.reviewId}
+                style={{ width: 'auto', height: 'auto' }}
+              >
                 <ReviewCard
                   reviewId={review.reviewId}
                   nickname={review.nickname}

@@ -32,7 +32,7 @@ const WeeklyPopular = () => {
     );
   }
   return (
-    <section className="flex flex-col justify-center px-5 pb-8 pt-[50px]">
+    <section className="flex flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10">
       <WeeklyHeader month={month} week={week} />
       {isLoading && <div>로딩중 WeeklyPopular</div>}
       <div className="flex flex-col gap-5">

@@ -3,9 +3,7 @@ import MoreButton from '@/components/common/button/MoreButton';
 const WeeklyHeader = ({ month, week }: { month: number; week: number }) => (
   <header className="flex flex-col gap-1.5">
     <div className="flex justify-between">
-      <h2 className="title-3-eb pb-[6px] text-label-normal">
-        이번주 인기 여행모임
-      </h2>
+      <h2 className="title-3-eb text-label-normal">이번주 인기 여행모임</h2>
       <MoreButton href="/" aria="이번주 인기 여행모임 페이지로 이동하기" />
     </div>
     <p className="body-2-m text-label-alternative">

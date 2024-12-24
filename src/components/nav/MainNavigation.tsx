@@ -33,7 +33,7 @@ const MainNavigation = () => {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-20 items-center justify-between bg-black px-[29px] py-3.5 text-primary-white">
+    <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-20 items-center justify-center bg-black px-[29px] py-3.5 text-primary-white md:gap-[60px]">
       <NavLink
         href="/review"
         icon={<Start />}
