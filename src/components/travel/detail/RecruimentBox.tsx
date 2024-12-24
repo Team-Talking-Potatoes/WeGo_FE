@@ -2,6 +2,7 @@ import Error from '@/assets/error.svg';
 import Square from '@/assets/square.svg';
 import RoundCheck from '@/assets/round_check.svg';
 import { Participant } from '@/@types/travel';
+import { useMemo } from 'react';
 import ProgressBar from '../../common/ProgressBar';
 import UserIconList from '../../common/user/UserIconList';
 
@@ -19,6 +20,11 @@ const RecruimentBox = ({
   participant,
 }: Props) => {
   const personnel = 'flex items-center gap-1.5';
+
+  const progressRate = useMemo(
+    () => Math.round((participant.length / maxTravelMateCount) * 100),
+    [participant, maxTravelMateCount],
+  );
 
   if (isDateOver) {
     return (
@@ -46,7 +52,7 @@ const RecruimentBox = ({
         </span>
         <UserIconList participant={participant} />
       </div>
-      <ProgressBar progressRate={33} />
+      <ProgressBar progressRate={progressRate} />
       <div className="flex justify-between pt-2 text-xs font-medium">
         <div className={personnel}>
           <span className="text-gray-500">최소인원</span>

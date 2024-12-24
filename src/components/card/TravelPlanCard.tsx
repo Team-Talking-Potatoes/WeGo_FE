@@ -8,18 +8,18 @@ const TravelPlanCard = ({
   description,
 }: Omit<TravelPlan, 'tripDay' | 'tripOrderNumber'>) => {
   return (
-    <div className="overflow-hidden rounded bg-background-alternative">
-      <div className="flex h-[100px] items-center overflow-hidden">
+    <div className="overflow-hidden rounded bg-background-alternative md:flex md:w-[538px]">
+      <div className="flex h-[100px] w-full flex-shrink-0 items-center overflow-hidden md:h-[130px] md:w-[269px]">
         <Image
           src={image}
           alt={`${destination} 일정 이미지`}
-          width={300}
-          height={100}
-          className="w-full object-cover"
+          width={600}
+          height={500}
+          className="h-full w-full object-cover"
         />
       </div>
 
-      <div className="px-3 py-4">
+      <div className="flex flex-col items-start justify-center px-3 py-4 md:px-5 md:py-0">
         <div className="heading-1-b flex items-center gap-1">
           <LocationIcon fill="#6B7280" stroke="#6B7280" />
           <span>{destination}</span>

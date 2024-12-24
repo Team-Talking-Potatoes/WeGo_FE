@@ -61,10 +61,10 @@ const TravelCardBig = ({
   return (
     <Link
       href={`/travel/${travelId}`}
-      className="flex flex-col overflow-hidden rounded"
+      className="flex flex-col overflow-hidden rounded border md:flex-row"
     >
       <div
-        className={cn('relative h-[140px] w-full flex-shrink-0', {
+        className={cn('relative h-[140px] flex-shrink-0 md:h-40 md:w-56', {
           'after:absolute after:inset-0 after:rounded after:bg-black after:opacity-50':
             closed,
         })}
@@ -91,7 +91,7 @@ const TravelCardBig = ({
         )}
       </div>
 
-      <div className="flex w-full flex-col justify-between rounded border-x border-b px-4 pb-4 pt-5">
+      <div className="flex w-full flex-col justify-between rounded px-4 pb-4 pt-5">
         <div className="flex flex-col gap-1.5 pb-[18px]">
           <div className="flex items-center gap-1">
             <DomesticTag isDomestic={isDomestic} />
@@ -114,12 +114,7 @@ const TravelCardBig = ({
           </div>
         </div>
 
-        {!closed && (
-          <div className="caption-1-sb flex items-center gap-2.5 text-primary-normal">
-            <ProgressBar progressRate={progressRate} />
-            <span>{progressRate}%</span>
-          </div>
-        )}
+        {!closed && <ProgressBar progressRate={progressRate} />}
       </div>
     </Link>
   );

@@ -12,8 +12,8 @@
   "travelLocation": "강원도",
   "departureLocation": "서울역",
   "startAt": "2024.12.03",
-  "endAt": "2024.12.06",
-  "registrationEnd": "2024.11.31",
+  "endAt": "2024.12.31",
+  "registrationEnd": "2024.12.31",
   "tripDuration": 3,
   "travelPlan": [
     {
