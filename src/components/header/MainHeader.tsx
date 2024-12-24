@@ -9,10 +9,13 @@ import { throttle } from 'lodash';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
+import useGetUser from '@/queries/user/useGetUser';
+import UserIcon from '../common/user/UserIcon';
 
 const MainHeader = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { data: user } = useGetUser();
   const headerCss =
     'fixed z-30 flex h-[60px] w-full items-center justify-between px-5 py-[14px] md:px-10';
 
@@ -40,7 +43,15 @@ const MainHeader = () => {
             <Write width={24} height={24} className="text-label-normal" />
           </Link>
           <Link href="/mypage" aria-label="마이페이지로 가기">
-            <Mypage width={24} height={24} className="text-label-normal" />
+            {user ? (
+              <UserIcon
+                profileImage={user?.profileImage || ''}
+                nickname={user.nickname}
+                size="xs"
+              />
+            ) : (
+              <Mypage width={24} height={24} className="text-label-normal" />
+            )}
           </Link>
         </div>
       </header>
