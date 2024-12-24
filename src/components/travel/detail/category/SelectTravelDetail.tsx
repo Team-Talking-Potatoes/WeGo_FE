@@ -4,24 +4,41 @@ import BookMarkIcon from '@/assets/bookmark.svg';
 import { Participant } from '@/@types/travel';
 import { useState } from 'react';
 import Link from 'next/link';
+import {
+  useBookmarkTravel,
+  useDeleteBookmarkTravel,
+} from '@/queries/travel/useBookmarkTravel';
 import ButtonRounded from '../../../common/button/ButtonRounded';
 import TravelTag from '../../../common/tag/TravelTag';
 import UserIcon from '../../../common/user/UserIcon';
 
 const SelectTravelDetail = ({
+  travelId,
   participant,
   organizer,
   hashTags,
   description,
 }: {
+  travelId: number;
   participant: boolean;
   organizer?: Participant;
   hashTags: string;
   description: string;
 }) => {
   const [isBookmarked, setIsBookmarked] = useState(participant);
+  const { mutate: postBookMark } = useBookmarkTravel();
+  const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
 
-  const onClickBookMark = () => {
+  const handleClickBookMark = () => {
+    if (isBookmarked) {
+      deleteBookMark(travelId, {
+        onError: () => setIsBookmarked(true),
+      });
+    } else {
+      postBookMark(travelId, {
+        onError: () => setIsBookmarked(false),
+      });
+    }
     setIsBookmarked((prev) => !prev);
   };
 
@@ -45,7 +62,11 @@ const SelectTravelDetail = ({
 
         <div className="flex items-center gap-2.5">
           {organizer?.id !== userId && (
-            <button onClick={onClickBookMark} type="button" aria-label="북마크">
+            <button
+              onClick={handleClickBookMark}
+              type="button"
+              aria-label="북마크"
+            >
               <BookMarkIcon
                 fill={isBookmarked ? '#F87171' : 'white'}
                 className={

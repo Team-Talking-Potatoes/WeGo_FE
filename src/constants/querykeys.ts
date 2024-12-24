@@ -12,7 +12,8 @@ export const QUERY_KEYS = {
   },
   REVIEW: {
     POPULAR_REVIEW: ['popularReview'] as const,
-    CREATE_REVIEW_SELECT_TRAVEL: ['writableTravel'] as const,
+    CREATE_REVIEW_SELECT_TRAVEL: (size: number) =>
+      ['writableTravel', size] as const,
   },
   USER: {
     POPULAR_USER: ['popularUser'] as const,

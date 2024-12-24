@@ -4,7 +4,7 @@ import useCreateReviewStore from '@/store/useCreateReview';
 const ReviewComment = () => {
   const { title, comment, setTitle, setComment } = useCreateReviewStore();
   return (
-    <section className="flex w-full flex-col gap-3 pb-6">
+    <section className="flex w-full flex-col gap-3">
       <header>여행에 대한 후기를 남겨주세요!</header>
       <Textarea
         name="여행제목"

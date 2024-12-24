@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 export const useCreateReview = () => {
   const router = useRouter();
-  const { countStar, title, comment, selectedFiles, resetStore } =
+  const { travelId, countStar, title, comment, selectedFiles, resetStore } =
     useCreateReviewStore();
 
   const mutation = useMutation({
@@ -21,6 +21,7 @@ export const useCreateReview = () => {
   });
 
   const handleSubmit = () => {
+    if (travelId === 0) return;
     if (countStar === 0) return;
     if (title === '') return;
     if (comment === '') return;
@@ -28,6 +29,7 @@ export const useCreateReview = () => {
 
     const formData = new FormData();
 
+    formData.append('travelId', travelId.toString());
     formData.append('score', countStar.toString());
     formData.append('title', title);
     formData.append('comment', comment);

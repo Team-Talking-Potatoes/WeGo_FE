@@ -11,7 +11,7 @@ const CreateReviewButtons = () => {
   const { resetStore } = useCreateReviewStore();
 
   return (
-    <section className="flex justify-center gap-2.5">
+    <section className="flex justify-center gap-2.5 pb-5 pt-10">
       <Button
         handler={() => {
           resetStore();
