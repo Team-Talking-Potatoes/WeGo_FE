@@ -14,7 +14,7 @@ const MainHeader = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const headerCss =
-    'fixed z-20 flex h-[60px] w-full items-center justify-between px-5 py-[14px] md:px-10';
+    'fixed z-30 flex h-[60px] w-full items-center justify-between px-5 py-[14px] md:px-10';
 
   useEffect(() => {
     const handleScroll = throttle(() => {
