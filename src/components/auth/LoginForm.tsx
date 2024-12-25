@@ -29,6 +29,7 @@ const LoginForm = () => {
       <AuthText
         type="email"
         name="email"
+        size="full"
         value={email.value}
         isValid={email.isValid}
         onChange={email.handleChange}

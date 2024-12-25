@@ -7,8 +7,10 @@ const Signup = () => {
     <div>
       <FormHeader title="회원가입" />
 
-      <div className="mx-auto mt-10 flex max-w-[335px] justify-center">
-        <SignupForm />
+      <div className="mx-5">
+        <div className="mx-auto mt-10 flex max-w-[500px] justify-center">
+          <SignupForm />
+        </div>
       </div>
 
       <div className="mb-[50px] mt-6 flex justify-center text-sm">
