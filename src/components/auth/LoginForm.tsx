@@ -44,6 +44,7 @@ const LoginForm = () => {
       <Button
         label="로그인"
         type="submit"
+        size="full"
         className="mt-[180px]"
         disabled={!email.isValid || !password.isValid}
       />

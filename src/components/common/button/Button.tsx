@@ -13,6 +13,7 @@ const ButtonVariants = cva(
       },
       size: {
         default: 'w-[335px] h-[52px]',
+        full: 'w-full h-[52px]',
         addon: 'w-[101px] h-[46px]',
         modal_sm: 'w-[90px] h-[38px]',
         modal_md: 'w-[202px] h-[38px]',

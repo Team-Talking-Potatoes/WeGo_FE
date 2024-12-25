@@ -102,6 +102,11 @@ export default {
           lineHeight: '40px',
           fontWeight: '800',
         },
+        '.title-1-eb-md': {
+          fontSize: '48px',
+          lineHeight: '56px',
+          fontWeight: '800',
+        },
         '.title-1-b': {
           fontSize: '32px',
           lineHeight: '40px',
@@ -164,6 +169,11 @@ export default {
         '.body-2-r': {
           fontSize: '14px',
           lineHeight: '22px',
+          fontWeight: '400',
+        },
+        '.body-2-r-md': {
+          fontSize: '18px',
+          lineHeight: '28px',
           fontWeight: '400',
         },
         '.body-2-m': {

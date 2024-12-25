@@ -16,7 +16,7 @@ interface Props {
   value: string;
   isValid: boolean | null;
   disabled?: boolean;
-  size?: 'default' | 'withButton';
+  size?: 'default' | 'withButton' | 'full';
   important?: boolean;
   successMailSend?: boolean | null;
   className?: string;
@@ -32,7 +32,7 @@ const AuthText = memo(
     value,
     isValid,
     disabled,
-    size = 'default',
+    size = 'full',
     important,
     successMailSend,
     className,
