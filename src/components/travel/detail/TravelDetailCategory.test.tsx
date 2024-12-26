@@ -32,6 +32,7 @@ describe('TravelDetailCategory', () => {
   const renderComponent = (endAt = mockEndAt) =>
     render(
       <TravelDetailCategory
+        travelId={1}
         hashTags={mockHashTags}
         participant={mockParticipant}
         description={mockDescription}

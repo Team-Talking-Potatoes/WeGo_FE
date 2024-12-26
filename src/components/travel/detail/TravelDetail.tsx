@@ -4,6 +4,7 @@ import TravelContents from '@/components/travel/detail/TravelContents';
 import { useQuery } from '@tanstack/react-query';
 import { getTravelDetail } from '@/api/travelApi';
 import TravelDetailCategory from './TravelDetailCategory';
+import TravelImage from './TravelImage';
 
 const TravelDetail = ({ id }: { id: string }) => {
   const {
@@ -29,10 +30,15 @@ const TravelDetail = ({ id }: { id: string }) => {
     <>
       {isLoading && <div>로딩중</div>}
       {travelDetail && (
-        <article className="flex flex-col gap-[22px] md:gap-8">
-          <TravelContents
+        <article className="relative m-auto flex max-w-[1480px] flex-col items-center gap-[22px] px-5 md:grid md:grid-cols-2 md:grid-rows-[360px_auto] md:gap-9 md:px-10 xl:grid-cols-[764px_600px]">
+          <TravelImage
             name={travelDetail.name}
             image={travelDetail.image}
+            endAt={travelDetail.endAt}
+            registrationEnd={travelDetail.registrationEnd}
+          />
+          <TravelContents
+            name={travelDetail.name}
             isDomestic={travelDetail.isDomestic}
             minTravelMateCount={travelDetail.minTravelMateCount}
             maxTravelMateCount={travelDetail.maxTravelMateCount}

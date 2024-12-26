@@ -1,11 +1,10 @@
 'use client';
 
 import { TravelDetail } from '@/@types/travel';
-import { useState, useTransition } from 'react';
+import React, { Suspense, useState } from 'react';
 import TravelButtons from './TravelButtons';
-import SelectTravelDetail from './category/SelectTravelDetail';
-import SelectTravelItinerary from './category/SelectTravelItinerary';
 import SelectTravelReview from './category/SelectTravelReview';
+import SelectTravelDetail from './category/SelectTravelDetail';
 
 type Props = Pick<
   TravelDetail,
@@ -20,6 +19,10 @@ type Props = Pick<
 >;
 type Category = 'details' | 'itinerary' | 'review';
 
+const SelectTravelItinerary = React.lazy(
+  () => import('./category/SelectTravelItinerary'),
+);
+
 const TravelDetailCategory = ({
   travelId,
   hashTags,
@@ -31,17 +34,16 @@ const TravelDetailCategory = ({
   endAt,
 }: Props) => {
   const [category, setCategory] = useState<Category>('details');
-  const [isPending, startTransition] = useTransition();
 
   const onClickCategory = (selectedCategory: Category) => {
-    startTransition(() => {
+    if (category !== selectedCategory) {
       setCategory(selectedCategory);
-    });
+    }
   };
+
   const organizer = participant.find((part) => part.role === 'ORGANIZER');
   const now = new Date();
   const endDate = new Date(endAt);
-  const selectCss = 'border-b-[3px] border-label-normal text-label-normal';
 
   const categories = [
     { label: '여행상세', value: 'details' },
@@ -50,23 +52,21 @@ const TravelDetailCategory = ({
   ];
 
   return (
-    <section className="pb-20">
-      <header className="heading-1-b z-20 flex items-start gap-5 border-b px-5 text-label-alternative md:gap-8">
-        {categories.map(
-          ({ label, value, disabled }, index) =>
-            !disabled && (
-              <button
-                key={value}
-                type="button"
-                onClick={() => !disabled && onClickCategory(value as Category)}
-                className={`cursor-pointer pb-2.5 ${index === 0 ? 'md:ml-5' : ''} ${category === value || isPending ? selectCss : ''}`}
-              >
-                {label}
-              </button>
-            ),
-        )}
+    <section className="w-full max-w-[764px] pb-20 md:col-span-2">
+      <header className="heading-1-b z-20 flex items-start gap-5 border-b text-label-alternative md:gap-8">
+        {categories.map(({ label, value, disabled }) => (
+          <button
+            key={value}
+            type="button"
+            onClick={() => !disabled && onClickCategory(value as Category)}
+            className={`cursor-pointer pb-2.5 ${category === value ? 'border-b-[3px] border-label-normal text-label-normal' : ''}`}
+            disabled={disabled}
+          >
+            {!disabled && label}
+          </button>
+        ))}
       </header>
-      <div className="px-5 pb-10 pt-6 md:px-10">
+      <div className="pb-10 pt-6">
         {category === 'details' && (
           <SelectTravelDetail
             travelId={travelId}
@@ -76,14 +76,18 @@ const TravelDetailCategory = ({
             description={description}
           />
         )}
-        {category === 'itinerary' && (
-          <SelectTravelItinerary
-            tripDuration={tripDuration}
-            travelPlan={travelPlan}
-            startAt={startAt}
-          />
-        )}
-        {category === 'review' && <SelectTravelReview travelId={travelId} />}
+
+        <Suspense fallback={<div>Loading...</div>}>
+          {category === 'itinerary' && (
+            <SelectTravelItinerary
+              tripDuration={tripDuration}
+              travelPlan={travelPlan}
+              startAt={startAt}
+            />
+          )}
+          {category === 'review' && <SelectTravelReview travelId={travelId} />}
+        </Suspense>
+
         {(category === 'itinerary' || category === 'details') &&
           now < endDate && (
             <TravelButtons

@@ -8,7 +8,7 @@ const TravelPlanCard = ({
   description,
 }: Omit<TravelPlan, 'tripDay' | 'tripOrderNumber'>) => {
   return (
-    <div className="overflow-hidden rounded bg-background-alternative md:flex md:w-[538px]">
+    <div className="w-full overflow-hidden rounded bg-background-alternative md:flex md:w-[538px]">
       <div className="flex h-[100px] w-full flex-shrink-0 items-center overflow-hidden md:h-[130px] md:w-[269px]">
         <Image
           src={image}
