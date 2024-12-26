@@ -9,6 +9,8 @@ import { QUERY_KEYS } from '@/constants/querykeys';
 import TravelFilter from './TravelFilter';
 import TravelList from './TravelList';
 
+import TravelHeader from './TravelHeader';
+
 const TravelListContainer = async () => {
   const queryClient = new QueryClient();
 
@@ -24,6 +26,7 @@ const TravelListContainer = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      <TravelHeader />
       <TravelFilter />
       <TravelList />
     </HydrationBoundary>

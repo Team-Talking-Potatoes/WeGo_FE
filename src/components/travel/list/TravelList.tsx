@@ -54,7 +54,7 @@ const TravelList = () => {
 
   return (
     <>
-      <div className="flex h-full flex-col justify-center lg:flex-row lg:flex-wrap lg:gap-6">
+      <div className="flex h-full flex-col items-center justify-center lg:flex-row lg:flex-wrap xl:gap-6">
         {travelListData &&
           travelListData.pages.map((page) =>
             page.travels.length === 0 ? (
@@ -65,7 +65,7 @@ const TravelList = () => {
               />
             ) : (
               page.travels.map((travel) => (
-                <article key={travel.travelId} className="pt-5 xl:pt-0">
+                <article key={travel.travelId} className="pb-5 xl:pb-0">
                   <TravelCard
                     travelId={travel.travelId}
                     image={travel.image}

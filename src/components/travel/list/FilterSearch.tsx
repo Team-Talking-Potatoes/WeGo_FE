@@ -1,3 +1,5 @@
+'use client';
+
 import SearchIcon from '@/assets/search.svg';
 import { useTravelListStore } from '@/store/useTravelListStore';
 import { useState, useTransition } from 'react';
@@ -23,7 +25,7 @@ const FilterSearch = () => {
   };
 
   return (
-    <div className="mb-4 flex items-center justify-between rounded bg-gray-100 px-4 py-[7px]">
+    <div className="order-3 col-span-2 flex max-w-[688px] items-center justify-between rounded bg-gray-100 px-4 py-[7px] lg:order-2 lg:col-span-1">
       <input
         value={localSearchText}
         onChange={(e) => setLocalSearchText(e.target.value)}
