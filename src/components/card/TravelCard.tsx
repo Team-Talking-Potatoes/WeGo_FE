@@ -66,7 +66,7 @@ const TravelCard = ({
   return (
     <Link
       href={`/travel/${travelId}`}
-      className="flex gap-4 md:w-[688px] md:gap-9 xl:w-[688px]"
+      className="flex w-[335px] gap-4 md:w-[688px] md:gap-9"
     >
       <div
         className={cn(
@@ -104,19 +104,23 @@ const TravelCard = ({
             <DomesticTag isDomestic={isDomestic} />
             {closed && <ExpiredTag />}
           </div>
-          <h3 className="line-clamp-2 font-bold">{travelName}</h3>
+          <h3 className="heading-1-b line-clamp-2 font-bold md:title-5-b">
+            {travelName}
+          </h3>
         </div>
         <div className="flex flex-col gap-2.5">
-          <div className="flex items-center gap-[6px] text-xs font-semibold text-gray-500">
-            <span className={iconAndText}>
+          <div className="flex items-center gap-[6px] text-gray-500">
+            <span className={`body-3-sb ${iconAndText}`}>
               <Location />
               {location}
             </span>
-            <span className={iconAndText}>
+            <span className={`body-3-r ${iconAndText}`}>
               <ProfileICon />
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </span>
-            <span>{formattedStartDate}</span>
+            <span className={`body-3-r ${iconAndText}`}>
+              {formattedStartDate}
+            </span>
           </div>
           {!closed && <ProgressBar progressRate={progressRate} />}
         </div>

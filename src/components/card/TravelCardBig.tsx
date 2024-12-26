@@ -66,7 +66,7 @@ const TravelCardBig = ({
   return (
     <Link
       href={`/travel/${travelId}`}
-      className="flex flex-col overflow-hidden rounded border md:flex-row"
+      className="flex w-[335px] flex-col overflow-hidden rounded border md:w-[688px] md:flex-row"
     >
       <div
         className={cn('relative h-[140px] flex-shrink-0 md:h-40 md:w-56', {

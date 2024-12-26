@@ -66,6 +66,7 @@ const HeroSection = () => {
         grabCursor
         onSlideChange={handleSlideChange}
         style={{ width: '100%', height: 'auto' }}
+        className="max-w-[1480px]"
       >
         {slideData.map((slide) => (
           <SwiperSlide key={slide.id}>
