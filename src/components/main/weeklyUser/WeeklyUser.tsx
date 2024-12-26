@@ -32,7 +32,7 @@ const WeeklyUser = () => {
     );
   }
   return (
-    <section className="px-5 pb-32 pt-12 md:px-10">
+    <section className="m-auto max-w-[1480px] px-5 pb-32 pt-12 md:px-10">
       <h2 className="title-3-eb text-label-normal">
         {currentMonth}월의 여행지기
       </h2>

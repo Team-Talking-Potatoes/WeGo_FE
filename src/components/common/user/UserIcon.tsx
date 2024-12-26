@@ -32,7 +32,7 @@ const UserIcon = ({ profileImage, nickname, size = 'default' }: Props) => {
   return (
     <div className={UserIconVariants({ size })}>
       <Image
-        src={profileImage || '/default_profile.png'}
+        src={profileImage || '/icon/default_profile_round.svg'}
         alt={`${nickname ?? '유저'}의 프로필 이미지`}
         width={sizeInPx}
         height={sizeInPx}

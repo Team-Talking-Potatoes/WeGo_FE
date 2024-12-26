@@ -33,13 +33,13 @@ const WeeklyReview = () => {
 
   return (
     <section className="flex flex-col justify-start gap-5 bg-black px-5 py-10 md:px-10">
-      <header>
+      <header className="m-auto w-full max-w-[1400px] justify-start">
         <h2 className="title-3-eb pb-1.5 text-white">여행리뷰 모아보기</h2>
         <p className="body-2-m text-label-alternative">
           다양한 여행모임 후기들을 한눈에 확인해요!
         </p>
       </header>
-      <main className="flex overflow-hidden">
+      <main className="flex xl:max-w-[1400px] 2xl:m-auto">
         {isLoading && <div>로딩중 WeeklyReview</div>}
         <Swiper
           slidesPerView="auto"
