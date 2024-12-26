@@ -35,15 +35,14 @@ export const getTravelDetail = async ({
   return handleResponse(response, 'getTravelDetail');
 };
 
-export const getTravels = async ({
-  pageParam,
-  ...rest
-}: {
-  pageParam?: number;
-} & Filters): Promise<TravelFilterResponse> => {
-  const page = pageParam && pageParam !== 1 ? `&page=${pageParam}` : '';
-  const url = buildTravelUrl(rest) + page;
+export const getTravels = async (
+  props: Filters & { pageParam?: number },
+): Promise<TravelFilterResponse> => {
+  const { pageParam, ...filters } = props;
+
+  const url = buildTravelUrl(filters, pageParam);
   const response = await fetch(url);
+
   return handleResponse(response, 'getTravels');
 };
 

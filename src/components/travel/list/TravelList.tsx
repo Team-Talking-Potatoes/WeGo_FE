@@ -54,7 +54,7 @@ const TravelList = () => {
 
   return (
     <>
-      <div className="flex h-full flex-col justify-center divide-y divide-line-normal">
+      <div className="flex h-full flex-col justify-center lg:flex-row lg:flex-wrap lg:gap-6">
         {travelListData &&
           travelListData.pages.map((page) =>
             page.travels.length === 0 ? (
@@ -65,7 +65,7 @@ const TravelList = () => {
               />
             ) : (
               page.travels.map((travel) => (
-                <article key={travel.travelId} className="py-5">
+                <article key={travel.travelId} className="pt-5 xl:pt-0">
                   <TravelCard
                     travelId={travel.travelId}
                     image={travel.image}
@@ -80,6 +80,7 @@ const TravelList = () => {
                     checkMark
                     isChecked
                   />
+                  <div className="mt-6 h-[1px] w-full bg-line-normal" />
                 </article>
               ))
             ),

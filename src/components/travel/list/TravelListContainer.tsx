@@ -11,9 +11,15 @@ import TravelList from './TravelList';
 
 const TravelListContainer = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+
+  await queryClient.prefetchInfiniteQuery({
     queryKey: QUERY_KEYS.TRAVEL.TRAVEL_LIST(InitialFilters),
-    queryFn: () => getTravels({ ...InitialFilters }),
+    queryFn: ({ pageParam = 1 }) =>
+      getTravels({ ...InitialFilters, pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: any) => {
+      return lastPage.hasNext ? lastPage.currentPage + 1 : undefined;
+    },
   });
 
   return (

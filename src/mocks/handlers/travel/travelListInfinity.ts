@@ -1,8 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import travelData from '@/mocks/data/travel/travelListInfitity.json';
 
-let currentPageState = 1;
-
 export const travelListInfinity = http.get(
   `${process.env.NEXT_PUBLIC_BASE_URL}/travels`,
   async ({ request }) => {
@@ -36,15 +34,15 @@ export const travelListInfinity = http.get(
       );
     }
 
-    if (page === currentPageState) {
-      const response = {
-        currentPage: travelData.currentPage,
-        hasNext: travelData.hasNext,
-        travels: filteredData,
-      };
-      currentPageState += 1;
-      return HttpResponse.json(response);
-    }
-    return HttpResponse.error();
+    const PAGE_SIZE = 8;
+    const startIndex = (page - 1) * PAGE_SIZE;
+    const endIndex = startIndex + PAGE_SIZE;
+    const paginatedData = filteredData.slice(startIndex, endIndex);
+
+    return HttpResponse.json({
+      currentPage: page,
+      hasNext: endIndex < filteredData.length,
+      travels: paginatedData,
+    });
   },
 );
