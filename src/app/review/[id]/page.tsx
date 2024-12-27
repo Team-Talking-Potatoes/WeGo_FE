@@ -1,4 +1,4 @@
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import ReviewDetailContainer from '@/components/review/detail/ReviewDetailContainer';
 // import { QueryClient } from '@tanstack/react-query';
 
@@ -14,7 +14,7 @@ const ReviewDetailPage = async () =>
 
     return (
       <>
-        <FormHeader title="리뷰 상세보기" />
+        <Header title="리뷰 상세보기" />
         <ReviewDetailContainer />
       </>
     );

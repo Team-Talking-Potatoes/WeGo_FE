@@ -2,7 +2,7 @@
 
 import AuthPassword from '@/components/auth/input/AuthPassword';
 import { Button } from '@/components/common/button/Button';
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import useAuthInput from '@/hooks/useAuthInput';
 import { useResetUserPassword } from '@/queries/auth/useResetPassword';
 
@@ -33,7 +33,7 @@ const UserPassword = () => {
 
   return (
     <div>
-      <FormHeader title="비밀번호 변경" isConfigButton />
+      <Header title="비밀번호 변경" isConfigButton />
 
       <h1 className="title-5-sb mx-auto mt-10 max-w-[335px]">
         새로운 비밀번호를 입력해주세요.

@@ -1,4 +1,4 @@
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import TravelDetailContainer from '@/components/travel/detail/TravelDetailContainer';
 
 const TravelDetailPage = async ({
@@ -10,7 +10,7 @@ const TravelDetailPage = async ({
 
   return (
     <>
-      <FormHeader title="여행상세" />
+      <Header title="여행상세" />
       <TravelDetailContainer id={id} />
     </>
   );

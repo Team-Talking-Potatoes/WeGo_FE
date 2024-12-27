@@ -2,7 +2,7 @@
 
 import AuthPassword from '@/components/auth/input/AuthPassword';
 import { Button } from '@/components/common/button/Button';
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import useAuthInput from '@/hooks/useAuthInput';
 import useCheckPassword from '@/queries/auth/useCheckPassword';
 
@@ -19,7 +19,7 @@ const DeleteAccountPage = () => {
 
   return (
     <div>
-      <FormHeader title="계정 탈퇴" isConfigButton />
+      <Header title="계정 탈퇴" isConfigButton />
 
       <h1 className="title-5-sb mx-auto mt-10 max-w-[335px]">
         계정을 탈퇴하기 위해 비밀번호가 필요해요.

@@ -5,7 +5,7 @@
 
 'use client';
 
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import TravelContents from '@/components/travel/detail/TravelContents';
 import PreviewTravelDetailCategory from '@/components/createTrip/travelPreview/PreviewTravelDetailCategory';
 import useTravelForm from '@/hooks/useTravelForm';
@@ -43,7 +43,7 @@ export default function PreviewPage() {
 
   return (
     <>
-      <FormHeader title="미리보기" onRoute={goBackPreview} />
+      <Header title="미리보기" onRoute={goBackPreview} />
       {isLoading ? (
         <div className="flex h-1/2 items-center justify-center">로딩중...</div>
       ) : (

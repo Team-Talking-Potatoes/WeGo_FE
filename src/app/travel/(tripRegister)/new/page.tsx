@@ -1,7 +1,7 @@
 'use client';
 
 import StepRenderer from '@/components/createTrip/steps/StepRenderer';
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import TripRegisterHeader from '@/components/createTrip/tripRegisterHeader/TripRegisterHeader';
 import useTravelForm from '@/hooks/useTravelForm';
 
@@ -20,7 +20,7 @@ const MultiStepForm = () => {
 
   return (
     <div className="flex h-dvh flex-col">
-      <FormHeader
+      <Header
         title="여행 만들기"
         onRoute={currentStep === 0 ? undefined : goToPrevStep}
       />
