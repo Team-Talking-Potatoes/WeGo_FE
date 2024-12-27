@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useRouter } from 'next/navigation';
-import FormHeader from './FormHeader';
+import Header from './Header';
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
@@ -12,7 +12,7 @@ jest.mock('@/assets/icons/back.svg', () => {
   return MockedIcon;
 });
 
-describe('FormHeader', () => {
+describe('Header', () => {
   const mockRouter = {
     back: jest.fn(),
   };
@@ -23,17 +23,17 @@ describe('FormHeader', () => {
 
   it('타이틀이 올바르게 렌더링되어야 합니다', () => {
     const title = 'Test Title';
-    render(<FormHeader title={title} />);
+    render(<Header title={title} />);
     expect(screen.getByText(title)).toBeInTheDocument();
   });
 
   it('SVG 뒤로가기 버튼이 올바르게 렌더링되어야 합니다', () => {
-    render(<FormHeader title="Test Title" />);
+    render(<Header title="Test Title" />);
     expect(screen.getByText('back-icon')).toBeInTheDocument();
   });
 
   it('뒤로가기 버튼을 클릭했을 때, router.back이 호출되어야 합니다', () => {
-    render(<FormHeader title="Test Title" />);
+    render(<Header title="Test Title" />);
     const backButton = screen.getByRole('button');
     fireEvent.click(backButton);
 

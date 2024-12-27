@@ -7,21 +7,21 @@ const Login = () => {
   return (
     <div className="mx-5">
       <div className="mx-auto max-w-[500px]">
-        <h1 className="title-1-eb mb-2 mt-[60px] flex w-full flex-col text-label-normal md:title-1-eb-md md:items-center">
+        <h1 className="title-1-eb mb-2 mt-[60px] flex w-full flex-col text-label-normal md:title-0-b md:items-center xl:mt-[140px]">
           <p className="mb-2.5 flex items-center">
             <Logo
               aria-label="위고 앱 로고"
               className="inline-block h-9 w-[124px] md:h-14 md:w-[194px]"
-            />{' '}
+            />
             에
           </p>
           <p>오신 것을 환영해요!</p>
         </h1>
 
-        <p className="body-2-r flex text-label-neutral md:body-2-r-md md:justify-center">
-          <span className="body-2-sb text-primary-normal md:title-5-b">
+        <p className="md:body-0-r body-2-r flex items-center text-label-neutral md:justify-center">
+          <span className="body-2-sb mr-0.5 text-primary-normal md:title-5-b">
             WEGO
-          </span>{' '}
+          </span>
           에 로그인하고 함께하는 여행의 재미를 즐겨보세요!
         </p>
 
@@ -32,7 +32,7 @@ const Login = () => {
             <Button fill="white" label="회원가입" size="full" />
           </Link>
 
-          <div className="mt-6 flex justify-center divide-x text-sm">
+          <div className="my-6 flex justify-center divide-x text-sm">
             <Link href="/preparing" className="pr-2.5 text-label-alternative">
               아이디 찾기
             </Link>

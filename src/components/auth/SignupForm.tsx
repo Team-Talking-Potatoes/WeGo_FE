@@ -9,6 +9,7 @@ import useSignup from '@/queries/auth/useSignup';
 import useSendMail from '@/queries/auth/useSendMail';
 import AuthPassword from './input/AuthPassword';
 import AuthEmailCertification from './input/AuthEmailCertification';
+import FormTitle from '../common/form/FormTitle';
 
 const SignupForm = () => {
   const [isEmailCertified, setIsEmailCertified] = useState<boolean | null>(
@@ -88,6 +89,8 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={handleSignup} className="w-full" data-testid="signup-form">
+      <FormTitle title="회원가입" />
+
       <AuthEmailCertification
         email={email}
         emailCode={emailCode}
