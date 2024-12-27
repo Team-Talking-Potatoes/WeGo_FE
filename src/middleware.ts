@@ -37,7 +37,7 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
     if (process.env.NODE_ENV === 'development') {
       return NextResponse.redirect('http://localhost:3000/login');
     }
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/login`);
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/login`);
   }
 
   // 토큰 유효성 검증 통과 시 접근하지 못하는 페이지의 redirect
@@ -53,7 +53,7 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
     if (process.env.NODE_ENV === 'development') {
       return NextResponse.redirect('http://localhost:3000/');
     }
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/`);
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/`);
   }
 
   return response;
