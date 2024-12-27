@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Right from '@/assets/icon/right_20px.svg';
+import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
 
 interface Props {
   destination: string;
@@ -12,7 +13,7 @@ const SettingItem = ({ destination, title, description }: Props) => {
     <li>
       <Link
         href={destination}
-        className="mx-auto flex max-w-[335px] justify-between py-4"
+        className="mx-auto flex max-w-[688px] justify-between py-4"
       >
         <div className="flex flex-col">
           <div className="heading-1-sb text-label-normal">{title}</div>
@@ -23,6 +24,13 @@ const SettingItem = ({ destination, title, description }: Props) => {
           <Right />
         </button>
       </Link>
+
+      <div className="flex justify-center">
+        <HorizontalDivider
+          className="max-w-[688px]"
+          classNameCondition={{ hidden: title === '계정 탈퇴' }}
+        />
+      </div>
     </li>
   );
 };

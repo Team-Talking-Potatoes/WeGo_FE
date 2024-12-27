@@ -2,7 +2,7 @@ import SettingItem from '../settingItem/SettingItem';
 
 const SettingList = () => {
   return (
-    <ul className="mt-5 w-full divide-y px-5" aria-label="설정 목록">
+    <ul className="mx-auto w-full max-w-[688px] xl:mt-4" aria-label="설정 목록">
       <SettingItem
         destination="/preparing"
         title="문의하기"
