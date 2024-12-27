@@ -9,8 +9,11 @@ interface Props {
 
 const MyReviewSubTab = ({ selectedSubTab, setSelectedSubTab }: Props) => {
   return (
-    <div className="relative mx-auto mb-4" data-testid="myReviewSubTab">
-      <ul className="body-2-r flex w-[335px] divide-x text-label-alternative">
+    <div
+      className="relative mb-4 w-full max-w-[335px] md:max-w-[688px] xl:max-w-[1400px]"
+      data-testid="myReviewSubTab"
+    >
+      <ul className="body-2-r flex divide-x text-label-alternative">
         {['writable', 'written'].map((subTab) => (
           <li
             key={subTab}

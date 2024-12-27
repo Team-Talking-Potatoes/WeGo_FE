@@ -5,7 +5,7 @@ import useMyReview from '@/queries/review/useMyReview';
 import NoTravel from '../myTravel/NoTravel';
 
 const Written = () => {
-  const itemsPerPage = 4;
+  const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
   const { data: reviews } = useMyReview(itemsPerPage, currentPage - 1);
   const totalPages = reviews ? Math.ceil(reviews.total / itemsPerPage) : 0;
@@ -13,10 +13,13 @@ const Written = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <section className="mx-auto w-[335px] pb-10" data-testid="written-reviews">
-      <div className="grid grid-cols-2 gap-4 pb-4">
-        {reviews &&
-          reviews.reviews.map((review) => (
+    <section
+      className="w-full max-w-[335px] pb-10 md:max-w-[688px] xl:max-w-[1400px]"
+      data-testid="written-reviews"
+    >
+      {reviews && reviews.total > 0 ? (
+        <div className="grid grid-cols-2 gap-4 pb-4 md:grid-cols-3 xl:grid-cols-6">
+          {reviews.reviews.map((review) => (
             <ReviewCard
               key={review.reviewId}
               reviewId={review.reviewId}
@@ -28,9 +31,9 @@ const Written = () => {
               createdAt={review.createdAt}
             />
           ))}
-      </div>
-      {reviews && reviews.total === 0 && (
-        <NoTravel message="아직 다녀온 여행이 없어요!" />
+        </div>
+      ) : (
+        <NoTravel message="아직 작성한 리뷰가 없어요!" />
       )}
 
       {totalPages > 1 && (

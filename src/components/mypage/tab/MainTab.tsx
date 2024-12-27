@@ -13,8 +13,11 @@ interface Props {
 
 const MainTab = ({ selectedTab, setSelectedTab, setSelectedSubTab }: Props) => {
   return (
-    <div className="relative mx-auto" data-testid="mainTab">
-      <ul className="heading-1-sb flex w-[335px] gap-5 text-label-alternative">
+    <div
+      className="relative w-full max-w-[335px] md:max-w-[688px] xl:max-w-[1400px]"
+      data-testid="mainTab"
+    >
+      <ul className="heading-1-sb flex gap-5 text-label-alternative">
         {['myTravel', 'myReview', 'mySelfTravel'].map((tab) => (
           <li
             key={tab}
