@@ -1,5 +1,7 @@
 import Image from 'next/image';
-import IconCamera from '@/assets/icon/icon_camera.svg';
+import IconCamera from '@/assets/icon/profile/icon_camera_45px.svg';
+import IconCameraSmall from '@/assets/icon/profile/icon_camera_32px.svg';
+import IconModify from '@/assets/icon/profile/profile_modify.svg';
 
 interface Props {
   previewImage: string;
@@ -8,15 +10,19 @@ interface Props {
 
 const ProfileImage = ({ previewImage, handleImageChange }: Props) => {
   return (
-    <div className="relative flex flex-col items-center">
-      <div className="relative mb-4 mt-4 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-slate-200">
+    <div className="relative mb-8 flex w-[80px] flex-col items-center">
+      <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-slate-200">
         {previewImage ? (
-          <Image
-            src={previewImage}
-            alt="프로필 이미지"
-            fill
-            className="object-cover"
-          />
+          <>
+            <Image
+              src={previewImage}
+              alt="프로필 이미지"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/50" />
+            <IconCameraSmall className="absolute" />
+          </>
         ) : (
           <IconCamera />
         )}
@@ -35,6 +41,7 @@ const ProfileImage = ({ previewImage, handleImageChange }: Props) => {
           className="hidden"
         />
       </div>
+      <IconModify className="absolute -right-1 bottom-3.5" />
     </div>
   );
 };
