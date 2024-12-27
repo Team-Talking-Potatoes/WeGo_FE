@@ -22,8 +22,8 @@ const HeroImage = ({
       <Image
         src={src}
         alt="여행 모임 홍보 이미지"
-        width={1200}
-        height={900}
+        width={1400}
+        height={500}
         className="h-full w-full object-cover"
       />
       <div className="absolute bottom-16 left-8 flex flex-col gap-2.5 text-white md:bottom-16">
