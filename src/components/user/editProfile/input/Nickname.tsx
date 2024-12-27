@@ -7,10 +7,10 @@ interface Props {
 
 export default function NicknameInput({ value, onChange }: Props) {
   return (
-    <div className="mb-6 mt-4 flex flex-col items-center gap-1.5">
+    <div className="mb-6 flex w-full max-w-[500px] flex-col items-center gap-1.5">
       <label
         htmlFor="nickname"
-        className="body-2-m block w-[335px] text-label-normal"
+        className="body-2-m block w-full text-label-normal"
       >
         닉네임
       </label>
@@ -18,7 +18,7 @@ export default function NicknameInput({ value, onChange }: Props) {
       <TextInput
         type="text"
         name="nickname"
-        size="default"
+        size="full"
         value={value}
         onChange={onChange}
         placeholder="닉네임을 입력해 주세요."
