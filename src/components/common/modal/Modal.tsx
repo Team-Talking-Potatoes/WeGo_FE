@@ -52,20 +52,20 @@ const Modal = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center bg-black/40 px-5">
-      <div className="w-full max-w-[335px] animate-slide-up rounded-2xl bg-white p-6">
+      <div className="w-full max-w-[298px] animate-slide-up rounded-lg bg-white pb-6 pt-8">
         {Icon && (
           <div className="mb-4 flex justify-center">
-            <div className="bg-primary-light flex h-16 w-16 items-center justify-center rounded-full">
+            <div className="bg-primary-light flex h-12 w-12 items-center justify-center rounded-full">
               <Icon />
             </div>
           </div>
         )}
 
         <div className="text-center">
-          <h2 className="text-xl font-bold">
+          <h2 className="title-5-b">
             <HighlightedText text={title} highlight={titleHighlight} />
           </h2>
-          <p className="text-body-2-r mt-2 whitespace-pre-line text-label-alternative">
+          <p className="body-2-r mt-2 whitespace-pre-line text-label-alternative">
             <HighlightedText text={message} highlight={messageHighlight} />
           </p>
         </div>
@@ -75,18 +75,25 @@ const Modal = () => {
             <div className="flex gap-2">
               <Button
                 label={cancelText}
-                size="addon"
+                size="modal"
                 handler={handleCancel}
                 fill="white"
+                font="body_2_m"
               />
               <Button
                 label={confirmText}
-                size="addon"
+                size="modal"
                 handler={handleConfirm}
+                font="body_2_m"
               />
             </div>
           ) : (
-            <Button label={confirmText} size="addon" handler={handleConfirm} />
+            <Button
+              label={confirmText}
+              size="modal"
+              handler={handleConfirm}
+              font="body_2_m"
+            />
           )}
         </div>
       </div>
