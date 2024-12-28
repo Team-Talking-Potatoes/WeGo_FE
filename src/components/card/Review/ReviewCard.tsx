@@ -50,7 +50,7 @@ const ReviewCard = ({
 
   return (
     <Link href={`/review/${reviewId}`} className="min-w-[160px] flex-1">
-      <div className="group relative h-[242px] w-full md:h-[315px]">
+      <div className="relative h-[242px] w-full md:h-[315px]">
         <div className="relative">
           <Image
             src={image}
@@ -68,7 +68,7 @@ const ReviewCard = ({
             />
           )}
 
-          <div className="absolute bottom-0 z-10 flex h-full w-full flex-col justify-end gap-0.5 px-3 pb-3 text-primary-white">
+          <div className="group absolute bottom-0 z-10 flex h-full w-full flex-col justify-end gap-0.5 px-3 pb-3 text-primary-white">
             <div className="absolute bottom-0 left-0 z-20 h-[80px] w-full bg-gradient-to-b from-black/0 to-black/80 transition-all duration-200 ease-in-out group-hover:h-full group-hover:bg-black/60" />
             <p className="body-3-m z-20 line-clamp-1 group-hover:opacity-0">
               {title}
