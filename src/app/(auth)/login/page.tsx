@@ -33,9 +33,9 @@ const Login = () => {
           </Link>
 
           <div className="my-6 flex justify-center divide-x text-sm">
-            <Link href="/preparing" className="pr-2.5 text-label-alternative">
+            <div className="pr-2.5 text-label-alternative opacity-70">
               아이디 찾기
-            </Link>
+            </div>
             <Link
               href="/findPassword"
               className="px-2.5 text-label-alternative"
