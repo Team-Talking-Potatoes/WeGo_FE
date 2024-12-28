@@ -3,11 +3,13 @@
 import TravelContents from '@/components/travel/detail/TravelContents';
 import { useQuery } from '@tanstack/react-query';
 import { getTravelDetail } from '@/api/travelApi';
+import useGetUser from '@/queries/user/useGetUser';
 import TravelDetailCategory from './TravelDetailCategory';
 import TravelImage from './TravelImage';
 import TravelButtons from './TravelButtons';
 
 const TravelDetail = ({ id }: { id: string }) => {
+  const { data: userInfo } = useGetUser();
   const {
     data: travelDetail,
     isLoading,
@@ -27,6 +29,12 @@ const TravelDetail = ({ id }: { id: string }) => {
     );
   }
 
+  const isParticipation = Boolean(
+    travelDetail &&
+      travelDetail.participant.find(
+        (user) => user.id === (userInfo && userInfo.userId),
+      ),
+  );
   const organizer =
     travelDetail &&
     travelDetail.participant.find((part) => part.role === 'ORGANIZER');
@@ -36,7 +44,7 @@ const TravelDetail = ({ id }: { id: string }) => {
     <>
       {isLoading && <div>로딩중</div>}
       {travelDetail && (
-        <article className="relative m-auto flex max-w-[1216px] flex-col items-center gap-[22px] md:grid md:px-10 xl:mb-24 xl:grid-cols-[652px_540px]">
+        <article className="relative m-auto mb-32 flex max-w-[1216px] flex-col items-center gap-[22px] md:grid md:px-10 xl:mb-24 xl:grid-cols-[652px_540px]">
           <TravelImage
             name={travelDetail.name}
             image={travelDetail.image}
@@ -55,12 +63,12 @@ const TravelDetail = ({ id }: { id: string }) => {
               registrationEnd={travelDetail.registrationEnd}
               participant={travelDetail.participant}
             />
-            {dateOver && (
+            {!dateOver && (
               <TravelButtons
-                className="mt-5 hidden pl-16 xl:block"
+                className="mt-5 hidden xl:block"
                 travelId={travelDetail.travelId}
                 organizer={organizer?.id}
-                participant={travelDetail.participant}
+                isParticipation={isParticipation}
               />
             )}
           </div>
@@ -68,7 +76,7 @@ const TravelDetail = ({ id }: { id: string }) => {
           <TravelDetailCategory
             travelId={travelDetail.travelId}
             hashTags={travelDetail.hashTags}
-            participant={travelDetail.participant}
+            isParticipation={isParticipation}
             description={travelDetail.description}
             tripDuration={travelDetail.tripDuration}
             travelPlan={travelDetail.travelPlan}
@@ -76,12 +84,12 @@ const TravelDetail = ({ id }: { id: string }) => {
             endAt={travelDetail.endAt}
             organizer={organizer}
           />
-          {dateOver && (
+          {!dateOver && (
             <TravelButtons
               className="xl:hidden"
               travelId={travelDetail.travelId}
               organizer={organizer?.id}
-              participant={travelDetail.participant}
+              isParticipation={isParticipation}
             />
           )}
         </article>

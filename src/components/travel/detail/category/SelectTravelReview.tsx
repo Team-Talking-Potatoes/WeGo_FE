@@ -3,6 +3,7 @@ import ReviewCardAddText from '@/components/card/ReviewCardAddText';
 import { useQuery } from '@tanstack/react-query';
 import NoReault from '@/components/common/NoReault';
 import { QUERY_KEYS } from '@/constants/querykeys';
+import Link from 'next/link';
 import ScoreBox from './ScoreBox';
 
 const SelectTravelReview = ({ travelId }: { travelId: number }) => {
@@ -57,14 +58,14 @@ const SelectTravelReview = ({ travelId }: { travelId: number }) => {
           />
           <div className="flex flex-col gap-4">
             {reviewList.map((review) => (
-              <div key={review.reviewId}>
+              <Link href={`/review/${review.reviewId}`} key={review.reviewId}>
                 <ReviewCardAddText
                   nickname={review.nickname}
                   reviewImage={review.reviewImage}
                   content={review.content}
                   score={review.score}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>

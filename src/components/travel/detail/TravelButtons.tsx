@@ -1,34 +1,32 @@
 'use client';
 
-import { Participant } from '@/@types/travel';
 import { useState } from 'react';
 import {
   useTravelParticipation,
   useTravelParticipationCancle,
 } from '@/queries/travel/useTravelParticipation';
+import ParticipantIcon from '@/assets/icon/travel/participant.svg';
+import ModalErrorIcon from '@/assets/modal/modal_error.svg';
 import useModal from '@/hooks/useModal';
 import useDeleteTravel from '@/queries/travel/useDeleteTravel';
 import { useRouter } from 'next/navigation';
+import useGetUser from '@/queries/user/useGetUser';
 import { Button } from '../../common/button/Button';
-// import useGetUser from '@/queries/user/useGetUser';
 
 const TravelButtons = ({
   travelId,
-  participant,
+  isParticipation,
   organizer,
   className,
 }: {
   travelId: number;
-  participant: Participant[];
+  isParticipation: boolean;
   organizer?: number;
   className?: string;
 }) => {
-  const userId = 1;
-  // const {userId} = useGetUser();
+  const { data: userInfo } = useGetUser();
   const router = useRouter();
-  const isParticipation = Boolean(
-    participant.find((part) => part.id === userId),
-  );
+
   const [isParticipate, setIsParticipate] = useState<boolean>(isParticipation);
   const { showModal, closeModal } = useModal();
   const { mutate: handleParticipation } = useTravelParticipation();
@@ -39,27 +37,36 @@ const TravelButtons = ({
     handleParticipation(travelId, {
       onSuccess: () => {
         setIsParticipate(true);
-      },
-    });
-
-    showModal('여행 동행 완료!', '새로운 여행지기들과 인사하러 갈까요?', {
-      cancelText: '취소',
-      confirmText: '채팅방가기',
-      onConfirm: () => {
-        handleParticipation(travelId, {
-          onSuccess: () => {
-            router.push('/chat');
+        showModal(
+          '동행이 확정되었습니다.',
+          '새로운 여행지기들과 인사하러 갈까요?',
+          {
+            titleHighlight: {
+              range: { start: 4, end: 6 },
+              color: 'text-primary-normal',
+            },
+            icon: ParticipantIcon,
+            cancelText: '취소',
+            confirmText: '채팅방가기',
+            onConfirm: () => {
+              router.push('/chat');
+            },
+            onCancel: () => {
+              closeModal();
+            },
           },
-        });
-      },
-      onCancel: () => {
-        closeModal();
+        );
       },
     });
   };
 
   const handleParticipationCancleClick = () => {
-    showModal('정말 동행을 취소할까요?', '다시 참여할 수 있어요.', {
+    showModal('정말 동행을 취소할까요?', '자동으로 채팅방에서 나가져요.', {
+      titleHighlight: {
+        range: { start: 7, end: 9 },
+        color: 'text-status-error',
+      },
+      icon: ModalErrorIcon,
       cancelText: '취소',
       confirmText: '확인',
       onConfirm: () => {
@@ -90,34 +97,39 @@ const TravelButtons = ({
 
   return (
     <div
-      className={`${className} mx-auto mb-32 flex w-full max-w-[500px] items-center justify-center md:col-span-2 md:mt-6 md:pb-3 xl:mb-0`}
+      className={`${className} mx-auto flex w-full max-w-[500px] md:col-span-2 md:mt-6 md:pb-3 xl:mb-0`}
     >
-      {!isParticipate && organizer === userId && (
-        <>
+      <div className="flex w-full items-center justify-center gap-4 px-5">
+        {organizer === (userInfo && userInfo.userId) && (
+          <>
+            <Button
+              fill="white"
+              label="여행취소"
+              handler={handleTravelCancle}
+              className="h-[52px] max-w-[242px]"
+            />
+
+            <Button label="공유" className="h-[52px] max-w-[242px]" />
+          </>
+        )}
+
+        {isParticipate && organizer !== (userInfo && userInfo.userId) && (
           <Button
             fill="white"
-            label="여행취소"
-            handler={handleTravelCancle}
-            className="h-[52px] max-w-[242px]"
+            label="동행취소"
+            handler={handleParticipationCancleClick}
+            className="h-[52px] w-full max-w-[335px]"
           />
-          <Button label="공유" className="h-[52px] max-w-[242px]" />
-        </>
-      )}
-      {isParticipate && organizer !== userId ? (
-        <Button
-          fill="white"
-          label="동행취소"
-          handler={handleParticipationCancleClick}
-          className="h-[52px] w-full max-w-[335px]"
-        />
-      ) : (
-        <Button
-          fill="blue"
-          label="동행"
-          handler={handleParticipationClick}
-          className="h-[52px] w-full max-w-[335px]"
-        />
-      )}
+        )}
+        {!isParticipate && (
+          <Button
+            fill="blue"
+            label="동행"
+            handler={handleParticipationClick}
+            className="h-[52px] w-full max-w-[335px]"
+          />
+        )}
+      </div>
     </div>
   );
 };

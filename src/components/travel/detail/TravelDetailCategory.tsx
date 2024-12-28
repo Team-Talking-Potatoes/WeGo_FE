@@ -9,13 +9,12 @@ type Props = Pick<
   TravelDetail,
   | 'travelId'
   | 'hashTags'
-  | 'participant'
   | 'description'
   | 'tripDuration'
   | 'travelPlan'
   | 'startAt'
   | 'endAt'
-> & { organizer?: Participant };
+> & { organizer?: Participant; isParticipation: boolean };
 type Category = 'details' | 'itinerary' | 'review';
 
 const SelectTravelItinerary = React.lazy(
@@ -30,6 +29,7 @@ const TravelDetailCategory = ({
   travelPlan,
   startAt,
   endAt,
+  isParticipation,
   organizer,
 }: Props) => {
   const [category, setCategory] = useState<Category>('details');
@@ -50,7 +50,7 @@ const TravelDetailCategory = ({
   ];
 
   return (
-    <section className="w-full px-5 xs:w-[500px] sm:px-0 md:col-span-2 md:w-full md:pt-4 xl:max-w-[652px]">
+    <section className="w-full px-5 xs:max-w-[500px] sm:px-0 md:col-span-2 md:w-full md:max-w-full md:pt-4 xl:max-w-[652px]">
       <header className="heading-1-b z-20 flex items-start gap-5 border-b text-label-alternative md:gap-8">
         {categories.map(({ label, value, disabled }) => (
           <button
@@ -68,7 +68,7 @@ const TravelDetailCategory = ({
         {category === 'details' && (
           <SelectTravelDetail
             travelId={travelId}
-            participant={false}
+            isParticipation={isParticipation}
             organizer={organizer}
             hashTags={hashTags}
             description={description}

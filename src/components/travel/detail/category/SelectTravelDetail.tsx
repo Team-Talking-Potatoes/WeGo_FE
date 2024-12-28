@@ -8,26 +8,29 @@ import {
   useBookmarkTravel,
   useDeleteBookmarkTravel,
 } from '@/queries/travel/useBookmarkTravel';
+import useGetUser from '@/queries/user/useGetUser';
 import ButtonRounded from '../../../common/button/ButtonRounded';
 import TravelTag from '../../../common/tag/TravelTag';
 import UserIcon from '../../../common/user/UserIcon';
 
 const SelectTravelDetail = ({
   travelId,
-  participant,
+  isParticipation,
   organizer,
   hashTags,
   description,
 }: {
   travelId: number;
-  participant: boolean;
+  isParticipation: boolean;
   organizer?: Participant;
   hashTags: string;
   description: string;
 }) => {
-  const [isBookmarked, setIsBookmarked] = useState(participant);
+  const [isBookmarked, setIsBookmarked] = useState(isParticipation);
   const { mutate: postBookMark } = useBookmarkTravel();
   const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
+
+  const { data: user } = useGetUser();
 
   const handleClickBookMark = () => {
     if (isBookmarked) {
@@ -47,8 +50,6 @@ const SelectTravelDetail = ({
     .filter((tag) => tag !== '')
     .map((tag) => tag.trim());
 
-  const userId = 4;
-
   return (
     <section>
       <div className="flex items-center justify-between pb-[18px]">
@@ -59,7 +60,7 @@ const SelectTravelDetail = ({
         </div>
 
         <div className="flex items-center gap-2.5">
-          {organizer?.id === userId ? (
+          {organizer?.id !== user?.userId ? (
             <button
               onClick={handleClickBookMark}
               type="button"
@@ -79,14 +80,13 @@ const SelectTravelDetail = ({
               <ButtonRounded label="일정수정" color="blue" />
             </Link>
           )}
-
-          <Link href="/">
+          <Link href="/chat">
             <ButtonRounded label="채팅방" />
           </Link>
         </div>
       </div>
       <div className="flex flex-col gap-2.5 rounded border px-4 py-5 shadow-custom">
-        <article className="body-1-r md:min-h-24">{description}</article>
+        <main className="body-1-r md:min-h-24">{description}</main>
         <div className="flex gap-1.5">
           {hashTagList.map((tag) => (
             <TravelTag key={tag} label={tag} />

@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { deleteTravelParticipation } from '@/api/travel/travels';
-
+import CheckRedIcon from '@/assets/modal/modal_check_red.svg';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
 import ModalErrorIcon from '@/assets/modal/modal_error.svg';
+import { useRouter } from 'next/navigation';
 
 export const useTravelParticipation = () => {
   const { showModal } = useModal();
@@ -30,8 +31,15 @@ export const useTravelParticipation = () => {
 
 export const useTravelParticipationCancle = () => {
   const { showModal } = useModal();
+  const router = useRouter();
   return useMutation({
     mutationFn: deleteTravelParticipation,
+    onSuccess: () =>
+      showModal('동행이 취소되었습니다.', '아쉬워요! 다른 여행을 찾아볼까요?', {
+        icon: CheckRedIcon,
+        confirmText: '확인',
+        onConfirm: () => router.push('/travel'),
+      }),
     onError: (error: QueryError) => {
       switch (error.status) {
         case 401:
