@@ -62,7 +62,7 @@ const Modal = () => {
         )}
 
         <div className="text-center">
-          <h2 className="text-xl font-bold">
+          <h2 className="title-5-b">
             <HighlightedText text={title} highlight={titleHighlight} />
           </h2>
           <p className="text-body-2-r mt-2 whitespace-pre-line text-label-alternative">
