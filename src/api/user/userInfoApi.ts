@@ -1,6 +1,7 @@
 import { APIError } from '@/@types/api';
 
 interface UserInfo {
+  userId: number;
   nickname: string;
   email: string;
   description: string;
