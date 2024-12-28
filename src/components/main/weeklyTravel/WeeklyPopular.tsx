@@ -2,7 +2,7 @@
 
 import { getWeekNumber } from '@/utils/dateChageKr';
 import { useMemo } from 'react';
-import TravelCardBig from '@/components/card/TravelCardBig';
+import TravelCardBig from '@/components/card/travel/TravelCardBig';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/constants/querykeys';
 import { getPopularTravel } from '@/api/travelApi';

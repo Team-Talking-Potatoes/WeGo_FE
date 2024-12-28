@@ -4,7 +4,7 @@ import { Review } from '@/@types/review';
 
 type Props = Pick<Review, 'reviewId' | 'nickname' | 'reviewImage'>;
 
-const ReviewCard = ({ reviewId, nickname, reviewImage }: Props) => {
+const MainReviewCard = ({ reviewId, nickname, reviewImage }: Props) => {
   return (
     <article>
       <div className="h-[272px] w-[180px] md:h-[260px] md:w-[200px]">
@@ -26,4 +26,4 @@ const ReviewCard = ({ reviewId, nickname, reviewImage }: Props) => {
     </article>
   );
 };
-export default ReviewCard;
+export default MainReviewCard;

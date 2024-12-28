@@ -1,6 +1,6 @@
 'use client';
 
-import TravelCard from '@/components/card/TravelCard';
+import TravelCard from '@/components/card/travel/TravelCard';
 import NoResult from '@/components/common/NoResult';
 import { useTravelListStore } from '@/store/useTravelListStore';
 import { useEffect } from 'react';

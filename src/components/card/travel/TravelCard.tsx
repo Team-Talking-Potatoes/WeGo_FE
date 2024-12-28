@@ -9,10 +9,10 @@ import {
   useBookmarkTravel,
   useDeleteBookmarkTravel,
 } from '@/queries/travel/useBookmarkTravel';
-import DomesticTag from '../common/tag/DomesticTag';
-import ProgressBar from '../common/ProgressBar';
-import ExpiredTag from '../common/tag/ExpiredTag';
-import CheckMarkButton from '../common/button/CheckMarkButton';
+import DomesticTag from '../../common/tag/DomesticTag';
+import ProgressBar from '../../common/ProgressBar';
+import ExpiredTag from '../../common/tag/ExpiredTag';
+import CheckMarkButton from '../../common/button/CheckMarkButton';
 
 interface Props extends Travel {
   closed?: boolean;

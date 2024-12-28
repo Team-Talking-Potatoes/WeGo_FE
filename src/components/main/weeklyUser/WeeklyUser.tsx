@@ -6,7 +6,7 @@ import { QUERY_KEYS } from '@/constants/querykeys';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import UserCard from '../../card/UserCard';
+import UserCard from '../../card/user/UserCard';
 
 const WeeklyUser = () => {
   const queryKey = QUERY_KEYS.USER.POPULAR_USER;

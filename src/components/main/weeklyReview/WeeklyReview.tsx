@@ -4,7 +4,7 @@ import Link from 'next/link';
 import AddCircle from '@/assets/add.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import ReviewCard from '@/components/card/ReviewCard';
+import MainReviewCard from '@/components/card/Review/MainReviewCard';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { getPopularReview } from '@/api/reviewApi';
@@ -59,7 +59,7 @@ const WeeklyReview = () => {
                 key={review.reviewId}
                 style={{ width: 'auto', height: 'auto' }}
               >
-                <ReviewCard
+                <MainReviewCard
                   reviewId={review.reviewId}
                   nickname={review.nickname}
                   reviewImage={review.reviewImage}

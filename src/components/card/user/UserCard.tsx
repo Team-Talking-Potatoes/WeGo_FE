@@ -1,7 +1,7 @@
 import { UserList } from '@/@types/user';
 import Link from 'next/link';
-import UserIcon from '../common/user/UserIcon';
-import UserTag from '../common/tag/UserTag';
+import UserIcon from '../../common/user/UserIcon';
+import UserTag from '../../common/tag/UserTag';
 
 const UserCard = ({
   nickname,
