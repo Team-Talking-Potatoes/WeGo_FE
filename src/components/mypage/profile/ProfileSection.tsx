@@ -12,7 +12,7 @@ const ProfileSection = () => {
   return (
     <section className="relative mx-auto h-[280px] max-w-[335px]">
       <Link href="/editProfile" className="absolute top-3">
-        <ButtonRounded label="프로필 수정" type="profileEdit" />
+        <ButtonRounded label="프로필 수정" color="gray" />
       </Link>
 
       <div className="flex flex-col items-center justify-center">

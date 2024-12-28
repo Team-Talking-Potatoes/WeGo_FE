@@ -10,17 +10,21 @@ import useModal from '@/hooks/useModal';
 import useDeleteTravel from '@/queries/travel/useDeleteTravel';
 import { useRouter } from 'next/navigation';
 import { Button } from '../../common/button/Button';
+// import useGetUser from '@/queries/user/useGetUser';
 
 const TravelButtons = ({
   travelId,
   participant,
   organizer,
+  className,
 }: {
   travelId: number;
   participant: Participant[];
   organizer?: number;
+  className?: string;
 }) => {
-  const userId = 101;
+  const userId = 1;
+  // const {userId} = useGetUser();
   const router = useRouter();
   const isParticipation = Boolean(
     participant.find((part) => part.id === userId),
@@ -84,35 +88,34 @@ const TravelButtons = ({
     });
   };
 
-  if (organizer === userId) {
-    return (
-      <div className="flex gap-4 pt-6 md:pb-3 md:pt-10">
-        <Button
-          fill="white"
-          label="여행취소"
-          handler={handleTravelCancle}
-          className="h-[52px]"
-        />
-        <Button label="공유" className="h-[52px]" />
-      </div>
-    );
-  }
-
   return (
-    <div className="pt-6 md:pb-3 md:pt-10">
-      {isParticipate ? (
+    <div
+      className={`${className} mx-auto mb-32 flex w-full max-w-[500px] items-center justify-center md:col-span-2 md:mt-6 md:pb-3 xl:mb-0`}
+    >
+      {!isParticipate && organizer === userId && (
+        <>
+          <Button
+            fill="white"
+            label="여행취소"
+            handler={handleTravelCancle}
+            className="h-[52px] max-w-[242px]"
+          />
+          <Button label="공유" className="h-[52px] max-w-[242px]" />
+        </>
+      )}
+      {isParticipate && organizer !== userId ? (
         <Button
           fill="white"
           label="동행취소"
           handler={handleParticipationCancleClick}
-          className="h-[52px] w-full"
+          className="h-[52px] w-full max-w-[335px]"
         />
       ) : (
         <Button
           fill="blue"
           label="동행"
           handler={handleParticipationClick}
-          className="h-[52px] w-full"
+          className="h-[52px] w-full max-w-[335px]"
         />
       )}
     </div>

@@ -13,7 +13,7 @@ const ReviewCardAddText = ({
 }: Props) => {
   return (
     <article className="flex gap-[18px]">
-      <div className="relative h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded">
+      <div className="relative h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded md:w-[140px]">
         <Image
           src={reviewImage}
           alt={`${nickname}의 여행리뷰 이미지`}
@@ -30,7 +30,9 @@ const ReviewCardAddText = ({
             {score}
           </span>
         </div>
-        <div className="body-2-m text-label-neutral">{content}</div>
+        <div className="body-2-m line-clamp-3 text-label-neutral">
+          {content}
+        </div>
       </div>
     </article>
   );

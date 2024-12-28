@@ -48,6 +48,9 @@ export default {
           infomative: '#4A8AF8',
         },
       },
+      screens: {
+        xs: '480px',
+      },
       fontFamily: {
         pretendard: ['var(--font-pretendard)', 'sans-serif'],
       },

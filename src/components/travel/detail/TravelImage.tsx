@@ -12,7 +12,7 @@ const TravelImage = ({ image, name, endAt, registrationEnd }: Props) => {
   const now = new Date();
   const endDate = new Date(registrationEnd);
   return (
-    <figure className="relative flex h-[250px] w-[500px] flex-shrink-0 flex-col overflow-hidden md:mt-5 md:h-full md:w-auto">
+    <figure className="relative flex h-[250px] w-full flex-col overflow-hidden md:mt-5 md:h-[277px] md:min-w-[309px] md:max-w-[652px] md:rounded xl:h-[392px]">
       <Image
         src={image}
         alt={`${name} 이미지`}

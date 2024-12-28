@@ -2,12 +2,12 @@ import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const ButtonRoundedVariants = cva(
-  ' inline-block px-3 py-1 body-2-m bg-label-normal text-primary-white rounded-[44px]',
+  'body-2-m inline-block px-3 py-1 border border-label-normal bg-label-normal text-primary-white rounded-[44px] hover:text-primary-normal',
   {
     variants: {
-      type: {
-        profileEdit:
-          'py-1.5 border border-line-normal text-label-alternative bg-transparent',
+      color: {
+        gray: 'py-1.5 border border-line-normal text-label-alternative bg-transparent hover:text-primary-normal hover:border-primary-normal',
+        blue: 'border-primary-normal border bg-white text-primary-normal hover:bg-blue-100',
       },
     },
   },
@@ -21,7 +21,7 @@ interface Props extends VariantProps<typeof ButtonRoundedVariants> {
 
 const ButtonRounded = ({
   label,
-  type,
+  color,
   className,
   classNameCondition,
 }: Props) => {
@@ -29,7 +29,7 @@ const ButtonRounded = ({
     <button
       type="button"
       className={cn(
-        ButtonRoundedVariants({ type }),
+        ButtonRoundedVariants({ color }),
         className,
         classNameCondition,
       )}

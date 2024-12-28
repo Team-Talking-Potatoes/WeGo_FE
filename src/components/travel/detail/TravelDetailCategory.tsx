@@ -1,8 +1,7 @@
 'use client';
 
-import { TravelDetail } from '@/@types/travel';
+import { Participant, TravelDetail } from '@/@types/travel';
 import React, { Suspense, useState } from 'react';
-import TravelButtons from './TravelButtons';
 import SelectTravelReview from './category/SelectTravelReview';
 import SelectTravelDetail from './category/SelectTravelDetail';
 
@@ -16,7 +15,7 @@ type Props = Pick<
   | 'travelPlan'
   | 'startAt'
   | 'endAt'
->;
+> & { organizer?: Participant };
 type Category = 'details' | 'itinerary' | 'review';
 
 const SelectTravelItinerary = React.lazy(
@@ -26,12 +25,12 @@ const SelectTravelItinerary = React.lazy(
 const TravelDetailCategory = ({
   travelId,
   hashTags,
-  participant,
   description,
   tripDuration,
   travelPlan,
   startAt,
   endAt,
+  organizer,
 }: Props) => {
   const [category, setCategory] = useState<Category>('details');
 
@@ -41,7 +40,6 @@ const TravelDetailCategory = ({
     }
   };
 
-  const organizer = participant.find((part) => part.role === 'ORGANIZER');
   const now = new Date();
   const endDate = new Date(endAt);
 
@@ -52,7 +50,7 @@ const TravelDetailCategory = ({
   ];
 
   return (
-    <section className="w-full max-w-[764px] pb-20 md:col-span-2">
+    <section className="w-full px-5 xs:w-[500px] sm:px-0 md:col-span-2 md:w-full md:pt-4 xl:max-w-[652px]">
       <header className="heading-1-b z-20 flex items-start gap-5 border-b text-label-alternative md:gap-8">
         {categories.map(({ label, value, disabled }) => (
           <button
@@ -66,7 +64,7 @@ const TravelDetailCategory = ({
           </button>
         ))}
       </header>
-      <div className="pb-10 pt-6">
+      <div className="pt-6">
         {category === 'details' && (
           <SelectTravelDetail
             travelId={travelId}
@@ -87,15 +85,6 @@ const TravelDetailCategory = ({
           )}
           {category === 'review' && <SelectTravelReview travelId={travelId} />}
         </Suspense>
-
-        {(category === 'itinerary' || category === 'details') &&
-          now < endDate && (
-            <TravelButtons
-              travelId={travelId}
-              organizer={organizer?.id}
-              participant={participant}
-            />
-          )}
       </div>
     </section>
   );

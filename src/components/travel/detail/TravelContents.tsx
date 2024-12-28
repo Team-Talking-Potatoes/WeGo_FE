@@ -32,7 +32,7 @@ const TravelContents = ({
   const isDateOver = now > endDate;
   const info = 'flex items-center justify-start text-gray-500';
   return (
-    <main className="flex w-full max-w-[600px] flex-col justify-center xl:sticky xl:top-5">
+    <main className="flex w-full max-w-[500px] flex-col justify-center px-5 sm:px-0">
       <DomesticTag isDomestic={isDomestic} />
       <h2 className="title-4-b border-b border-line-normal pb-4 pt-1.5 font-bold">
         {name}
