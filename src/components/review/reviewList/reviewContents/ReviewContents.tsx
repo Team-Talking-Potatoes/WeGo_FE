@@ -33,7 +33,7 @@ const ReviewContents = () => {
   return (
     <div className="mt-3">
       {reviewsData && (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 xl:grid-cols-6">
+        <div className="grid grid-cols-2 gap-[15px] md:grid-cols-3 md:gap-5 xl:grid-cols-6">
           {reviewsData.pages.map((page) =>
             page.reviews
               ? page.reviews.map((review) => (
