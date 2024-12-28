@@ -5,15 +5,23 @@ import { useRouter } from 'next/navigation';
 
 export const useCreateReview = () => {
   const router = useRouter();
-  const { travelId, countStar, title, comment, selectedFiles, resetStore } =
-    useCreateReviewStore();
+
+  const {
+    travelId,
+    hashTags,
+    countStar,
+    title,
+    comment,
+    selectedFiles,
+    resetStore,
+    setErrorMessage,
+  } = useCreateReviewStore();
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => createReview(formData),
     onSuccess: () => {
       resetStore();
       router.back();
-      router.push('/review');
     },
     onError: (error: any) => {
       console.error('리뷰 생성 중 오류 발생:', error);
@@ -21,23 +29,50 @@ export const useCreateReview = () => {
   });
 
   const handleSubmit = () => {
-    if (travelId === 0) return;
-    if (countStar === 0) return;
-    if (title === '') return;
-    if (comment === '') return;
-    if (selectedFiles.length === 0) return;
+    let hasError = false;
+    if (travelId === 0) {
+      setErrorMessage('travelId', '여행을 선택해주세요.');
+      hasError = true;
+    }
+    if (countStar === 0) {
+      setErrorMessage('countStar', '별점을 선택해주세요.');
+      hasError = true;
+    }
+    if (title === '') {
+      setErrorMessage('title', '제목을 입력해주세요.');
+      hasError = true;
+    }
+    if (comment === '') {
+      setErrorMessage('comment', '내용을 입력해주세요.');
+      hasError = true;
+    }
+    if (selectedFiles.length === 0) {
+      setErrorMessage('selectedFiles', '이미지를 선택해주세요.');
+      hasError = true;
+    }
+
+    if (hasError) return;
 
     const formData = new FormData();
+
+    if (hashTags.size > 0) {
+      const hashTagString = Array.from(hashTags)
+        .map((tag) => `#${tag}`)
+        .join('');
+      formData.append('hashTags', hashTagString);
+    }
 
     formData.append('travelId', travelId.toString());
     formData.append('score', countStar.toString());
     formData.append('title', title);
     formData.append('comment', comment);
+
     selectedFiles.forEach((file) => {
       formData.append(`images`, file);
     });
 
     mutation.mutate(formData);
   };
+
   return { handleSubmit };
 };

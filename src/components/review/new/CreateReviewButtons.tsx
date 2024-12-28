@@ -5,13 +5,19 @@ import { useCreateReview } from '@/queries/review/useCreateReview';
 import useCreateReviewStore from '@/store/useCreateReview';
 import { useRouter } from 'next/navigation';
 
-const CreateReviewButtons = () => {
+const CreateReviewButtons = ({
+  isFirstPage,
+  clickNext,
+}: {
+  isFirstPage: boolean;
+  clickNext: () => void;
+}) => {
   const router = useRouter();
   const { handleSubmit } = useCreateReview();
   const { resetStore } = useCreateReviewStore();
 
   return (
-    <section className="flex justify-center gap-2.5 pb-5 pt-10">
+    <section className="flex justify-center gap-2.5 pt-10">
       <Button
         handler={() => {
           resetStore();
@@ -22,9 +28,9 @@ const CreateReviewButtons = () => {
         className="h-[38px] w-[120px]"
       />
       <Button
-        handler={() => handleSubmit()}
+        handler={isFirstPage ? clickNext : handleSubmit}
         type="button"
-        label="확인"
+        label={isFirstPage ? '다음' : '확인'}
         className="h-[38px] w-[120px]"
       />
     </section>
