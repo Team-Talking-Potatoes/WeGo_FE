@@ -16,18 +16,22 @@ const ReviewHeart = ({ isLiked, animate, handler, red }: Props) => {
     <button
       type="button"
       onClick={handler}
-      className="absolute right-2 top-2 z-50 flex h-9 w-9 items-center justify-center rounded bg-black/30"
+      className="group/button absolute right-2 top-2 z-[15] flex h-9 w-9 items-center justify-center rounded bg-black/30 hover:bg-white/20"
     >
       <HeartIcon
         data-testid="heart-icon"
-        className={cn('forwards fill-none transition-all duration-100', {
-          'stroke-primary-white': !red,
-          'fill-primary-white': !red && isLiked,
-          'stroke-red-400': red,
-          'fill-red-400': red && isLiked,
-          'animate-check-shake': animate && isLiked,
-          'animate-check-shake-reverse': animate && !isLiked,
-        })}
+        className={cn(
+          'forwards fill-none transition-all duration-100 group-hover/button:fill-white/20',
+          {
+            'stroke-primary-white group-hover/button:stroke-white/80': !red,
+            'fill-primary-white group-hover/button:fill-white/80':
+              !red && isLiked,
+            'stroke-red-400': red,
+            'fill-red-400': red && isLiked,
+            'animate-check-shake': animate && isLiked,
+            'animate-check-shake-reverse': animate && !isLiked,
+          },
+        )}
       />
     </button>
   );
