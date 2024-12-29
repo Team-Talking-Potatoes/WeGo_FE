@@ -23,7 +23,6 @@ const WeeklyUser = () => {
   const currentMonth = new Date().getMonth() + 1;
 
   if (error && !isFetching) {
-    console.error('에러', { error });
     return (
       <div>
         데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
@@ -41,7 +40,10 @@ const WeeklyUser = () => {
         이번 달 리뷰가 많은 여행지기들을 소개해 드려요!
       </p>
 
-      <main className="flex justify-center gap-4">
+      <main
+        className="flex justify-center gap-4"
+        aria-label="이미지 가로 슬라이드"
+      >
         {isLoading && <div>로딩중 WeeklyUser</div>}
         <Swiper
           slidesPerView="auto"
@@ -61,6 +63,7 @@ const WeeklyUser = () => {
                 style={{ width: 'auto', height: 'auto' }}
               >
                 <UserCard
+                  userId={user.userId}
                   nickname={user.nickname}
                   profileImage={user.profileImage}
                   openTravelCount={user.openTravelCount}

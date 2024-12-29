@@ -22,7 +22,6 @@ const WeeklyReview = () => {
     queryFn: getPopularReview,
   });
   if (error && !isFetching) {
-    console.error('에러', { error });
     return (
       <div>
         데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
@@ -39,7 +38,10 @@ const WeeklyReview = () => {
           다양한 여행모임 후기들을 한눈에 확인해요!
         </p>
       </header>
-      <main className="flex xl:max-w-[1400px] 2xl:m-auto">
+      <main
+        className="flex xl:max-w-[1400px] 2xl:m-auto"
+        aria-label="이미지 가로 슬라이드"
+      >
         {isLoading && <div>로딩중 WeeklyReview</div>}
         <Swiper
           slidesPerView="auto"
@@ -67,15 +69,11 @@ const WeeklyReview = () => {
               </SwiperSlide>
             ))}
           <SwiperSlide style={{ width: '120px' }}>
-            <Link
-              href="/"
-              aria-label="더 많은 리뷰 보기"
-              className="flex h-full items-center p-5"
-            >
+            <Link href="/review" className="flex h-full items-center p-5">
               <AddCircle
                 width={36}
                 height={36}
-                aria-hidden="true"
+                aria-label="더 많은 리뷰 보기"
                 className="text-primary-white"
               />
             </Link>

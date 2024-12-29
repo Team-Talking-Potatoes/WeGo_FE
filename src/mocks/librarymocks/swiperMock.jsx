@@ -1,9 +1,17 @@
-const Swiper = ({ children, ...props }) => {
-  return null;
+const Swiper = ({
+  children,
+  grabCursor,
+  spaceBetween,
+  modules,
+  breakpoints,
+  slidesPerView,
+  ...props
+}) => {
+  return <div {...props}>{children}</div>;
 };
 
 const SwiperSlide = ({ children, ...props }) => {
-  return null;
+  return <div {...props}>{children}</div>;
 };
 
 const Pagination = () => {
