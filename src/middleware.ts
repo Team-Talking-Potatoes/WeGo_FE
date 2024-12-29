@@ -34,10 +34,8 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
       return response;
     }
 
-    if (process.env.NODE_ENV === 'development') {
-      return NextResponse.redirect('http://front.we-go.world:3000/login');
-    }
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/login`);
+    const loginUrl = new URL('/login', request.nextUrl.origin);
+    return NextResponse.redirect(loginUrl);
   }
 
   // 토큰 유효성 검증 통과 시 접근하지 못하는 페이지의 redirect
@@ -50,10 +48,8 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
       return response;
     }
 
-    if (process.env.NODE_ENV === 'development') {
-      return NextResponse.redirect('http://front.we-go.world:3000/');
-    }
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/`);
+    const mainUrl = new URL('/', request.nextUrl.origin);
+    return NextResponse.redirect(mainUrl);
   }
 
   return response;
