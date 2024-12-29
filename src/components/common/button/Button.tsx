@@ -7,9 +7,9 @@ const ButtonVariants = cva(
   {
     variants: {
       fill: {
-        default: 'bg-label-normal text-white hover:text-primary-normal',
+        default: 'bg-label-normal text-white',
         white:
-          'bg-white border border-line-strong hover:border-primary-normal text-primary-normal',
+          'bg-white border border-line-strong hover:border-primary-normal hover:text-primary-normal',
         blue: 'bg-primary-normal text-white hover:text-primary-normal hover:bg-blue-100',
       },
       size: {
