@@ -49,7 +49,7 @@ const mockList = {
 };
 
 describe('UserIconList', () => {
-  it('유저 아이콘 리스트를 렌더링합니다', () => {
+  it('유저 프로필 이미지 리스트를 렌더링합니다', () => {
     render(<UserIconList participant={mock.participant} />);
     expect(screen.getByAltText('이름의 프로필 이미지')).toBeInTheDocument();
   });
@@ -61,5 +61,10 @@ describe('UserIconList', () => {
     expect(
       screen.queryByAltText('마지막의 프로필 이미지'),
     ).not.toBeInTheDocument();
+  });
+
+  it('유저 리스트 길이가 5미만일 때 "+숫자" 없이 렌더링합니다', () => {
+    render(<UserIconList participant={mock.participant} />);
+    expect(screen.queryByText('+1')).not.toBeInTheDocument();
   });
 });

@@ -18,6 +18,7 @@ const UserIconVariants = cva('rounded-full overflow-hidden', {
 interface Props extends VariantProps<typeof UserIconVariants> {
   profileImage?: string | StaticImageData;
   nickname?: string;
+  ariaLabel?: string;
 }
 
 const sizeMapping = {
@@ -27,10 +28,15 @@ const sizeMapping = {
   lg: 80,
 };
 
-const UserIcon = ({ profileImage, nickname, size = 'default' }: Props) => {
+const UserIcon = ({
+  profileImage,
+  ariaLabel,
+  nickname,
+  size = 'default',
+}: Props) => {
   const sizeInPx = sizeMapping[size ?? 'default'];
   return (
-    <div className={UserIconVariants({ size })}>
+    <div className={UserIconVariants({ size })} aria-label={ariaLabel}>
       <Image
         src={profileImage || '/icon/default_profile_round.svg'}
         alt={`${nickname ?? '유저'}의 프로필 이미지`}
