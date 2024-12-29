@@ -1,4 +1,4 @@
-import VerticalProgressBar from '@/components/common/VerticalProgressBar';
+import VerticalProgressBar from '@/components/common/progressbar/VerticalProgressBar';
 import BlueStart from '@/assets/blue_star.svg';
 import StarRate from './StarRate';
 
