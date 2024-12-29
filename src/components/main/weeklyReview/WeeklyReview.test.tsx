@@ -31,7 +31,7 @@ describe('WeeklyReview', () => {
 
     render(<WeeklyReview />);
 
-    expect(screen.getByText('로딩중 WeeklyReview')).toBeInTheDocument();
+    expect(screen.getByText('로딩중')).toBeInTheDocument();
   });
 
   it('데이터가 있으면 리뷰 카드와 "더 많은 리뷰 보기" 링크를 렌더링합니다', () => {

@@ -12,9 +12,11 @@ const NavLink = ({ href, icon, label, isActive }: Props) => (
   <Link
     href={href}
     className="caption-1-r flex flex-col items-center px-[29px]"
-    aria-label={label}
   >
-    <div className="flex h-9 w-9 items-center justify-center">
+    <div
+      className="flex h-9 w-9 items-center justify-center"
+      aria-label={label}
+    >
       {React.cloneElement(icon as React.ReactElement, {
         fill: isActive ? 'white' : 'none',
       })}

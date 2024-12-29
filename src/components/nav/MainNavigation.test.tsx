@@ -7,12 +7,12 @@ jest.mock('next/navigation', () => ({
   usePathname: jest.fn(),
 }));
 
-describe('MainNavigation Component', () => {
+describe('MainNavigation', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('현재 경로에 따라 네비게이션을 렌더링하지 않는다 (login, signup, travel/new, chat 제외)', () => {
+  it('현재 경로에 따라 네비게이션을 렌더링하지 않는다', () => {
     // 로그인 페이지 경로로 설정
     (usePathname as jest.Mock).mockReturnValue('/login');
     render(<MainNavigation />);

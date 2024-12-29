@@ -42,7 +42,7 @@ const WeeklyReview = () => {
         className="flex xl:max-w-[1400px] 2xl:m-auto"
         aria-label="이미지 가로 슬라이드"
       >
-        {isLoading && <div>로딩중 WeeklyReview</div>}
+        {isLoading && <div>로딩중</div>}
         <Swiper
           slidesPerView="auto"
           spaceBetween={16}
