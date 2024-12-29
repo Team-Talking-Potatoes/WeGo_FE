@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import UserCard from './UserCard';
 
 const mock = {
+  userId: 1,
   nickname: '녹차라떼',
   profileImage: '/test.png',
   reviewCount: 25,
@@ -17,6 +18,7 @@ const renderUserCard = (overrides = {}) => {
   };
   render(
     <UserCard
+      userId={props.userId}
       nickname={props.nickname}
       profileImage={props.profileImage}
       openTravelCount={props.openTravelCount}
@@ -51,7 +53,7 @@ describe('UserCard가 올바르게 렌더링됩니다', () => {
   it('유저 링크를 렌더링합니다', async () => {
     const link = screen.getByRole('link', { name: '녹차라떼 프로필 보기' });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/');
+    expect(link).toHaveAttribute('href', '/1');
   });
 });
 
