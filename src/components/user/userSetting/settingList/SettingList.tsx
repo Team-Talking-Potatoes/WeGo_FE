@@ -13,14 +13,22 @@ const SettingList = () => {
   });
 
   const handleLogout = () => {
-    showModal('로그아웃 하시겠어요?', '', {
-      confirmText: '확인',
-      cancelText: '취소',
-      onConfirm: () => {
-        logout();
+    showModal(
+      '로그아웃',
+      '로그아웃을 하시겠습니까?\n함께 즐기는 여행으로\n다시 돌아와 주세요!',
+      {
+        confirmText: '확인',
+        cancelText: '취소',
+        messageHighlight: {
+          range: { start: 0, end: 4 },
+          color: 'text-status-error',
+        },
+        onConfirm: () => {
+          logout();
+        },
+        onCancel: () => {},
       },
-      onCancel: () => {},
-    });
+    );
   };
 
   return (
