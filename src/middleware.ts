@@ -35,7 +35,7 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
     }
 
     if (process.env.NODE_ENV === 'development') {
-      return NextResponse.redirect('http://localhost:3000/login');
+      return NextResponse.redirect('http://front.we-go.world:3000/login');
     }
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/login`);
   }
@@ -51,7 +51,7 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
     }
 
     if (process.env.NODE_ENV === 'development') {
-      return NextResponse.redirect('http://localhost:3000/');
+      return NextResponse.redirect('http://front.we-go.world:3000/');
     }
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/`);
   }
