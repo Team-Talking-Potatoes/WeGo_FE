@@ -48,3 +48,10 @@ next-env.d.ts
 
 # cache files
 .cache/
+
+# SSL Certificate
+*.pem
+*.key
+*.crt
+*.cert
+certificates
