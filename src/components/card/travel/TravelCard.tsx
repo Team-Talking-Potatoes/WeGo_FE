@@ -10,7 +10,7 @@ import {
   useDeleteBookmarkTravel,
 } from '@/queries/travel/useBookmarkTravel';
 import DomesticTag from '../../common/tag/DomesticTag';
-import ProgressBar from '../../common/ProgressBar';
+import ProgressBar from '../../common/progressbar/ProgressBar';
 import ExpiredTag from '../../common/tag/ExpiredTag';
 import CheckMarkButton from '../../common/button/CheckMarkButton';
 
