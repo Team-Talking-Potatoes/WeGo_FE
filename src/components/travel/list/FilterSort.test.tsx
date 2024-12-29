@@ -14,9 +14,11 @@ describe('TravelFilter', () => {
     render(<FilterSort />);
     const button = screen.getByLabelText('여행 리스트 정렬 버튼');
     fireEvent.click(button);
+
     const latestOption = screen.getByText('최신순');
     const popularOption = screen.getByText('인기순');
     const registrationEndOption = screen.getByText('마감임박');
+
     expect(latestOption).toBeInTheDocument();
     expect(popularOption).toBeInTheDocument();
     expect(registrationEndOption).toBeInTheDocument();

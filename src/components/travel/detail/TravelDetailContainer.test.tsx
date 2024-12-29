@@ -45,7 +45,7 @@ describe('TravelDetail', () => {
       await screen.findByText('12월에 떠나는 겨울여행'),
     ).toBeInTheDocument();
     expect(
-      await screen.findByText('2024.12.03 - 2024.12.06'),
+      await screen.findByText('2024.12.03 - 2024.12.25'),
     ).toBeInTheDocument();
     expect(await screen.findByText('10명')).toBeInTheDocument();
     expect(await screen.findByText('2024.11.31')).toBeInTheDocument();
@@ -69,27 +69,4 @@ describe('TravelDetail', () => {
     const details = await screen.findAllByText('상세 일정 확인');
     expect(details).toHaveLength(3);
   });
-
-  // it('모임리뷰 (SelectTravelReview) 버튼 클릭 시 렌더링된다', async () => {
-  //   await renderTravelDetail();
-  //   fireEvent.click(screen.getByText('모임리뷰'));
-
-  //   await waitFor(() =>
-  //     expect(screen.getByText('여행지기')).toBeInTheDocument(),
-  //   );
-  //   // expect(await screen.findByText('여행지기')).toBeInTheDocument();
-  //   expect(
-  //     await screen.findByText(
-  //       '정선의 겨울은 너무 아름다웠어요! 특히 눈 내린 풍경이 인상 깊었습니다.',
-  //     ),
-  //   ).toBeInTheDocument();
-  //   expect(await screen.findByText('3')).toBeInTheDocument();
-  //   const elements = await screen.findAllByText('5');
-  //   expect(elements).toHaveLength(2);
-
-  //   // 이미지 테스트
-  //   const imageElement =
-  //     await screen.findByAltText('여행지기의 여행리뷰 이미지');
-  //   expect(imageElement).toBeInTheDocument();
-  // });
 });

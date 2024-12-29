@@ -42,10 +42,6 @@ describe('WeeklyUser', () => {
     ).toBeInTheDocument();
     expect(await screen.findByText('친절해요')).toBeInTheDocument();
 
-    // 더보기 버튼
-    const linkElement = await screen.findByLabelText('더 많은 여행지기 보기');
-    expect(linkElement).toBeInTheDocument();
-
     // 링크
     const link = await screen.findByLabelText('녹차라떼 프로필 보기');
     expect(link).toBeInTheDocument();

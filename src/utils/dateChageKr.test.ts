@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {
   formatDateToShortWithDay,
   checkTomorrow,
@@ -5,21 +6,18 @@ import {
 } from './dateChageKr';
 
 describe('checkTomorrow', () => {
-  it('지정일이 내일이면 "내일"을 반환해야 합니다.', () => {
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-    const tomorrowString = tomorrow.toISOString().split('T')[0];
-    expect(checkTomorrow(tomorrowString)).toBe('내일');
+  it('내일 날짜는 "내일"을 반환해야 합니다.', () => {
+    const tomorrow = dayjs().add(1, 'day').format('YYYY-MM-DD'); // 내일 날짜
+    expect(checkTomorrow(tomorrow)).toBe('내일'); // "내일"을 반환해야 함
   });
 
-  it('지정일이 내일이 아니면 지정된 날짜를 반환해야 합니다.', () => {
+  it('지정일이 내일이 아니면 지정된 날짜를 반환해야 합니다', () => {
     const today = new Date();
-    const dayAfterTomorrow = new Date(today);
-    dayAfterTomorrow.setDate(today.getDate() + 2);
-    const dayAfterTomorrowDate = `${dayAfterTomorrow.getFullYear() + 1}.${dayAfterTomorrow.getMonth() + 1}.${dayAfterTomorrow.getDate()}`;
-
-    expect(checkTomorrow(dayAfterTomorrowDate)).toBe(dayAfterTomorrowDate);
+    const notTomorrow = new Date();
+    notTomorrow.setDate(today.getDate() + 5);
+    notTomorrow.setHours(0, 0, 0, 0);
+    const notTomorrowString = notTomorrow.toISOString().split('T')[0];
+    expect(checkTomorrow(notTomorrowString)).toBe(notTomorrowString);
   });
 });
 
