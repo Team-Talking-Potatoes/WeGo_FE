@@ -38,30 +38,32 @@ const MainNavigation = ({ isActive = false }: Props) => {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 flex h-20 items-center justify-center bg-black px-[29px] py-3.5 text-primary-white md:gap-[60px] xl:hidden">
-      <NavLink
-        href="/review"
-        icon={<Start />}
-        label="여행리뷰"
-        isActive={pathname.startsWith('/review')}
-      />
-      <NavLink
-        href="/travel"
-        icon={pathname.startsWith('/travel') ? <FindWhite /> : <Find />}
-        label="여행찾기"
-      />
-      <NavLink
-        href="/chat"
-        icon={pathname === '/chat' ? <ChatWhite /> : <Chat />}
-        label="채팅"
-        isActive={pathname === '/chat'}
-      />
-      <NavLink
-        href="/"
-        icon={<Home />}
-        label="메인"
-        isActive={pathname === '/'}
-      />
+    <nav className="fixed bottom-0 left-0 right-0 z-40 h-20 bg-black py-3.5 text-primary-white xl:hidden">
+      <div className="m-auto flex max-w-[768px] items-center justify-between">
+        <NavLink
+          href="/review"
+          icon={<Start />}
+          label="여행리뷰"
+          isActive={pathname.startsWith('/review')}
+        />
+        <NavLink
+          href="/travel"
+          icon={pathname.startsWith('/travel') ? <FindWhite /> : <Find />}
+          label="여행찾기"
+        />
+        <NavLink
+          href="/chat"
+          icon={pathname === '/chat' ? <ChatWhite /> : <Chat />}
+          label="채팅"
+          isActive={pathname === '/chat'}
+        />
+        <NavLink
+          href="/"
+          icon={<Home />}
+          label="메인"
+          isActive={pathname === '/'}
+        />
+      </div>
     </nav>
   );
 };
