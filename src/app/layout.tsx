@@ -4,10 +4,10 @@ import '@/globals.css';
 import { MswComponent } from '@/mocks/msw.component';
 import QueryProviders from '@/providers/QueryProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import MainHeader from '@/components/header/MainHeader';
 import MainNavigation from '@/components/nav/MainNavigation';
 import ZustandProvider from '@/providers/ZustandProvider';
 import { Suspense } from 'react';
+import Header from '@/components/header/Header';
 
 const pretendard = localFont({
   src: '../assets/fonts/PretendardVariable.woff2',
@@ -44,7 +44,7 @@ const RootLayout = async ({
         <MswComponent />
         <QueryProviders>
           <ZustandProvider>
-            <MainHeader />
+            <Header />
             <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
             <MainNavigation />
           </ZustandProvider>
