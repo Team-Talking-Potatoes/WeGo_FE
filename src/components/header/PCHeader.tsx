@@ -9,7 +9,7 @@ const PCHeader = () => {
   const { data: user } = useGetUser();
 
   return (
-    <header className="fixed z-30 h-auto w-full border-b border-line-neutral bg-white px-5 py-[14px] transition-all duration-300 ease-in-out xl:py-6">
+    <header className="fixed top-0 z-30 h-auto w-full border-b border-line-neutral bg-white px-5 py-[14px] transition-all duration-300 ease-in-out xl:py-6">
       <span className="m-auto flex max-w-[1400px] items-center justify-between">
         <Link href="/" aria-label="WEGO 로고">
           <LogoBlue width={80} height={32} />
