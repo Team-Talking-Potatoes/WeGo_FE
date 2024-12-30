@@ -5,7 +5,7 @@ import useModal from '@/hooks/useModal';
 import ModalTravelSuccessIcon from '@/assets/modal/modal_travel_success.svg';
 import ModalErrorIcon from '@/assets/modal/modal_error.svg';
 import { useRouter } from 'next/navigation';
-import { clearIndexedDB, saveFormTravelData } from '@/utils/travelIndexedDB';
+import { clearIndexedDB } from '@/utils/travelIndexedDB';
 
 const useCreateTravel = () => {
   const router = useRouter();
@@ -45,7 +45,7 @@ const useCreateTravel = () => {
           });
       }
     },
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       const { nickname } = data;
       showModal(
         `${nickname} 님의\n여행모임이 생성 되었습니다!`,
@@ -60,15 +60,15 @@ const useCreateTravel = () => {
               router.push('/');
             }
           },
-          cancelText: '미리보기',
-          onCancel: async () => {
-            try {
-              await clearIndexedDB();
-              await saveFormTravelData(variables, 2);
-            } finally {
-              router.push('/travel/new/preview');
-            }
-          },
+          // cancelText: '미리보기',
+          // onCancel: async () => {
+          //   try {
+          //     await clearIndexedDB();
+          //     await saveFormTravelData(variables, 2);
+          //   } finally {
+          //     router.push('/travel/new/preview');
+          //   }
+          // },
         },
       );
     },

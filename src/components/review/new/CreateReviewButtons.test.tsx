@@ -16,7 +16,7 @@ describe('CreateReviewButtons', () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <CreateReviewButtons />
+        <CreateReviewButtons isFirstPage clickNext={jest.fn()} />
       </QueryClientProvider>,
     );
 
@@ -32,7 +32,7 @@ describe('CreateReviewButtons', () => {
     const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>
-        <CreateReviewButtons />
+        <CreateReviewButtons isFirstPage clickNext={jest.fn()} />
       </QueryClientProvider>,
     );
 
