@@ -22,6 +22,7 @@ describe('ProfileSection', () => {
   it('사용자 정보가 없을 때 기본 프로필 이미지가 렌더링되어야 한다', () => {
     (useGetUser as jest.Mock).mockReturnValue({
       data: {
+        userId: 1,
         profileImage: null,
         nickname: '테스트 사용자',
         email: 'test@example.com',
