@@ -30,7 +30,7 @@ describe('WeeklyPopular', () => {
     });
 
     render(<WeeklyPopular />);
-    expect(screen.getByText('로딩중 WeeklyPopular')).toBeInTheDocument();
+    expect(screen.getByLabelText('로딩중')).toBeInTheDocument();
   });
 
   it('데이터가 있으면 TravelCardBig 컴포넌트를 렌더링합니다', () => {

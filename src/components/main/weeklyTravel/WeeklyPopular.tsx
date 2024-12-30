@@ -6,6 +6,7 @@ import TravelCardBig from '@/components/card/travel/TravelCardBig';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/constants/querykeys';
 import { getPopularTravel } from '@/api/travelApi';
+import TravelCardBigSkeleton from '@/components/skeleton/card/TravelCardBigSkeleton';
 import WeeklyHeader from './WeeklyHeader';
 
 const WeeklyPopular = () => {
@@ -34,8 +35,13 @@ const WeeklyPopular = () => {
   return (
     <section className="m-auto flex max-w-[1480px] flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10 md:pb-12 xl:pb-16">
       <WeeklyHeader month={month} week={week} />
-      {isLoading && <div>로딩중 WeeklyPopular</div>}
-      <div className="flex w-full flex-col items-center justify-center gap-5 xl:flex-row xl:flex-wrap">
+
+      <div
+        className="flex w-full flex-col items-center justify-center gap-5 xl:grid xl:grid-cols-2"
+        aria-label={`${isLoading && '로딩중'}`}
+      >
+        {isLoading &&
+          [1, 2, 3, 4].map((v) => <TravelCardBigSkeleton key={v} />)}
         {travelList &&
           travelList.map((travel) => (
             <TravelCardBig

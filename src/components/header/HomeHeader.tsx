@@ -4,7 +4,6 @@ import Link from 'next/link';
 import LogoBlue from '@/assets/logo_blue.svg';
 import LogoWhite from '@/assets/logo_white.svg';
 import Mypage from '@/assets/mypage.svg';
-import Write from '@/assets/write.svg';
 import { throttle } from 'lodash';
 import { useEffect, useState } from 'react';
 import useGetUser from '@/queries/user/useGetUser';
@@ -29,7 +28,7 @@ const HomeHeader = () => {
 
   return (
     <header
-      className={`fixed z-30 ${isScrolled && 'bg-gradient-to-b from-transparent to-white backdrop-blur-lg'} h-auto w-full px-5 py-[14px] transition-all duration-300 ease-in-out md:px-10 xl:py-6`}
+      className={`fixed top-0 z-30 ${isScrolled && 'bg-gradient-to-b from-transparent to-white backdrop-blur-lg'} h-auto w-full px-5 py-[14px] transition-all duration-300 ease-in-out md:px-10 xl:py-6`}
     >
       <span className="m-auto flex max-w-[1400px] items-center justify-between">
         <Link href="/">
@@ -66,40 +65,28 @@ const HomeHeader = () => {
               채팅
             </Link>
           </div>
-          <div className="flex gap-3 xl:gap-6">
-            <Link href="/">
-              <Write
+
+          {user ? (
+            <Link href="/mypage">
+              <UserIcon
+                profileImage={user?.profileImage}
+                nickname={user.nickname}
+                ariaLabel="마이페이지로 가기"
+                size="xs"
+              />
+            </Link>
+          ) : (
+            <Link href="/login">
+              <Mypage
                 width={24}
                 height={24}
-                aria-label="모임 만들기"
+                aria-label="로그인하기"
                 className={
                   isScrolled ? 'text-label-normal' : 'text-primary-white'
                 }
               />
             </Link>
-
-            {user ? (
-              <Link href="/mypage">
-                <UserIcon
-                  profileImage={user?.profileImage}
-                  nickname={user.nickname}
-                  ariaLabel="마이페이지로 가기"
-                  size="xs"
-                />
-              </Link>
-            ) : (
-              <Link href="/login">
-                <Mypage
-                  width={24}
-                  height={24}
-                  aria-label="로그인하기"
-                  className={
-                    isScrolled ? 'text-label-normal' : 'text-primary-white'
-                  }
-                />
-              </Link>
-            )}
-          </div>
+          )}
         </div>
       </span>
     </header>

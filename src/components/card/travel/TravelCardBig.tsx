@@ -66,10 +66,10 @@ const TravelCardBig = ({
   return (
     <Link
       href={`/travel/${travelId}`}
-      className="flex w-[335px] flex-col overflow-hidden rounded border md:w-[688px] md:flex-row"
+      className="flex w-full min-w-[335px] flex-col overflow-hidden rounded border sm:max-w-[688px] sm:flex-row"
     >
       <div
-        className={cn('relative h-[140px] flex-shrink-0 md:h-40 md:w-56', {
+        className={cn('relative h-[140px] flex-shrink-0 sm:h-40 sm:w-56', {
           'after:absolute after:inset-0 after:rounded after:bg-black after:opacity-50':
             closed,
         })}
@@ -77,8 +77,8 @@ const TravelCardBig = ({
         <Image
           src={image}
           alt={`${travelName} - ${location} 여행 이미지`}
-          width={100}
-          height={120}
+          width={400}
+          height={200}
           className="h-full w-full object-cover"
         />
         {closed && (
