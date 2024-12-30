@@ -18,6 +18,24 @@ const useResetAuthPassword = () => {
     mutationFn: resetAuthPassword,
     onError: (error: QueryError) => {
       switch (error.status) {
+        case 400:
+          showModal('사용자를 찾을 수 없습니다.', '다시 시도해주세요.', {
+            icon: ModalErrorIcon,
+            confirmText: '확인',
+            onConfirm: () => {
+              router.push('/login');
+            },
+          });
+          break;
+        case 403:
+          showModal('인가가 필요합니다.', '다시 로그인 해주세요.', {
+            icon: ModalErrorIcon,
+            confirmText: '확인',
+            onConfirm: () => {
+              router.push('/userSetting');
+            },
+          });
+          break;
         default:
           showModal(
             '네트워크를 확인해주세요.',
@@ -26,7 +44,7 @@ const useResetAuthPassword = () => {
               icon: ModalErrorIcon,
               confirmText: '돌아가기',
               onConfirm: () => {
-                router.push('/login');
+                router.push('/userSetting');
               },
             },
           );
@@ -54,6 +72,28 @@ const useResetUserPassword = () => {
     mutationFn: resetUserPassword,
     onError: (error: QueryError) => {
       switch (error.status) {
+        case 400:
+          showModal(
+            '비밀번호가 일치하지 않습니다.',
+            '비밀번호를 다시 확인해주세요.',
+            {
+              icon: ModalErrorIcon,
+              confirmText: '확인',
+              onConfirm: () => {
+                router.push('/userSetting');
+              },
+            },
+          );
+          break;
+        case 403:
+          showModal('인가가 필요합니다.', '다시 로그인 해주세요.', {
+            icon: ModalErrorIcon,
+            confirmText: '확인',
+            onConfirm: () => {
+              router.push('/userSetting');
+            },
+          });
+          break;
         default:
           showModal(
             '네트워크를 확인해주세요.',
@@ -62,7 +102,7 @@ const useResetUserPassword = () => {
               icon: ModalErrorIcon,
               confirmText: '돌아가기',
               onConfirm: () => {
-                router.push('/mypage');
+                router.push('/userSetting');
               },
             },
           );

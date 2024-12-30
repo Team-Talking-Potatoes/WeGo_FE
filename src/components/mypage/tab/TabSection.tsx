@@ -14,7 +14,7 @@ const TabSection = () => {
   const [selectedSubTab, setSelectedSubTab] = useState<SubTabType>('upcomming');
 
   return (
-    <section className="mb-[80px] flex flex-col">
+    <section className="mb-[80px] flex flex-col items-center">
       <MainTab
         selectedTab={selectedTab}
         setSelectedTab={setSelectedTab}

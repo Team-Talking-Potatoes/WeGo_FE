@@ -30,16 +30,12 @@ export const deleteAccount = [
     async () => {
       const response = HttpResponse.json(
         { message: 'Account deleted' },
-        { status: 200 },
-      );
-
-      response.headers.set(
-        'Set-Cookie',
-        `accessToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
-      );
-      response.headers.set(
-        'Set-Cookie',
-        `refreshToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
+        {
+          status: 200,
+          headers: {
+            'Set-Cookie': 'accessToken=; Max-Age=0; Secure; SameSite=None',
+          },
+        },
       );
 
       return response;

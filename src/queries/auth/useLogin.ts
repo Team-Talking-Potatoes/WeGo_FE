@@ -13,7 +13,7 @@ const useLogin = () => {
     onError: (error: QueryError) => {
       switch (error.status) {
         case 401:
-          showToast('가입되지 않은 계정입니다.', 'error');
+          showToast('잘못된 이메일 또는 비밀번호입니다.', 'error');
           break;
         case 500:
           showToast('네트워크를 확인해주세요.', 'error');

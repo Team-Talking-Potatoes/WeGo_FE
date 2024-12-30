@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/common/button/Button';
+import useModalHistory from '@/hooks/useModalHistory';
 import { useModalStore, type TextHighlight } from '@/store/useModalStore';
 
 const HighlightedText = ({
@@ -48,11 +49,13 @@ const Modal = () => {
     closeModal();
   };
 
+  useModalHistory({ isOpen, closeModal });
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center bg-black/40 px-5">
-      <div className="w-full max-w-[298px] animate-slide-up rounded-lg bg-white pb-6 pt-8">
+    <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center bg-black/40 pb-[80px]">
+      <div className="min-w-[298px] animate-slide-up rounded-lg bg-white p-8 md:min-w-[380px]">
         {Icon && (
           <div className="mb-4 flex justify-center">
             <div className="bg-primary-light flex h-12 w-12 items-center justify-center rounded-full">
@@ -65,26 +68,28 @@ const Modal = () => {
           <h2 className="title-5-b">
             <HighlightedText text={title} highlight={titleHighlight} />
           </h2>
-          <p className="body-2-r mt-2 whitespace-pre-line text-label-alternative">
+          <p className="body-2-r mt-2 whitespace-pre-line text-label-neutral">
             <HighlightedText text={message} highlight={messageHighlight} />
           </p>
         </div>
 
-        <div className="mt-9 flex justify-center">
+        <div className="mt-6 flex w-full justify-center">
           {onCancel ? (
-            <div className="flex gap-2">
+            <div className="flex w-[250px] gap-2">
               <Button
                 label={cancelText}
-                size="modal"
+                size="full"
                 handler={handleCancel}
                 fill="white"
                 font="body_2_m"
+                className="h-[38px] w-[120px]"
               />
               <Button
                 label={confirmText}
                 size="modal"
                 handler={handleConfirm}
                 font="body_2_m"
+                className="h-[38px] w-[120px]"
               />
             </div>
           ) : (
@@ -93,6 +98,7 @@ const Modal = () => {
               size="modal"
               handler={handleConfirm}
               font="body_2_m"
+              className="h-[38px] w-[120px] md:w-[210px]"
             />
           )}
         </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ChatMessages from '@/components/chat/chatRoom/ChatMessages';
 import ChatInput from '@/components/chat/chatRoom/ChatInput';
 import HamburgerMenu from '@/assets/menu.svg';
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { JoinedData, ImageInfo, Message } from '@/@types/chat';
@@ -73,7 +73,7 @@ const ChatRoom = ({ chatData, onSendMessage }: Props) => {
 
   return (
     <>
-      <FormHeader
+      <Header
         title={
           <div className="flex items-center justify-center gap-1 truncate">
             <span className="truncate">{chatData.title}</span>
@@ -86,7 +86,7 @@ const ChatRoom = ({ chatData, onSendMessage }: Props) => {
         <button type="button" onClick={handleOpenSidebar}>
           <HamburgerMenu />
         </button>
-      </FormHeader>
+      </Header>
       <ChatMessages
         messages={chatData.messages as Message[]}
         textareaHeight={textareaHeight}

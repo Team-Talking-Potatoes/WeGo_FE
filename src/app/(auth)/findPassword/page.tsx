@@ -1,13 +1,14 @@
 'use client';
 
 import AuthEmailCertification from '@/components/auth/input/AuthEmailCertification';
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import useAuthInput from '@/hooks/useAuthInput';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/common/button/Button';
 
 import usePasswordSendMail from '@/queries/auth/usePasswordSendMail';
+import FormTitle from '@/components/common/form/FormTitle';
 
 const FindPasswordPage = () => {
   const router = useRouter();
@@ -47,10 +48,12 @@ const FindPasswordPage = () => {
 
   return (
     <div>
-      <FormHeader title="비밀번호 찾기" />
+      <Header title="비밀번호 찾기" />
 
-      <div className="mx-auto mt-10 flex max-w-[335px] justify-center">
-        <div className="w-full">
+      <div className="mx-5 mt-[100px] flex justify-center">
+        <div className="w-full max-w-[500px]">
+          <FormTitle title="비밀번호 찾기" />
+
           <AuthEmailCertification
             email={email}
             emailCode={emailCode}
@@ -66,6 +69,7 @@ const FindPasswordPage = () => {
           <Button
             label="다음"
             type="submit"
+            size="full"
             className="mt-[362px]"
             disabled={!isFormValid()}
             handler={clickNext}

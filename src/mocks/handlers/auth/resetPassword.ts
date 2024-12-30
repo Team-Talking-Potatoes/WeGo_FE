@@ -40,25 +40,28 @@ export const resetPassword = [
       const token = cookies.accessToken;
       const { currentPassword, newPassword } = await request.json();
 
-      if (token && newPassword && currentPassword === FAKE_USER_PASSWORD) {
+      if (
+        !token ||
+        (!newPassword &&
+          newPassword === currentPassword &&
+          currentPassword !== FAKE_USER_PASSWORD)
+      ) {
         return HttpResponse.json(
-          { message: 'Password reset successful' },
-          { status: 401 },
+          { message: 'Password reset failed' },
+          {
+            status: 401,
+          },
         );
       }
 
       const response = HttpResponse.json(
-        { message: 'Password reset failed' },
-        { status: 200 },
-      );
-
-      response.headers.set(
-        'Set-Cookie',
-        `accessToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
-      );
-      response.headers.set(
-        'Set-Cookie',
-        `refreshToken=; Path=/; Expires=${new Date(0).toUTCString()}`,
+        { message: 'Password reset successful' },
+        {
+          status: 200,
+          headers: {
+            'Set-Cookie': 'accessToken=; Max-Age=0; Secure; SameSite=None',
+          },
+        },
       );
 
       return response;

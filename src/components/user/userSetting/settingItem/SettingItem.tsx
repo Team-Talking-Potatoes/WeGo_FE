@@ -1,28 +1,51 @@
-import Link from 'next/link';
+'use client';
+
 import Right from '@/assets/icon/right_20px.svg';
+import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
+import { useRouter } from 'next/navigation';
 
 interface Props {
-  destination: string;
   title: string;
   description: string;
+  destination?: string;
+  handler?: () => void;
 }
 
-const SettingItem = ({ destination, title, description }: Props) => {
+const SettingItem = ({ title, description, destination, handler }: Props) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (destination) {
+      router.push(destination);
+      return;
+    }
+
+    handler?.();
+  };
+
   return (
     <li>
-      <Link
-        href={destination}
-        className="mx-auto flex max-w-[335px] justify-between py-4"
+      <button
+        type="button"
+        onClick={handleClick}
+        className="flex w-full max-w-[688px] justify-between py-4"
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col items-start">
           <div className="heading-1-sb text-label-normal">{title}</div>
           <div className="body-2-r text-label-alternative">{description}</div>
         </div>
 
-        <button type="button" className="text-sm text-gray-500">
+        <div className="text-sm text-gray-500">
           <Right />
-        </button>
-      </Link>
+        </div>
+      </button>
+
+      <div className="flex justify-center">
+        <HorizontalDivider
+          className="max-w-[688px]"
+          classNameCondition={{ hidden: title === '로그아웃' }}
+        />
+      </div>
     </li>
   );
 };

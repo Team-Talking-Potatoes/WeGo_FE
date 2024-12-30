@@ -21,7 +21,9 @@ describe('Pagination 컴포넌트 테스트', () => {
     );
 
     const currentPageButton = getByText(3);
-    expect(currentPageButton).toHaveClass('bg-primary-normal text-white');
+    expect(currentPageButton).toHaveClass(
+      'border-primary-normal bg-blue-100 text-primary-normal',
+    );
   });
 
   it('페이지 버튼 클릭 시 paginate 함수가 호출된다', () => {

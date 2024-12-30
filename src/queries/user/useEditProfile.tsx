@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { editProfile } from '@/api/user/editProfileApi';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 const useEditProfile = () => {
   const router = useRouter();
   const { showModal } = useModal();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: editProfile,
@@ -34,6 +35,8 @@ const useEditProfile = () => {
       }
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+
       showModal('프로필 수정이 완료되었습니다.', '', {
         icon: ModalSuccessIcon,
         confirmText: '확인',

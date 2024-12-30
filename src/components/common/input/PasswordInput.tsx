@@ -10,6 +10,7 @@ const PasswordInputVariants = cva(
     variants: {
       size: {
         default: 'w-[335px]',
+        full: 'w-full',
       },
     },
     defaultVariants: {

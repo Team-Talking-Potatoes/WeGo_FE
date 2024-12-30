@@ -9,6 +9,7 @@ const TextInputVariants = cva(
         default: 'w-[335px]',
         withButton: 'w-[218px]',
         halfButton: 'w-[164px]',
+        full: 'w-full',
       },
     },
   },

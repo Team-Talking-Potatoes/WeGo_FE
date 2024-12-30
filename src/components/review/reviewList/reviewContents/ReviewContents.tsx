@@ -31,9 +31,9 @@ const ReviewContents = () => {
   if (isError) return <div>에러</div>;
 
   return (
-    <div className="mt-3 h-full justify-between">
+    <div className="mt-3">
       {reviewsData && (
-        <div className="flex flex-wrap justify-between gap-4">
+        <div className="grid grid-cols-2 gap-[15px] md:grid-cols-3 md:gap-5 xl:grid-cols-6">
           {reviewsData.pages.map((page) =>
             page.reviews
               ? page.reviews.map((review) => (

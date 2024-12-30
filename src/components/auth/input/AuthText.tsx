@@ -16,7 +16,7 @@ interface Props {
   value: string;
   isValid: boolean | null;
   disabled?: boolean;
-  size?: 'default' | 'withButton';
+  size?: 'default' | 'withButton' | 'full';
   important?: boolean;
   successMailSend?: boolean | null;
   className?: string;
@@ -32,7 +32,7 @@ const AuthText = memo(
     value,
     isValid,
     disabled,
-    size = 'default',
+    size = 'full',
     important,
     successMailSend,
     className,
@@ -54,7 +54,7 @@ const AuthText = memo(
           {important && <span className="ml-[2px] text-[#4a8af8]">*</span>}
         </label>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-3">
           <TextInput
             type={type}
             name={name}
