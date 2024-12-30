@@ -20,8 +20,9 @@ const ReviewModal = ({ children }: { children: ReactNode }) => {
   return createPortal(
     <dialog
       onClose={() => router.back()}
-      className="fixed left-1/2 top-1/2 z-30 m-0 flex h-fit w-[343px] -translate-x-1/2 -translate-y-1/2 transform rounded-lg"
+      className="fixed left-1/2 top-1/2 z-30 m-0 flex w-[343px] -translate-x-1/2 -translate-y-1/2 transform rounded-lg md:w-[500px]"
       ref={dialogRef}
+      style={{ zIndex: 10 }}
     >
       {children}
     </dialog>,

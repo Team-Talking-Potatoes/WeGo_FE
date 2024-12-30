@@ -58,7 +58,7 @@ const Modal = () => {
       <div className="min-w-[298px] animate-slide-up rounded-lg bg-white p-8 md:min-w-[380px]">
         {Icon && (
           <div className="mb-4 flex justify-center">
-            <div className="bg-primary-light flex h-16 w-16 items-center justify-center rounded-full">
+            <div className="bg-primary-light flex h-12 w-12 items-center justify-center rounded-full">
               <Icon />
             </div>
           </div>
@@ -68,7 +68,7 @@ const Modal = () => {
           <h2 className="title-5-b">
             <HighlightedText text={title} highlight={titleHighlight} />
           </h2>
-          <p className="text-body-2-r mt-2 whitespace-pre-line text-label-neutral">
+          <p className="body-2-r mt-2 whitespace-pre-line text-label-neutral">
             <HighlightedText text={message} highlight={messageHighlight} />
           </p>
         </div>
@@ -81,20 +81,23 @@ const Modal = () => {
                 size="full"
                 handler={handleCancel}
                 fill="white"
+                font="body_2_m"
                 className="h-[38px] w-[120px]"
               />
               <Button
                 label={confirmText}
                 size="full"
                 handler={handleConfirm}
+                font="body_2_m"
                 className="h-[38px] w-[120px]"
               />
             </div>
           ) : (
             <Button
               label={confirmText}
-              size="addon"
+              size="modal"
               handler={handleConfirm}
+              font="body_2_m"
               className="h-[38px] w-[120px] md:w-[210px]"
             />
           )}

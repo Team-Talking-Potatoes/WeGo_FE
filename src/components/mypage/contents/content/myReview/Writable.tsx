@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TravelCard from '@/components/card/TravelCard';
+import TravelCard from '@/components/card/travel/TravelCard';
 import { checkTomorrow } from '@/utils/dateChageKr';
 import Link from 'next/link';
 import { TravelList } from '@/@types/travel';

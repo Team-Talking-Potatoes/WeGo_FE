@@ -1,6 +1,6 @@
 'use client';
 
-import TravelCard from '@/components/card/TravelCard';
+import TravelCard from '@/components/card/travel/TravelCard';
 import NoResult from '@/components/common/NoResult';
 import { useTravelListStore } from '@/store/useTravelListStore';
 import { useEffect } from 'react';
@@ -21,7 +21,7 @@ const TravelList = () => {
     error,
     hasNextPage,
     fetchNextPage,
-  } = useGetTravelsList();
+  } = useGetTravelsList(filters);
 
   useEffect(() => {
     if (filters !== InitialFilters) {
@@ -54,7 +54,7 @@ const TravelList = () => {
 
   return (
     <>
-      <div className="flex h-full flex-col justify-center divide-y divide-line-normal">
+      <div className="flex h-full flex-col items-center justify-center lg:flex-row lg:flex-wrap xl:gap-6">
         {travelListData &&
           travelListData.pages.map((page) =>
             page.travels.length === 0 ? (
@@ -65,7 +65,7 @@ const TravelList = () => {
               />
             ) : (
               page.travels.map((travel) => (
-                <article key={travel.travelId} className="py-5">
+                <article key={travel.travelId} className="pb-5 xl:pb-0">
                   <TravelCard
                     travelId={travel.travelId}
                     image={travel.image}
@@ -80,6 +80,7 @@ const TravelList = () => {
                     checkMark
                     isChecked
                   />
+                  <div className="mt-6 h-[1px] w-full bg-line-normal" />
                 </article>
               ))
             ),

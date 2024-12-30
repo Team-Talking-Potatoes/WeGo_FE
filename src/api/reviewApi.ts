@@ -11,6 +11,16 @@ interface MyReview {
   reviews: Review[];
 }
 
+const handleResponse = async (response: Response, callName: string) => {
+  if (!response.ok) {
+    const error = new Error(`Get review data failed: ${callName}`) as APIError;
+    error.status = response.status;
+    error.message = `Server error: ${response.status}`;
+    throw error;
+  }
+  return response.json();
+};
+
 export const getReview = async ({
   pageParam,
   sortOrder,
@@ -22,44 +32,21 @@ export const getReview = async ({
       credentials: 'include',
     },
   );
-
-  if (!response.ok) {
-    const error = new Error('Get review failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-  return response.json();
+  return handleResponse(response, 'getReview');
 };
 
-export const fetchPopularReview = async (): Promise<Review[]> => {
+export const getPopularReview = async (): Promise<Review[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/popular`,
   );
-  if (!response.ok) {
-    const error = new Error('Get popular review failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-  return response.json();
+  return handleResponse(response, 'getPopularReview');
 };
 
-export const getTravelReview = async ({
-  id,
-}: {
-  id: any;
-}): Promise<Review[]> => {
+export const getTravelReview = async (id: number): Promise<Review[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?id=${id}`,
   );
-  if (!response.ok) {
-    const error = new Error('Get travel review failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-  return response.json();
+  return handleResponse(response, 'getTravelReview');
 };
 
 export const getMyReview = async (
@@ -73,14 +60,7 @@ export const getMyReview = async (
       credentials: 'include',
     },
   );
-
-  if (!response.ok) {
-    const error = new Error('Get my review failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-  return response.json();
+  return handleResponse(response, 'getMyReview');
 };
 
 export const createReview = async (formData: FormData) => {
@@ -89,13 +69,5 @@ export const createReview = async (formData: FormData) => {
     credentials: 'include',
     body: formData,
   });
-
-  if (!response.ok) {
-    const error = new Error('Create review failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-
-  return response.json();
+  return handleResponse(response, 'createReview');
 };

@@ -7,12 +7,16 @@ interface Props {
   label: string;
   isActive?: boolean;
 }
-const linkCss = 'caption-1-r flex flex-col items-center';
-const iconCss = 'flex h-9 w-9 items-center justify-center';
 
 const NavLink = ({ href, icon, label, isActive }: Props) => (
-  <Link href={href} className={linkCss} aria-label={label}>
-    <div className={iconCss}>
+  <Link
+    href={href}
+    className="caption-1-r flex flex-col items-center px-[29px]"
+  >
+    <div
+      className="flex h-9 w-9 items-center justify-center"
+      aria-label={label}
+    >
       {React.cloneElement(icon as React.ReactElement, {
         fill: isActive ? 'white' : 'none',
       })}

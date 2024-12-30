@@ -2,9 +2,10 @@
 
 import { getWeekNumber } from '@/utils/dateChageKr';
 import { useMemo } from 'react';
-import TravelCardBig from '@/components/card/TravelCardBig';
+import TravelCardBig from '@/components/card/travel/TravelCardBig';
 import { useQuery } from '@tanstack/react-query';
-import { fetchPopularTravel } from '@/api/travelApi';
+import { QUERY_KEYS } from '@/constants/querykeys';
+import { getPopularTravel } from '@/api/travelApi';
 import WeeklyHeader from './WeeklyHeader';
 
 const WeeklyPopular = () => {
@@ -14,8 +15,8 @@ const WeeklyPopular = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['travels', 'popular'],
-    queryFn: fetchPopularTravel,
+    queryKey: QUERY_KEYS.TRAVEL.POPULAR_TRAVEL,
+    queryFn: getPopularTravel,
   });
 
   const month = new Date().getMonth() + 1;
@@ -31,10 +32,10 @@ const WeeklyPopular = () => {
     );
   }
   return (
-    <section className="flex flex-col justify-center px-5 pb-8 pt-[50px]">
+    <section className="m-auto flex max-w-[1480px] flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10 md:pb-12 xl:pb-16">
       <WeeklyHeader month={month} week={week} />
       {isLoading && <div>로딩중 WeeklyPopular</div>}
-      <div className="flex flex-col gap-5">
+      <div className="flex w-full flex-col items-center justify-center gap-5 xl:flex-row xl:flex-wrap">
         {travelList &&
           travelList.map((travel) => (
             <TravelCardBig

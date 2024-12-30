@@ -1,4 +1,5 @@
-import { fetchPopularReview } from '@/api/reviewApi';
+import { getPopularReview } from '@/api/reviewApi';
+import { QUERY_KEYS } from '@/constants/querykeys';
 import {
   dehydrate,
   HydrationBoundary,
@@ -9,8 +10,8 @@ import WeeklyReview from './WeeklyReview';
 const WeeklyReviewContainer = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ['reviews', 'popular'],
-    queryFn: fetchPopularReview,
+    queryKey: QUERY_KEYS.REVIEW.POPULAR_REVIEW,
+    queryFn: getPopularReview,
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

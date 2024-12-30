@@ -19,3 +19,41 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+.swiper-pagination-bullets {
+  position: absolute !important;
+  display: flex;
+  margin-left: 70px;
+  margin-bottom: 28px;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination-bullets {
+    margin-left: 50px;
+    margin-bottom: 25px;
+  }
+}
+.swiper-pagination-bullet {
+  background: white !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #878a92;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background: #c2c4c7;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}

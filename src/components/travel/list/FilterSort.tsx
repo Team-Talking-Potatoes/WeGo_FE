@@ -29,7 +29,7 @@ const FilterSort = () => {
       >
         <ListboxOption
           value={null}
-          className={`cursor-pointer py-2.5 ${!sort && 'text-label-normal'}`}
+          className={`cursor-pointer py-2.5 ${sort === null && 'text-label-normal'}`}
         >
           최신순
         </ListboxOption>

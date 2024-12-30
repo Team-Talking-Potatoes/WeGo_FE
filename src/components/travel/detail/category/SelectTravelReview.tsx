@@ -1,22 +1,21 @@
-'use client';
-
 import { getTravelReview } from '@/api/reviewApi';
-import ReviewCardAddText from '@/components/card/ReviewCardAddText';
+
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
 import NoResult from '@/components/common/NoResult';
+import { QUERY_KEYS } from '@/constants/querykeys';
+import Link from 'next/link';
+import ReviewCardAddText from '@/components/card/Review/ReviewCardAddText';
 import ScoreBox from './ScoreBox';
 
-const SelectTravelReview = () => {
-  const { id } = useParams();
+const SelectTravelReview = ({ travelId }: { travelId: number }) => {
   const {
     data: reviewList,
     isFetching,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['travels', { id }, 'reviews'],
-    queryFn: () => getTravelReview({ id }),
+    queryKey: QUERY_KEYS.TRAVEL.TRAVEL_DETAIL_REVIEW(`${travelId}`),
+    queryFn: () => getTravelReview(travelId),
   });
 
   if (error && !isFetching) {
@@ -60,14 +59,14 @@ const SelectTravelReview = () => {
           />
           <div className="flex flex-col gap-4">
             {reviewList.map((review) => (
-              <div key={review.reviewId}>
+              <Link href={`/review/${review.reviewId}`} key={review.reviewId}>
                 <ReviewCardAddText
                   nickname={review.nickname}
                   reviewImage={review.reviewImage}
                   content={review.content}
                   score={review.score}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>

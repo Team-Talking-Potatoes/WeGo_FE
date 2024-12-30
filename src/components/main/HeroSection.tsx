@@ -2,16 +2,37 @@
 
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Autoplay } from 'swiper/modules';
 import { useState } from 'react';
-import Link from 'next/link';
+import HeroImage from './HeroImage';
 
 const slideData = [
-  { id: 1, src: '/hero1.png', link: '/' },
-  { id: 2, src: '/hero2.png', link: '/' },
-  { id: 3, src: '/hero3.png', link: '/' },
+  {
+    id: 1,
+    src: '/hero/hero1.png',
+    link: '/',
+    title1: '함께 떠나는',
+    title2: '여행코스',
+    description: '지금 제일 인기 있는 여행모임을 만나보세요.',
+  },
+  {
+    id: 2,
+    src: '/hero/hero3.png',
+    link: '/',
+    title1: '이번달 인기',
+    title2: '여행지기는 누구?',
+    description: '지금 제일 인기 있는 여행지기를 만나보세요.',
+  },
+  {
+    id: 3,
+    src: '/hero/hero2.png',
+    link: '/',
+    title1: '여행자들의',
+    title2: '특별한 HOLIDAY',
+    description: '다양한 사람들의 여행기를 만나보세요!',
+  },
 ];
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -21,8 +42,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative flex h-[440px] w-full pt-20">
-      <div className="absolute inset-0 z-0 h-[484px] w-full overflow-hidden">
+    <section className="relative flex w-full pt-20">
+      <div className="absolute inset-0 z-0 w-full overflow-hidden">
         <Image
           src={slideData[currentSlide]?.src || '/hero1.png'}
           alt="배경효과 이미지"
@@ -35,30 +56,27 @@ const HeroSection = () => {
       <Swiper
         spaceBetween={10}
         centeredSlides
+        modules={[Pagination, Autoplay]}
         pagination={{
           clickable: true,
         }}
-        modules={[Autoplay]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop
         slidesPerView={1}
         grabCursor
         onSlideChange={handleSlideChange}
-        style={{ width: '350px' }}
+        style={{ width: '100%', height: 'auto' }}
+        className="max-w-[1480px]"
       >
         {slideData.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <Link
-              href={slide.link}
-              className="relative z-10 flex items-center justify-center rounded-lg"
-            >
-              <Image
-                src={slide.src}
-                alt="여행 모임 홍보 이미지"
-                width={335}
-                height={360}
-              />
-            </Link>
+            <HeroImage
+              link={slide.link}
+              src={slide.src}
+              title1={slide.title1}
+              title2={slide.title2}
+              description={slide.description}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

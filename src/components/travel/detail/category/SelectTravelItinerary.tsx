@@ -4,7 +4,7 @@ import { TravelDetail } from '@/@types/travel';
 import ArrowDownIcon from '@/assets/arrow_down.svg';
 import { useState } from 'react';
 import { formatDateToShortWithDay } from '@/utils/dateChageKr';
-import TravelPlanCard from '../../../card/TravelPlanCard';
+import TravelPlanCard from '../../../card/travel/TravelPlanCard';
 
 type Props = Pick<TravelDetail, 'tripDuration' | 'travelPlan' | 'startAt'>;
 
@@ -26,12 +26,12 @@ const SelectTravelItinerary = ({
     });
   };
   return (
-    <div className="flex flex-col gap-6 divide-y divide-line-normal pb-6">
+    <div className="flex w-full flex-col gap-6 divide-y divide-line-normal">
       {Array.from({ length: tripDuration }, (_, index) => index + 1).map(
         (i) => (
           <div
             key={i}
-            className={`flex justify-between gap-5 ${i !== 1 && 'pt-6'}`}
+            className={`flex w-full justify-between gap-5 md:gap-10 ${i !== 1 && 'pt-6'}`}
           >
             <div className="title-5-b flex flex-shrink-0 flex-col">
               <button

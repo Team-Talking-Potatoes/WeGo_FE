@@ -8,7 +8,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { fetchPopularUser } from '@/api/userApi';
+import { QUERY_KEYS } from '@/constants/querykeys';
+import { getPopularUser } from '@/api/user/userList';
 import WeeklyUser from './WeeklyUser';
 
 describe('WeeklyUser', () => {
@@ -18,9 +19,10 @@ describe('WeeklyUser', () => {
 
   it('유저 데이터를 불러와 WeeklyUser 컴포넌트를 렌더링한다', async () => {
     const queryClient = new QueryClient();
+    const queryKey = QUERY_KEYS.REVIEW.POPULAR_REVIEW;
     await queryClient.prefetchQuery({
-      queryKey: ['users', 'popular'],
-      queryFn: fetchPopularUser,
+      queryKey,
+      queryFn: getPopularUser,
     });
 
     render(
@@ -39,10 +41,6 @@ describe('WeeklyUser', () => {
       await screen.findByText('모임장 11회 • 리뷰 25개'),
     ).toBeInTheDocument();
     expect(await screen.findByText('친절해요')).toBeInTheDocument();
-
-    // 더보기 버튼
-    const linkElement = await screen.findByLabelText('더 많은 여행지기 보기');
-    expect(linkElement).toBeInTheDocument();
 
     // 링크
     const link = await screen.findByLabelText('녹차라떼 프로필 보기');

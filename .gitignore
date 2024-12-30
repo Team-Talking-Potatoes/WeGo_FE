@@ -54,4 +54,6 @@ next-env.d.ts
 *.key
 *.crt
 *.cert
+/certs
+certs/*.pem
 certificates

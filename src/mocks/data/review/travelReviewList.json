@@ -28,7 +28,7 @@
     "nickname": "유저3",
     "reviewImage": "/test1.png",
     "content": "겨울 스포츠를 즐기기에 최적의 장소였습니다. 다음에도 꼭 오고 싶어요.",
-    "score": 5,
+    "score": 2,
     "travelLocation": "강원도 평창"
   },
   {
@@ -36,7 +36,7 @@
     "nickname": "유저4",
     "reviewImage": "/test4.jpg",
     "content": "친구들과 함께한 여행! 눈 덮인 산이 정말 장관이었어요.",
-    "score": 4,
+    "score": 1,
     "travelLocation": "강원도 태백"
   }
 ]

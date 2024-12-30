@@ -3,12 +3,10 @@
 import FilterDomestic from './FilterDomestic';
 import FilterDate from './FilterDate';
 import FilterSort from './FilterSort';
-import FilterSearch from './FilterSearch';
 
 const TravelFilter = () => {
   return (
-    <nav>
-      <FilterSearch />
+    <nav className="w-full pb-5">
       <div className="body-2-sb flex items-center justify-between">
         <div className="flex items-center justify-between gap-2">
           <FilterDomestic />

@@ -17,7 +17,7 @@ const ProfileSection = () => {
 
         <div className="flex items-center gap-6">
           <Link href="/editProfile" className="">
-            <ButtonRounded label="프로필 수정" type="profileEdit" />
+            <ButtonRounded label="프로필 수정" color="gray" />
           </Link>
           <Link href="/userSetting" className="hidden xl:block">
             <Setting width={32} height={32} aria-hidden="true" />

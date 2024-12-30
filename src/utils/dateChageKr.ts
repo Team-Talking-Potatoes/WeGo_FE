@@ -1,23 +1,11 @@
+import dayjs from 'dayjs';
+
 // 현재 날짜를 기준으로 '내일'을 계산
 export const checkTomorrow = (checkDate: string): string => {
-  const inputDate = new Date(checkDate);
-  const today = new Date();
+  const inputDate = dayjs(checkDate).startOf('day');
+  const tomorrow = dayjs().add(1, 'day').startOf('day');
 
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
-
-  const inputYear = inputDate.getFullYear();
-  const inputMonth = inputDate.getMonth();
-  const inputDay = inputDate.getDate();
-  const tomorrowYear = tomorrow.getFullYear();
-  const tomorrowMonth = tomorrow.getMonth();
-  const tomorrowDay = tomorrow.getDate();
-
-  if (
-    inputYear === tomorrowYear &&
-    inputMonth === tomorrowMonth &&
-    inputDay === tomorrowDay
-  ) {
+  if (inputDate.isSame(tomorrow, 'day')) {
     return '내일';
   }
 

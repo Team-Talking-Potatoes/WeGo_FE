@@ -1,4 +1,4 @@
-import VerticalProgressBar from '@/components/common/VerticalProgressBar';
+import VerticalProgressBar from '@/components/common/progressbar/VerticalProgressBar';
 import BlueStart from '@/assets/blue_star.svg';
 import StarRate from './StarRate';
 
@@ -21,7 +21,7 @@ const ScoreBox = ({
   };
 
   return (
-    <div className="flex h-40 w-full flex-shrink-0 items-center justify-center gap-[18px] rounded border border-gray-100 px-3.5 py-5">
+    <div className="flex h-40 w-full flex-shrink-0 items-center justify-center gap-[18px] rounded border border-gray-100 px-3.5 py-5 md:gap-12">
       <div className="flex flex-col items-center gap-2">
         <div>
           <span className="title-4-b">{averageScore}</span>

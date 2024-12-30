@@ -1,4 +1,4 @@
-import TravelCard from '@/components/card/TravelCard';
+import TravelCard from '@/components/card/travel/TravelCard';
 import Pagination from '@/components/common/pagination/Pagination';
 import { checkTomorrow } from '@/utils/dateChageKr';
 import { useState } from 'react';

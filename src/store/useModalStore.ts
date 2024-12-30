@@ -38,9 +38,12 @@ const initialState: ModalState = {
 const useModalStore = create<ModalStore>((set) => ({
   modal: initialState,
   openModal: (modal) =>
-    set((state) => ({
-      modal: { ...state.modal, ...modal, isOpen: true },
-    })),
+    set((state) => {
+      if (state.modal.isOpen) return state;
+      return {
+        modal: { ...state.modal, ...modal, isOpen: true },
+      };
+    }),
   closeModal: () => set({ modal: initialState }),
 }));
 
