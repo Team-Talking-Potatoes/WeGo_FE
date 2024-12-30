@@ -56,7 +56,6 @@ describe('MobileHeader', () => {
     renderMobileHeaderQueryClient();
 
     expect(screen.queryByLabelText('WEGO 로고')).not.toBeInTheDocument();
-    expect(screen.queryByLabelText('모임 만들기')).not.toBeInTheDocument();
     expect(
       screen.queryByLabelText('마이페이지로 가기'),
     ).not.toBeInTheDocument();
@@ -69,13 +68,12 @@ describe('MobileHeader', () => {
     expect(logoLink).toBeInTheDocument();
   });
 
-  it('경로가 "/travel or /review"이고, 로그인 되어있다면 마이페이지와 모임 만들기 아이콘을 렌더링합니다', () => {
+  it('경로가 "/travel or /review"이고, 로그인 되어있다면 마이페이지 아이콘을 렌더링합니다', () => {
     (usePathname as jest.Mock).mockReturnValue('/travel');
     (useGetUser as jest.Mock).mockReturnValue({
       data: mockUserInfo,
     });
     renderMobileHeaderQueryClient();
-    expect(screen.getByLabelText('모임 만들기')).toBeInTheDocument();
     expect(screen.getByLabelText('마이페이지로 가기')).toBeInTheDocument();
   });
 });
