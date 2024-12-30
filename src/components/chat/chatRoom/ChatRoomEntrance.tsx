@@ -1,4 +1,4 @@
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
 import Image from 'next/image';
 import { JoinedData } from '@/@types/chat';
 
@@ -19,7 +19,7 @@ const ChatRoomEntrance = ({ chatData, children }: Props) => {
   } = chatData;
   return (
     <>
-      <FormHeader title="채팅" />
+      <Header title="채팅" />
       <div className="mb-[120px] mt-10 flex h-full flex-1 flex-col items-center text-center">
         <div className="relative mb-6 h-[100px] w-[100px] overflow-hidden rounded-full">
           <Image

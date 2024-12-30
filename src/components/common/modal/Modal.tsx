@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/common/button/Button';
+import useModalHistory from '@/hooks/useModalHistory';
 import { useModalStore, type TextHighlight } from '@/store/useModalStore';
 
 const HighlightedText = ({
@@ -48,11 +49,13 @@ const Modal = () => {
     closeModal();
   };
 
+  useModalHistory({ isOpen, closeModal });
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center bg-black/40 px-5">
-      <div className="w-full max-w-[335px] animate-slide-up rounded-2xl bg-white p-6">
+    <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center bg-black/40 pb-[80px]">
+      <div className="min-w-[298px] animate-slide-up rounded-lg bg-white p-8 md:min-w-[380px]">
         {Icon && (
           <div className="mb-4 flex justify-center">
             <div className="bg-primary-light flex h-16 w-16 items-center justify-center rounded-full">
@@ -62,31 +65,38 @@ const Modal = () => {
         )}
 
         <div className="text-center">
-          <h2 className="text-xl font-bold">
+          <h2 className="title-5-b">
             <HighlightedText text={title} highlight={titleHighlight} />
           </h2>
-          <p className="text-body-2-r mt-2 whitespace-pre-line text-label-alternative">
+          <p className="text-body-2-r mt-2 whitespace-pre-line text-label-neutral">
             <HighlightedText text={message} highlight={messageHighlight} />
           </p>
         </div>
 
-        <div className="mt-9 flex justify-center">
+        <div className="mt-6 flex w-full justify-center">
           {onCancel ? (
-            <div className="flex gap-2">
+            <div className="flex w-[250px] gap-2">
               <Button
                 label={cancelText}
-                size="addon"
+                size="full"
                 handler={handleCancel}
                 fill="white"
+                className="h-[38px] w-[120px]"
               />
               <Button
                 label={confirmText}
-                size="addon"
+                size="full"
                 handler={handleConfirm}
+                className="h-[38px] w-[120px]"
               />
             </div>
           ) : (
-            <Button label={confirmText} size="addon" handler={handleConfirm} />
+            <Button
+              label={confirmText}
+              size="addon"
+              handler={handleConfirm}
+              className="h-[38px] w-[120px] md:w-[210px]"
+            />
           )}
         </div>
       </div>

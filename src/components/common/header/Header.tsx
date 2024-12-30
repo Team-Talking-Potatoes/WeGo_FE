@@ -13,11 +13,11 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const FormHeader = ({ title, isConfigButton, onRoute, children }: Props) => {
+const Header = ({ title, isConfigButton, onRoute, children }: Props) => {
   const router = useRouter();
 
   return (
-    <header className="relative flex h-[60px] items-center border-b border-[#DADDE1] px-5 py-3.5">
+    <header className="fixed top-0 z-10 flex h-[60px] w-full items-center border-b border-[#DADDE1] bg-white px-5 py-3.5 xl:hidden">
       <button
         type="button"
         onClick={() => {
@@ -53,4 +53,4 @@ const FormHeader = ({ title, isConfigButton, onRoute, children }: Props) => {
   );
 };
 
-export default FormHeader;
+export default Header;

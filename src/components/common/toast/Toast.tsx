@@ -9,12 +9,12 @@ const Toast = () => {
   const { toasts } = useToastStore();
 
   return (
-    <div className="fixed left-1/2 top-8 z-50 flex -translate-x-1/2 flex-col gap-2">
+    <div className="fixed left-1/2 top-8 z-50 flex w-full -translate-x-1/2 flex-col items-center gap-2 px-5">
       {toasts.map((toast) => (
         <div
           key={toast.id}
           className={cn(
-            'min-w-[320px] animate-slide-down rounded-lg px-4 py-3 shadow-lg transition-all duration-300',
+            'w-full max-w-[480px] animate-slide-down rounded-lg px-4 py-3 shadow-lg transition-all duration-300',
             {
               'bg-red-100 text-status-error': toast.type === 'error',
               'bg-blue-100 text-status-success': toast.type === 'success',

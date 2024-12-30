@@ -4,7 +4,10 @@ import { useEffect } from 'react';
 
 export const MswComponent = () => {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
+    if (
+      process.env.NODE_ENV === 'development' &&
+      process.env.NEXT_PUBLIC_MODE === 'mock'
+    ) {
       if (typeof window === 'undefined') {
         (async () => {
           const { server } = await import('@/mocks/server');

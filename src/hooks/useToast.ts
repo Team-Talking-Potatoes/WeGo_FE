@@ -6,7 +6,7 @@ const useToast = () => {
   const showToast = (
     message: string,
     type: ToastType = 'info',
-    duration = 3000,
+    duration = 1500,
   ) => {
     addToast(message, type, duration);
   };

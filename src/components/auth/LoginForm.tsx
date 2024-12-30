@@ -29,6 +29,7 @@ const LoginForm = () => {
       <AuthText
         type="email"
         name="email"
+        size="full"
         value={email.value}
         isValid={email.isValid}
         onChange={email.handleChange}
@@ -44,6 +45,7 @@ const LoginForm = () => {
       <Button
         label="로그인"
         type="submit"
+        size="full"
         className="mt-[180px]"
         disabled={!email.isValid || !password.isValid}
       />

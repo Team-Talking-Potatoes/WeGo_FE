@@ -9,6 +9,7 @@ import useSignup from '@/queries/auth/useSignup';
 import useSendMail from '@/queries/auth/useSendMail';
 import AuthPassword from './input/AuthPassword';
 import AuthEmailCertification from './input/AuthEmailCertification';
+import FormTitle from '../common/form/FormTitle';
 
 const SignupForm = () => {
   const [isEmailCertified, setIsEmailCertified] = useState<boolean | null>(
@@ -88,6 +89,8 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={handleSignup} className="w-full" data-testid="signup-form">
+      <FormTitle title="회원가입" />
+
       <AuthEmailCertification
         email={email}
         emailCode={emailCode}
@@ -119,6 +122,7 @@ const SignupForm = () => {
       <AuthText
         type="text"
         name="name"
+        size="full"
         value={name.value}
         isValid={name.isValid}
         important
@@ -128,6 +132,7 @@ const SignupForm = () => {
       <AuthText
         type="tel"
         name="contact"
+        size="full"
         value={contact.value}
         isValid={contact.isValid}
         important
@@ -137,6 +142,7 @@ const SignupForm = () => {
       <AuthText
         type="text"
         name="nickname"
+        size="full"
         value={nickname.value}
         isValid={nickname.isValid}
         important
@@ -146,6 +152,7 @@ const SignupForm = () => {
       <AuthText
         type="text"
         name="birthDate"
+        size="full"
         value={birthDate.value}
         isValid={birthDate.isValid}
         important
@@ -155,6 +162,7 @@ const SignupForm = () => {
       <Button
         label="회원가입"
         type="submit"
+        size="full"
         className="mt-9"
         disabled={!isFormValid()}
       />

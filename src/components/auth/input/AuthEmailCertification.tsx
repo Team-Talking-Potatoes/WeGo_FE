@@ -84,14 +84,14 @@ const AuthEmailCertification = memo(
           successMailSend={successMailSend}
           important
           onChange={email.handleChange}
-          size="withButton"
+          className="flex-1"
         >
           <Button
             label={successMailSend ? '재전송' : '인증'}
             handler={handleVerifyClick}
             size="addon"
             disabled={!email.isValid || Boolean(isEmailCertified)}
-            className="mt-[6px]"
+            className="body-2-m mt-[6px]"
           />
         </AuthText>
 
@@ -102,14 +102,13 @@ const AuthEmailCertification = memo(
           disabled={due === 0 || Boolean(isEmailCertified)}
           isValid={due === 0 ? false : isEmailCertified}
           onChange={emailCode.handleChange}
-          className=""
-          size="withButton"
+          className="flex-1"
           classNameCondition={{
             hidden: !successMailSend,
           }}
         >
           {successMailSend && !isEmailCertified && (
-            <span className="absolute left-[170px] top-[21px] text-xs text-status-error">
+            <span className="absolute right-[126px] top-[21px] text-xs text-status-error">
               {formatTimeToMMSS(due)}
             </span>
           )}
@@ -121,7 +120,7 @@ const AuthEmailCertification = memo(
             disabled={
               !emailCode.isValid || due === 0 || Boolean(isEmailCertified)
             }
-            className="mt-[6px]"
+            className="body-2-m mt-[6px]"
             classNameCondition={{ hidden: !successMailSend }}
           />
         </AuthText>

@@ -3,16 +3,17 @@ import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const ButtonVariants = cva(
-  'body-1-m rounded disabled:border disabled:border-line-normal disabled:bg-background-alternative disabled:text-label-alternative',
+  'body-1-m rounded disabled:border disabled:border-line-normal disabled:bg-background-alternative disabled:text-label-alternative hover:text-primary-normal',
   {
     variants: {
       fill: {
         default: 'bg-label-normal text-white',
-        white: 'bg-white border border-line-strong',
-        blue: 'bg-primary-normal text-white',
+        white: 'bg-white border border-line-strong hover:border-primary-normal',
+        blue: 'bg-primary-normal text-white hover:bg-blue-100',
       },
       size: {
         default: 'w-[335px] h-[52px]',
+        full: 'w-full h-[52px]',
         addon: 'w-[101px] h-[46px]',
         modal_sm: 'w-[90px] h-[38px]',
         modal_md: 'w-[202px] h-[38px]',

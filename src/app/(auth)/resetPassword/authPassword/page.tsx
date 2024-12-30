@@ -7,7 +7,8 @@ import validate from '@/utils/validateAuthInput';
 import { Button } from '@/components/common/button/Button';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useResetAuthPassword } from '@/queries/auth/useResetPassword';
-import FormHeader from '@/components/common/formheader/FormHeader';
+import Header from '@/components/common/header/Header';
+import FormTitle from '@/components/common/form/FormTitle';
 
 const AuthPasswordPage = () => {
   const router = useRouter();
@@ -57,14 +58,16 @@ const AuthPasswordPage = () => {
 
   return (
     <>
-      <FormHeader title="비밀번호 변경" />
+      <Header title="비밀번호 변경" />
 
-      <h1 className="title-5-sb mx-auto mt-10 max-w-[335px]">
-        새로운 비밀번호를 입력해주세요.
-      </h1>
+      <div className="mx-5 mt-[100px] flex justify-center">
+        <form onSubmit={handleSubmit} className="w-full max-w-[500px]">
+          <FormTitle title="비밀번호 변경" />
 
-      <div className="mx-auto mt-6 flex max-w-[335px] justify-center">
-        <form onSubmit={handleSubmit} className="w-full">
+          <h1 className="title-5-sb mx-auto mb-6 w-full">
+            새로운 비밀번호를 입력해주세요.
+          </h1>
+
           <AuthPassword
             name="password"
             value={password.value}
@@ -84,6 +87,7 @@ const AuthPasswordPage = () => {
           <Button
             label="완료"
             type="submit"
+            size="full"
             className="mt-[296px]"
             disabled={!isFormValid()}
           />

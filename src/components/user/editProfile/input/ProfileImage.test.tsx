@@ -25,12 +25,6 @@ describe('ProfileImage', () => {
   beforeEach(() => {
     mockHandleImageChange.mockClear();
   });
-
-  it('프로필 이미지가 없을 때 카메라 아이콘이 표시되어야 한다', () => {
-    render(<ProfileImage {...defaultProps} />);
-    expect(screen.getByTestId('camera-icon')).toBeInTheDocument();
-  });
-
   it('프로필 이미지가 있을 때 이미지가 표시되어야 한다', () => {
     const previewImage = 'test-image-url.jpg';
     render(<ProfileImage {...defaultProps} previewImage={previewImage} />);

@@ -59,7 +59,7 @@ const AUTH_SUCCESS_MESSAGE = {
 const NEED_LOGIN_PATH = {
   mypage: '/mypage',
   editProfile: '/editProfile',
-  userSetting: '/user/setting',
+  userSetting: '/userSetting',
   resetPassword: '/resetPassword/userPassword',
   deleteAccount: '/deleteAccount',
   travelNew: '/travel/new',

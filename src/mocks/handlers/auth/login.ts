@@ -23,7 +23,8 @@ export const login = http.post<LoginRequestBody, PathParams>(
       {
         status: 200,
         headers: {
-          'Set-Cookie': 'accessToken=msw-access, refreshToken=msw-refresh',
+          'Set-Cookie':
+            'accessToken=msw-accessToken; Max-Age=3600; Secure; SameSite=None',
         },
       },
     );

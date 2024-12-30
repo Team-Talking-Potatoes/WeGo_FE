@@ -65,7 +65,7 @@ const MainHeader = () => {
           )}
         </Link>
         <div className="flex items-center gap-3">
-          <Link href="/" aria-label="모임 만들기">
+          <Link href="/travel/new" aria-label="모임 만들기">
             <Write
               width={24}
               height={24}

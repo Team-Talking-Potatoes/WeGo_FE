@@ -97,6 +97,11 @@ export default {
     plugin(({ addComponents }) => {
       addComponents({
         // title
+        '.title-0-b': {
+          fontSize: '48px',
+          lineHeight: '56px',
+          fontWeight: '800',
+        },
         '.title-1-eb': {
           fontSize: '32px',
           lineHeight: '40px',
@@ -156,6 +161,11 @@ export default {
         },
 
         // body
+        'body-0-r': {
+          fontSize: '18px',
+          lineHeight: '28px',
+          fontWeight: '400',
+        },
         '.body-1-r': {
           fontSize: '16px',
           lineHeight: '24px',

@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 
 if (
   process.env.NODE_ENV === 'development' &&
+  process.env.NEXT_PUBLIC_MODE === 'mock' &&
   process.env.NEXT_RUNTIME === 'nodejs'
 ) {
   const { server } = await import('@/mocks/server');

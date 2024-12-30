@@ -34,6 +34,7 @@ const AuthPassword = memo(
           value={value}
           placeholder={AUTH_PLACEHOLDER[name]}
           onChange={onChange}
+          size="full"
           classNameCondition={{
             'border-label-normal': isValid === true,
             'border-status-error focus:border-status-error':
