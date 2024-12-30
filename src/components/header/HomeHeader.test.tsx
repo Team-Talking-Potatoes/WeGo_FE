@@ -34,12 +34,11 @@ describe('HomeHeader', () => {
     expect(logoLink).toBeInTheDocument();
   });
 
-  it('로그인 되어있다면 마이페이지와 모임 만들기 아이콘을 렌더링합니다', () => {
+  it('로그인 되어있다면 마이페이지 아이콘을 렌더링합니다', () => {
     (useGetUser as jest.Mock).mockReturnValue({
       data: mockUserInfo,
     });
     renderHomeHeaderQueryClient();
-    expect(screen.getByLabelText('모임 만들기')).toBeInTheDocument();
     expect(screen.getByLabelText('마이페이지로 가기')).toBeInTheDocument();
   });
 
