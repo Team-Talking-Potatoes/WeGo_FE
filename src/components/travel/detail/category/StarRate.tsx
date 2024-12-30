@@ -14,12 +14,14 @@ const StarRate = ({ score }: { score: number }) => {
     return [1, 2, 3, 4, 5].map((starIndex) => {
       let style = {};
       const starCss = 'z-10 text-primary-normal';
-
       if (starIndex <= fullStars) {
         return <BlueStart key={starIndex} className={starCss} />;
       }
 
-      if (starIndex === fullStars + 1) {
+      if (remaining === 0)
+        return <BlueStart key={starIndex} className="text-label-disable" />;
+
+      if (starIndex === fullStars + 1 && remaining !== 0) {
         style = { clipPath: `inset(0 ${100 - remaining}% 0 0)` };
       }
 

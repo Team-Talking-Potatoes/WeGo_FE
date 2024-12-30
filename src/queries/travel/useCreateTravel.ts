@@ -31,7 +31,7 @@ const useCreateTravel = () => {
             {
               icon: ModalErrorIcon,
               onConfirm: () => {
-                router.push('/register');
+                router.push('/travel');
               },
             },
           );

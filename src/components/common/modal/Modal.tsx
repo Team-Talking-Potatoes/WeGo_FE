@@ -86,7 +86,7 @@ const Modal = () => {
               />
               <Button
                 label={confirmText}
-                size="modal"
+                size="full"
                 handler={handleConfirm}
                 font="body_2_m"
                 className="h-[38px] w-[120px]"
