@@ -38,12 +38,8 @@ export const useCreateReview = () => {
       setErrorMessage('countStar', '별점을 선택해주세요.');
       hasError = true;
     }
-    if (title === '') {
-      setErrorMessage('title', '제목을 입력해주세요.');
-      hasError = true;
-    }
-    if (comment === '') {
-      setErrorMessage('comment', '내용을 입력해주세요.');
+    if (title === '' || comment === '') {
+      setErrorMessage('input', '내용을 입력해주세요.');
       hasError = true;
     }
     if (selectedFiles.length === 0) {

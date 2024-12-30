@@ -9,10 +9,10 @@ const TravelDetailPage = async ({
   const { id } = await params;
 
   return (
-    <>
+    <section className="mt-[60px] xl:mt-20">
       <Header title="여행상세" />
       <TravelDetailContainer id={id} />
-    </>
+    </section>
   );
 };
 export default TravelDetailPage;
