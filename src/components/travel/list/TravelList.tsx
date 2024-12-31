@@ -6,7 +6,7 @@ import { useTravelListStore } from '@/store/useTravelListStore';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import SpinnerIcon from '@/assets/spinner_round.svg';
-import { checkTomorrow } from '@/utils/dateChageKr';
+import { checkTomorrow } from '@/utils/dateChangeKr';
 import useGetTravelsList from '@/queries/travel/useGetTravelsList';
 import { InitialFilters } from '@/@types/travel';
 

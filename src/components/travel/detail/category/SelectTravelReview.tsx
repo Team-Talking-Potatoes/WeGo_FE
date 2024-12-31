@@ -1,5 +1,4 @@
-import { getTravelReview } from '@/api/reviewApi';
-
+import { getTravelReview } from '@/api/review/review';
 import { useQuery } from '@tanstack/react-query';
 import NoResult from '@/components/common/NoResult';
 import { QUERY_KEYS } from '@/constants/querykeys';

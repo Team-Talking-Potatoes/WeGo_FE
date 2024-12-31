@@ -3,7 +3,7 @@
 import { TravelDetail } from '@/@types/travel';
 import ArrowDownIcon from '@/assets/arrow_down.svg';
 import { useState } from 'react';
-import { formatDateToShortWithDay } from '@/utils/dateChageKr';
+import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import TravelPlanCard from '../../../card/travel/TravelPlanCard';
 
 type Props = Pick<TravelDetail, 'tripDuration' | 'travelPlan' | 'startAt'>;

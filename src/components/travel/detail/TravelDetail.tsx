@@ -1,39 +1,21 @@
 'use client';
 
 import TravelContents from '@/components/travel/detail/TravelContents';
-import { useQuery } from '@tanstack/react-query';
-import { getTravelDetail } from '@/api/travelApi';
-import useGetUser from '@/queries/user/useGetUser';
+import { TravelDetail as TravelType } from '@/@types/travel';
+import { useQueryClient } from '@tanstack/react-query';
+import { UserInfo } from '@/api/user/userInfoApi';
 import TravelDetailCategory from './TravelDetailCategory';
 import TravelImage from './TravelImage';
 import TravelButtons from './TravelButtons';
 
-const TravelDetail = ({ id }: { id: string }) => {
-  const { data: userInfo } = useGetUser();
-  const {
-    data: travelDetail,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['travels', { id }],
-    queryFn: () => getTravelDetail({ id }),
-  });
-
-  if (error) {
-    console.error('에러', { error });
-    return (
-      <div>
-        데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
-        <p>{error.message}</p>
-      </div>
-    );
-  }
+const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
+  const queryClient = useQueryClient();
+  const loginUser = queryClient.getQueryData<UserInfo>(['user']);
+  const loginUserId = loginUser?.userId;
 
   const isParticipation = Boolean(
     travelDetail &&
-      travelDetail.participant.find(
-        (user) => user.id === (userInfo && userInfo.userId),
-      ),
+      travelDetail.participant.find((user) => user.id === loginUserId),
   );
   const organizer =
     travelDetail &&
@@ -41,8 +23,7 @@ const TravelDetail = ({ id }: { id: string }) => {
   const dateOver = travelDetail && new Date() > new Date(travelDetail.endAt);
 
   return (
-    <>
-      {isLoading && <div>로딩중</div>}
+    <div>
       {travelDetail && (
         <article className="relative m-auto mb-32 flex max-w-[1216px] flex-col items-center gap-[22px] md:grid md:px-10 xl:mb-24 xl:grid-cols-[652px_540px]">
           <TravelImage
@@ -94,7 +75,7 @@ const TravelDetail = ({ id }: { id: string }) => {
           )}
         </article>
       )}
-    </>
+    </div>
   );
 };
 export default TravelDetail;

@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
 import ModalErrorIcon from '@/assets/modal/modal_error.svg';
-import { deleteTravelBookMark, postTravelBookMark } from '@/api/travelApi';
+import { deleteTravelBookMark, postTravelBookMark } from '@/api/travel/travels';
 
 export const useBookmarkTravel = () => {
   const { showModal } = useModal();

@@ -7,29 +7,9 @@ import { Pagination } from 'swiper/modules';
 import MainReviewCard from '@/components/card/Review/MainReviewCard';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { getPopularReview } from '@/api/reviewApi';
-import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEYS } from '@/constants/querykeys';
+import { Review } from '@/@types/review';
 
-const WeeklyReview = () => {
-  const {
-    data: reviewList,
-    isFetching,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: QUERY_KEYS.REVIEW.POPULAR_REVIEW,
-    queryFn: getPopularReview,
-  });
-  if (error && !isFetching) {
-    return (
-      <div>
-        데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
-        <p>{error.message}</p>
-      </div>
-    );
-  }
-
+const WeeklyReview = ({ reviewList }: { reviewList: Review[] }) => {
   return (
     <section className="flex flex-col justify-start gap-5 bg-black px-5 py-10 md:px-10">
       <header className="m-auto w-full max-w-[1400px] justify-start">
@@ -42,7 +22,6 @@ const WeeklyReview = () => {
         className="flex xl:max-w-[1400px] 2xl:m-auto"
         aria-label="이미지 가로 슬라이드"
       >
-        {isLoading && <div>로딩중</div>}
         <Swiper
           slidesPerView="auto"
           spaceBetween={16}

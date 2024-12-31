@@ -13,3 +13,7 @@ export const getWritableTravelReview = (size: number, page: number) => {
     `/travels/reviews/pending?size=${size}&page=${page}`,
   );
 };
+
+export const createReview = (formData: FormData) => {
+  return http.post<any>('/reviews', formData);
+};

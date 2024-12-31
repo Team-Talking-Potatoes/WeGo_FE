@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Location from '@/assets/location.svg';
 import ProfileICon from '@/assets/profile.svg';
@@ -9,7 +11,7 @@ import {
   useBookmarkTravel,
   useDeleteBookmarkTravel,
 } from '@/queries/travel/useBookmarkTravel';
-import { formatDateToShortWithDay } from '@/utils/dateChageKr';
+import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import DomesticTag from '../../common/tag/DomesticTag';
 import ProgressBar from '../../common/progressbar/ProgressBar';
 import ExpiredTag from '../../common/tag/ExpiredTag';

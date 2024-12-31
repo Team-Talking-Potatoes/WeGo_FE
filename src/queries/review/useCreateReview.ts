@@ -1,4 +1,4 @@
-import { createReview } from '@/api/reviewApi';
+import { createReview } from '@/api/review/createReview';
 import useCreateReviewStore from '@/store/useCreateReview';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';

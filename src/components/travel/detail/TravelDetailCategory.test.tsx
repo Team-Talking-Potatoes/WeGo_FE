@@ -64,7 +64,7 @@ describe('TravelDetailCategory', () => {
   });
 
   it('종료 날짜가 지난 경우 모임 리뷰 탭이 렌더링됩니다.', () => {
-    renderComponent('2024-12-05'); // 종료 날짜가 지난 경우
+    renderComponent('2024-12-05');
     expect(screen.getByText('모임리뷰')).toBeInTheDocument();
   });
 
