@@ -2,8 +2,8 @@
 
 import { Participant, TravelDetail } from '@/@types/travel';
 import React, { Suspense, useState } from 'react';
-import SelectTravelReview from './category/SelectTravelReview';
-import SelectTravelDetail from './category/SelectTravelDetail';
+import TabTravelReview from './category/TabTravelReview';
+import TabTravelDetail from './category/TabTravelDetail';
 
 type Props = Pick<
   TravelDetail,
@@ -17,8 +17,8 @@ type Props = Pick<
 > & { organizer?: Participant; isParticipation: boolean };
 type Category = 'details' | 'itinerary' | 'review';
 
-const SelectTravelItinerary = React.lazy(
-  () => import('./category/SelectTravelItinerary'),
+const TabTravelItinerary = React.lazy(
+  () => import('./category/TabTravelItinerary'),
 );
 
 const TravelDetailCategory = ({
@@ -66,7 +66,7 @@ const TravelDetailCategory = ({
       </header>
       <div className="pt-6">
         {category === 'details' && (
-          <SelectTravelDetail
+          <TabTravelDetail
             travelId={travelId}
             isParticipation={isParticipation}
             organizer={organizer}
@@ -77,13 +77,13 @@ const TravelDetailCategory = ({
 
         <Suspense fallback={<div>Loading...</div>}>
           {category === 'itinerary' && (
-            <SelectTravelItinerary
+            <TabTravelItinerary
               tripDuration={tripDuration}
               travelPlan={travelPlan}
               startAt={startAt}
             />
           )}
-          {category === 'review' && <SelectTravelReview travelId={travelId} />}
+          {category === 'review' && <TabTravelReview travelId={travelId} />}
         </Suspense>
       </div>
     </section>

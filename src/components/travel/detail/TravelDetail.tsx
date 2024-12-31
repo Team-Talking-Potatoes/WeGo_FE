@@ -1,12 +1,12 @@
 'use client';
 
-import TravelContents from '@/components/travel/detail/TravelContents';
+import TravelInformation from '@/components/travel/detail/information/TravelInformation';
 import { TravelDetail as TravelType } from '@/@types/travel';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserInfo } from '@/api/user/userInfoApi';
 import TravelDetailCategory from './TravelDetailCategory';
-import TravelImage from './TravelImage';
-import TravelButtons from './TravelButtons';
+import TravelImage from './image/TravelImage';
+import TravelButtons from './buttons/TravelButtons';
 
 const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
   const queryClient = useQueryClient();
@@ -34,7 +34,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
           />
 
           <div className="flex w-full flex-col items-center md:pt-5 xl:sticky xl:top-28 xl:pt-0">
-            <TravelContents
+            <TravelInformation
               name={travelDetail.name}
               isDomestic={travelDetail.isDomestic}
               minTravelMateCount={travelDetail.minTravelMateCount}

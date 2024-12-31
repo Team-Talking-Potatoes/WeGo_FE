@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import TravelContents from './TravelContents';
+import TravelInformation from './TravelInformation';
 
-describe('TravelContents', () => {
+describe('TravelInformation', () => {
   const travelDetail = {
     name: '제주도 여행',
     image: '/test.png',
@@ -21,7 +21,7 @@ describe('TravelContents', () => {
 
   const renderComponent = () =>
     render(
-      <TravelContents
+      <TravelInformation
         name={travelDetail.name}
         isDomestic={travelDetail.isDomestic}
         minTravelMateCount={travelDetail.minTravelMateCount}

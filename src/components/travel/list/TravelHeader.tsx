@@ -1,6 +1,6 @@
 import ButtonRounded from '@/components/common/button/ButtonRounded';
 import Link from 'next/link';
-import FilterSearch from './FilterSearch';
+import FilterSearch from './filter/FilterSearch';
 
 const TravelHeader = () => {
   return (

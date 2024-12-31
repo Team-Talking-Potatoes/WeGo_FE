@@ -2,7 +2,7 @@
 
 import { TravelDetail } from '@/@types/travel';
 import { useState } from 'react';
-import SelectTravelItinerary from '@/components/travel/detail/category/SelectTravelItinerary';
+import SelectTravelItinerary from '@/components/travel/detail/category/TabTravelItinerary';
 import { Button } from '@/components/common/button/Button';
 import PreviewSelectTravelReview from './PreviewSelectTravelReview';
 import PreviewSelectTravelDetail from './PreviewSelectTravelDetail';

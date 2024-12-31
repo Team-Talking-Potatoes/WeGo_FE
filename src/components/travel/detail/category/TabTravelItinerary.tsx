@@ -8,11 +8,7 @@ import TravelPlanCard from '../../../card/travel/TravelPlanCard';
 
 type Props = Pick<TravelDetail, 'tripDuration' | 'travelPlan' | 'startAt'>;
 
-const SelectTravelItinerary = ({
-  tripDuration,
-  travelPlan,
-  startAt,
-}: Props) => {
+const TabTravelItinerary = ({ tripDuration, travelPlan, startAt }: Props) => {
   const [isOpen, setIsOpen] = useState<Set<number>>(new Set());
 
   const toggleDay = (day: number) => {
@@ -86,4 +82,4 @@ const SelectTravelItinerary = ({
   );
 };
 
-export default SelectTravelItinerary;
+export default TabTravelItinerary;

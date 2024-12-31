@@ -3,8 +3,8 @@ import Timeline from '@/assets/timeline.svg';
 import DateIcon from '@/assets/date.svg';
 import { TravelDetail } from '@/@types/travel';
 import dayjs from 'dayjs';
-import DomesticTag from '../../common/tag/DomesticTag';
-import RecruimentBox from './RecruimentBox';
+import DomesticTag from '../../../common/tag/DomesticTag';
+import RecruitmentBox from './RecruitmentBox';
 
 type Props = Pick<
   TravelDetail,
@@ -18,7 +18,7 @@ type Props = Pick<
   | 'registrationEnd'
 >;
 
-const TravelContents = ({
+const TravelInformation = ({
   name,
   isDomestic,
   minTravelMateCount,
@@ -59,7 +59,7 @@ const TravelContents = ({
           </div>
         </div>
       </div>
-      <RecruimentBox
+      <RecruitmentBox
         isDateOver={isDateOver}
         minTravelMateCount={minTravelMateCount}
         maxTravelMateCount={maxTravelMateCount}
@@ -69,4 +69,4 @@ const TravelContents = ({
   );
 };
 
-export default TravelContents;
+export default TravelInformation;

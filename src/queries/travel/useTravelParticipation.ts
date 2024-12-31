@@ -14,7 +14,7 @@ export const useTravelParticipation = () => {
   });
 };
 
-export const useTravelParticipationCancle = () => {
+export const useTravelParticipationCancel = () => {
   const { showModal } = useModal();
   const handleError = useQueryErrorHandler();
   const router = useRouter();

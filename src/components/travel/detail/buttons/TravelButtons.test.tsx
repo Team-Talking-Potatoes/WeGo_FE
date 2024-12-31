@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import useGetUser from '@/queries/user/useGetUser';
 import {
   useTravelParticipation,
-  useTravelParticipationCancle,
+  useTravelParticipationCancel,
 } from '@/queries/travel/useTravelParticipation';
 import { render, screen } from '@testing-library/react';
 import TravelButtons from './TravelButtons';
@@ -15,7 +15,7 @@ jest.mock('next/navigation', () => ({
 }));
 jest.mock('@/queries/travel/useTravelParticipation', () => ({
   useTravelParticipation: jest.fn(),
-  useTravelParticipationCancle: jest.fn(),
+  useTravelParticipationCancel: jest.fn(),
 }));
 
 jest.mock('@/queries/travel/useDeleteTravel');
@@ -43,7 +43,7 @@ describe('TravelButtons', () => {
     (useTravelParticipation as jest.Mock).mockReturnValue({
       mutate: jest.fn(),
     });
-    (useTravelParticipationCancle as jest.Mock).mockReturnValue({
+    (useTravelParticipationCancel as jest.Mock).mockReturnValue({
       mutate: jest.fn(),
     });
     (useDeleteTravel as jest.Mock).mockReturnValue({

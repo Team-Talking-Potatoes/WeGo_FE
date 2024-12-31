@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import RecruimentBox from './RecruimentBox';
+import RecruitmentBox from './RecruitmentBox';
 
 jest.mock('../../common/user/UserIconList', () => ({
   __esModule: true,
@@ -12,10 +12,10 @@ jest.mock('../../common/progressbar/ProgressBar', () => ({
   default: jest.fn(() => <div>Mocked ProgressBar</div>),
 }));
 
-describe('RecruimentBox', () => {
+describe('RecruitmentBox', () => {
   it('마감된 여행일 때 "마감된 여행입니다." 메시지를 렌더링합니다', () => {
     render(
-      <RecruimentBox
+      <RecruitmentBox
         isDateOver
         minTravelMateCount={2}
         maxTravelMateCount={5}
@@ -28,7 +28,7 @@ describe('RecruimentBox', () => {
 
   it('모집 중일 때 "모집 중" 메시지를 렌더링합니다', () => {
     render(
-      <RecruimentBox
+      <RecruitmentBox
         isDateOver={false}
         minTravelMateCount={2}
         maxTravelMateCount={5}
@@ -40,7 +40,7 @@ describe('RecruimentBox', () => {
   });
 });
 
-describe('RecruimentBox, 모집 중인 여행일 때', () => {
+describe('RecruitmentBox, 모집 중인 여행일 때', () => {
   const mockParticipants = [
     { id: 1, nickname: 'string', role: 'string', profileImage: 'string' },
     { id: 2, nickname: 'string', role: 'string', profileImage: 'string' },
@@ -48,7 +48,7 @@ describe('RecruimentBox, 모집 중인 여행일 때', () => {
 
   beforeEach(() =>
     render(
-      <RecruimentBox
+      <RecruitmentBox
         isDateOver={false}
         minTravelMateCount={2}
         maxTravelMateCount={5}
