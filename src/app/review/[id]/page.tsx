@@ -1,23 +1,34 @@
+import { ReviewDetailResponse } from '@/@types/review';
+import { getReviewDetail } from '@/api/reviewApi';
 import Header from '@/components/common/header/Header';
 import ReviewDetailContainer from '@/components/review/detail/ReviewDetailContainer';
-// import { QueryClient } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 
-const ReviewDetailPage = async () =>
-  // { params }: { params: Promise<{ id: string }>; }
-  {
-    // const { id } = await params;
-    // const queryClient = new QueryClient();
-    // const data =await queryClient.prefetchQuery({
-    //   queryKey: ['reviews', { id }],
-    //   queryFn: () => getReviewDetail({ id }),
-    // });
+const ReviewDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ id: number }>;
+}) => {
+  const { id } = await params;
+  const queryClient = new QueryClient();
 
-    return (
-      <div className="pb-[120px]">
-        <Header title="리뷰 상세보기" />
-        <ReviewDetailContainer />
-      </div>
-    );
-  };
+  await queryClient.fetchQuery({
+    queryKey: ['reviews', 'detail', id],
+    queryFn: () => getReviewDetail(id),
+  });
+
+  const data = queryClient.getQueryData<ReviewDetailResponse>([
+    'reviews',
+    'detail',
+    id,
+  ]);
+
+  return (
+    <div className="pb-[120px]">
+      <Header title="리뷰 상세보기" />
+      <ReviewDetailContainer data={data?.data} />
+    </div>
+  );
+};
 
 export default ReviewDetailPage;
