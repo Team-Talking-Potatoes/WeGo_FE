@@ -68,10 +68,10 @@ const TravelCardBig = ({
   return (
     <Link
       href={`/travel/${travelId}`}
-      className="flex w-full min-w-[335px] flex-col overflow-hidden rounded border sm:max-w-[688px] sm:flex-row"
+      className="flex aspect-[335/290] w-full flex-col overflow-hidden rounded border"
     >
       <div
-        className={cn('relative h-[140px] flex-shrink-0 sm:h-40 sm:w-56', {
+        className={cn('relative h-[48.28%]', {
           'after:absolute after:inset-0 after:rounded after:bg-black after:opacity-50':
             closed,
         })}
@@ -98,15 +98,17 @@ const TravelCardBig = ({
         )}
       </div>
 
-      <div className="flex w-full flex-col justify-between rounded px-4 pb-4 pt-5">
-        <div className="flex flex-col gap-1.5 pb-[18px]">
+      <div className="flex h-full w-full flex-col justify-between gap-1.5 rounded px-4 pb-4 pt-5">
+        <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-1">
             <DomesticTag isDomestic={isDomestic} />
             {closed && <ExpiredTag />}
           </div>
-          <h3 className="title-5-b line-clamp-2">{travelName}</h3>
-          <div className="body-3-sb flex h-3.5 items-center divide-x divide-line-normal text-gray-500">
-            <div className="body-3-sb flex items-center gap-0.5 pr-1.5">
+          <h3 className="title-5-b line-clamp-1">{travelName}</h3>
+        </div>
+        <div className="flex flex-col gap-[1.125rem]">
+          <div className="body-3-sb line-clamp-1 flex h-3.5 items-center divide-x divide-line-normal text-gray-500">
+            <div className="body-3-sb flex flex-shrink-0 items-center gap-0.5 pr-1.5">
               <Location />
               {location}
             </div>
@@ -114,14 +116,13 @@ const TravelCardBig = ({
               <ProfileICon />
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </div>
-            <div className="body-3-r flex gap-0.5 pl-1.5">
+            <div className="body-3-r flex flex-shrink-0 gap-0.5 pl-1.5">
               {formatDateToShortWithDay(startAt, undefined, true)} -{' '}
               {formatDateToShortWithDay(endAt, undefined, true)}
             </div>
           </div>
+          {!closed && <ProgressBar progressRate={progressRate} />}
         </div>
-
-        {!closed && <ProgressBar progressRate={progressRate} />}
       </div>
     </Link>
   );

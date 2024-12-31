@@ -15,7 +15,7 @@ const UserCard = ({
     <Link
       href={`/${userId}`}
       aria-label={`${nickname} 프로필 보기`}
-      className="flex h-[246px] flex-col items-center justify-center rounded border border-line-normal px-[21px] py-5 md:w-[200px] xl:h-[306px] xl:w-[332px]"
+      className="flex h-[246px] flex-col items-center justify-center rounded border border-line-normal px-[21px] py-5 md:w-[200px] lg:h-[306px] lg:w-[332px]"
     >
       <UserIcon profileImage={profileImage} nickname={nickname} />
       <div className="flex flex-col items-center justify-center gap-0.5 pb-4 pt-4 md:pt-6">
