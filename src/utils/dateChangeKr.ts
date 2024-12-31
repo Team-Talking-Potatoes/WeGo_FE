@@ -13,11 +13,10 @@ export const checkTomorrow = (checkDate: string): string => {
 };
 
 // 현재 날짜를 기준으로 'n주차' 계산
-export const getWeekNumber = (dateFrom = new Date()) => {
-  const currentDate = dateFrom.getDate();
-  const startofMonth = new Date(dateFrom);
-  startofMonth.setDate(1);
-  const weekDay = startofMonth.getDay();
+export const getWeekNumber = (dateFrom = dayjs()) => {
+  const currentDate = dateFrom.date();
+  const startOfMonth = dateFrom.startOf('month');
+  const weekDay = startOfMonth.day();
   const offset = weekDay === 0 ? 0 : 7 - weekDay;
   return Math.floor((offset + currentDate) / 7) + 1;
 };
