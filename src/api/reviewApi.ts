@@ -1,5 +1,5 @@
-import { APIError } from '@/@types/api';
-import { Review, ReviewResponse } from '@/@types/review';
+import { Review, ReviewDetailResponse, ReviewResponse } from '@/@types/review';
+import { http } from './fetcher';
 
 interface ReviewParams {
   pageParam: number;
@@ -11,63 +11,30 @@ interface MyReview {
   reviews: Review[];
 }
 
-const handleResponse = async (response: Response, callName: string) => {
-  if (!response.ok) {
-    const error = new Error(`Get review data failed: ${callName}`) as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-  return response.json();
-};
-
-export const getReview = async ({
-  pageParam,
-  sortOrder,
-}: ReviewParams): Promise<ReviewResponse> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
-    {
-      method: 'GET',
-      credentials: 'include',
-    },
+export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
+  return http.get<ReviewResponse>(
+    `/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
   );
-  return handleResponse(response, 'getReview');
 };
 
-export const getPopularReview = async (): Promise<Review[]> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/popular`,
+export const getPopularReview = () => {
+  return http.get<Review[]>('/reviews/popular');
+};
+
+export const getTravelReview = (id: number) => {
+  return http.get<Review[]>(`/reviews?id=${id}`);
+};
+
+export const getMyReview = (limit: number, offset: number) => {
+  return http.get<MyReview>(
+    `/reviews/published?limit=${limit}&offset=${offset}`,
   );
-  return handleResponse(response, 'getPopularReview');
 };
 
-export const getTravelReview = async (id: number): Promise<Review[]> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?id=${id}`,
-  );
-  return handleResponse(response, 'getTravelReview');
+export const createReview = (formData: FormData) => {
+  return http.post<any>('/reviews', formData);
 };
 
-export const getMyReview = async (
-  limit: number,
-  offset: number,
-): Promise<MyReview> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews/published?limit=${limit}&offset=${offset}`,
-    {
-      method: 'GET',
-      credentials: 'include',
-    },
-  );
-  return handleResponse(response, 'getMyReview');
-};
-
-export const createReview = async (formData: FormData) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/reviews`, {
-    method: 'POST',
-    credentials: 'include',
-    body: formData,
-  });
-  return handleResponse(response, 'createReview');
+export const getReviewDetail = (id: number) => {
+  return http.get<ReviewDetailResponse>(`/reviews/${id}`);
 };

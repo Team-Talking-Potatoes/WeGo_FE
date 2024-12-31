@@ -1,19 +1,5 @@
-import { APIError } from '@/@types/api';
+import { http } from '../fetcher';
 
-export const verifyToken = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/token/verify`,
-    {
-      method: 'GET',
-      credentials: 'include',
-    },
-  );
-
-  if (!response.ok) {
-    const error = new Error('Login failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-  }
-
-  return response.json();
+export const verifyToken = () => {
+  return http.get<any>('/auth/token/verify');
 };

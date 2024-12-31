@@ -7,6 +7,9 @@ const useGetUser = () => {
     queryFn: getUserInfo,
     staleTime: Infinity,
     gcTime: 1000 * 60 * 30,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 };
 
