@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RecruitmentBox from './RecruitmentBox';
 
-jest.mock('../../components/common/user/UserIconList', () => ({
+jest.mock('@/components/common/user/UserIconList', () => ({
   __esModule: true,
   default: jest.fn(() => <div>Mocked UserIconList</div>),
 }));
 
-jest.mock('../../components/common/progressbar/ProgressBar', () => ({
+jest.mock('@/components/common/progressbar/ProgressBar', () => ({
   __esModule: true,
   default: jest.fn(() => <div>Mocked ProgressBar</div>),
 }));
