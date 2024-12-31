@@ -1,4 +1,4 @@
-import { APIError } from '@/@types/api';
+import { http } from '../fetcher';
 
 interface UserInfo {
   userId: number;
@@ -8,18 +8,6 @@ interface UserInfo {
   profileImage: string;
 }
 
-export const getUserInfo = async (): Promise<UserInfo> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users`, {
-    method: 'GET',
-    credentials: 'include',
-  });
-
-  if (!response.ok) {
-    const error = new Error('Get user info failed') as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-
-  return response.json();
+export const getUserInfo = () => {
+  return http.get<UserInfo>('/users');
 };

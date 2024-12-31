@@ -24,21 +24,25 @@ export interface Filters {
   sortOrder: 'createdAt' | 'popular';
 }
 
-interface ReviewUser {
-  nickname: string;
-  profileImage: string;
-}
-
 export interface ReviewDetail {
   reviewId: number;
-  user: ReviewUser;
+  travelId: number;
+  travelTitle: string;
+  userProfileImage: string;
+  nickname: string;
   title: string;
+  comment: string;
+  starRating: number;
   reviewImages: string[];
-  liked: boolean;
-  content: string;
-  score: number;
+  likesCount: number;
+  likesFlag: boolean;
   travelLocation: string;
   createdAt: string;
+}
+
+export interface ReviewDetailResponse {
+  status: string;
+  data: ReviewDetail;
 }
 
 export interface CreateReview {

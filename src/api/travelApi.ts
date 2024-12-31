@@ -4,66 +4,30 @@ import {
   TravelDetail,
   TravelFilterResponse,
 } from '@/@types/travel';
-import { APIError } from '@/@types/api';
 import buildTravelUrl from '@/utils/buildTravelUrl';
+import { http } from './fetcher';
 
-const handleResponse = async (response: Response, callName: string) => {
-  if (!response.ok) {
-    const error = new Error(`Get travel data failed: ${callName}`) as APIError;
-    error.status = response.status;
-    error.message = `Server error: ${response.status}`;
-    throw error;
-  }
-  return response.json();
+export const getPopularTravel = () => {
+  return http.get<Travel[]>('/travels/popular');
 };
 
-export const getPopularTravel = async (): Promise<Travel[]> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/popular`,
-  );
-  return handleResponse(response, 'getPopularTravel');
+export const getTravelDetail = ({ id }: { id: string }) => {
+  return http.get<TravelDetail>(`/travels/detail/${id}`);
 };
 
-export const getTravelDetail = async ({
-  id,
-}: {
-  id: string;
-}): Promise<TravelDetail> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/detail/${id}`,
-  );
-  return handleResponse(response, 'getTravelDetail');
-};
-
-export const getTravels = async (
-  props: Filters & { pageParam?: number },
-): Promise<TravelFilterResponse> => {
+export const getTravels = (props: Filters & { pageParam?: number }) => {
   const { pageParam, ...filters } = props;
-
   const url = buildTravelUrl(filters, pageParam);
-  const response = await fetch(url);
 
-  return handleResponse(response, 'getTravels');
+  return http.get<TravelFilterResponse>(
+    url.replace(process.env.NEXT_PUBLIC_BASE_URL!, ''),
+  );
 };
 
-export const postTravelBookMark = async (id: number) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/bookmark?id=${id}`,
-    {
-      method: 'POST',
-      credentials: 'include',
-    },
-  );
-  return handleResponse(response, 'postTravelBookMark');
+export const postTravelBookMark = (id: number) => {
+  return http.post<any>(`/travels/bookmark?id=${id}`);
 };
 
-export const deleteTravelBookMark = async (id: number) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/travels/bookmark?id=${id}`,
-    {
-      method: 'DELETE',
-      credentials: 'include',
-    },
-  );
-  return handleResponse(response, 'postTravelBookMark');
+export const deleteTravelBookMark = (id: number) => {
+  return http.delete<any>(`/travels/bookmark?id=${id}`);
 };

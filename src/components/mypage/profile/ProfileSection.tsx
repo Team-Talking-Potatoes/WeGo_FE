@@ -6,6 +6,7 @@ import ButtonRounded from '@/components/common/button/ButtonRounded';
 import Link from 'next/link';
 import useGetUser from '@/queries/user/useGetUser';
 import Setting from '@/assets/icon/setting_32px.svg';
+import cn from '@/utils/cn';
 
 const ProfileSection = () => {
   const { data: user } = useGetUser();
@@ -47,8 +48,15 @@ const ProfileSection = () => {
           </div>
         </div>
 
-        <p className="body-2-sb mt-6 flex h-[46px] w-full max-w-[500px] items-center justify-center rounded-[44px] bg-label-normal text-primary-white xl:mt-0">
-          {user?.description}
+        <p
+          className={cn(
+            'body-2-sb mt-6 flex h-[46px] w-full max-w-[500px] items-center justify-center rounded-[44px] bg-label-normal text-primary-white xl:mt-0',
+            {
+              'text-gray-300': !user?.description,
+            },
+          )}
+        >
+          {user?.description || '나의 소개글을 입력 해 주세요.'}
         </p>
       </div>
     </section>
