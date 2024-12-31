@@ -6,7 +6,7 @@ const ButtonRoundedVariants = cva(
   {
     variants: {
       color: {
-        gray: 'py-1.5 border border-line-normal text-label-alternative bg-transparent hover:text-primary-normal hover:border-primary-normal',
+        gray: 'py-1.5 border border-line-normal text-label-alternative bg-transparent hover:text-primary-normal hover:bg-transparent hover:border-primary-normal',
         blue: 'border-primary-normal border bg-white text-primary-normal hover:bg-blue-100',
       },
     },

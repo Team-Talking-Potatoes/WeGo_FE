@@ -1,83 +1,41 @@
 import { render, screen } from '@testing-library/react';
-import { useQuery } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
+import reviewListData from '@/mocks/data/review/reviewListMock.json';
 import WeeklyReview from './WeeklyReview';
 
-jest.mock('@tanstack/react-query', () => ({
-  useQuery: jest.fn(),
-}));
-
-const mockReviewList = [
-  {
-    reviewId: 1,
-    nickname: '테스트 유저 1',
-    reviewImage: 'https://example.com/image1.jpg',
-  },
-  {
-    reviewId: 2,
-    nickname: '테스트 유저 2',
-    reviewImage: 'https://example.com/image2.jpg',
-  },
-];
-
 describe('WeeklyReview', () => {
-  it('로딩 중일 때 로딩 메시지를 표시합니다', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: null,
-      isLoading: true,
-      isFetching: false,
-      error: null,
-    });
-
-    render(<WeeklyReview />);
-
-    expect(screen.getByText('로딩중')).toBeInTheDocument();
+  it('인기 리뷰 리스트의 제목과 소제목을 렌더링합니다', () => {
+    render(<WeeklyReview reviewList={reviewListData} />);
+    expect(
+      screen.getByText('다양한 여행모임 후기들을 한눈에 확인해요!'),
+    ).toBeInTheDocument();
+    expect(screen.getByText('여행리뷰 모아보기')).toBeInTheDocument();
   });
 
-  it('데이터가 있으면 리뷰 카드와 "더 많은 리뷰 보기" 링크를 렌더링합니다', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: mockReviewList,
-      isLoading: false,
-      isFetching: false,
-      error: null,
-    });
+  it('데이터가 없으면 여행참여 텍스트와 버튼, 링크를 렌더링합니다', () => {
+    render(<WeeklyReview reviewList={[]} />);
+    expect(
+      screen.getByText('여행에 참여하고 후기를 남겨보세요!'),
+    ).toBeInTheDocument();
+    expect(screen.getByText('여행모임 보러가기')).toBeInTheDocument();
+    const slides = screen.getAllByRole('link');
+    expect(slides.length).toBe(1);
+  });
 
-    render(<WeeklyReview />);
+  it('데이터가 있으면 리뷰 링크와 유저 프로필 링크를 렌더링합니다', () => {
+    render(<WeeklyReview reviewList={reviewListData} />);
 
     const slides = screen.getAllByRole('link');
-    expect(slides.length).toBe(5);
-
-    const moreReviewsLink = screen.getByLabelText('더 많은 리뷰 보기');
-    expect(moreReviewsLink).toBeInTheDocument();
+    expect(slides.length).toBe(13);
   });
 
-  it('에러가 발생하면 에러 메시지를 표시합니다', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: null,
-      isLoading: false,
-      isFetching: false,
-      error: { message: '네트워크 오류' },
-    });
-
-    render(<WeeklyReview />);
-
-    expect(
-      screen.getByText(
-        '데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.',
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText('네트워크 오류')).toBeInTheDocument();
+  it('더 많은 리뷰 보기를 렌더링합니다', () => {
+    render(<WeeklyReview reviewList={reviewListData} />);
+    expect(screen.getByLabelText('더 많은 리뷰 보기')).toBeInTheDocument();
   });
 
   it('aria-label이 올바르게 렌더링되었는지 확인합니다', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: mockReviewList,
-      isLoading: false,
-      isFetching: false,
-      error: null,
-    });
-
-    render(<WeeklyReview />);
+    render(<WeeklyReview reviewList={reviewListData} />);
 
     expect(screen.getByLabelText('이미지 가로 슬라이드')).toBeInTheDocument();
 
