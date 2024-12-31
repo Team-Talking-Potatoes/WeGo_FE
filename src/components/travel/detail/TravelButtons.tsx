@@ -37,25 +37,14 @@ const TravelButtons = ({
     handleParticipation(travelId, {
       onSuccess: () => {
         setIsParticipate(true);
-        showModal(
-          '동행이 확정되었습니다.',
-          '새로운 여행지기들과 인사하러 갈까요?',
-          {
-            titleHighlight: {
-              range: { start: 4, end: 6 },
-              color: 'text-primary-normal',
-            },
-            icon: ParticipantIcon,
-            cancelText: '취소',
-            confirmText: '채팅방가기',
-            onConfirm: () => {
-              router.push('/chat');
-            },
-            onCancel: () => {
-              closeModal();
-            },
+        showModal('동행이 확정되었습니다.', '이제 떠날 준비를 해 볼까요?', {
+          titleHighlight: {
+            range: { start: 4, end: 6 },
+            color: 'text-primary-normal',
           },
-        );
+          icon: ParticipantIcon,
+          confirmText: '확인',
+        });
       },
     });
   };

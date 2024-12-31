@@ -2,6 +2,7 @@ import { createReview } from '@/api/review/createReview';
 import useCreateReviewStore from '@/store/useCreateReview';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useQueryErrorHandler } from '../common/errorHandler';
 
 export const useCreateReview = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ export const useCreateReview = () => {
     resetStore,
     setErrorMessage,
   } = useCreateReviewStore();
+  const handleQueryError = useQueryErrorHandler();
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => createReview(formData),
@@ -24,7 +26,7 @@ export const useCreateReview = () => {
       router.back();
     },
     onError: (error: any) => {
-      console.error('리뷰 생성 중 오류 발생:', error);
+      handleQueryError(error);
     },
   });
 

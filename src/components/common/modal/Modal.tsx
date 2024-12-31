@@ -37,6 +37,7 @@ const Modal = () => {
     cancelText = '취소',
     onConfirm,
     onCancel,
+    type,
   } = modal;
 
   const handleConfirm = () => {
@@ -52,6 +53,7 @@ const Modal = () => {
   useModalHistory({ isOpen, closeModal });
 
   if (!isOpen) return null;
+  const isError = type === 'error';
 
   return (
     <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center bg-black/40 pb-[80px]">
@@ -82,6 +84,7 @@ const Modal = () => {
                 handler={handleCancel}
                 fill="white"
                 font="body_2_m"
+                hoverBorder={isError ? 'error' : 'default'}
                 className="h-[38px] w-[120px]"
               />
               <Button
@@ -89,6 +92,7 @@ const Modal = () => {
                 size="full"
                 handler={handleConfirm}
                 font="body_2_m"
+                hover={isError ? 'error' : 'default'}
                 className="h-[38px] w-[120px]"
               />
             </div>
@@ -98,6 +102,7 @@ const Modal = () => {
               size="modal"
               handler={handleConfirm}
               font="body_2_m"
+              hover={isError ? 'error' : 'default'}
               className="h-[38px] w-[120px] md:w-[210px]"
             />
           )}

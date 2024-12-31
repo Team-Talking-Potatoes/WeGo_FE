@@ -22,6 +22,7 @@ export default function Error({
       icon: ModalErrorIcon,
       cancelText: '취소',
       confirmText: '다시 시도',
+      type: 'error',
       onConfirm: () => {
         startTransition(() => {
           router.refresh();

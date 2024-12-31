@@ -22,6 +22,7 @@ const useResetAuthPassword = () => {
           showModal('사용자를 찾을 수 없습니다.', '다시 시도해주세요.', {
             icon: ModalErrorIcon,
             confirmText: '확인',
+            type: 'error',
             onConfirm: () => {
               router.push('/login');
             },
@@ -31,6 +32,7 @@ const useResetAuthPassword = () => {
           showModal('인가가 필요합니다.', '다시 로그인 해주세요.', {
             icon: ModalErrorIcon,
             confirmText: '확인',
+            type: 'error',
             onConfirm: () => {
               router.push('/userSetting');
             },
@@ -43,6 +45,7 @@ const useResetAuthPassword = () => {
             {
               icon: ModalErrorIcon,
               confirmText: '돌아가기',
+              type: 'error',
               onConfirm: () => {
                 router.push('/userSetting');
               },
