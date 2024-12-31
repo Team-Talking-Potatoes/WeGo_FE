@@ -8,7 +8,7 @@ const ButtonVariants = cva(
     variants: {
       fill: {
         default: 'bg-label-normal text-white',
-        white: 'bg-white border border-line-strong ',
+        white: 'bg-white border border-line-strong text-line-strong',
         blue: 'bg-primary-normal text-white hover:text-primary-normal hover:bg-blue-100',
       },
       size: {
@@ -26,21 +26,19 @@ const ButtonVariants = cva(
       },
       // fill default 때 사용
       hover: {
-        default: 'hover:bg-primary-normal',
+        default: 'hover:bg-primary-normal hover:text-white',
         error: 'hover:bg-status-error',
       },
       // fill white일 때 사용
       hoverBorder: {
-        default: 'hover:border-primary-normal text-primary-normal',
-        error: 'hover:border-status-error text-status-error',
+        default: 'hover:border-primary-normal hover:text-primary-normal',
+        error: 'hover:border-status-error hover:text-status-error',
       },
     },
     defaultVariants: {
       fill: 'default',
       size: 'default',
       font: 'default',
-      hover: 'default',
-      hoverBorder: 'default',
     },
   },
 );

@@ -9,7 +9,7 @@ const TravelDetailPage = async ({
   const { id } = await params;
 
   return (
-    <section className="mt-[60px] xl:mt-20">
+    <section className="mx-auto mt-[60px] xl:mt-20 xl:max-w-[1296px]">
       <Header title="여행상세" />
       <TravelDetailContainer id={id} />
     </section>

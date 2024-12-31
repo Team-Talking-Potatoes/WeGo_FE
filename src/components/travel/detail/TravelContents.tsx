@@ -2,6 +2,7 @@ import Profile from '@/assets/profile.svg';
 import Timeline from '@/assets/timeline.svg';
 import DateIcon from '@/assets/date.svg';
 import { TravelDetail } from '@/@types/travel';
+import dayjs from 'dayjs';
 import DomesticTag from '../../common/tag/DomesticTag';
 import RecruimentBox from './RecruimentBox';
 
@@ -27,12 +28,12 @@ const TravelContents = ({
   participant,
   registrationEnd,
 }: Props) => {
-  const now = new Date();
-  const endDate = new Date(registrationEnd);
-  const isDateOver = now > endDate;
+  const now = dayjs();
+  const endDate = dayjs(registrationEnd);
+  const isDateOver = now.isAfter(endDate);
   const info = 'flex items-center justify-start text-gray-500';
   return (
-    <main className="flex w-full max-w-[500px] flex-col justify-center px-5 sm:px-0">
+    <main className="flex w-full max-w-[540px] flex-col justify-center px-5 sm:px-0">
       <DomesticTag isDomestic={isDomestic} />
       <h2 className="title-4-b border-b border-line-normal pb-4 pt-1.5 font-bold">
         {name}

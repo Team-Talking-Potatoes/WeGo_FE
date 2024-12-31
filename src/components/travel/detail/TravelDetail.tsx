@@ -25,7 +25,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
   return (
     <div>
       {travelDetail && (
-        <article className="relative m-auto mb-32 flex max-w-[1216px] flex-col items-center gap-[22px] md:grid md:px-10 xl:mb-24 xl:grid-cols-[652px_540px]">
+        <article className="relative mb-32 grid gap-[22px] md:grid-cols-[1fr_1fr] md:px-10 xl:mb-24 xl:grid-cols-[652px_auto]">
           <TravelImage
             name={travelDetail.name}
             image={travelDetail.image}
@@ -33,7 +33,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
             registrationEnd={travelDetail.registrationEnd}
           />
 
-          <div className="flex w-full flex-col items-center md:pt-5 xl:sticky xl:top-10 xl:max-w-[540px] xl:pt-0">
+          <div className="flex w-full flex-col items-center md:pt-5 xl:sticky xl:top-28 xl:pt-0">
             <TravelContents
               name={travelDetail.name}
               isDomestic={travelDetail.isDomestic}

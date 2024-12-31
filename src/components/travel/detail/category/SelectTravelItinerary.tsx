@@ -33,7 +33,7 @@ const SelectTravelItinerary = ({
         (i) => (
           <div
             key={i}
-            className={`flex items-start justify-start sm:gap-10 ${i !== 1 && 'pt-6'}`}
+            className={`flex w-full items-start justify-start gap-5 sm:gap-10 ${i !== 1 && 'pt-6'}`}
           >
             <div
               role="button"
