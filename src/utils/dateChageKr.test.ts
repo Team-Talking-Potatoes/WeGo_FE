@@ -3,7 +3,7 @@ import {
   formatDateToShortWithDay,
   checkTomorrow,
   getWeekNumber,
-} from './dateChageKr';
+} from './dateChangeKr';
 
 describe('checkTomorrow', () => {
   it('내일 날짜는 "내일"을 반환해야 합니다.', () => {
