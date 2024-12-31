@@ -1,5 +1,5 @@
 import LogoBlue from '@/assets/logo_blue.svg';
-import Mypage from '@/assets/mypage.svg';
+import MypageIcon from '@/assets/mypage.svg';
 import useGetUser from '@/queries/user/useGetUser';
 import Link from 'next/link';
 import UserIcon from '../common/user/UserIcon';
@@ -19,17 +19,25 @@ const PCHeader = () => {
             <Link href="/travel">여행찾기</Link>
             <Link href="/chat">채팅</Link>
           </div>
-          <Link href="/mypage" aria-label="마이페이지로 가기">
-            {user ? (
+          {user ? (
+            <Link href="/mypage">
               <UserIcon
                 profileImage={user?.profileImage}
                 nickname={user.nickname}
                 size="xs"
+                ariaLabel="마이페이지로 가기"
               />
-            ) : (
-              <Mypage width={24} height={24} />
-            )}
-          </Link>
+            </Link>
+          ) : (
+            <Link href="/login">
+              <MypageIcon
+                width={24}
+                height={24}
+                aria-label="로그인하기"
+                className="text-label-normal"
+              />
+            </Link>
+          )}
         </div>
       </span>
     </header>

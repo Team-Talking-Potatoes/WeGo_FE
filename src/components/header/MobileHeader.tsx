@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import LogoBlue from '@/assets/logo_blue.svg';
-import Mypage from '@/assets/mypage.svg';
+import MypageIcon from '@/assets/mypage.svg';
 import useGetUser from '@/queries/user/useGetUser';
 import { usePathname } from 'next/navigation';
 import UserIcon from '../common/user/UserIcon';
@@ -18,23 +18,25 @@ const MobileHeader = () => {
           <LogoBlue width={80} height={32} aria-label="WEGO 로고" />
         </Link>
 
-        <Link href="/mypage">
-          {user ? (
+        {user ? (
+          <Link href="/mypage">
             <UserIcon
               profileImage={user?.profileImage}
               nickname={user.nickname}
               size="xs"
               ariaLabel="마이페이지로 가기"
             />
-          ) : (
-            <Mypage
+          </Link>
+        ) : (
+          <Link href="/login">
+            <MypageIcon
               width={24}
               height={24}
               aria-label="로그인하기"
               className="text-label-normal"
             />
-          )}
-        </Link>
+          </Link>
+        )}
       </header>
     );
   }
