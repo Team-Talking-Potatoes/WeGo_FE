@@ -19,7 +19,7 @@ const Custom404 = async () => {
         </main>
         <Link
           href="/"
-          className="body-1-m mb-24 flex h-12 w-80 items-center justify-center bg-black px-4 py-3 text-white"
+          className="body-1-m mb-24 flex h-12 w-80 items-center justify-center bg-black px-4 py-3 text-white hover:bg-status-error"
         >
           메인으로 돌아가기
         </Link>

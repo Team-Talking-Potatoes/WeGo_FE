@@ -1,6 +1,5 @@
 import LogoBlue from '@/assets/logo_blue.svg';
-import Write from '@/assets/write.svg';
-import Mypage from '@/assets/mypage.svg';
+import MypageIcon from '@/assets/mypage.svg';
 import useGetUser from '@/queries/user/useGetUser';
 import Link from 'next/link';
 import UserIcon from '../common/user/UserIcon';
@@ -20,22 +19,25 @@ const PCHeader = () => {
             <Link href="/travel">여행찾기</Link>
             <Link href="/chat">채팅</Link>
           </div>
-          <div className="flex gap-3 xl:gap-6">
-            <Link href="/" aria-label="모임 만들기">
-              <Write width={24} height={24} />
+          {user ? (
+            <Link href="/mypage">
+              <UserIcon
+                profileImage={user?.profileImage}
+                nickname={user.nickname}
+                size="xs"
+                ariaLabel="마이페이지로 가기"
+              />
             </Link>
-            <Link href="/mypage" aria-label="마이페이지로 가기">
-              {user ? (
-                <UserIcon
-                  profileImage={user?.profileImage}
-                  nickname={user.nickname}
-                  size="xs"
-                />
-              ) : (
-                <Mypage width={24} height={24} />
-              )}
+          ) : (
+            <Link href="/login">
+              <MypageIcon
+                width={24}
+                height={24}
+                aria-label="로그인하기"
+                className="text-label-normal"
+              />
             </Link>
-          </div>
+          )}
         </div>
       </span>
     </header>

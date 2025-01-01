@@ -17,7 +17,7 @@ const HeroImage = ({
   return (
     <Link
       href={link}
-      className="relative z-10 mx-5 flex h-[360px] items-center justify-center overflow-hidden rounded-lg md:mx-10 md:h-[400px] xl:h-[500px]"
+      className="relative z-10 mx-5 flex h-full max-h-[500px] min-h-[360px] items-center justify-center overflow-hidden rounded-lg md:mx-10"
     >
       <Image
         src={src}

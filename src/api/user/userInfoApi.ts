@@ -1,6 +1,6 @@
 import { http } from '../fetcher';
 
-interface UserInfo {
+export interface UserInfo {
   userId: number;
   nickname: string;
   email: string;

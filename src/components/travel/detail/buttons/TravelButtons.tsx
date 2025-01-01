@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import {
   useTravelParticipation,
-  useTravelParticipationCancle,
+  useTravelParticipationCancel,
 } from '@/queries/travel/useTravelParticipation';
 import ParticipantIcon from '@/assets/icon/travel/participant.svg';
 import ModalErrorIcon from '@/assets/modal/modal_error.svg';
@@ -11,7 +11,7 @@ import useModal from '@/hooks/useModal';
 import useDeleteTravel from '@/queries/travel/useDeleteTravel';
 import { useRouter } from 'next/navigation';
 import useGetUser from '@/queries/user/useGetUser';
-import { Button } from '../../common/button/Button';
+import { Button } from '@/components/common/button/Button';
 
 const TravelButtons = ({
   travelId,
@@ -30,69 +30,68 @@ const TravelButtons = ({
   const [isParticipate, setIsParticipate] = useState<boolean>(isParticipation);
   const { showModal, closeModal } = useModal();
   const { mutate: handleParticipation } = useTravelParticipation();
-  const { mutate: handleParticipationCancle } = useTravelParticipationCancle();
+  const { mutate: handleParticipationCancel } = useTravelParticipationCancel();
   const { mutate: handleDeleteTravel } = useDeleteTravel();
 
   const handleParticipationClick = () => {
     handleParticipation(travelId, {
       onSuccess: () => {
         setIsParticipate(true);
-        showModal(
-          '동행이 확정되었습니다.',
-          '새로운 여행지기들과 인사하러 갈까요?',
-          {
-            titleHighlight: {
-              range: { start: 4, end: 6 },
-              color: 'text-primary-normal',
-            },
-            icon: ParticipantIcon,
-            cancelText: '취소',
-            confirmText: '채팅방가기',
-            onConfirm: () => {
-              router.push('/chat');
-            },
-            onCancel: () => {
-              closeModal();
-            },
+        showModal('동행이 확정되었습니다.', '이제 떠날 준비를 해 볼까요?', {
+          titleHighlight: {
+            range: { start: 4, end: 6 },
+            color: 'text-primary-normal',
           },
-        );
+          icon: ParticipantIcon,
+          confirmText: '확인',
+        });
       },
     });
   };
 
-  const handleParticipationCancleClick = () => {
-    showModal('정말 동행을 취소할까요?', '자동으로 채팅방에서 나가져요.', {
-      titleHighlight: {
-        range: { start: 7, end: 9 },
-        color: 'text-status-error',
+  const handleParticipationCancelClick = () => {
+    showModal(
+      '정말 동행을 취소할까요?',
+      '해당 여행과 관련된 데이터는 전부 사라집니다.',
+      {
+        titleHighlight: {
+          range: { start: 7, end: 9 },
+          color: 'text-status-error',
+        },
+        icon: ModalErrorIcon,
+        cancelText: '취소',
+        confirmText: '확인',
+        type: 'error',
+        onConfirm: () => {
+          handleParticipationCancel(travelId, {
+            onSuccess: () => setIsParticipate(false),
+          });
+        },
+        onCancel: () => {
+          closeModal();
+        },
       },
-      icon: ModalErrorIcon,
-      cancelText: '취소',
-      confirmText: '확인',
-      onConfirm: () => {
-        handleParticipationCancle(travelId, {
-          onSuccess: () => setIsParticipate(false),
-        });
-      },
-      onCancel: () => {
-        closeModal();
-      },
-    });
+    );
   };
 
-  const handleTravelCancle = () => {
-    showModal('정말 여행을 취소할까요?', '여행 데이터가 모두 사라져요.', {
-      cancelText: '취소',
-      confirmText: '확인',
-      onConfirm: () => {
-        handleDeleteTravel(travelId, {
-          onSuccess: () => router.back(),
-        });
+  const handleTravelCancel = () => {
+    showModal(
+      '정말 여행을 취소할까요?',
+      '해당 여행과 관련된 데이터는 전부 사라집니다.',
+      {
+        cancelText: '취소',
+        confirmText: '확인',
+        type: 'error',
+        onConfirm: () => {
+          handleDeleteTravel(travelId, {
+            onSuccess: () => router.back(),
+          });
+        },
+        onCancel: () => {
+          closeModal();
+        },
       },
-      onCancel: () => {
-        closeModal();
-      },
-    });
+    );
   };
 
   return (
@@ -105,7 +104,7 @@ const TravelButtons = ({
             <Button
               fill="white"
               label="여행취소"
-              handler={handleTravelCancle}
+              handler={handleTravelCancel}
               className="h-[52px] max-w-[242px]"
             />
 
@@ -117,7 +116,7 @@ const TravelButtons = ({
           <Button
             fill="white"
             label="동행취소"
-            handler={handleParticipationCancleClick}
+            handler={handleParticipationCancelClick}
             className="h-[52px] w-full max-w-[335px]"
           />
         )}

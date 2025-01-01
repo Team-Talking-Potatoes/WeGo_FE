@@ -1,41 +1,30 @@
-'use client';
-
-import { getWeekNumber } from '@/utils/dateChageKr';
-import { useMemo } from 'react';
 import TravelCardBig from '@/components/card/travel/TravelCardBig';
-import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEYS } from '@/constants/querykeys';
-import { getPopularTravel } from '@/api/travelApi';
+import { Travel } from '@/@types/travel';
+import Link from 'next/link';
+import ButtonRounded from '@/components/common/button/ButtonRounded';
 import WeeklyHeader from './WeeklyHeader';
 
-const WeeklyPopular = () => {
-  const {
-    data: travelList,
-    isFetching,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: QUERY_KEYS.TRAVEL.POPULAR_TRAVEL,
-    queryFn: getPopularTravel,
-  });
-
-  const month = new Date().getMonth() + 1;
-  const week = useMemo(() => getWeekNumber(), []);
-
-  if (error && !isFetching) {
-    console.error('에러', { error });
+const WeeklyPopular = ({ travelList }: { travelList: Travel[] }) => {
+  if (travelList.length === 0) {
     return (
-      <div>
-        데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
-        <p>{error.message}</p>
-      </div>
+      <section className="m-auto flex h-96 flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10 md:pb-12 xl:max-w-[1480px] xl:pb-16">
+        <WeeklyHeader />
+        <div className="heading-1-sb flex h-80 w-full flex-col items-center justify-center gap-5 text-center">
+          아직 여행모임이 없어요.
+          <br />
+          나의 취향을 담은 여행 모임을 한번 만들어 보세요!
+          <Link href="/travel">
+            <ButtonRounded label="첫 여행모임 만들기" />
+          </Link>
+        </div>
+      </section>
     );
   }
+
   return (
-    <section className="m-auto flex max-w-[1480px] flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10 md:pb-12 xl:pb-16">
-      <WeeklyHeader month={month} week={week} />
-      {isLoading && <div>로딩중 WeeklyPopular</div>}
-      <div className="flex w-full flex-col items-center justify-center gap-5 xl:flex-row xl:flex-wrap">
+    <section className="m-auto flex flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10 md:pb-12 xl:max-w-[1480px] xl:pb-16">
+      <WeeklyHeader />
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {travelList &&
           travelList.map((travel) => (
             <TravelCardBig

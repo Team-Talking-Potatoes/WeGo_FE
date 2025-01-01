@@ -26,6 +26,7 @@ const DeleteAccountPage = () => {
       {
         cancelText: '취소',
         confirmText: '확인',
+        type: 'error',
         onCancel: () => {
           router.push('/mypage');
         },
@@ -64,6 +65,7 @@ const DeleteAccountPage = () => {
             label="탈퇴하기"
             type="submit"
             size="full"
+            hover="error"
             className="mt-[372px]"
             disabled={!password.isValid}
           />

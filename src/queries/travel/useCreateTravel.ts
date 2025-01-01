@@ -18,6 +18,7 @@ const useCreateTravel = () => {
         case 401:
           showModal('토큰이 만료되었습니다.', '여행 만들기에 실패했습니다.', {
             icon: ModalErrorIcon,
+            type: 'error',
             confirmText: '돌아가기',
             onConfirm: () => {
               router.push('/login');
@@ -30,6 +31,7 @@ const useCreateTravel = () => {
             '여행 만들기에 실패했습니다.',
             {
               icon: ModalErrorIcon,
+              type: 'error',
               onConfirm: () => {
                 router.push('/travel');
               },

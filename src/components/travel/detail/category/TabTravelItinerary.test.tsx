@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import SelectTravelItinerary from './SelectTravelItinerary';
+import TabTravelItinerary from './TabTravelItinerary';
 
 const mockTripDuration = 3;
 const mockStartAt = '2024-12-10';
@@ -28,17 +28,17 @@ const mockTravelPlan = [
   },
 ];
 
-const renderSelectTravelItinerary = () =>
+const renderTabTravelItinerary = () =>
   render(
-    <SelectTravelItinerary
+    <TabTravelItinerary
       tripDuration={mockTripDuration}
       travelPlan={mockTravelPlan}
       startAt={mockStartAt}
     />,
   );
 
-describe('SelectTravelItinerary', () => {
-  beforeEach(() => renderSelectTravelItinerary());
+describe('TabTravelItinerary', () => {
+  beforeEach(() => renderTabTravelItinerary());
 
   it('여행 "Day number"이 렌더링됩니다', () => {
     expect(screen.getByText('Day 1')).toBeInTheDocument();

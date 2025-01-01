@@ -1,14 +1,14 @@
 'use client';
 
-import TravelCard from '@/components/card/travel/TravelCard';
 import NoResult from '@/components/common/NoResult';
 import { useTravelListStore } from '@/store/useTravelListStore';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import SpinnerIcon from '@/assets/spinner_round.svg';
-import { checkTomorrow } from '@/utils/dateChageKr';
+import { checkTomorrow } from '@/utils/dateChangeKr';
 import useGetTravelsList from '@/queries/travel/useGetTravelsList';
 import { InitialFilters } from '@/@types/travel';
+import TravelCardBig from '@/components/card/travel/TravelCardBig';
 
 const TravelList = () => {
   const { ref, inView } = useInView();
@@ -52,38 +52,38 @@ const TravelList = () => {
 
   if (isError) return <div>에러{error?.message}</div>;
 
+  if (travelListData?.pages[0].travels.length === 0) {
+    return (
+      <NoResult
+        key="no-result"
+        label="아직 등록된 여행이 없어요!"
+        height="h-64"
+      />
+    );
+  }
+
   return (
     <>
-      <div className="flex h-full flex-col items-center justify-center lg:flex-row lg:flex-wrap xl:gap-6">
+      <div className="grid h-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
         {travelListData &&
           travelListData.pages.map((page) =>
-            page.travels.length === 0 ? (
-              <NoResult
-                key="no-result"
-                label="아직 등록된 여행이 없어요!"
-                height="h-64"
+            page.travels.map((travel) => (
+              <TravelCardBig
+                key={travel.travelId}
+                travelId={travel.travelId}
+                image={travel.image}
+                isDomestic={travel.isDomestic}
+                travelName={travel.travelName}
+                location={travel.location}
+                maxTravelMateCount={travel.maxTravelMateCount}
+                currentTravelMateCount={travel.currentTravelMateCount}
+                startAt={travel.startAt}
+                endAt={travel.endAt}
+                formattedStartDate={checkTomorrow(travel.startAt)}
+                checkMark
+                isChecked
               />
-            ) : (
-              page.travels.map((travel) => (
-                <article key={travel.travelId} className="pb-5 xl:pb-0">
-                  <TravelCard
-                    travelId={travel.travelId}
-                    image={travel.image}
-                    isDomestic={travel.isDomestic}
-                    travelName={travel.travelName}
-                    location={travel.location}
-                    maxTravelMateCount={travel.maxTravelMateCount}
-                    currentTravelMateCount={travel.currentTravelMateCount}
-                    startAt={travel.startAt}
-                    endAt={travel.endAt}
-                    formattedStartDate={checkTomorrow(travel.startAt)}
-                    checkMark
-                    isChecked
-                  />
-                  <div className="mt-6 h-[1px] w-full bg-line-normal" />
-                </article>
-              ))
-            ),
+            )),
           )}
       </div>
 

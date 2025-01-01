@@ -2,11 +2,11 @@ import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const ButtonRoundedVariants = cva(
-  'body-2-m inline-block px-3 py-1 border border-label-normal bg-label-normal text-primary-white rounded-[44px] hover:text-primary-normal',
+  'body-2-m inline-block px-3 py-1 border border-label-normal bg-label-normal text-primary-white rounded-[44px] hover:bg-primary-normal hover:border-primary-normal',
   {
     variants: {
       color: {
-        gray: 'py-1.5 border border-line-normal text-label-alternative bg-transparent hover:text-primary-normal hover:border-primary-normal',
+        gray: 'py-1.5 border border-line-normal text-label-alternative bg-transparent hover:text-primary-normal hover:bg-transparent hover:border-primary-normal',
         blue: 'border-primary-normal border bg-white text-primary-normal hover:bg-blue-100',
       },
     },

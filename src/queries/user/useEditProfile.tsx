@@ -19,6 +19,7 @@ const useEditProfile = () => {
           showModal('토큰이 만료되었습니다.', '프로필 수정에 실패했습니다.', {
             icon: ModalErrorIcon,
             confirmText: '돌아가기',
+            type: 'error',
             onConfirm: () => {
               router.push('/login');
             },
@@ -28,6 +29,7 @@ const useEditProfile = () => {
           showModal('네트워크를 확인해주세요.', '프로필 수정에 실패했습니다.', {
             icon: ModalErrorIcon,
             confirmText: '돌아가기',
+            type: 'error',
             onConfirm: () => {
               router.push('/mypage');
             },

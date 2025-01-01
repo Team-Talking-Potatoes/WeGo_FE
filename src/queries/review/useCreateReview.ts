@@ -1,7 +1,8 @@
-import { createReview } from '@/api/reviewApi';
+import { createReview } from '@/api/review/createReview';
 import useCreateReviewStore from '@/store/useCreateReview';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useQueryErrorHandler } from '../common/errorHandler';
 
 export const useCreateReview = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ export const useCreateReview = () => {
     resetStore,
     setErrorMessage,
   } = useCreateReviewStore();
+  const handleQueryError = useQueryErrorHandler();
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => createReview(formData),
@@ -24,7 +26,7 @@ export const useCreateReview = () => {
       router.back();
     },
     onError: (error: any) => {
-      console.error('리뷰 생성 중 오류 발생:', error);
+      handleQueryError(error);
     },
   });
 
@@ -38,12 +40,8 @@ export const useCreateReview = () => {
       setErrorMessage('countStar', '별점을 선택해주세요.');
       hasError = true;
     }
-    if (title === '') {
-      setErrorMessage('title', '제목을 입력해주세요.');
-      hasError = true;
-    }
-    if (comment === '') {
-      setErrorMessage('comment', '내용을 입력해주세요.');
+    if (title === '' || comment === '') {
+      setErrorMessage('input', '내용을 입력해주세요.');
       hasError = true;
     }
     if (selectedFiles.length === 0) {

@@ -1,5 +1,5 @@
 import { Filters } from '@/@types/travel';
-import { getTravels } from '@/api/travelApi';
+import { getTravels } from '@/api/travel/travels';
 import { QUERY_KEYS } from '@/constants/querykeys';
 import { useInfiniteQuery } from '@tanstack/react-query';
 

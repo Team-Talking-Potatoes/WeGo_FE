@@ -18,6 +18,7 @@ interface ModalState {
   messageHighlight?: TextHighlight;
   confirmText: string;
   cancelText?: string;
+  type?: 'error';
   onConfirm?: () => void;
   onCancel?: () => void;
 }

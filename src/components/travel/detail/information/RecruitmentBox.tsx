@@ -3,8 +3,8 @@ import Square from '@/assets/square.svg';
 import RoundCheck from '@/assets/round_check.svg';
 import { Participant } from '@/@types/travel';
 import { useMemo } from 'react';
-import ProgressBar from '../../common/progressbar/ProgressBar';
-import UserIconList from '../../common/user/UserIconList';
+import UserIconList from '@/components/common/user/UserIconList';
+import ProgressBar from '@/components/common/progressbar/ProgressBar';
 
 interface Props {
   isDateOver: boolean;
@@ -13,7 +13,7 @@ interface Props {
   participant: Participant[];
 }
 
-const RecruimentBox = ({
+const RecruitmentBox = ({
   isDateOver,
   minTravelMateCount,
   maxTravelMateCount,
@@ -66,4 +66,4 @@ const RecruimentBox = ({
     </div>
   );
 };
-export default RecruimentBox;
+export default RecruitmentBox;
