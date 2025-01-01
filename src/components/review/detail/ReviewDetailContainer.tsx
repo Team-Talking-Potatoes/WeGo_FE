@@ -1,11 +1,10 @@
-import HeartIcon from '@/assets/icon/review/heart_24px.svg';
 import StarIcon from '@/assets/icon/star_20px.svg';
 import UserIcon from '@/components/common/user/UserIcon';
-import cn from '@/utils/cn';
 import { ReviewDetail } from '@/@types/review';
 import Link from 'next/link';
 import ReviewThumbnail from './reviewThumbnail/ReviewThumbnail';
 import ReviewContent from './reviewContent/ReviewContent';
+import DetailLike from '../likeButton/DetailLike';
 
 interface Props {
   data: ReviewDetail | undefined;
@@ -31,17 +30,12 @@ const ReviewDetailContainer = ({ data }: Props) => {
               />
               <p className="body-2-m">{data?.nickname}</p>
             </div>
-            <button
-              type="button"
-              // onClick={handleLike}
-            >
-              <HeartIcon
-                className={cn('fill-none', {
-                  'fill-red-400': data?.likesFlag || false,
-                })}
-              />
-              <div className="caption-1-r text-red-400">{data?.likesCount}</div>
-            </button>
+
+            <DetailLike
+              reviewId={data?.reviewId as number}
+              likesCount={data?.likesCount as number}
+              likesFlag={data?.likesFlag as boolean}
+            />
           </div>
 
           <ReviewContent
@@ -62,7 +56,7 @@ const ReviewDetailContainer = ({ data }: Props) => {
 
           <Link
             href={`/travel/${data?.travelId}`}
-            className="mt-6 flex h-[74px] w-full items-center justify-between rounded-md border bg-slate-50 px-5 py-4"
+            className="group mt-6 flex h-[74px] w-full items-center justify-between rounded-md border bg-slate-50 px-5 py-4 hover:bg-slate-100"
           >
             <div>
               <p className="body-3-m text-label-alternative">다녀온 여행</p>
@@ -71,7 +65,7 @@ const ReviewDetailContainer = ({ data }: Props) => {
               </p>
             </div>
 
-            <div className="rounded-[44px] bg-label-normal px-3 py-1 text-primary-white">
+            <div className="rounded-[44px] bg-label-normal px-3 py-1 text-primary-white group-hover:bg-primary-normal">
               여행상세
             </div>
           </Link>

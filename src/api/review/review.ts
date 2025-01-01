@@ -34,3 +34,11 @@ export const getMyReview = (limit: number, offset: number) => {
 export const getReviewDetail = (id: number) => {
   return http.get<ReviewDetailResponse>(`/reviews/${id}`);
 };
+
+export const postReviewLike = (id: number) => {
+  return http.post<unknown>(`/reviews/${id}/likes`);
+};
+
+export const deleteReviewLike = (id: number) => {
+  return http.delete<unknown>(`/reviews/${id}/likes`);
+};
