@@ -11,6 +11,7 @@ interface Props {
   id: string;
   selectedHour: string;
   selectedMinute: string;
+  inputClassName?: string;
   inputClassNameCondition?: Record<string, boolean>;
   onSelect: (firstTime: string, sencondTime: string) => void;
 }
@@ -22,6 +23,7 @@ const TimePickerInput = ({
   id,
   selectedHour,
   selectedMinute,
+  inputClassName,
   inputClassNameCondition,
   onSelect,
 }: Props) => {
@@ -46,7 +48,7 @@ const TimePickerInput = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex-1">
       <TextInputWithLabel
         label={date || '진행시간'}
         state={getLabelState()}
@@ -59,6 +61,7 @@ const TimePickerInput = ({
         className={date && '!body-3-m -mb-[2px] text-label-alternative'}
         onClick={handleOpen}
         onChange={() => {}}
+        inputClassName={inputClassName}
         inputClassNameCondition={inputClassNameCondition}
       />
       <TimePicker
