@@ -6,12 +6,12 @@ import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const uploadButtonVariants = cva(
-  'h-[120px] cursor-pointer flex flex-col items-center justify-center bg-background-alternative rounded',
+  'h-[120px] md:h-[160px] cursor-pointer flex flex-col items-center justify-center bg-background-alternative rounded',
   {
     variants: {
       size: {
-        default: 'w-[335px]',
-        small: 'w-[295px]',
+        default: 'w-[335px]  md:w-[500px]',
+        small: 'w-[295px]  md:w-[460px]',
       },
     },
     defaultVariants: {
