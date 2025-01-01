@@ -24,25 +24,27 @@ const MultiStepForm = () => {
         title="여행 만들기"
         onRoute={currentStep === 0 ? undefined : goToPrevStep}
       />
-      <div className="mx-auto mt-9 flex w-[335px] flex-1 flex-col">
-        {isLoading ? (
-          <div className="flex h-1/2 items-center justify-center">
-            로딩중...
-          </div>
-        ) : (
-          <>
-            <TripRegisterHeader currentStep={currentStep} />
-            <StepRenderer
-              currentStep={currentStep}
-              formData={data}
-              isCurrentStepValid={isCurrentStepValid}
-              updateFormData={updateFormData}
-              goToNextStep={goToNextStep}
-              onSubmit={finalizeTravelCreation}
-              onTempSave={saveTravelDataTemporarily}
-            />
-          </>
-        )}
+      <div className="mx-5">
+        <div className="mx-auto mt-[100px] flex w-full min-w-[335px] max-w-[500px] flex-col xl:mt-[120px]">
+          {isLoading ? (
+            <div className="flex h-1/2 items-center justify-center">
+              로딩중...
+            </div>
+          ) : (
+            <>
+              <TripRegisterHeader currentStep={currentStep} />
+              <StepRenderer
+                currentStep={currentStep}
+                formData={data}
+                isCurrentStepValid={isCurrentStepValid}
+                updateFormData={updateFormData}
+                goToNextStep={goToNextStep}
+                onSubmit={finalizeTravelCreation}
+                onTempSave={saveTravelDataTemporarily}
+              />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

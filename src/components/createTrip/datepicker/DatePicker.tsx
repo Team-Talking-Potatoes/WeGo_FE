@@ -7,6 +7,7 @@ import Calendar from '@/assets/calendar.svg';
 import DatePickerModal from './DatePickerModal';
 
 interface Props {
+  registrationEnd?: Date;
   value: { startDate: Date | null; endDate: Date | null };
   onChange: (value: { startDate: Date | null; endDate: Date | null }) => void;
   isRangeSelectable: boolean;
@@ -20,6 +21,7 @@ const DatePicker = ({
   isRangeSelectable,
   isKeeping,
   label,
+  registrationEnd,
 }: Props) => {
   const calendarInfo = useDatePicker(
     value,
@@ -47,7 +49,7 @@ const DatePicker = ({
         state="required"
         name="selectedDate"
         type="text"
-        size="default"
+        size="full"
         value={getFormattedDate()}
         placeholder={formatDate(today)}
         readOnly
@@ -56,7 +58,10 @@ const DatePicker = ({
       >
         <Calendar />
       </TextInputWithLabel>
-      <DatePickerModal calendarInfo={calendarInfo} />
+      <DatePickerModal
+        calendarInfo={calendarInfo}
+        registrationEnd={registrationEnd}
+      />
     </div>
   );
 };
