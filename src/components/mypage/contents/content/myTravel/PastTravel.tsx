@@ -46,13 +46,11 @@ const PastTravel = () => {
         <NoTravel message="아직 다녀온 여행이 없어요!" />
       )}
 
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          paginate={paginate}
-        />
-      )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </section>
   );
 };

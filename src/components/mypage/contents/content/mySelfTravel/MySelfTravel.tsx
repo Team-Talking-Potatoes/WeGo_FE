@@ -45,13 +45,11 @@ const MySelfTravel = () => {
         <NoTravel travelSuggestion />
       )}
 
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          paginate={paginate}
-        />
-      )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </section>
   );
 };
