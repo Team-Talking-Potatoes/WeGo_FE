@@ -3,6 +3,7 @@ import StarIcon from '@/assets/icon/star_20px.svg';
 import UserIcon from '@/components/common/user/UserIcon';
 import cn from '@/utils/cn';
 import { ReviewDetail } from '@/@types/review';
+import Link from 'next/link';
 import ReviewThumbnail from './reviewThumbnail/ReviewThumbnail';
 import ReviewContent from './reviewContent/ReviewContent';
 
@@ -59,7 +60,10 @@ const ReviewDetailContainer = ({ data }: Props) => {
             </div>
           </div>
 
-          <section className="mt-6 flex h-[74px] w-full items-center justify-between rounded-md border bg-slate-50 px-5 py-4">
+          <Link
+            href={`/travel/${data?.travelId}`}
+            className="mt-6 flex h-[74px] w-full items-center justify-between rounded-md border bg-slate-50 px-5 py-4"
+          >
             <div>
               <p className="body-3-m text-label-alternative">다녀온 여행</p>
               <p className="heading-1-sb text-label-strong">
@@ -70,7 +74,7 @@ const ReviewDetailContainer = ({ data }: Props) => {
             <div className="rounded-[44px] bg-label-normal px-3 py-1 text-primary-white">
               여행상세
             </div>
-          </section>
+          </Link>
         </section>
       </div>
     </main>

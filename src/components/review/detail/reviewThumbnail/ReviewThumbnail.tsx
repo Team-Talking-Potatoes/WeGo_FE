@@ -12,7 +12,7 @@ interface Props {
 
 const ReviewThumbnail = ({ reviewImages }: Props) => {
   return (
-    <div className="h-[67vw] w-full md:h-[515px] xl:h-[515px] xl:w-[768px]">
+    <div className="relative aspect-[375/250] max-h-[515px] w-full">
       <Swiper
         spaceBetween={10}
         pagination={{
@@ -26,8 +26,8 @@ const ReviewThumbnail = ({ reviewImages }: Props) => {
       >
         {reviewImages.map((image, index) => (
           <SwiperSlide key={image}>
-            <div className="flex justify-center bg-background-alternative">
-              <div className="relative z-10 h-[67vw] w-full rounded-lg md:h-[515px] md:w-[768px]">
+            <div className="flex h-full justify-center bg-background-alternative">
+              <div className="relative z-10 aspect-[375/250] h-full w-full rounded-lg md:max-h-[515px] md:max-w-[768px]">
                 <Image
                   src={image}
                   alt={`${index}번째 리뷰 이미지`}

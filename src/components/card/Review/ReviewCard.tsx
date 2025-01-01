@@ -49,15 +49,17 @@ const ReviewCard = ({
   };
 
   return (
-    <Link href={`/review/${reviewId}`} className="min-w-[160px] flex-1">
-      <div className="relative h-[242px] w-full md:h-[315px]">
-        <div className="relative">
+    <Link
+      href={`/review/${reviewId}`}
+      className="min-w-[160px] flex-1 xl:max-w-[332px]"
+    >
+      <div className="relative aspect-[160/210] w-full">
+        <div className="relative h-full">
           <Image
             src={image}
             alt={title}
-            width={160}
-            height={210}
-            className="h-[210px] w-full rounded object-cover md:h-[283px]"
+            fill
+            className="rounded object-cover"
           />
 
           {isLiked !== undefined && (
