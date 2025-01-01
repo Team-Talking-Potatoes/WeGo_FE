@@ -15,6 +15,7 @@ interface Props extends VariantProps<typeof LabelVariants> {
   classNameCondition?: Record<string, boolean>;
   textareaClassName?: string;
   textareaClassNameCondition?: Record<string, boolean>;
+  extraClassName?: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -30,10 +31,11 @@ const TextareaWithLabel = ({
   classNameCondition,
   textareaClassName,
   textareaClassNameCondition,
+  extraClassName,
   onChange,
 }: Props) => {
   return (
-    <div className="flex w-fit flex-col gap-1.5">
+    <div className="flex flex-1 flex-col gap-1.5">
       <label
         htmlFor={name}
         className={cn(LabelVariants({ state, className }), classNameCondition)}
@@ -48,6 +50,7 @@ const TextareaWithLabel = ({
         size={size}
         className={textareaClassName}
         classNameCondition={textareaClassNameCondition}
+        extraClassName={extraClassName}
         onChange={onChange}
       />
     </div>
