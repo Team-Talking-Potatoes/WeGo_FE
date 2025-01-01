@@ -11,6 +11,7 @@ const useCreateReviewSelectTravel = () => {
     getNextPageParam: (lastPage, pages) => {
       return !lastPage.hasNext ? pages.length + 1 : undefined;
     },
+    staleTime: Infinity,
   });
 };
 

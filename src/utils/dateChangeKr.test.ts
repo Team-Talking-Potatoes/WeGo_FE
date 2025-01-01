@@ -3,7 +3,7 @@ import {
   formatDateToShortWithDay,
   checkTomorrow,
   getWeekNumber,
-} from './dateChageKr';
+} from './dateChangeKr';
 
 describe('checkTomorrow', () => {
   it('내일 날짜는 "내일"을 반환해야 합니다.', () => {
@@ -23,23 +23,20 @@ describe('checkTomorrow', () => {
 
 describe('getWeekNumber', () => {
   it('오늘이 첫 번째 주인 경우 1을 반환해야 합니다.', () => {
-    const today = new Date();
-    today.setDate(1);
+    const today = dayjs().startOf('month');
     expect(getWeekNumber(today)).toBe(1);
   });
 
   it('오늘이 두 번째 주인 경우 2를 반환해야 합니다.', () => {
-    const today = new Date();
-    today.setDate(8);
+    const today = dayjs().startOf('month').add(7, 'day');
     expect(getWeekNumber(today)).toBe(2);
   });
 
   it('월초와 월말 케이스를 처리해야 합니다.', () => {
-    const today = new Date(2024, 11, 31);
-    expect(getWeekNumber(today)).toBe(5);
+    const endOfMonth = dayjs('2024-12-31');
+    expect(getWeekNumber(endOfMonth)).toBe(5);
 
-    const startOfMonth = new Date(2024, 11, 1);
-    startOfMonth.setDate(1);
+    const startOfMonth = dayjs('2024-12-01');
     expect(getWeekNumber(startOfMonth)).toBe(1);
   });
 });

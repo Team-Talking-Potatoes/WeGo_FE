@@ -1,4 +1,5 @@
-import { getPopularTravel } from '@/api/travelApi';
+import { Suspense } from 'react';
+import { getPopularTravel } from '@/api/travel/travels';
 import { QUERY_KEYS } from '@/constants/querykeys';
 import {
   dehydrate,
@@ -9,14 +10,17 @@ import WeeklyPopular from './WeeklyPopular';
 
 const WeeklyPopularContainer = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+  const data = await queryClient.fetchQuery({
     queryKey: QUERY_KEYS.TRAVEL.POPULAR_TRAVEL,
     queryFn: getPopularTravel,
   });
+
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <WeeklyPopular />
-    </HydrationBoundary>
+    <Suspense fallback={<div>로딩중</div>}>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <WeeklyPopular travelList={data} />
+      </HydrationBoundary>
+    </Suspense>
   );
 };
 export default WeeklyPopularContainer;

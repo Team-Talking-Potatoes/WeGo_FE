@@ -17,22 +17,10 @@ export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
   );
 };
 
-export const getPopularReview = () => {
-  return http.get<Review[]>('/reviews/popular');
-};
-
-export const getTravelReview = (id: number) => {
-  return http.get<Review[]>(`/reviews?id=${id}`);
-};
-
 export const getMyReview = (limit: number, offset: number) => {
   return http.get<MyReview>(
     `/reviews/published?limit=${limit}&offset=${offset}`,
   );
-};
-
-export const createReview = (formData: FormData) => {
-  return http.post<any>('/reviews', formData);
 };
 
 export const getReviewDetail = (id: number) => {

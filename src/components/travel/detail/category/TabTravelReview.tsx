@@ -1,5 +1,4 @@
-import { getTravelReview } from '@/api/reviewApi';
-
+import { getTravelReview } from '@/api/review/review';
 import { useQuery } from '@tanstack/react-query';
 import NoResult from '@/components/common/NoResult';
 import { QUERY_KEYS } from '@/constants/querykeys';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 import ReviewCardAddText from '@/components/card/Review/ReviewCardAddText';
 import ScoreBox from './ScoreBox';
 
-const SelectTravelReview = ({ travelId }: { travelId: number }) => {
+const TabTravelReview = ({ travelId }: { travelId: number }) => {
   const {
     data: reviewList,
     isFetching,
@@ -75,4 +74,4 @@ const SelectTravelReview = ({ travelId }: { travelId: number }) => {
   );
 };
 
-export default SelectTravelReview;
+export default TabTravelReview;

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import travelReviewData from '@/mocks/data/review/travelReviewList.json';
-import SelectTravelReview from './SelectTravelReview';
+import TabTravelReview from './TabTravelReview';
 
 jest.mock('next/navigation', () => ({
   useParams: jest.fn(),
@@ -13,7 +13,7 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn(),
 }));
 
-describe('SelectTravelReview', () => {
+describe('TabTravelReview', () => {
   const mockTravelId = 1;
   beforeEach(() => {
     (useParams as jest.Mock).mockReturnValue({ id: 'test-id' });
@@ -23,7 +23,7 @@ describe('SelectTravelReview', () => {
       isFetching: false,
       error: null,
     });
-    render(<SelectTravelReview travelId={mockTravelId} />);
+    render(<TabTravelReview travelId={mockTravelId} />);
   });
 
   it('로딩 중일 때 로딩 메시지를 표시합니다', () => {

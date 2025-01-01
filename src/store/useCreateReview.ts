@@ -11,8 +11,7 @@ interface CreateReviewStore {
   errorMessages: {
     travelId: string;
     countStar: string;
-    title: string;
-    comment: string;
+    input: string;
     selectedFiles: string;
   };
 
@@ -41,8 +40,7 @@ const useCreateReviewStore = create<CreateReviewStore>((set, get) => ({
   errorMessages: {
     travelId: '',
     countStar: '',
-    title: '',
-    comment: '',
+    input: '',
     selectedFiles: '',
   },
 
@@ -81,8 +79,7 @@ const useCreateReviewStore = create<CreateReviewStore>((set, get) => ({
       errorMessages: {
         travelId: '',
         countStar: '',
-        title: '',
-        comment: '',
+        input: '',
         selectedFiles: '',
       },
     }),

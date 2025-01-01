@@ -3,13 +3,12 @@ import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const ButtonVariants = cva(
-  'body-1-m rounded disabled:border disabled:border-line-normal disabled:bg-background-alternative disabled:text-label-alternative hover:text-primary-normal',
+  'body-1-m rounded disabled:border disabled:border-line-normal disabled:bg-background-alternative disabled:text-label-alternative ',
   {
     variants: {
       fill: {
         default: 'bg-label-normal text-white',
-        white:
-          'bg-white border border-line-strong hover:border-primary-normal hover:text-primary-normal',
+        white: 'bg-white border border-line-strong text-line-strong',
         blue: 'bg-primary-normal text-white hover:text-primary-normal hover:bg-blue-100',
       },
       size: {
@@ -24,6 +23,16 @@ const ButtonVariants = cva(
       font: {
         default: 'body-1-m',
         body_2_m: 'body-2-m',
+      },
+      // fill default 때 사용
+      hover: {
+        default: 'hover:bg-primary-normal hover:text-white',
+        error: 'hover:bg-status-error',
+      },
+      // fill white일 때 사용
+      hoverBorder: {
+        default: 'hover:border-primary-normal hover:text-primary-normal',
+        error: 'hover:border-status-error hover:text-status-error',
       },
     },
     defaultVariants: {
@@ -52,6 +61,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       font,
       label,
       type,
+      hover,
+      hoverBorder,
       disabled,
       children,
       className,
@@ -66,7 +77,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         type={type === 'submit' ? 'submit' : 'button'}
         disabled={disabled}
         className={cn(
-          ButtonVariants({ fill, size, font }),
+          ButtonVariants({ fill, size, font, hover, hoverBorder }),
           className,
           classNameCondition,
         )}

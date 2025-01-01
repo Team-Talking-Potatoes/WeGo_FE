@@ -5,7 +5,7 @@ import {
   useBookmarkTravel,
   useDeleteBookmarkTravel,
 } from '@/queries/travel/useBookmarkTravel';
-import SelectTravelDetail from './SelectTravelDetail';
+import TabTravelDetail from './TabTravelDetail';
 
 jest.mock('@/queries/travel/useBookmarkTravel');
 jest.mock('@/queries/user/useGetUser');
@@ -32,7 +32,7 @@ const mock = {
     '12월의 겨울 낭만을 즐기고 싶은 분들 계신가요?함께 국내 겨울 여행지를 돌아다니고 싶습니다!춥지만, 마음만은 따듯한 겨울 여행 함께해요 :)다양한 사람들이 모여서 함께 하고 싶어요!',
 };
 
-describe('SelectTravelDetail', () => {
+describe('TabTravelDetail', () => {
   beforeEach(() => {
     (useGetUser as jest.Mock).mockReturnValue({
       data: mockUserInfo,
@@ -43,7 +43,7 @@ describe('SelectTravelDetail', () => {
     });
 
     render(
-      <SelectTravelDetail
+      <TabTravelDetail
         travelId={mock.travelId}
         isParticipation={mock.isParticipation}
         organizer={mock.organizer}
@@ -76,7 +76,7 @@ describe('여행 모임장일 때', () => {
     });
 
     render(
-      <SelectTravelDetail
+      <TabTravelDetail
         travelId={mock.travelId}
         isParticipation={mock.isParticipation}
         organizer={mock.organizer}
@@ -124,7 +124,7 @@ describe('여행 모임장이 아닐 때', () => {
     });
 
     render(
-      <SelectTravelDetail
+      <TabTravelDetail
         travelId={mockParticipation.travelId}
         isParticipation={mockParticipation.isParticipation}
         organizer={mockParticipation.organizer}

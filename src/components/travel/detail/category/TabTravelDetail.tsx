@@ -1,5 +1,3 @@
-// 'use client';
-
 import BookMarkIcon from '@/assets/bookmark.svg';
 import { Participant } from '@/@types/travel';
 import { useState } from 'react';
@@ -13,7 +11,7 @@ import ButtonRounded from '../../../common/button/ButtonRounded';
 import TravelTag from '../../../common/tag/TravelTag';
 import UserIcon from '../../../common/user/UserIcon';
 
-const SelectTravelDetail = ({
+const TabTravelDetail = ({
   travelId,
   isParticipation,
   organizer,
@@ -97,4 +95,4 @@ const SelectTravelDetail = ({
   );
 };
 
-export default SelectTravelDetail;
+export default TabTravelDetail;

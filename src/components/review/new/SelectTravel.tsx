@@ -101,7 +101,7 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
             style={{ backdropFilter: 'none' }}
             className="absolute left-0 top-[52px] z-[60] flex max-h-36 w-full flex-col items-start justify-between rounded border border-line-normal bg-white backdrop-blur-0"
           >
-            <span className="w-full overflow-y-scroll">
+            <span className="w-full overflow-y-scroll custom-scrollbar">
               {travels &&
                 travels.pages.map((page) =>
                   page.content.length === 0 ? (

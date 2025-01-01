@@ -1,50 +1,37 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import { getPopularUser } from '@/api/user/userList';
-import { QUERY_KEYS } from '@/constants/querykeys';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { UserList } from '@/@types/user';
+import Link from 'next/link';
+import ButtonRounded from '@/components/common/button/ButtonRounded';
 import UserCard from '../../card/user/UserCard';
+import WeeklyUserHeader from './WeeklyUserHeader';
 
-const WeeklyUser = () => {
-  const queryKey = QUERY_KEYS.USER.POPULAR_USER;
-  const {
-    data: userList,
-    isFetching,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey,
-    queryFn: getPopularUser,
-  });
-
-  const currentMonth = new Date().getMonth() + 1;
-
-  if (error && !isFetching) {
+const WeeklyUser = ({ userList }: { userList: UserList[] }) => {
+  if (userList.length === 0) {
     return (
-      <div>
-        데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
-        <p>{error.message}</p>
-      </div>
+      <section className="mx-auto h-auto max-w-[1480px] px-5 pb-32 pt-12 sm:mb-14 md:px-10">
+        <WeeklyUserHeader />
+        <div className="heading-1-sb flex h-80 w-full flex-col items-center justify-center gap-5 text-center">
+          아직 여행지기들이 없어요.
+          <br />
+          여행모임을 만들고 다양한 여행지기들과 함께해 볼까요?
+          <Link href="/travel">
+            <ButtonRounded label="여행모임 만들기" />
+          </Link>
+        </div>
+      </section>
     );
   }
   return (
     <section className="m-auto max-w-[1480px] px-5 pb-32 pt-12 md:px-10">
-      <h2 className="title-3-eb text-label-normal">
-        {currentMonth}월의 여행지기
-      </h2>
-
-      <p className="body-2-m pb-6 pt-1 text-label-alternative">
-        이번 달 리뷰가 많은 여행지기들을 소개해 드려요!
-      </p>
-
+      <WeeklyUserHeader />
       <main
         className="flex justify-center gap-4"
         aria-label="이미지 가로 슬라이드"
       >
-        {isLoading && <div>로딩중 WeeklyUser</div>}
         <Swiper
           slidesPerView="auto"
           spaceBetween={16}

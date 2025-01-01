@@ -8,8 +8,8 @@ const TravelPlanCard = ({
   description,
 }: Omit<TravelPlan, 'tripDay' | 'tripOrderNumber'>) => {
   return (
-    <div className="w-[249px] overflow-hidden rounded bg-background-alternative xs:w-[354px] md:flex md:h-[130px] md:w-[538px] xl:max-w-[546px]">
-      <div className="flex h-[100px] w-full flex-shrink-0 items-center overflow-hidden md:h-full md:w-[269px] xl:w-[50%]">
+    <div className="aspect-[249/204] max-w-[546px] overflow-hidden rounded bg-background-alternative sm:flex sm:aspect-[538/130]">
+      <div className="flex h-[50%] w-full flex-shrink-0 overflow-hidden sm:h-full sm:w-[50%]">
         <Image
           src={image}
           alt={`${destination} 일정 이미지`}
@@ -24,7 +24,9 @@ const TravelPlanCard = ({
           <LocationIcon fill="#6B7280" stroke="#6B7280" />
           <span>{destination}</span>
         </div>
-        <div className="body-2-r line-clamp-3 pt-1">{description}</div>
+        <div className="body-2-r line-clamp-2 pt-1 sm:line-clamp-none">
+          {description}
+        </div>
       </div>
     </div>
   );

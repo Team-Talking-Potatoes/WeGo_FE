@@ -1,8 +1,8 @@
 'use client';
 
-import FilterDomestic from './FilterDomestic';
-import FilterDate from './FilterDate';
-import FilterSort from './FilterSort';
+import FilterDomestic from './filter/FilterDomestic';
+import FilterDate from './filter/FilterDate';
+import FilterSort from './filter/FilterSort';
 
 const TravelFilter = () => {
   return (

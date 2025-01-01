@@ -7,7 +7,7 @@ export const QUERY_KEYS = {
   TRAVEL: {
     POPULAR_TRAVEL: ['popularTravel'] as const,
     TRAVEL_LIST: (filter: Filters) => ['travels', filter] as const,
-    TRAVEL_DELETE: (id: string) => ['travels', id] as const,
+    TRAVEL_DETAIL: (id: string) => ['travels', id] as const,
     TRAVEL_DETAIL_REVIEW: (id: string) => ['travels', id, 'reviews'] as const,
   },
   REVIEW: {
