@@ -66,6 +66,7 @@ const DateStep = ({
         onChange={handleDatePickerChange}
         isRangeSelectable
         isKeeping
+        registrationEnd={data.registrationEnd.startDate as Date}
       />
       <div className="flex flex-col items-start gap-1.5">
         {endAt && (
@@ -76,7 +77,7 @@ const DateStep = ({
             진행시간
           </label>
         )}
-        <div className="flex items-end gap-[7px]">
+        <div className="flex w-full items-end gap-[7px]">
           <TimePickerInput
             date={endAt && startAt ? formatDate(startAt) : undefined}
             placeholder="시작시간"
@@ -90,6 +91,7 @@ const DateStep = ({
               'border-status-error focus:border-status-error':
                 !isValidTimeRange,
             }}
+            inputClassName="w-full"
           />
           <TimePickerInput
             date={endAt ? formatDate(endAt) : undefined}
@@ -105,6 +107,7 @@ const DateStep = ({
               'border-status-error focus:border-status-error':
                 !isValidTimeRange,
             }}
+            inputClassName="w-full"
           />
         </div>
         {!isValidTimeRange && (
@@ -113,10 +116,11 @@ const DateStep = ({
           </span>
         )}
       </div>
-      <div className="mt-auto flex justify-between">
+
+      <div className="mt-auto flex justify-between gap-4">
         <Button
           handler={onTempSave}
-          className="mt-auto"
+          className="mt-auto flex-1"
           size="half"
           fill="white"
         >
@@ -125,7 +129,7 @@ const DateStep = ({
         <Button
           disabled={!isValid}
           handler={onNext}
-          className="mt-auto"
+          className="mt-auto flex-1"
           size="half"
         >
           다음

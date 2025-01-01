@@ -30,14 +30,14 @@ const IntroductionStep = ({
     parseInt(minTravelMateCount, 10) > parseInt(maxTravelMateCount, 10);
 
   return (
-    <div className="mb-10 flex flex-1 flex-col gap-6">
+    <div className="mb-10 flex w-full flex-1 flex-col gap-6">
       <TextInputWithLabel
         label="여행 이름"
         state="required"
         name="travelName"
         type="text"
         value={travelName}
-        size="default"
+        size="full"
         placeholder="여행 이름을 입력 해 주세요."
         onChange={(e) => onChange('travelName', e.target.value)}
       />
@@ -47,55 +47,60 @@ const IntroductionStep = ({
         name="expectedTripCost"
         type="text"
         value={formatCurrency(expectedTripCost)}
-        size="default"
+        size="full"
         placeholder="원"
         onChange={(e) => {
           onChange('expectedTripCost', parseCurrency(e.target.value));
         }}
       />
-      <div className="flex flex-wrap items-end justify-between">
-        <TextInputWithLabel
-          label="모집 인원"
-          state="required"
-          name="minTravelMateCount"
-          type="text"
-          value={minTravelMateCount}
-          size="halfButton"
-          placeholder="최소 인원"
-          onChange={(e) => {
-            const { value } = e.target;
-            if (/^\d*$/.test(value)) {
-              onChange('minTravelMateCount', value);
-            }
-          }}
-          inputClassNameCondition={{
-            'border-status-error focus:border-status-error': isMateCountValid,
-          }}
-        />
-        <TextInputWithLabel
-          label="모집 인원"
-          state="srOnly"
-          name="maxTravelMateCount"
-          type="text"
-          value={maxTravelMateCount}
-          size="halfButton"
-          placeholder="최대 인원"
-          onChange={(e) => {
-            const { value } = e.target;
-            if (/^\d*$/.test(value)) {
-              onChange('maxTravelMateCount', value);
-            }
-          }}
-          inputClassNameCondition={{
-            'border-status-error focus:border-status-error': isMateCountValid,
-          }}
-        />
+
+      <div>
+        <div className="flex items-end gap-[7px]">
+          <TextInputWithLabel
+            size="full"
+            label="모집 인원"
+            state="required"
+            name="minTravelMateCount"
+            type="text"
+            value={minTravelMateCount}
+            placeholder="최소 인원"
+            onChange={(e) => {
+              const { value } = e.target;
+              if (/^\d*$/.test(value)) {
+                onChange('minTravelMateCount', value);
+              }
+            }}
+            inputClassNameCondition={{
+              'border-status-error focus:border-status-error': isMateCountValid,
+            }}
+            inputClassName="flex-1"
+          />
+          <TextInputWithLabel
+            size="full"
+            label="모집 인원"
+            state="srOnly"
+            name="maxTravelMateCount"
+            type="text"
+            value={maxTravelMateCount}
+            placeholder="최대 인원"
+            onChange={(e) => {
+              const { value } = e.target;
+              if (/^\d*$/.test(value)) {
+                onChange('maxTravelMateCount', value);
+              }
+            }}
+            inputClassNameCondition={{
+              'border-status-error focus:border-status-error': isMateCountValid,
+            }}
+          />
+        </div>
         {isMateCountValid && (
           <span className="body-3-r mt-1 text-status-error">
             최소인원이 최대인원을 초과 하였습니다.
           </span>
         )}
       </div>
+
       <DatePicker
         label="모집 기한"
         value={registrationEnd}
@@ -113,21 +118,24 @@ const IntroductionStep = ({
         value={travelDescription}
         placeholder="여행을 자세하게 소개 해 주세요."
         onChange={(e) => onChange('travelDescription', e.target.value)}
+        extraClassName="w-full"
       />
+
       <ImageUploader
         size="default"
         image={travelImage}
         onChange={(value) => onChange('travelImage', value)}
       />
+
       <HashtagCreator
         hashtags={hashTags}
         onChange={(value) => onChange('hashTags', value)}
       />
 
-      <div className="mt-6 flex justify-between">
+      <div className="mt-6 flex justify-between gap-4">
         <Button
           handler={onTempSave}
-          className="mt-auto"
+          className="mt-auto flex-1"
           size="half"
           fill="white"
         >
@@ -136,7 +144,7 @@ const IntroductionStep = ({
         <Button
           disabled={!isValid}
           handler={onNext}
-          className="mt-auto"
+          className="mt-auto flex-1"
           size="half"
         >
           다음
