@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { editProfile } from '@/api/user/editProfileApi';
+import { editProfile } from '@/api/user/editProfile';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
 import ModalSuccessIcon from '@/assets/modal/modal_success.svg';
