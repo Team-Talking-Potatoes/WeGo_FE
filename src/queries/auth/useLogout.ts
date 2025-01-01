@@ -1,9 +1,10 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { logout } from '@/api/auth/logout';
 import useToast from '@/hooks/useToast';
 import { QueryError } from '@/@types/query';
 
 const useLogout = (onSuccessCallback: () => void) => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
 
   return useMutation({
@@ -16,6 +17,7 @@ const useLogout = (onSuccessCallback: () => void) => {
     },
     onSuccess: () => {
       onSuccessCallback();
+      queryClient.removeQueries({ queryKey: ['user'] });
       showToast('로그아웃 되었습니다.', 'success');
     },
   });
