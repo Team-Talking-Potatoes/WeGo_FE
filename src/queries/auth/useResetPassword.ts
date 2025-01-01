@@ -1,8 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import {
-  resetAuthPassword,
-  resetUserPassword,
-} from '@/api/auth/resetPasswordApi';
+import { resetAuthPassword, resetUserPassword } from '@/api/auth/resetPassword';
 import { QueryError } from '@/@types/query';
 import { useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';

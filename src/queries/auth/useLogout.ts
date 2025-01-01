@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { logout } from '@/api/auth/logoutApi';
+import { logout } from '@/api/auth/logout';
 import useToast from '@/hooks/useToast';
 import { QueryError } from '@/@types/query';
 

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { deleteAccount } from '@/api/auth/deleteAccountApi';
+import { deleteAccount } from '@/api/auth/deleteAccount';
 import { useRouter } from 'next/navigation';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
