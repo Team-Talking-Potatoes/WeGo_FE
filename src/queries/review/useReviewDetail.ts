@@ -1,4 +1,4 @@
-import { getReviewDetail } from '@/api/reviewApi';
+import { getReviewDetail } from '@/api/review/review';
 import { useQuery } from '@tanstack/react-query';
 
 const useReviewDetail = (id: number) => {

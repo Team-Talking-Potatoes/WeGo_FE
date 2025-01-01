@@ -1,5 +1,5 @@
 import { Filters } from '@/@types/review';
-import { getReview } from '@/api/reviewApi';
+import { getReview } from '@/api/review/review';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 const useReview = ({ sortOrder }: Filters) => {

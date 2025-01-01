@@ -1,8 +1,8 @@
 import { ReviewDetailResponse } from '@/@types/review';
-import { getReviewDetail } from '@/api/reviewApi';
 import Header from '@/components/common/header/Header';
 import ReviewDetailContainer from '@/components/review/detail/ReviewDetailContainer';
 import { QueryClient } from '@tanstack/react-query';
+import { getReviewDetail } from '@/api/review/review';
 
 const ReviewDetailPage = async ({
   params,
