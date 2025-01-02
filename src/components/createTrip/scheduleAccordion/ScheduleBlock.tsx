@@ -37,7 +37,7 @@ const ScheduleBlock = ({
 
   return (
     <li
-      className="relative flex flex-col gap-6 border-b border-line-neutral py-6 first:pt-0 last:border-0"
+      className="relative flex w-full flex-col gap-6 border-b border-line-neutral py-6 first:pt-0 last:border-0"
       aria-labelledby={`schedule-title-${id}`}
     >
       <span className="body-2-sb absolute right-0 text-gray-500">
@@ -52,15 +52,15 @@ const ScheduleBlock = ({
         삭제
       </button>
       <TextInputWithLabel
+        size="full"
         label="목적지"
         state="required"
         name={`destination-${id}`}
         type="text"
         value={destination}
         placeholder="목적지를 입력 해 주세요."
-        size="default"
         onChange={(e) => handleChange('destination', e.target.value)}
-        inputClassName="bg-background-alternative w-[295px]"
+        inputClassName="bg-background-alternative border-0"
       />
       <ImageUploader
         size="small"
@@ -75,7 +75,8 @@ const ScheduleBlock = ({
         placeholder="목적지에 대한 설명을 입력 해 주세요."
         size="small"
         onChange={(e) => handleChange('description', e.target.value)}
-        textareaClassName="bg-background-alternative"
+        textareaClassName="bg-background-alternative w-full"
+        extraClassName="w-full bg-background-alternative"
       />
     </li>
   );

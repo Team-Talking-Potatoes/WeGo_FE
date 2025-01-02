@@ -6,11 +6,12 @@ import ModalTravelSuccessIcon from '@/assets/modal/modal_travel_success.svg';
 import ModalErrorIcon from '@/assets/modal/modal_error.svg';
 import { useRouter } from 'next/navigation';
 import { clearIndexedDB } from '@/utils/travelIndexedDB';
+import useGetUser from '@/queries/user/useGetUser';
 
 const useCreateTravel = () => {
   const router = useRouter();
   const { showModal } = useModal();
-
+  const { data: user } = useGetUser();
   return useMutation({
     mutationFn: createTravel,
     onError: (error: QueryError) => {
@@ -33,7 +34,7 @@ const useCreateTravel = () => {
               icon: ModalErrorIcon,
               type: 'error',
               onConfirm: () => {
-                router.push('/travel');
+                router.push('/');
               },
             },
           );
@@ -42,37 +43,30 @@ const useCreateTravel = () => {
           showModal('네트워크를 확인해주세요.', `${error.message}`, {
             icon: ModalErrorIcon,
             onConfirm: () => {
-              router.push('/register');
+              router.push('/');
             },
           });
       }
     },
-    onSuccess: (data) => {
-      const { nickname } = data;
-      showModal(
-        `${nickname} 님의\n여행모임이 생성 되었습니다!`,
-        '이제 함께 떠나는 여행을 시작해요.',
-        {
-          icon: ModalTravelSuccessIcon,
-          confirmText: '확인',
-          onConfirm: async () => {
-            try {
-              await clearIndexedDB();
-            } finally {
-              router.push('/');
-            }
+    onSuccess: () => {
+      if (user) {
+        const { nickname } = user;
+        showModal(
+          `${nickname} 님의\n여행모임이 생성 되었습니다!`,
+          '이제 함께 떠나는 여행을 시작해요.',
+          {
+            icon: ModalTravelSuccessIcon,
+            confirmText: '확인',
+            onConfirm: async () => {
+              try {
+                await clearIndexedDB();
+              } finally {
+                router.push('/');
+              }
+            },
           },
-          // cancelText: '미리보기',
-          // onCancel: async () => {
-          //   try {
-          //     await clearIndexedDB();
-          //     await saveFormTravelData(variables, 2);
-          //   } finally {
-          //     router.push('/travel/new/preview');
-          //   }
-          // },
-        },
-      );
+        );
+      }
     },
   });
 };

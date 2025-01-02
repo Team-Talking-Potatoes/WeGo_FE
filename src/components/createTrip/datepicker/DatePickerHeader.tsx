@@ -5,6 +5,7 @@ import Right from '@/assets/right.svg';
 import TimePicker from '@/components/createTrip/timepicker/TimePicker';
 
 interface Props {
+  registrationEnd?: Date;
   currentDate: Date;
   onMonthChange: (offset: number) => void;
   onYearMonthChange: (year: string, month: string) => void;
@@ -12,13 +13,14 @@ interface Props {
 }
 
 const DatePickerHeader = ({
+  registrationEnd,
   currentDate,
   onMonthChange,
   onYearMonthChange,
   onClose,
 }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const today = new Date();
+  const today = registrationEnd ? new Date(registrationEnd) : new Date();
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth() + 1;
   today.setHours(0, 0, 0, 0);
@@ -51,7 +53,7 @@ const DatePickerHeader = ({
   };
 
   return (
-    <header className="relative mb-8 flex items-center justify-between">
+    <header className="relative mx-auto mb-8 flex w-[335px] items-center justify-between xl:w-[288px]">
       <div className="flex items-center gap-4">
         <button type="button" onClick={() => onMonthChange(-1)}>
           <Left stroke={isFutureDate ? '#222222' : '#989BA1'} />
@@ -68,6 +70,7 @@ const DatePickerHeader = ({
         <Close />
       </button>
       <TimePicker
+        title="월 선택"
         firstPicker={{
           timeList: years,
           isLoop: false,

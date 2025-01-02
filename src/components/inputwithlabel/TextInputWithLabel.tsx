@@ -25,7 +25,7 @@ interface Props extends VariantProps<typeof LabelVariants> {
   placeholder?: string;
   maxLength?: number;
   readOnly?: boolean;
-  size?: 'default' | 'withButton' | 'halfButton';
+  size?: 'default' | 'withButton' | 'halfButton' | 'full';
   inputClassName?: string;
   inputClassNameCondition?: Record<string, boolean>;
   className?: string;
@@ -56,7 +56,7 @@ const TextInputWithLabel = ({
   children,
 }: Props) => {
   return (
-    <div className="flex w-fit flex-col">
+    <div className="flex flex-1 flex-col">
       <label
         htmlFor={name}
         className={cn(LabelVariants({ state, className }), classNameCondition)}

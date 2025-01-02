@@ -18,7 +18,7 @@ const HashtagCreator = ({ hashtags, onChange }: Props) => {
   };
 
   return (
-    <div className="flex w-[335px] flex-col">
+    <div className="flex w-full flex-col">
       <HashtagInput hashtags={hashtags} onAdd={addHashtag} />
       <HashtagList hashtags={hashtags} onRemove={removeHashtag} />
     </div>

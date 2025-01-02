@@ -53,7 +53,7 @@ const ImageUploader = ({ size, image, onChange }: Props) => {
 
   const id = 'image';
   return (
-    <div className="relative flex w-fit flex-col gap-1.5">
+    <div className="relative flex w-full flex-col gap-1.5">
       <label
         htmlFor={id}
         className="w-fit cursor-pointer text-sm text-label-normal after:ml-0.5 after:text-status-infomative after:content-['*']"
@@ -74,13 +74,14 @@ const ImageUploader = ({ size, image, onChange }: Props) => {
           >
             편집
           </span>
-          <ImagePreview src={imageUrl} size={size} />
+          <ImagePreview src={imageUrl} size={size} className="w-full" />
         </>
       ) : (
         <ImageUploadButton
           id={id}
           onImageChange={handleImageChange}
           size={size}
+          className="w-full"
         />
       )}
     </div>

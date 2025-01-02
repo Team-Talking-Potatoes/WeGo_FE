@@ -26,7 +26,7 @@ const LocationStep = ({
         name="travelLocation"
         type="text"
         value={travelLocation}
-        size="default"
+        size="full"
         placeholder="여행 이름을 입력 해 주세요."
         onChange={(e) => onChange('travelLocation', e.target.value)}
       >
@@ -39,7 +39,7 @@ const LocationStep = ({
           name="departureLocation"
           type="text"
           value={departureLocation}
-          size="default"
+          size="full"
           placeholder="모임 장소를 추가 해 주세요."
           onChange={(e) => onChange('departureLocation', e.target.value)}
         >
@@ -50,10 +50,10 @@ const LocationStep = ({
         </span>
       </div>
 
-      <div className="mt-auto flex justify-between">
+      <div className="mt-auto flex justify-between gap-4">
         <Button
           handler={onTempSave}
-          className="mt-auto"
+          className="mt-auto flex-1"
           size="half"
           fill="white"
         >
@@ -62,7 +62,7 @@ const LocationStep = ({
         <Button
           disabled={!isValid}
           handler={onNext}
-          className="mt-auto"
+          className="mt-auto flex-1"
           size="half"
         >
           다음

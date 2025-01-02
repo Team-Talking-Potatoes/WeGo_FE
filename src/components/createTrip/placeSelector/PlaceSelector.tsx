@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import cn from '@/utils/cn';
 
 const placeSelectorVariants = cva(
-  'body-2-m flex h-[46px] w-[160px] cursor-pointer items-center justify-center rounded border',
+  'body-2-m flex h-[46px] flex-1 cursor-pointer items-center justify-center rounded border',
   {
     variants: {
       isSelected: {
@@ -36,7 +36,7 @@ const PlaceSelector = ({ selected, onChange }: Props) => {
         국내외 장소 선택
       </label>
 
-      <div id="place-selector" className="flex justify-between">
+      <div id="place-selector" className="flex justify-between gap-4">
         {options.map(({ label, value }) => (
           <label
             htmlFor={label}
