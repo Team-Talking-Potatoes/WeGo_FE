@@ -10,11 +10,16 @@ interface MyReview {
   total: number;
   reviews: Review[];
 }
+/* ---------------------------------- 임시 수정 --------------------------------- */
+interface ReviewPopularResponse {
+  status: string;
+  data: Review[];
+}
 
 export const getPopularReview = () => {
-  return http.get<Review[]>('/reviews/popular');
+  return http.get<ReviewPopularResponse>('/reviews/popular');
 };
-
+/* ---------------------------------- 임시 수정 --------------------------------- */
 export const getTravelReview = (id: number) => {
   return http.get<Review[]>(`/reviews?id=${id}`);
 };

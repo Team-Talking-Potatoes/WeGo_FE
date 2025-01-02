@@ -4,7 +4,7 @@ import AuthText from '@/components/auth/input/AuthText';
 import useAuthInput from '@/hooks/useAuthInput';
 import { Button } from '@/components/common/button/Button';
 import useLogin from '@/queries/auth/useLogin';
-import AuthPassword from './input/AuthPassword';
+import AuthPassword from '../input/AuthPassword';
 
 const LoginForm = () => {
   const email = useAuthInput({ name: 'email' });

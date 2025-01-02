@@ -1,7 +1,7 @@
 import HeroSection from '@/components/main/HeroSection';
 import WeeklyPopularContainer from '@/components/main/weeklyTravel/WeeklyPopularContainer';
 import WeeklyReviewContainer from '@/components/main/weeklyReview/WeeklyReviewContainer';
-import WeeklyUserContainer from '@/components/main/weeklyUser/WeeklyUserContainer';
+// import WeeklyUserContainer from '@/components/main/weeklyUser/WeeklyUserContainer';
 import ToTop from '@/components/common/ToTop';
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
       <ToTop />
       <WeeklyPopularContainer />
       <WeeklyReviewContainer />
-      <WeeklyUserContainer />
+      {/* <WeeklyUserContainer /> */}
     </main>
   );
 };

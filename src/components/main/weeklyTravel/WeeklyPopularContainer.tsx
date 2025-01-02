@@ -18,7 +18,7 @@ const WeeklyPopularContainer = async () => {
   return (
     <Suspense fallback={<div>로딩중</div>}>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <WeeklyPopular travelList={data} />
+        <WeeklyPopular travelList={data?.data} />
       </HydrationBoundary>
     </Suspense>
   );

@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 import validate from '@/utils/validateAuthInput';
 import useSignup from '@/queries/auth/useSignup';
 import useSendMail from '@/queries/auth/useSendMail';
-import AuthPassword from './input/AuthPassword';
-import AuthEmailCertification from './input/AuthEmailCertification';
-import FormTitle from '../common/form/FormTitle';
+import FormTitle from '@/components/common/form/FormTitle';
+import AuthPassword from '../input/AuthPassword';
+import AuthEmailCertification from '../input/AuthEmailCertification';
 
 const SignupForm = () => {
   const [isEmailCertified, setIsEmailCertified] = useState<boolean | null>(

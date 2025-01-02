@@ -33,11 +33,28 @@ export const formatDateToShortWithDay = (
   includeYear?: boolean,
 ): string => {
   const date = new Date(dateString);
+
+  /* -------------------------------- 임시 수정------------------------------- */
+  // 날짜 유효성 검사
+  if (Number.isNaN(date.getTime())) {
+    console.error(`유효하지 않은 날짜 문자열: ${dateString}`);
+    return includeYear ? `Invalid Date(${dateString})` : `Invalid Date`;
+  }
+
   if (offsetDays) {
     date.setDate(date.getDate() + offsetDays);
   }
   const option: Intl.DateTimeFormatOptions = { weekday: 'short' };
-  const dayName = new Intl.DateTimeFormat('ko-KR', option).format(date);
+
+  let dayName: string;
+  try {
+    dayName = new Intl.DateTimeFormat('ko-KR', option).format(date);
+  } catch (error) {
+    console.error(`날짜 포맷팅 에러: ${error}`);
+    dayName = '';
+  }
+  /* ---------------------------------- 임시 수정--------------------------------- */
+
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   const year = date.getFullYear();
