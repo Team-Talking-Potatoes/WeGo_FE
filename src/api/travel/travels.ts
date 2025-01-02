@@ -5,6 +5,7 @@ import {
   TravelFilterResponse,
 } from '@/@types/travel';
 import buildTravelUrl from '@/utils/buildTravelUrl';
+import { ApiResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 export const postTravelParticipation = (travelId: number) => {
@@ -20,11 +21,11 @@ export const deleteTravel = (travelId: number) => {
 };
 
 export const getPopularTravel = () => {
-  return http.get<Travel[]>('/travels/popular');
+  return http.get<ApiResponse<Travel[]>>('/travels/popular');
 };
 
 export const getTravelDetail = ({ id }: { id: string }) => {
-  return http.get<TravelDetail>(`/travels/detail/${id}`);
+  return http.get<ApiResponse<TravelDetail>>(`/travels/detail/${id}`);
 };
 
 export const getTravels = (props: Filters & { pageParam?: number }) => {

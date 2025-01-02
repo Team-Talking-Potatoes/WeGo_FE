@@ -1,3 +1,4 @@
+import { ApiResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 export interface UserInfo {
@@ -9,5 +10,5 @@ export interface UserInfo {
 }
 
 export const getUserInfo = () => {
-  return http.get<UserInfo>('/users');
+  return http.get<ApiResponse<UserInfo>>('/users');
 };

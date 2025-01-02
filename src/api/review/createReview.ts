@@ -1,4 +1,5 @@
 import { Travel } from '@/@types/travel';
+import { ApiResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 interface WritableTravelResponse {
@@ -9,7 +10,7 @@ interface WritableTravelResponse {
 }
 
 export const getWritableTravelReview = (size: number, page: number) => {
-  return http.get<WritableTravelResponse>(
+  return http.get<ApiResponse<WritableTravelResponse>>(
     `/travels/reviews/pending?size=${size}&page=${page}`,
   );
 };
