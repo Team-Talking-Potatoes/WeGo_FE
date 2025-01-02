@@ -15,7 +15,7 @@ const useGetUser = () => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     retry: (failureCount, fetchError) => {
-      if (fetchError?.status === 401) {
+      if (fetchError?.status === 400) {
         return false;
       }
       return failureCount < 3;
