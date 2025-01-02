@@ -16,7 +16,7 @@ const buildTravelUrl = (filters: Filters, pageParam?: number): string => {
     params.append('page', String(pageParam));
   }
 
-  return `${process.env.NEXT_PUBLIC_BASE_URL}/travels?${params.toString()}`;
+  return `/travels?${params.toString()}`;
 };
 
 export default buildTravelUrl;

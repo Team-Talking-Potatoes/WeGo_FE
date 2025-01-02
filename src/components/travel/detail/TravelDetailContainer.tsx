@@ -14,6 +14,7 @@ const TravelDetailContainer = async ({ id }: { id: string }) => {
     queryKey: QUERY_KEYS.TRAVEL.TRAVEL_DETAIL(id),
     queryFn: () => getTravelDetail({ id }),
   });
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <TravelDetail travelDetail={data.data} />

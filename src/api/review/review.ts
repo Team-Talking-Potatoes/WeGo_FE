@@ -1,4 +1,5 @@
 import { Review, ReviewDetailResponse, ReviewResponse } from '@/@types/review';
+import { ApiResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 interface ReviewParams {
@@ -16,7 +17,7 @@ export const getPopularReview = () => {
 };
 
 export const getTravelReview = (id: number) => {
-  return http.get<Review[]>(`/reviews?id=${id}`);
+  return http.get<ApiResponse<Review[]>>(`/reviews?id=${id}`);
 };
 
 export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {

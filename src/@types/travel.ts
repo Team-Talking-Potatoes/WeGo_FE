@@ -71,8 +71,7 @@ export interface TravelParams {
 }
 
 export interface TravelFilterResponse {
-  status: string;
-  travels: Travel[];
+  content: Travel[];
   currentPage: number;
   hasNext: boolean;
 }

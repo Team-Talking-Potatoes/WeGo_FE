@@ -14,6 +14,7 @@ const WeeklyUserContainer = async () => {
     queryKey: QUERY_KEYS.USER.POPULAR_USER,
     queryFn: getPopularUser,
   });
+
   return (
     <Suspense fallback={<div>로딩중</div>}>
       <HydrationBoundary state={dehydrate(queryClient)}>

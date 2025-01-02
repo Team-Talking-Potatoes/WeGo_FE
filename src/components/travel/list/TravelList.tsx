@@ -52,7 +52,7 @@ const TravelList = () => {
 
   if (isError) return <div>에러{error?.message}</div>;
 
-  if (travelListData?.pages[0].travels.length === 0) {
+  if (travelListData?.pages[0].data.content.length === 0) {
     return (
       <NoResult
         key="no-result"
@@ -67,7 +67,7 @@ const TravelList = () => {
       <div className="grid h-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
         {travelListData &&
           travelListData.pages.map((page) =>
-            page.travels.map((travel) => (
+            page.data.content.map((travel) => (
               <TravelCardBig
                 key={travel.travelId}
                 travelId={travel.travelId}

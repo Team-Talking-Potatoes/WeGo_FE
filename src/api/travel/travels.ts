@@ -26,16 +26,13 @@ export const getPopularTravel = () => {
 };
 
 export const getTravelDetail = ({ id }: { id: string }) => {
-  return http.get<ApiResponse<TravelDetail>>(`/travels/detail/${id}`);
+  return http.get<ApiResponse<TravelDetail>>(`/travels/${id}`);
 };
 
 export const getTravels = (props: Filters & { pageParam?: number }) => {
   const { pageParam, ...filters } = props;
   const url = buildTravelUrl(filters, pageParam);
-
-  return http.get<TravelFilterResponse>(
-    url.replace(process.env.NEXT_PUBLIC_BASE_URL!, ''),
-  );
+  return http.get<ApiResponse<TravelFilterResponse>>(url);
 };
 
 export const postTravelBookMark = (id: number) => {

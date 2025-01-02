@@ -12,7 +12,6 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
   const queryClient = useQueryClient();
   const loginUser = queryClient.getQueryData<UserInfo>(['user']);
   const loginUserId = loginUser?.userId;
-
   const isParticipation = Boolean(
     travelDetail &&
       travelDetail.participant.find((user) => user.id === loginUserId),
