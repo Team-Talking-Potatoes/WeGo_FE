@@ -1,52 +1,50 @@
-export interface Room {
-  id: string;
-  title: string;
+import { CHAT_SORT_OPTIONS } from '@/constants/chat';
+
+export type SortType = keyof typeof CHAT_SORT_OPTIONS;
+
+export interface RoomResponse {
+  chatId: string;
+  chattingName: string;
   host: string;
-  date: string;
-  image: string;
-  membersCount: number;
-  messageCount: number;
+  hasJoined: boolean;
   lastMessageTime: string;
+  image: string;
+  unreadMessageCount: number;
+  membersCount: number;
+  totalMembersCount: number;
+  hostProfileImage: string;
+  description: string;
 }
 
-export type SortType = '최근순' | '안읽은순';
-
-export interface InitialData {
-  isJoined: boolean;
-  image?: string;
-  title?: string;
-  description?: string;
-  host?: string;
-  hostImage?: string;
-  totalMembersCount?: number;
-  membersCount?: number;
+export interface ChattingResponse {
+  chatTitle: string;
+  chatMessages: ChatMessage[];
 }
 
-export interface JoinedData extends InitialData {
-  messages?: Message[];
-  participants?: Participant[];
-  images?: ImageInfo[];
+export interface ChatMessage {
+  chatMessageId: string;
+  images: string[];
+  content: string;
+  sender: string;
+  senderProfileImage: string;
+  createdAt: string;
+  unreadCount: number;
+}
+
+export interface ChatOverview {
+  participants: Participant[];
+  album: ImageInfo[];
 }
 
 export interface ImageInfo {
-  image: string[];
+  images: string[];
   uploadDate: string;
   uploader: string;
 }
-
-export interface Message {
-  id: string;
-  user: string;
-  image: string;
-  text: string;
-  images: File[];
-  timestamp: string;
-  isMine: boolean;
-  unseenUserCount: number;
-}
-
 export interface Participant {
   user: string;
-  image: string;
-  isMe: boolean;
+  email: string;
+  description: string;
+  profileImage: string;
+  travelCount: number;
 }
