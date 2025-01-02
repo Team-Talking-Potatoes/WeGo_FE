@@ -1,0 +1,276 @@
+{
+  "isJoined": true,
+  "title": "서울에서 1박2일 즐겨보아요 :)",
+  "messages": [
+    {
+      "chatMessageId": "1",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 1 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 10:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "2",
+      "sender": "User 2",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 2 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "3",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 3 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:30",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "4",
+      "sender": "User 4",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 4 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:15",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "5",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 5 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "6",
+      "sender": "User 6",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 6 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "7",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 7 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:30",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "8",
+      "sender": "User 8",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 8 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:15",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "9",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 9 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "10",
+      "sender": "User 10",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 10 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 7:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "11",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 11 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 10:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "12",
+      "sender": "User 2",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 12 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "13",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 13 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:30",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "14",
+      "sender": "User 4",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 14 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:15",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "15",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 15 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "16",
+      "sender": "User 6",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 16 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "17",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 17 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:30",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "18",
+      "sender": "User 8",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 18 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:15",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "19",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 19 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "20",
+      "sender": "User 10",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 20 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 7:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "21",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 21 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 10:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "22",
+      "sender": "User 2",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 22 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "23",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 23 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:30",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "24",
+      "sender": "User 4",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 24 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:15",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "25",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 25 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 9:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "26",
+      "sender": "User 6",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 26 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:45",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "27",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 27 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:30",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "28",
+      "sender": "User 8",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 28 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:15",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "29",
+      "sender": "여행 토끼",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 29 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 8:00",
+      "unreadCount": 2
+    },
+    {
+      "chatMessageId": "30",
+      "sender": "User 10",
+      "senderProfileImage": "/user.jpg",
+      "content": "Message 30 content.",
+      "images": [],
+      "createdAt": "2024.12.24. 오후 7:45",
+      "unreadCount": 2
+    }
+  ]
+}

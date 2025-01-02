@@ -20,7 +20,6 @@ const MainNavigation = ({ isActive = false }: Props) => {
     '/travel',
     '/mypage',
     '/review',
-    '/chat',
     '/editProfile',
     '/userSetting',
     '/resetPassword/userPassword',

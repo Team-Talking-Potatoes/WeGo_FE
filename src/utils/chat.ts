@@ -1,16 +1,19 @@
-import { Room, SortType } from '@/@types/chat';
+import { RoomResponse, SortType } from '@/@types/chat';
 
-export const sortRooms = (rooms: Room[], sortType: SortType): Room[] => {
+export const sortRooms = (
+  rooms: RoomResponse[],
+  sortType: SortType,
+): RoomResponse[] => {
   return [...rooms].sort((a, b) => {
-    if (sortType === '최근순') {
+    if (sortType === 'latest') {
       return (
         new Date(b.lastMessageTime).getTime() -
         new Date(a.lastMessageTime).getTime()
       );
     }
-    if (sortType === '안읽은순') {
-      if (a.messageCount === 0 && b.messageCount > 0) return 1;
-      if (a.messageCount > 0 && b.messageCount === 0) return -1;
+    if (sortType === 'unread') {
+      if (a.unreadMessageCount === 0 && b.unreadMessageCount > 0) return 1;
+      if (a.unreadMessageCount > 0 && b.unreadMessageCount === 0) return -1;
 
       return (
         new Date(b.lastMessageTime).getTime() -

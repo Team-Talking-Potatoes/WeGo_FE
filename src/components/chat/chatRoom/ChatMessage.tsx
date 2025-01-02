@@ -2,16 +2,18 @@ import React from 'react';
 import Image from 'next/image';
 import Remove from '@/assets/close_red.svg';
 import Resend from '@/assets/resend.svg';
-import { Message } from '@/@types/chat';
+import { ChatMessage as ChatMessageType } from '@/@types/chat';
 import { formatDateToKorean, formatTimeToKorean } from '@/utils/chat';
+import UserIcon from '@/components/common/user/UserIcon';
 
 interface Props {
-  messages: Message[];
-  message: Message;
+  messages: ChatMessageType[];
+  message: ChatMessageType;
   messageIndex: number;
   isError: boolean;
   textBoxHeights: Record<string, number>;
   messageRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
+  nickname: string;
 }
 
 const ChatMessage = ({
@@ -21,26 +23,27 @@ const ChatMessage = ({
   isError,
   textBoxHeights,
   messageRefs,
+  nickname,
 }: Props) => {
   const prevMessage = messages[messageIndex - 1];
   const nextMessage = messages[messageIndex + 1];
 
   const isNewDate =
     !prevMessage ||
-    formatDateToKorean(prevMessage.timestamp) !==
-      formatDateToKorean(message.timestamp);
+    formatDateToKorean(prevMessage.createdAt) !==
+      formatDateToKorean(message.createdAt);
 
   const isSameUser =
     prevMessage &&
-    prevMessage.user === message.user &&
-    prevMessage.timestamp === message.timestamp;
+    prevMessage.sender === message.sender &&
+    prevMessage.createdAt === message.createdAt;
 
   const isLastInGroup =
     !nextMessage ||
-    nextMessage.user !== message.user ||
-    nextMessage.timestamp !== message.timestamp;
+    nextMessage.sender !== message.sender ||
+    nextMessage.createdAt !== message.createdAt;
 
-  const textBoxHeight = textBoxHeights[message.id] || 0;
+  const textBoxHeight = textBoxHeights[message.chatMessageId] || 0;
 
   const getMessageGridStyles = (imagesLength: number) => {
     if (imagesLength === 1)
@@ -68,13 +71,14 @@ const ChatMessage = ({
     return '';
   };
 
+  const isMine = message.sender === nickname;
   return (
     <>
       {isNewDate && (
         <div className="mb-8 flex items-center gap-2.5">
           <div className="h-[1px] flex-1 bg-line-normal" />
           <div className="body-3-m text-label-neutral">
-            {formatDateToKorean(message.timestamp)}
+            {formatDateToKorean(message.createdAt)}
           </div>
           <div className="h-[1px] flex-1 bg-line-normal" />
         </div>
@@ -82,39 +86,37 @@ const ChatMessage = ({
       <div
         className={`flex flex-col ${
           isLastInGroup ? 'mb-4' : 'mb-2'
-        } ${message.isMine ? 'items-end' : 'items-start'}`}
+        } ${isMine ? 'items-end' : 'items-start'}`}
       >
-        {!isSameUser && !message.isMine && (
+        {!isSameUser && !isMine && (
           <div className="flex">
-            <div className="relative mr-[7px] h-6 w-6">
-              <Image
-                src={message.image}
-                alt={`${message.user} 프로필 이미지`}
-                fill
-                className="rounded-full object-cover"
-              />
-            </div>
-            <div className="caption-1-sb text-label-neutral">
-              {message.user}
+            <UserIcon
+              size="xs"
+              profileImage={message.senderProfileImage}
+              nickname={message.sender}
+              ariaLabel={`${message.sender ?? '유저'}의 프로필 이미지`}
+            />
+            <div className="caption-1-sb ml-[7px] text-label-neutral">
+              {message.sender}
             </div>
           </div>
         )}
         <div className="flex items-end">
           <div
-            className={`flex flex-col ${message.isMine ? 'items-end' : 'items-start'} ${message.isMine ? 'order-2 ml-[5px]' : 'order-1 ml-[30px] mr-[5px]'}`}
+            className={`flex flex-col ${isMine ? 'items-end' : 'items-start'} ${isMine ? 'order-2 ml-[5px]' : 'order-1 ml-[30px] mr-[5px]'}`}
           >
             {message.images.length !== 0 && (
               <div
-                className={`${message.text && 'mb-2'} grid gap-2 ${getMessageGridStyles(message.images.length)}`}
+                className={`${message.content && 'mb-2'} grid gap-2 ${getMessageGridStyles(message.images.length)}`}
               >
                 {message.images.map((image, msgIdx) => (
                   <div
-                    key={URL.createObjectURL(image)}
+                    key={image}
                     className={`relative col-span-2 ${getColSpan(message.images.length, msgIdx)}`}
                   >
                     <Image
-                      src={URL.createObjectURL(image)}
-                      alt={`${message.user} 업로드 이미지 ${msgIdx + 1}`}
+                      src={image}
+                      alt={`${message.sender} 업로드 이미지 ${msgIdx + 1}`}
                       fill
                       className={`${message.images.length === 1 ? 'rounded-lg' : 'rounded'} object-cover`}
                     />
@@ -123,26 +125,26 @@ const ChatMessage = ({
               </div>
             )}
             <div className="flex items-end">
-              {message.text !== '' && (
+              {message.content !== '' && (
                 <>
                   <div
                     ref={(el) => {
                       if (messageRefs.current) {
                         const refs = messageRefs.current;
-                        refs[message.id] = el;
+                        refs[message.chatMessageId] = el;
                       }
                     }}
                     className={`body-3-r w-fit max-w-[255px] break-words ${
-                      message.isMine
+                      isMine
                         ? 'order-2 ml-[5px] bg-primary-normal text-primary-white'
                         : 'order-1 mr-[5px] bg-gray-200 text-label-neutral'
                     } ${textBoxHeight > 30 ? 'rounded-2xl' : 'rounded-[30px]'} px-2.5 py-1.5`}
                   >
-                    {message.text}
+                    {message.content}
                   </div>
 
                   <div
-                    className={`relative ${message.isMine ? 'order-1' : 'order-2'} ${isError && 'flex gap-1.5 rounded-md border border-gray-200 px-[5px] py-1'}`}
+                    className={`relative ${isMine ? 'order-1' : 'order-2'} ${isError && 'flex gap-1.5 rounded-md border border-gray-200 px-[5px] py-1'}`}
                   >
                     {isError ? (
                       <>
@@ -158,13 +160,13 @@ const ChatMessage = ({
                         <div
                           className={`caption-1-sb absolute ${
                             isLastInGroup ? 'bottom-[14px]' : 'bottom-0'
-                          } text-label-neutral ${message.isMine ? 'right-0' : 'left-0'}`}
+                          } text-label-neutral ${isMine ? 'right-0' : 'left-0'}`}
                         >
-                          {message.unseenUserCount}
+                          {message.unreadCount}
                         </div>
                         {isLastInGroup && (
                           <div className="caption-1-r whitespace-nowrap text-label-alternative">
-                            {formatTimeToKorean(message.timestamp)}
+                            {formatTimeToKorean(message.createdAt)}
                           </div>
                         )}
                       </>
@@ -174,9 +176,9 @@ const ChatMessage = ({
               )}
             </div>
           </div>
-          {message.text === '' && (
+          {message.content === '' && (
             <div
-              className={`relative ${message.isMine ? 'order-1' : 'order-2'} ${isError && 'flex gap-1.5 rounded-md border border-gray-200 px-[5px] py-1'}`}
+              className={`relative ${isMine ? 'order-1' : 'order-2'} ${isError && 'flex gap-1.5 rounded-md border border-gray-200 px-[5px] py-1'}`}
             >
               {isError ? (
                 <>
@@ -192,13 +194,13 @@ const ChatMessage = ({
                   <div
                     className={`caption-1-sb absolute ${
                       isLastInGroup ? 'bottom-[14px]' : 'bottom-0'
-                    } text-label-neutral ${message.isMine ? 'right-0' : 'left-0'}`}
+                    } text-label-neutral ${isMine ? 'right-0' : 'left-0'}`}
                   >
-                    {message.unseenUserCount}
+                    {message.unreadCount}
                   </div>
                   {isLastInGroup && (
                     <div className="caption-1-r whitespace-nowrap text-label-alternative">
-                      {formatTimeToKorean(message.timestamp)}
+                      {formatTimeToKorean(message.createdAt)}
                     </div>
                   )}
                 </>

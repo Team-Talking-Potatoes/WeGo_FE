@@ -9,15 +9,24 @@ import React from 'react';
 interface Props {
   title: string | React.ReactNode;
   isConfigButton?: boolean;
+  isChatHeader?: boolean;
   onRoute?: () => void;
   children?: React.ReactNode;
 }
 
-const Header = ({ title, isConfigButton, onRoute, children }: Props) => {
+const Header = ({
+  title,
+  isConfigButton,
+  isChatHeader,
+  onRoute,
+  children,
+}: Props) => {
   const router = useRouter();
 
   return (
-    <header className="fixed top-0 z-10 flex h-[60px] w-full items-center border-b border-[#DADDE1] bg-white px-5 py-3.5 xl:hidden">
+    <header
+      className={`top-0 z-10 flex h-[60px] w-full items-center border-b border-[#DADDE1] bg-white px-5 py-3.5 ${isChatHeader ? 'absolute' : 'fixed xl:hidden'}`}
+    >
       <button
         type="button"
         onClick={() => {
