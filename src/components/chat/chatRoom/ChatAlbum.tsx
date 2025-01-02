@@ -20,7 +20,7 @@ const ChatAlbum = ({
 }: Props) => {
   if (!isAlbumOpen) return null;
   return (
-    <div className="fixed inset-0 z-20 bg-white">
+    <div className="fixed inset-0 z-20 bg-white xl:absolute">
       <header className="relative flex h-[60px] items-center justify-center border-b border-[#DADDE1]">
         <button
           type="button"
@@ -31,12 +31,7 @@ const ChatAlbum = ({
         </button>
         <h2 className="title-5-sb text-label-normal">이미지</h2>
       </header>
-      <div
-        className="flex flex-col gap-8 overflow-y-auto py-9 pl-[21px] pr-[20px] custom-scrollbar"
-        style={{
-          height: `calc(100vh - 60px)`,
-        }}
-      >
+      <div className="flex h-[calc(100vh-60px)] flex-col gap-8 overflow-y-auto py-9 pl-[21px] pr-[20px] custom-scrollbar md:h-[calc(100vh-140px)] md:px-[38px] md:py-10 xl:p-[70px] xl:py-9">
         {groupedImages &&
           Object.keys(groupedImages)
             .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
@@ -45,7 +40,7 @@ const ChatAlbum = ({
                 <h3 className="body-3-r mb-3 text-label-neutral">
                   {date.replace(/-/g, '.')}
                 </h3>
-                <ul className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2 md:gap-2.5">
                   {groupedImages[date].map((image) => (
                     <li key={uuidv4()}>
                       <button
@@ -54,12 +49,12 @@ const ChatAlbum = ({
                         onClick={() => onOpenViewer(image)}
                       >
                         <Image
-                          src={image.image[0]}
+                          src={image.images[0]}
                           alt={`${image.uploader} 업로드 이미지`}
                           fill
                           className="rounded object-cover"
                         />
-                        {image.image.length > 1 && (
+                        {image.images.length > 1 && (
                           <Group className="absolute bottom-1.5 right-1.5" />
                         )}
                       </button>

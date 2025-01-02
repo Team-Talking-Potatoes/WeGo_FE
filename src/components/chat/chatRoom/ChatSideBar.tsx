@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Group from '@/assets/group.svg';
 import Right from '@/assets/right_gray.svg';
 import Leaveout from '@/assets/leaveout.svg';
-import { JoinedData, ImageInfo } from '@/@types/chat';
+import { ChatOverview, ImageInfo, Participant } from '@/@types/chat';
 import { v4 as uuidv4 } from 'uuid';
+import UserProfileModal from '@/components/user/userProfileModal/UserProfileModal';
+import UserIcon from '@/components/common/user/UserIcon';
 
 interface Props {
-  chatData: JoinedData;
+  chatData: ChatOverview;
   isSidebarOpen: boolean;
+  nickname: string;
   onOpenAlbum: () => void;
   onCloseSidebar: () => void;
   onOpenViewer: (image: ImageInfo) => void;
@@ -17,18 +20,32 @@ interface Props {
 const ChatSideBar = ({
   chatData,
   isSidebarOpen,
+  nickname,
   onOpenAlbum,
   onCloseSidebar,
   onOpenViewer,
 }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedParticipant, setSelectedParticipant] =
+    useState<Participant | null>(null);
+
+  const handleCloseProfileModal = () => {
+    setIsOpen(false);
+    setSelectedParticipant(null); // 모달 닫을 때 선택된 참여자 정보 초기화
+  };
+
+  const handleOpenProfileModal = (participant: Participant) => {
+    setSelectedParticipant(participant); // 선택된 참여자 정보 설정
+    setIsOpen(true); // 모달 열기
+  };
   return (
     <>
       <div
-        className={`fixed right-0 top-0 z-10 h-full w-[296px] bg-white shadow-lg transition duration-300 ease-in-out ${
+        className={`absolute right-0 top-0 z-10 w-[296px] bg-white shadow-lg transition duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex h-[calc(100vh-80px)] flex-col gap-5 px-4 py-5">
+        <div className="flex h-[calc(100vh-80px)] flex-col gap-5 px-4 py-5 md:h-[calc(100vh-160px)]">
           <h2 className="title-5-b text-label-normal">채팅방 모아보기</h2>
           <div>
             <header className="mb-2 flex items-center justify-between">
@@ -38,7 +55,7 @@ const ChatSideBar = ({
               </button>
             </header>
             <ul className="flex gap-2">
-              {chatData.images
+              {chatData.album
                 ?.sort(
                   (a, b) =>
                     new Date(b.uploadDate).getTime() -
@@ -53,12 +70,12 @@ const ChatSideBar = ({
                         onClick={() => onOpenViewer(img)}
                       >
                         <Image
-                          src={img.image[0]}
+                          src={img.images[0]}
                           alt={`${img.uploader} 업로드 이미지`}
                           fill
                           className="rounded object-cover"
                         />
-                        {img.image.length > 1 && (
+                        {img.images.length > 1 && (
                           <Group className="absolute bottom-1.5 right-1.5" />
                         )}
                       </button>
@@ -70,31 +87,36 @@ const ChatSideBar = ({
           <div className="h-[1px] bg-line-normal" />
           <h2 className="title-5-b text-label-normal">참여자</h2>
           <ul className="flex flex-1 flex-col gap-4 overflow-y-auto custom-scrollbar">
-            {chatData.participants?.map(({ user, image, isMe }) => (
-              <div key={uuidv4()} className="flex items-center gap-2.5">
-                <div className="relative h-10 w-10 shrink-0">
-                  <Image
-                    src={image}
-                    alt={`${user} 프로필 이미지`}
-                    fill
-                    className="rounded-full object-cover"
+            {chatData.participants?.map((participant) => (
+              <button
+                type="button"
+                key={uuidv4()}
+                className="flex cursor-pointer items-center gap-2.5 transition-all duration-300 hover:bg-gray-100"
+                onClick={() => handleOpenProfileModal(participant)} // 참여자 클릭 시 모달 열기
+              >
+                <div className="relative shrink-0">
+                  <UserIcon
+                    size="md"
+                    profileImage={participant.profileImage}
+                    nickname={participant.user}
+                    ariaLabel={`${participant.user ?? '유저'}의 프로필 이미지`}
                   />
-                  {isMe && (
+                  {nickname === participant.user && (
                     <div className="caption-1-sb absolute inset-0 flex items-center justify-center rounded-full bg-black/50 text-white">
                       ME
                     </div>
                   )}
                 </div>
                 <div
-                  className={`${isMe ? 'body-2-sb' : 'body-2-r'} truncate text-label-normal`}
+                  className={`${nickname === participant.user ? 'body-2-sb' : 'body-2-r'} truncate text-label-normal`}
                 >
-                  {user}
+                  {participant.user}
                 </div>
-              </div>
+              </button>
             ))}
           </ul>
         </div>
-        <div className="border border-line-normal bg-background-alternative px-4 pb-8 pt-4">
+        <div className="h-20 border border-line-normal bg-background-alternative px-4 pb-8 pt-4">
           <button type="button" onClick={onCloseSidebar}>
             <Leaveout />
           </button>
@@ -102,7 +124,7 @@ const ChatSideBar = ({
       </div>
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-label-strong/40"
+          className="absolute inset-0 bg-label-strong/40"
           role="button"
           tabIndex={0}
           onClick={onCloseSidebar}
@@ -112,6 +134,13 @@ const ChatSideBar = ({
             }
           }}
           aria-label="Close Sidebar"
+        />
+      )}
+      {selectedParticipant && (
+        <UserProfileModal
+          isOpen={isOpen}
+          onClose={handleCloseProfileModal}
+          participant={selectedParticipant}
         />
       )}
     </>

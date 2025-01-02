@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -162,7 +164,6 @@ const useTravelForm = () => {
   }, []);
 
   useEffect(() => {
-    // let storedPreviewData: FormTravelData | null;
     const loadInitialData = async () => {
       try {
         if (pathname === '/travel/new') {
@@ -176,20 +177,9 @@ const useTravelForm = () => {
             setFormData(storedData);
           }
         }
-        // else if (pathname === '/travel/new/preview') {
-        //   storedPreviewData = await getFormTravelData(2);
-        //   if (!storedPreviewData) {
-        //     // 데이터를 찾을 수 없을 경우 바로 메인 페이지로 이동
-        //     router.push('/');
-        //     return; // 여기서 return을 제거 가능
-        //   }
-        //   delete storedPreviewData.id;
-        //   setFormData(storedPreviewData);
-        // }
       } catch (error) {
         console.error('초기 데이터를 로드하는 중 오류 발생:', error);
       } finally {
-        // if 문에서 "|| storedPreviewData" 제거
         if (pathname !== '/travel/new/preview') {
           setIsLoading(false);
         }

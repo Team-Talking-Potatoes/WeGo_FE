@@ -1,40 +1,21 @@
 import ChatRoomItem from '@/components/chat/chatRoomList/ChatRoomItem';
-
-interface Room {
-  id: string;
-  title: string;
-  host: string;
-  date: string;
-  image: string;
-  membersCount: number;
-  messageCount: number;
-  lastMessageTime: string;
-}
+import { RoomResponse } from '@/@types/chat';
 
 interface Props {
-  rooms: Room[];
+  rooms: RoomResponse[];
   onExit: (id: string) => void;
+  onChatRoomId: (chatId: string) => void;
 }
 
-const ChatRoomList = ({ rooms, onExit }: Props) => {
+const ChatRoomList = ({ rooms, onExit, onChatRoomId }: Props) => {
   return (
-    <ul
-      className="overflow-y-auto custom-scrollbar"
-      style={{
-        height: `calc(100vh - 140px)`,
-      }}
-    >
+    <ul className="static h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
       {rooms.map((room) => (
         <ChatRoomItem
-          key={room.id}
-          id={room.id}
-          title={room.title}
-          host={room.host}
-          date={room.date}
-          image={room.image}
-          membersCount={room.membersCount}
-          messageCount={room.messageCount}
+          key={room.chatId}
+          room={room}
           onExit={onExit}
+          onChatRoomId={onChatRoomId}
         />
       ))}
     </ul>
