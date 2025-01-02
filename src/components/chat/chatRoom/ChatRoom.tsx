@@ -13,7 +13,7 @@ import { useChat } from '@/hooks/useChat';
 import { useChatOverview } from '@/hooks/useChatOverview';
 import { useInView } from 'react-intersection-observer';
 import useGetUser from '@/queries/user/useGetUser';
-import ChatRoomSkeleton from '@/components/chat/chatRoom/ChatRoomSkeleton';
+import ChatRoomSkeleton from '@/components/chat/skeleton/ChatRoomSkeleton';
 
 interface Props {
   chatId: string;
