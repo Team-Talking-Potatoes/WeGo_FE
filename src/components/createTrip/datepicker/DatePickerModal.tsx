@@ -21,11 +21,16 @@ interface CalendarInfo {
   initCalendar: () => void;
 }
 interface Props {
+  registrationEnd?: Date;
   calendarInfo: CalendarInfo;
   isInitBtn?: boolean;
 }
 
-const DatePickerModal = ({ calendarInfo, isInitBtn = false }: Props) => {
+const DatePickerModal = ({
+  calendarInfo,
+  isInitBtn = false,
+  registrationEnd,
+}: Props) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const {
     currentDate,
@@ -55,27 +60,29 @@ const DatePickerModal = ({ calendarInfo, isInitBtn = false }: Props) => {
         className="fixed inset-0 bg-label-strong/40"
         aria-hidden="true"
       />
-      <div className="fixed inset-0 flex w-screen items-end justify-center">
+      <div className="fixed inset-0 flex w-screen items-end justify-center xl:items-center">
         <DialogPanel
           ref={modalRef}
-          className="rounded-t-lg bg-background-normal px-5 pb-10 pt-8"
+          className="w-full rounded-t-lg bg-background-normal pb-10 pt-8 xl:max-w-[320px] xl:rounded-lg xl:py-4 xl:shadow-lg xl:shadow-black/20 xl:drop-shadow-[0px_7px_26px_rgba(0,0,0,0.2)]"
           aria-labelledby="datePickerTitle"
           aria-modal="true"
         >
           <DatePickerHeader
+            registrationEnd={registrationEnd}
             currentDate={currentDate}
             onMonthChange={calendarEvents.adjustMonth}
             onYearMonthChange={handleYearMonthChange}
             onClose={closeCalendar}
           />
           <DatePickerDays
+            registrationEnd={registrationEnd}
             days={days}
             selectedStartDate={selectedStartDate}
             selectedEndDate={selectedEndDate}
             calendarEvents={calendarEvents}
             isRangeSelectable={isRangeSelectable}
           />
-          <div className="flex justify-between">
+          <div className="mx-auto flex w-[335px] justify-between xl:w-[300px]">
             {isInitBtn && (
               <Button
                 handler={initCalendar}
@@ -89,7 +96,7 @@ const DatePickerModal = ({ calendarInfo, isInitBtn = false }: Props) => {
             )}
             <Button
               handler={confirmCalendar}
-              className="mt-10"
+              className="mt-10 xl:mt-6"
               disabled={!selectedStartDate}
               size={isInitBtn ? 'half' : 'default'}
             >

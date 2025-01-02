@@ -16,7 +16,7 @@ const ScheduleAccordionItem = ({
   children,
 }: Props) => {
   return (
-    <section className="w-[335px]" aria-labelledby={`accordion-title-${title}`}>
+    <section className="w-full" aria-labelledby={`accordion-title-${title}`}>
       <header
         className="flex cursor-pointer items-center gap-1.5 rounded-t bg-gray-600 px-5 py-2.5"
         role="button"

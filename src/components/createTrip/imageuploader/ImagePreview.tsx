@@ -2,11 +2,11 @@ import Image from 'next/image';
 import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 
-const imagePreviewVariants = cva('relative h-[120px] ', {
+const imagePreviewVariants = cva('relative h-[120px] md:h-[160px]', {
   variants: {
     size: {
-      default: 'w-[335px]',
-      small: 'w-[295px]',
+      default: 'w-[335px] md:w-[500px]',
+      small: 'w-[295px] md:w-[460px]',
     },
   },
   defaultVariants: {

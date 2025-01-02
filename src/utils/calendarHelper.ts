@@ -76,10 +76,15 @@ export const formatDateToString = (date: Date | null): string => {
   return `${year}-${month}-${day}`;
 };
 
-export const formatDateToStringWithDot = (date: Date | null): string => {
+export const formatDateToStringWithDot = (
+  date: Date | string | null,
+): string => {
   if (!date) return '';
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
-  const day = date.getDate().toString().padStart(2, '0');
+  let formatedDate;
+  if (typeof date === 'string') formatedDate = new Date(date);
+  else formatedDate = date;
+  const year = formatedDate.getFullYear();
+  const month = (formatedDate.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+  const day = formatedDate.getDate().toString().padStart(2, '0');
   return `${year}.${month}.${day}`;
 };

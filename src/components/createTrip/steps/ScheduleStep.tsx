@@ -16,7 +16,7 @@ const ScheduleStep = ({
   };
 
   return (
-    <div className="mb-10 flex flex-1 flex-col gap-6">
+    <div className="mb-10 flex w-full flex-1 flex-col gap-6">
       <ScheduleAccordion
         startDate={startAt as Date}
         endDate={endAt || (startAt as Date)}
@@ -24,16 +24,21 @@ const ScheduleStep = ({
         onChangeSchedule={handleChangeSchedule}
       />
 
-      <div className="mt-4 flex justify-between">
+      <div className="mt-4 flex justify-between gap-4">
         <Button
           handler={onTempSave}
-          className="mt-auto"
+          className="mt-auto w-full"
           size="half"
           fill="white"
         >
           임시저장
         </Button>
-        <Button disabled={!isValid} handler={onSubmit} size="half">
+        <Button
+          disabled={!isValid}
+          handler={onSubmit}
+          size="half"
+          className="mt-auto w-full"
+        >
           완료
         </Button>
       </div>

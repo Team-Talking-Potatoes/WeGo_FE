@@ -48,7 +48,7 @@ const ScheduleAccordion = ({
   };
 
   return (
-    <div className="flex flex-col gap-8" aria-label="여행 일정">
+    <div className="flex w-full flex-col gap-8" aria-label="여행 일정">
       {daysInRange.map((day, index) => (
         <ScheduleAccordionItem
           key={day.toISOString()}
@@ -78,7 +78,7 @@ const ScheduleAccordion = ({
               type="button"
               onClick={() => addSchedule(index + 1)}
               aria-label={`Day ${index + 1} 일정 추가`}
-              className="body-2-sb flex h-[40px] w-[295px] items-center justify-center gap-1 rounded border border-blue-100 bg-blue-100 text-primary-normal transition duration-500 hover:border-primary-normal"
+              className="body-2-sb flex h-[40px] w-full items-center justify-center gap-1 rounded border border-blue-100 bg-blue-100 text-primary-normal transition duration-500 hover:border-primary-normal"
             >
               <Add />
               일정 추가

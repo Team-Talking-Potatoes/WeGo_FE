@@ -41,7 +41,7 @@ const HashtagInput = ({ hashtags, onAdd }: Props) => {
         type="text"
         value={input}
         placeholder="해시태그 입력 (최대 5개)"
-        size="withButton"
+        size="full"
         onKeyDown={handleKeyDown}
         onChange={handleChange}
       />

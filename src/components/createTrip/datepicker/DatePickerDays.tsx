@@ -27,6 +27,7 @@ type State =
   | 'sunday';
 
 interface Props extends VariantProps<typeof DayVariants> {
+  registrationEnd?: Date;
   days: Day[];
   selectedStartDate: Date | null;
   selectedEndDate: Date | null;
@@ -35,18 +36,22 @@ interface Props extends VariantProps<typeof DayVariants> {
 }
 
 const DatePickerDays = ({
+  registrationEnd,
   days,
   selectedStartDate,
   selectedEndDate,
   calendarEvents,
   isRangeSelectable = true, // 기본값 추가
 }: Props) => {
-  const today = new Date();
+  const today = registrationEnd ? new Date(registrationEnd) : new Date();
+  if (registrationEnd) {
+    today.setDate(today.getDate() + 1); // registrationEnd의 하루 뒤로 설정
+  }
   today.setHours(0, 0, 0, 0);
 
   return (
     <div
-      className="grid grid-cols-7 gap-x-7 gap-y-5"
+      className="mx-auto grid w-[335px] grid-cols-7 gap-x-7 gap-y-5 xl:w-[288px] xl:gap-x-5 xl:gap-y-4"
       role="grid"
       aria-label="캘린더"
       tabIndex={0}
@@ -104,7 +109,7 @@ const DatePickerDays = ({
               }
               onClick={() => calendarEvents.selectDate(date)}
               className={cn(DayVariants({ state }), {
-                'before:absolute before:inset-0 before:left-[-27.6px] before:z-[-10px] before:w-[27.6px] before:bg-slate-100':
+                'before:absolute before:inset-0 before:left-[-27.6px] before:z-[-10px] before:w-[27.6px] before:bg-slate-100 xl:before:left-[-20px] xl:before:w-[20px]':
                   (state === 'selected' || state === 'range') &&
                   date.getDay() !== 0 &&
                   !isStartDate &&

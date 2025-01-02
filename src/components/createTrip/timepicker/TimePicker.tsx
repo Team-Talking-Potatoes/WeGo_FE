@@ -16,6 +16,7 @@ type Picker = Omit<Parameters<typeof TimePickerSlider>[0], 'onSlide'> & {
 };
 
 interface Props {
+  title?: string;
   firstPicker: Picker;
   secondPicker: Picker;
   isOpen: boolean;
@@ -25,6 +26,7 @@ interface Props {
 }
 
 const TimePicker = ({
+  title,
   firstPicker,
   secondPicker,
   isOpen,
@@ -50,21 +52,21 @@ const TimePicker = ({
         className="fixed inset-0 bg-label-strong/40"
         aria-hidden="true"
       />
-      <div className="fixed inset-0 flex w-screen items-end justify-center">
+      <div className="fixed inset-0 flex w-screen items-end justify-center xl:items-center">
         <DialogPanel
-          className="rounded-t-lg bg-background-normal px-5 pb-10 pt-8"
+          className="w-full rounded-t-lg bg-background-normal pb-10 pt-8 xl:max-w-[320px] xl:rounded-lg xl:py-4 xl:shadow-lg xl:shadow-black/20 xl:drop-shadow-[0px_7px_26px_rgba(0,0,0,0.2)]"
           aria-labelledby="timePickerTitle"
           aria-modal="true"
         >
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mx-auto mb-8 flex w-[335px] items-center justify-between xl:w-[288px]">
             <DialogTitle id="timePickerTitle" className="title-4-b">
-              시간 설정
+              {title ?? '시간 설정'}
             </DialogTitle>
             <button type="button" onClick={onClose} aria-label="시간 설정 닫기">
               <Close />
             </button>
           </div>
-          <div className="flex gap-x-4">
+          <div className="mx-auto flex w-[335px] gap-x-4 xl:w-[288px]">
             <TimePickerSlider
               timeList={firstPicker.timeList}
               isLoop={firstPicker.isLoop}
@@ -78,13 +80,15 @@ const TimePicker = ({
               onSlide={(time: string) => setSecondTime(time)}
             />
           </div>
-          <Button
-            handler={handlePickerButton}
-            className="mt-10"
-            disabled={isValid && !isValid(firstTime, secondTime)}
-          >
-            선택
-          </Button>
+          <div className="mx-auto w-[335px] xl:w-[288px]">
+            <Button
+              handler={handlePickerButton}
+              className="mt-10 xl:w-[288px]"
+              disabled={isValid && !isValid(firstTime, secondTime)}
+            >
+              선택
+            </Button>
+          </div>
         </DialogPanel>
       </div>
     </Dialog>
