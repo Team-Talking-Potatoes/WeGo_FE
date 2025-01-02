@@ -1,92 +1,56 @@
 'use client';
 
-import { useState } from 'react';
 import ChatRoomEntrance from '@/components/chat/chatRoom/ChatRoomEntrance';
 import ChatRoom from '@/components/chat/chatRoom/ChatRoom';
-import { Button } from '@/components/common/button/Button';
-import MainNavigation from '@/components/nav/MainNavigation';
-import { JoinedData, Message } from '@/@types/chat';
-import initData from '@/mocks/data/chat/chatRoomInitialData.json';
-import chatImages from '@/mocks/data/chat/chatImages.json';
+import Chat from '@/assets/chat_gray.svg';
+import { RoomResponse } from '@/@types/chat';
 
-const ChatRoomContainer = () => {
-  const [data, setData] = useState<JoinedData>(initData);
+interface Props {
+  chatRoomId: string;
+  selectedRoom: RoomResponse;
+  onCloseChatRoom: () => void;
+}
 
-  const fetchChatRoomData = () => {
-    setTimeout(() => {
-      const newChatRoomData = {
-        isJoined: true,
-        title: '서울에서 1박2일 즐겨보아요 :)',
-        messages: Array.from({ length: 10 }, (_, i) => ({
-          id: `${i + 1}`,
-          user: `User ${i + 1}`,
-          image: '/user.jpg',
-          text: `Message ${i + 1} content.`,
-          images: [],
-          timestamp: new Date(Date.now() - i * 1000 * 60 * 15).toLocaleString(
-            'ko-KR',
-            {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: true,
-            },
-          ),
-          isMine: i % 2 === 0,
-          unseenUserCount: 2,
-        })),
-        participants: Array.from({ length: 15 }, (_, i) => ({
-          user: `Participant ${i + 1}`,
-          image: '/user.jpg',
-          isMe: i === 0,
-        })),
-        images: chatImages.images,
-      };
-      setData(newChatRoomData);
-    }, 500);
-  };
+const ChatRoomContainer = ({
+  chatRoomId,
+  selectedRoom,
+  onCloseChatRoom,
+}: Props) => {
+  if (chatRoomId === null) {
+    return (
+      <>
+        <h2 className="title-5-sb flex min-h-[60px] min-w-[383px] items-center justify-center border-b border-line-normal text-label-normal xl:hidden">
+          채팅
+        </h2>
+        <div className="flex h-[calc(100vh-140px)] flex-col items-center justify-center md:mt-[120px] md:justify-start xl:mt-[300px]">
+          <Chat className="mb-4" />
+          <p className="body-1-m text-center text-label-alternative">
+            여행에 참여하여
+            <br />
+            채팅을 시작 해 보세요!
+          </p>
+        </div>
+      </>
+    );
+  }
 
-  const handleSendMessage = (text: string, images: File[]) => {
-    const newMessage = {
-      id: `${Date.now()}`,
-      user: '나',
-      text,
-      image: '/user.jpg',
-      images,
-      timestamp: new Date().toLocaleString('ko-KR', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      }),
-      isMine: true,
-      unseenUserCount: 2,
-    };
-    setData((prev) => ({
-      ...prev,
-      messages: [...(prev.messages as Message[]), newMessage],
-    }));
-  };
+  if (selectedRoom?.hasJoined) {
+    return (
+      <ChatRoom
+        key={chatRoomId}
+        chatId={chatRoomId}
+        onCloseChatRoom={onCloseChatRoom}
+      />
+    );
+  }
 
   return (
-    <>
-      <div className="relative flex min-h-screen flex-col">
-        {data.isJoined ? (
-          <ChatRoom chatData={data} onSendMessage={handleSendMessage} />
-        ) : (
-          <ChatRoomEntrance chatData={data}>
-            <Button handler={fetchChatRoomData} fill="blue" className="mt-auto">
-              채팅방 참여하기
-            </Button>
-          </ChatRoomEntrance>
-        )}
-      </div>
-      <MainNavigation isActive={!data.isJoined} />
-    </>
+    <ChatRoomEntrance
+      key={chatRoomId}
+      chatRoomData={selectedRoom}
+      chatId={chatRoomId}
+      onCloseChatRoom={onCloseChatRoom}
+    />
   );
 };
 
