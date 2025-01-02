@@ -5,15 +5,21 @@ import { useState } from 'react';
 import { usePastTravel } from '@/queries/travel/useGetMyTravel';
 import { TravelList } from '@/@types/travel';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
+import MyTravelCardSkeleton from '@/components/mypage/skeleton/MyTravelCardSkeleton';
 import NoTravel from './NoTravel';
 
 const PastTravel = () => {
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: travels } = usePastTravel(itemsPerPage, currentPage - 1);
+  const { data: travels, isLoading } = usePastTravel(
+    itemsPerPage,
+    currentPage - 1,
+  );
   const totalPages = travels ? Math.ceil(travels.total / itemsPerPage) : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  if (isLoading) return <MyTravelCardSkeleton />;
 
   return (
     <section

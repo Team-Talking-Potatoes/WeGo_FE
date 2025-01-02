@@ -7,9 +7,12 @@ import Link from 'next/link';
 import useGetUser from '@/queries/user/useGetUser';
 import Setting from '@/assets/icon/setting_32px.svg';
 import cn from '@/utils/cn';
+import ProfileSkeleton from '../skeleton/ProfileSkeleton';
 
 const ProfileSection = () => {
-  const { data: user } = useGetUser();
+  const { data: user, isLoading } = useGetUser();
+
+  if (isLoading) return <ProfileSkeleton />;
 
   return (
     <section className="relative mx-auto mb-8 max-w-[335px] md:max-w-[688px] xl:mb-[60px] xl:max-w-[1400px]">

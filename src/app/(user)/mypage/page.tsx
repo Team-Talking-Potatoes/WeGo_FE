@@ -1,3 +1,5 @@
+'use client';
+
 import Header from '@/components/common/header/Header';
 import ProfileSection from '@/components/mypage/profile/ProfileSection';
 import TabSection from '@/components/mypage/tab/TabSection';
