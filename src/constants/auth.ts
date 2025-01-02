@@ -32,7 +32,7 @@ const REGEX = {
   currentPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/,
   newPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/,
   name: /^[가-힣]{2,10}$/,
-  nickname: /^(?! )(?!.* $)[가-힣 ]{2,10}$/,
+  nickname: /^[가-힣a-zA-Z0-9]{2,10}$/,
   birthDate: /^\d{8}$/,
   contact: /^\d{2,3}-\d{3,4}-\d{4}$/,
   verifyNumber: /^\d{6}$/,
