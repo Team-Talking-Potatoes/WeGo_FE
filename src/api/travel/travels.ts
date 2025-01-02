@@ -8,6 +8,11 @@ import {
 import buildTravelUrl from '@/utils/buildTravelUrl';
 import { http } from '../fetcher';
 
+interface TravelResponse {
+  status: string;
+  data: Travel[];
+}
+
 export const postTravelParticipation = (travelId: number) => {
   return http.post<any>(`/travels/participation?id=${travelId}`);
 };
@@ -21,7 +26,7 @@ export const deleteTravel = (travelId: number) => {
 };
 
 export const getPopularTravel = () => {
-  return http.get<Travel[]>('/travels/popular');
+  return http.get<TravelResponse>('/travels/popular');
 };
 
 export const getTravelDetail = ({ id }: { id: string }) => {

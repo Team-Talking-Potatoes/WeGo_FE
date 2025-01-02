@@ -5,7 +5,7 @@ import CreateReviewButtons from '@/components/review/new/CreateReviewButtons';
 import SelectTravel from '@/components/review/new/SelectTravel';
 import SelectHashTag from '@/components/review/new/organizer/SelectHashTag';
 import ReviewParticipantContainer from '@/components/review/new/participant/ReviewParticipantContainer';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 const CreateReviewPage = ({ id, title }: { id?: number; title?: string }) => {
   const [isFirstPage, setIsFirstPage] = useState(true);
@@ -17,8 +17,10 @@ const CreateReviewPage = ({ id, title }: { id?: number; title?: string }) => {
     >
       <CreateReviewHeader />
       <main className="flex flex-col gap-6">
-        <SelectTravel id={id} title={title} />
-        {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
+        <Suspense fallback={<div>Loading...</div>}>
+          <SelectTravel id={id} title={title} />
+          {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
+        </Suspense>
       </main>
 
       <CreateReviewButtons

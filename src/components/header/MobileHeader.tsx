@@ -22,7 +22,7 @@ const MobileHeader = () => {
           <Link href="/mypage">
             <UserIcon
               profileImage={user?.profileImage}
-              nickname={user.nickname}
+              nickname={user?.nickname}
               size="xs"
               ariaLabel="마이페이지로 가기"
             />

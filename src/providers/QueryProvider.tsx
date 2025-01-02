@@ -15,7 +15,6 @@ function makeQueryClient() {
         // 임시 설정
         staleTime: 60 * 1000,
         refetchInterval: 60 * 1000,
-        throwOnError: true,
       },
     },
   });

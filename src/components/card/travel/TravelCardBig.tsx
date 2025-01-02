@@ -65,6 +65,12 @@ const TravelCardBig = ({
     setIsCheckedState(!isCheckedState);
   };
 
+  /* ---------------------------------- 임시 수정 --------------------------------- */
+  const isValidDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return !Number.isNaN(date.getTime());
+  };
+  /* ---------------------------------- 임시 수정 --------------------------------- */
   return (
     <Link
       href={`/travel/${travelId}`}
@@ -117,8 +123,15 @@ const TravelCardBig = ({
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </div>
             <div className="body-3-r flex flex-shrink-0 gap-0.5 pl-1.5">
-              {formatDateToShortWithDay(startAt, undefined, true)} -{' '}
-              {formatDateToShortWithDay(endAt, undefined, true)}
+              {/* 임시 수정 */}
+              {isValidDate(startAt)
+                ? formatDateToShortWithDay(startAt, undefined, true)
+                : 'Invalid Start Date'}{' '}
+              -{' '}
+              {isValidDate(endAt)
+                ? formatDateToShortWithDay(endAt, undefined, true)
+                : 'Invalid End Date'}
+              {/* 임시 수정 */}
             </div>
           </div>
           {!closed && <ProgressBar progressRate={progressRate} />}

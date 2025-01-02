@@ -33,6 +33,7 @@ export default function Error({
         closeModal();
       },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return null;
