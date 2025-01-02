@@ -16,7 +16,7 @@ const TravelDetailContainer = async ({ id }: { id: string }) => {
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <TravelDetail travelDetail={data} />
+      <TravelDetail travelDetail={data.data} />
     </HydrationBoundary>
   );
 };

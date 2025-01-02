@@ -1,5 +1,4 @@
 import { Review, ReviewDetailResponse, ReviewResponse } from '@/@types/review';
-import { ApiResponse } from '@/@types/api';
 import { http } from './fetcher';
 
 interface ReviewParams {
@@ -13,17 +12,17 @@ interface MyReview {
 }
 
 export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
-  return http.get<ApiResponse<ReviewResponse>>(
+  return http.get<ReviewResponse>(
     `/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
   );
 };
 
 export const getMyReview = (limit: number, offset: number) => {
-  return http.get<ApiResponse<MyReview>>(
+  return http.get<MyReview>(
     `/reviews/published?limit=${limit}&offset=${offset}`,
   );
 };
 
 export const getReviewDetail = (id: number) => {
-  return http.get<ApiResponse<ReviewDetailResponse>>(`/reviews/${id}`);
+  return http.get<ReviewDetailResponse>(`/reviews/${id}`);
 };

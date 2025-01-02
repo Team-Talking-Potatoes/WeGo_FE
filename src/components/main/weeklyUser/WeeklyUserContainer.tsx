@@ -17,7 +17,7 @@ const WeeklyUserContainer = async () => {
   return (
     <Suspense fallback={<div>로딩중</div>}>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <WeeklyUser userList={data} />
+        <WeeklyUser userList={data.data} />
       </HydrationBoundary>
     </Suspense>
   );
