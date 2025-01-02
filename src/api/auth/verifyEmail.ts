@@ -2,7 +2,7 @@ import { TextInput } from '@/@types/auth';
 import { http } from '../fetcher';
 
 type SendMailRequestBody = Pick<TextInput, 'email'>;
-type CheckCodeRequestBody = Pick<TextInput, 'email' | 'emailCode'>;
+type CheckCodeRequestBody = Pick<TextInput, 'email' | 'verifyNumber'>;
 
 /* -------------------------------- 인증 이메일 전송 (회원가입)------------------------------- */
 export const sendMail = (credentials: SendMailRequestBody) => {
@@ -15,8 +15,9 @@ export const passwordSendMail = (credentials: SendMailRequestBody) => {
 };
 
 /* ------------------------------- 이메일 인증코드 확인 ------------------------------ */
-export const checkCode = ({ email, emailCode }: CheckCodeRequestBody) => {
-  return http.post<any>(`/auth/emails/verify?verifyNumber=${emailCode}`, {
+export const checkCode = ({ email, verifyNumber }: CheckCodeRequestBody) => {
+  return http.post<any>('/auth/emails/verify', {
     email,
+    verifyNumber,
   });
 };

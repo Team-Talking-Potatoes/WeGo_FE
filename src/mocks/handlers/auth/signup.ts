@@ -16,7 +16,13 @@ interface SignupRequestBody {
   nickname: string;
   birthDate: string;
   contact: string;
+  verifyNumber: string;
   verifiedToken: string;
+}
+
+interface VerifyRequestBody {
+  email: string;
+  verifyNumber: string;
 }
 
 export const signup = [
@@ -45,14 +51,13 @@ export const signup = [
   ),
 
   /* ------------------------------- 이메일 인증코드 확인 ------------------------------ */
-  http.post<PathParams>(
+  http.post<VerifyRequestBody, PathParams>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/auth/emails/verify`,
     async ({ request }) => {
-      const url = new URL(request.url);
-      const emailCode = url.searchParams.get('verifyNumber');
+      const { verifyNumber } = await request.json();
 
       // 이메일 인증코드 확인 실패
-      if (Number(emailCode) !== FAKE_EMAIL_CODE) {
+      if (Number(verifyNumber) !== FAKE_EMAIL_CODE) {
         return HttpResponse.json(
           {
             message: 'Invalid email code',

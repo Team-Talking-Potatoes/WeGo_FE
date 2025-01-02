@@ -20,7 +20,7 @@ const SignupForm = () => {
   const [successMailSend, setSuccessMailSend] = useState<boolean | null>(null);
 
   const email = useAuthInput({ name: 'email' });
-  const emailCode = useAuthInput({ name: 'emailCode' });
+  const verifyNumber = useAuthInput({ name: 'verifyNumber' });
   const password = useAuthInput({ name: 'password' });
   const passwordConfirm = useAuthInput({
     name: 'passwordConfirm',
@@ -37,8 +37,8 @@ const SignupForm = () => {
         setSuccessMailSend(true);
       }
       setDue(300);
-      emailCode.setIsValid(false);
-      emailCode.setValue('');
+      verifyNumber.setIsValid(false);
+      verifyNumber.setValue('');
     },
     () => {
       setSuccessMailSend(false);
@@ -93,7 +93,7 @@ const SignupForm = () => {
 
       <AuthEmailCertification
         email={email}
-        emailCode={emailCode}
+        verifyNumber={verifyNumber}
         isEmailCertified={isEmailCertified}
         due={due}
         setDue={setDue}
