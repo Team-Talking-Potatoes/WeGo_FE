@@ -1,8 +1,8 @@
 import { Travel } from '@/@types/travel';
-import { ApiResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 interface WritableTravelResponse {
+  status: string;
   content: Travel[];
   total: number;
   currentPage: number;
@@ -10,7 +10,7 @@ interface WritableTravelResponse {
 }
 
 export const getWritableTravelReview = (size: number, page: number) => {
-  return http.get<ApiResponse<WritableTravelResponse>>(
+  return http.get<WritableTravelResponse>(
     `/travels/reviews/pending?size=${size}&page=${page}`,
   );
 };

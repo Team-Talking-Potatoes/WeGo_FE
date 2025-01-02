@@ -7,12 +7,7 @@ import ReviewCardAddText from '@/components/card/Review/ReviewCardAddText';
 import ScoreBox from './ScoreBox';
 
 const TabTravelReview = ({ travelId }: { travelId: number }) => {
-  const {
-    data: reviewList,
-    isFetching,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data, isFetching, isLoading, error } = useQuery({
     queryKey: QUERY_KEYS.TRAVEL.TRAVEL_DETAIL_REVIEW(`${travelId}`),
     queryFn: () => getTravelReview(travelId),
   });
@@ -27,6 +22,7 @@ const TabTravelReview = ({ travelId }: { travelId: number }) => {
     );
   }
 
+  const reviewList = data?.data;
   if (reviewList && reviewList.length === 0) {
     return <NoResult label="아직 작성된 리뷰가 없어요!" height="h-64" />;
   }
