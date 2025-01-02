@@ -36,13 +36,11 @@ const Written = () => {
         <NoTravel message="아직 작성한 리뷰가 없어요!" />
       )}
 
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          paginate={paginate}
-        />
-      )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </section>
   );
 };

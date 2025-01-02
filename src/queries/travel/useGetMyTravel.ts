@@ -4,7 +4,7 @@ import {
   pastTravel,
   upcommingTravel,
   writableTravel,
-} from '@/api/travel/myTravelApi';
+} from '@/api/travel/travels';
 import { useQuery } from '@tanstack/react-query';
 
 const useUpcommingTravel = (limit: number, offset: number) => {

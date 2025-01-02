@@ -90,3 +90,8 @@ export interface TravelList {
   maxTravelMateCount: number;
   currentTravelMateCount: number;
 }
+
+export interface MyTravel {
+  travels: TravelList[];
+  total: number;
+}

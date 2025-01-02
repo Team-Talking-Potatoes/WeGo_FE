@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { login } from '@/api/auth/loginApi';
+import { login } from '@/api/auth/login';
 import { QueryError } from '@/@types/query';
 import useToast from '@/hooks/useToast';
 

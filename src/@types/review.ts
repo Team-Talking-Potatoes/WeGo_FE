@@ -16,8 +16,8 @@ export interface ReviewResponse {
   reviews: Review[];
   currentPage: number;
   size: number;
-  isFirst: boolean;
-  isLast: boolean;
+  total: number;
+  hasNext: boolean;
 }
 
 export interface Filters {

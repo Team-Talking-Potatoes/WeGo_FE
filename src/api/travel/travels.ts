@@ -3,6 +3,7 @@ import {
   Travel,
   TravelDetail,
   TravelFilterResponse,
+  MyTravel,
 } from '@/@types/travel';
 import buildTravelUrl from '@/utils/buildTravelUrl';
 import { ApiResponse } from '@/@types/api';
@@ -43,4 +44,31 @@ export const postTravelBookMark = (id: number) => {
 
 export const deleteTravelBookMark = (id: number) => {
   return http.delete<any>(`/travels/bookmark?id=${id}`);
+};
+
+/* ----------------------------- Apis in mypage ----------------------------- */
+export const upcommingTravel = (limit: number, offset: number) => {
+  return http.get<MyTravel>(
+    `/travels/scheduled?limit=${limit}&offset=${offset}`,
+  );
+};
+
+export const pastTravel = (limit: number, offset: number) => {
+  return http.get<MyTravel>(
+    `/travels/finished?limit=${limit}&offset=${offset}`,
+  );
+};
+
+export const checkedTravel = (limit: number, offset: number) => {
+  return http.get<MyTravel>(`/travels/checked?limit=${limit}&offset=${offset}`);
+};
+
+export const writableTravel = (limit: number, offset: number) => {
+  return http.get<MyTravel>(
+    `/travels/reviews/pending?limit=${limit}&offset=${offset}`,
+  );
+};
+
+export const mySelfTravel = (limit: number, offset: number) => {
+  return http.get<MyTravel>(`/travels/created?limit=${limit}&offset=${offset}`);
 };

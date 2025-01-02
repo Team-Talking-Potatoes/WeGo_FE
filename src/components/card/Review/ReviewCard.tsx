@@ -32,39 +32,26 @@ const ReviewCard = ({
   isLiked,
 }: Props) => {
   const [isLikedState, setIsLikedState] = useState(isLiked);
-  const [animate, setAnimate] = useState(false);
-
-  const handleClickLikeButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setAnimate(true);
-    setTimeout(() => setAnimate(false), 500);
-
-    // if (!isLikedState) {
-    //   postReviewBookMark(reviewId);
-    // } else {
-    //   deleteReviewBookMark(reviewId);
-    // }
-
-    setIsLikedState(!isLikedState);
-  };
 
   return (
-    <Link href={`/review/${reviewId}`} className="min-w-[160px] flex-1">
-      <div className="relative h-[242px] w-full md:h-[315px]">
-        <div className="relative">
+    <Link
+      href={`/review/${reviewId}`}
+      className="min-w-[160px] flex-1 xl:max-w-[332px]"
+    >
+      <div className="relative aspect-[160/210] w-full">
+        <div className="relative h-full">
           <Image
             src={image}
             alt={title}
-            width={160}
-            height={210}
-            className="h-[210px] w-full rounded object-cover md:h-[283px]"
+            fill
+            className="rounded object-cover"
           />
 
           {isLiked !== undefined && (
             <ReviewHeart
+              reviewId={reviewId}
               isLiked={isLikedState}
-              animate={animate}
-              handler={handleClickLikeButton}
+              setIsLiked={setIsLikedState}
             />
           )}
 

@@ -7,3 +7,7 @@ export interface ApiResponse<T> {
   status: string;
   data: T;
 }
+
+export interface FetcherError extends Error {
+  status?: number;
+}

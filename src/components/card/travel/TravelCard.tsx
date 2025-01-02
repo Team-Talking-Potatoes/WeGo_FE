@@ -66,7 +66,7 @@ const TravelCard = ({
   return (
     <Link
       href={`/travel/${travelId}`}
-      className="flex w-[335px] gap-4 md:w-[688px] md:gap-9"
+      className="flex max-w-[335px] gap-4 md:max-w-[688px] md:gap-9"
     >
       <div
         className={cn(
