@@ -9,7 +9,7 @@ import AuthPassword from '../input/AuthPassword';
 const LoginForm = () => {
   const email = useAuthInput({ name: 'email' });
   const password = useAuthInput({ name: 'password' });
-  const { mutate: login } = useLogin();
+  const { mutate: login, isPending: isLoggingIn } = useLogin();
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,13 +41,13 @@ const LoginForm = () => {
         isValid={password.isValid}
         onChange={password.handleChange}
       />
-
       <Button
         label="로그인"
         type="submit"
         size="full"
-        className="mt-[180px]"
+        className="mt-[180px] hover:bg-primary-normal"
         disabled={!email.isValid || !password.isValid}
+        showSpinner={isLoggingIn}
       />
     </form>
   );

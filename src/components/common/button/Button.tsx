@@ -1,9 +1,10 @@
 import { forwardRef } from 'react';
 import cn from '@/utils/cn';
 import { cva, VariantProps } from 'class-variance-authority';
+import SpinnerButtonIcon from '@/assets/icon/loading/spinner-button.svg';
 
 const ButtonVariants = cva(
-  'body-1-m rounded disabled:border disabled:border-line-normal disabled:bg-background-alternative disabled:text-label-alternative ',
+  'body-1-m rounded disabled:border disabled:border-line-normal disabled:bg-background-alternative disabled:text-label-alternative flex items-center justify-center ',
   {
     variants: {
       fill: {
@@ -51,6 +52,7 @@ interface Props extends VariantProps<typeof ButtonVariants> {
   classNameCondition?: Record<string, boolean>;
   handler?: () => void;
   disabled?: boolean;
+  showSpinner?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, Props>(
@@ -68,6 +70,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       className,
       classNameCondition,
       handler,
+      showSpinner,
     },
     ref,
   ) => {
@@ -83,7 +86,12 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         )}
         onClick={handler}
       >
-        {label && label}
+        {label &&
+          (showSpinner ? (
+            <SpinnerButtonIcon className="animate-spin" />
+          ) : (
+            label
+          ))}
         {children && children}
       </button>
     );
