@@ -1,10 +1,11 @@
 import SignupForm from '@/components/auth/SignupForm';
 import Header from '@/components/common/header/Header';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 const Signup = () => {
   return (
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
       <Header title="회원가입" />
 
       <div className="mx-5">
@@ -19,7 +20,7 @@ const Signup = () => {
           로그인
         </Link>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

@@ -4,13 +4,83 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import TabContents from './TabContents';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    back: jest.fn(),
+    // 필요한 다른 router 메서드들...
+  }),
+}));
 
 const renderWithQueryClient = (ui: React.ReactNode) => {
   return render(
     <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>,
   );
 };
+
+jest.mock('@/queries/travel/useGetMyTravel', () => ({
+  useMySelfTravel: () => ({
+    isLoading: false,
+    data: {
+      total: 1,
+      travels: [
+        {
+          travelId: 11,
+          travelName: '도쿄에서 즐기는 미식여행',
+          expectedTripCost: 1000000,
+          travelMateCount: 11,
+          isDomestic: true,
+          travelStatus: '예정',
+          location: '도쿄시',
+          image: '/test/travel/test1.jpg',
+          startAt: '2024.12.11',
+          endAt: '2024.12.11',
+          maxTravelMateCount: 12,
+          currentTravelMateCount: 11,
+        },
+      ],
+    },
+  }),
+  useWritableTravel: () => ({
+    isLoading: false,
+    data: {
+      content: [],
+      total: 0,
+      currentPage: 1,
+      hasNext: false,
+    },
+  }),
+  useCheckedTravel: () => ({
+    isLoading: false,
+    data: {
+      total: 3,
+      travels: [],
+    },
+  }),
+  usePastTravel: () => ({
+    isLoading: false,
+    data: {
+      total: 3,
+      travels: [],
+    },
+  }),
+  useUpcommingTravel: () => ({
+    isLoading: false,
+    data: {
+      total: 3,
+      travels: [],
+    },
+  }),
+}));
 
 describe('TabContents', () => {
   it('선택된 서브탭이 "upcomming"일 때 Upcomming 컴포넌트를 렌더링한다', () => {

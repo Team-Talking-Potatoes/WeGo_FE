@@ -1,4 +1,4 @@
-import { getMyReview } from '@/api/reviewApi';
+import { getMyReview } from '@/api/review/review';
 import { useQuery } from '@tanstack/react-query';
 
 const useMyReview = (limit: number, offset: number) => {

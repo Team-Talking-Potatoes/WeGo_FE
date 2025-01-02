@@ -7,6 +7,14 @@ import ReviewContents from './ReviewContents';
 
 jest.mock('@/queries/review/useReview');
 jest.mock('@/store/useReviewStore');
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    back: jest.fn(),
+    // 필요한 다른 router 메서드들...
+  }),
+}));
 
 const queryClient = new QueryClient();
 

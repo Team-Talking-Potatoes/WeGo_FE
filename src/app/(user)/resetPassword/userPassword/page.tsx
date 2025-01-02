@@ -7,6 +7,7 @@ import FormTitle from '@/components/common/form/FormTitle';
 import Header from '@/components/common/header/Header';
 import useAuthInput from '@/hooks/useAuthInput';
 import { useResetUserPassword } from '@/queries/auth/useResetPassword';
+import { Suspense } from 'react';
 
 const UserPassword = () => {
   const currentPassword = useAuthInput({ name: 'currentPassword' });
@@ -34,7 +35,7 @@ const UserPassword = () => {
   };
 
   return (
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
       <Header title="비밀번호 변경" isConfigButton />
 
       <div className="mx-5 mt-[100px] flex justify-center xl:mt-[120px]">
@@ -79,7 +80,7 @@ const UserPassword = () => {
           />
         </form>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

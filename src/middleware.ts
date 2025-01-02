@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { NEED_LOGIN_PATH, NEED_LOGOUT_PATH } from './constants/auth';
-import { verifyToken } from './api/auth/verifyTokenApi';
+import { verifyToken } from './api/auth/verifyToken';
 import { mockFetch } from './mocks/middleware-mock';
 
 const setPathnameHeader = (request: NextRequest, response: NextResponse) => {

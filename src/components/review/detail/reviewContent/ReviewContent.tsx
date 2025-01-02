@@ -16,7 +16,7 @@ const ReviewContent = ({ title, content, travelLocation }: Props) => {
 
       <h2 className="title-4-b mb-3 mt-1.5">{title}</h2>
 
-      <p className="body-1-r mt-2 whitespace-pre-line custom-scrollbar xl:max-h-[230px] xl:overflow-y-scroll">
+      <p className="body-1-r mt-2 whitespace-pre-line custom-scrollbar xl:max-h-[230px] xl:overflow-y-scroll xl:pr-4">
         {content}
       </p>
     </div>

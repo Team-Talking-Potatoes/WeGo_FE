@@ -1,5 +1,5 @@
 import { QueryError } from '@/@types/query';
-import { sendMail } from '@/api/auth/verifyEmailApi';
+import { sendMail } from '@/api/auth/verifyEmail';
 import { useMutation } from '@tanstack/react-query';
 import useToast from '@/hooks/useToast';
 

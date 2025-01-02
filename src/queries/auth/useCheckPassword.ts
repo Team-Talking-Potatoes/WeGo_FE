@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { checkPassword } from '@/api/auth/deleteAccountApi';
+import { checkPassword } from '@/api/auth/deleteAccount';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
 import ModalErrorIcon from '@/assets/modal/modal_error.svg';

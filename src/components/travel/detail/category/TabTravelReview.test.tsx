@@ -8,7 +8,7 @@ import TabTravelReview from './TabTravelReview';
 jest.mock('next/navigation', () => ({
   useParams: jest.fn(),
 }));
-jest.mock('@/api/reviewApi');
+jest.mock('@/api/review/review');
 jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn(),
 }));

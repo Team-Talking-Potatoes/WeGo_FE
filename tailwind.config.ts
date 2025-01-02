@@ -57,6 +57,7 @@ export default {
       boxShadow: {
         custom: '0px 0px 5px 0px rgba(0, 0, 0, 0.16)',
       },
+
       keyframes: {
         'fade-in': {
           '0%': { opacity: '0' },
@@ -246,6 +247,17 @@ export default {
         },
         '.custom-scrollbar::-webkit-scrollbar-button': {
           display: 'none',
+        },
+
+        '.skeleton-style': {
+          background:
+            'linear-gradient(90deg, #E5E7EB 35%, #F3F4F6 50%, #E5E7EB 65%)',
+          backgroundSize: '300% auto',
+          animation: 'skeleton-loading 1.5s ease-in-out infinite',
+        },
+        '@keyframes skeleton-loading': {
+          '0%': { backgroundPosition: '100% 0' },
+          '100%': { backgroundPosition: '0 0' },
         },
       });
     }),

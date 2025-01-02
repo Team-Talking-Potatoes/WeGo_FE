@@ -6,15 +6,21 @@ import { TravelList } from '@/@types/travel';
 import { useWritableTravel } from '@/queries/travel/useGetMyTravel';
 import Pagination from '@/components/common/pagination/Pagination';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
+import MyTravelCardSkeleton from '@/components/mypage/skeleton/MyTravelCardSkeleton';
 import NoTravel from '../myTravel/NoTravel';
 
 const Writable = () => {
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: travels } = useWritableTravel(itemsPerPage, currentPage - 1);
+  const { data: travels, isLoading } = useWritableTravel(
+    itemsPerPage,
+    currentPage - 1,
+  );
   const totalPages = travels ? Math.ceil(travels.total / itemsPerPage) : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  if (isLoading) return <MyTravelCardSkeleton />;
 
   return (
     <section
@@ -56,13 +62,11 @@ const Writable = () => {
         <NoTravel message="아직 다녀온 여행이 없어요!" />
       )}
 
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          paginate={paginate}
-        />
-      )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </section>
   );
 };

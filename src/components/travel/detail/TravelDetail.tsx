@@ -3,7 +3,7 @@
 import TravelInformation from '@/components/travel/detail/information/TravelInformation';
 import { TravelDetail as TravelType } from '@/@types/travel';
 import { useQueryClient } from '@tanstack/react-query';
-import { UserInfo } from '@/api/user/userInfoApi';
+import { UserInfo } from '@/api/user/userInfo';
 import TravelDetailCategory from './TravelDetailCategory';
 import TravelImage from './image/TravelImage';
 import TravelButtons from './buttons/TravelButtons';

@@ -1,3 +1,5 @@
+import { FetcherError } from '@/@types/api';
+
 type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
 interface FetcherConfig extends RequestInit {
@@ -5,10 +7,6 @@ interface FetcherConfig extends RequestInit {
   credentials?: RequestCredentials;
   headers?: Record<string, string>;
   body?: any;
-}
-
-interface FetcherError extends Error {
-  status?: number;
 }
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;

@@ -5,15 +5,21 @@ import { useState } from 'react';
 import { useUpcommingTravel } from '@/queries/travel/useGetMyTravel';
 import { TravelList } from '@/@types/travel';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
+import MyTravelCardSkeleton from '@/components/mypage/skeleton/MyTravelCardSkeleton';
 import NoTravel from './NoTravel';
 
 const Upcomming = () => {
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: travels } = useUpcommingTravel(itemsPerPage, currentPage - 1);
+  const { data: travels, isLoading } = useUpcommingTravel(
+    itemsPerPage,
+    currentPage - 1,
+  );
   const totalPages = travels ? Math.ceil(travels.total / itemsPerPage) : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  if (isLoading) return <MyTravelCardSkeleton />;
 
   return (
     <section
@@ -45,13 +51,11 @@ const Upcomming = () => {
         <NoTravel message="아직 참여한 여행이 없어요!" />
       )}
 
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          paginate={paginate}
-        />
-      )}
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </section>
   );
 };
