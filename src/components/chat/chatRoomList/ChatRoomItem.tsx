@@ -1,57 +1,66 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import Image from 'next/image';
-import Link from 'next/link';
 import Other from '@/assets/other.svg';
 import Chat from '@/assets/chat_blue.svg';
-import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/common/button/Button';
+import { RoomResponse } from '@/@types/chat';
+import { formatDateToStringWithDot } from '@/utils/calendarHelper';
 
 interface Props {
-  id: string;
-  title: string;
-  host: string;
-  date: string;
-  image: string;
-  membersCount: number;
-  messageCount: number;
+  room: RoomResponse;
   onExit: (id: string) => void;
+  onChatRoomId: (chatId: string) => void;
 }
 
-const ChatRoomItem = ({
-  id,
-  title,
-  host,
-  date,
-  image,
-  membersCount,
-  messageCount,
-  onExit,
-}: Props) => {
-  const modalRef = useRef<HTMLDivElement | null>(null);
+const ChatRoomItem = ({ room, onExit, onChatRoomId }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openCalendar = (event: React.MouseEvent) => {
+  const openModal = (event: React.MouseEvent) => {
     event.stopPropagation();
     setIsOpen(true);
   };
 
-  const closeCalendar = () => {
+  const closeModal = () => {
     setIsOpen(false);
   };
+
+  const {
+    chatId,
+    chattingName,
+    host,
+    image,
+    membersCount,
+    unreadMessageCount,
+    lastMessageTime,
+  } = room;
 
   return (
     <>
       <li className="relative">
-        <Link
-          className="flex cursor-pointer items-start border-b border-line-neutral p-5 transition-all duration-300 hover:bg-gray-100"
-          href={`/chat/${id}`}
+        <button
+          type="button"
+          onClick={() => {
+            onChatRoomId(chatId);
+          }}
+          className="flex w-full cursor-pointer items-start border-b border-line-neutral p-5 transition-all duration-300 hover:bg-gray-100"
         >
-          <div className="relative mr-2.5 h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full">
-            <Image src={image} alt={title} layout="fill" objectFit="cover" />
+          <div
+            className="relative mr-2.5 h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full"
+            aria-label={`${chattingName}의 대표 이미지`}
+          >
+            <Image
+              src={image}
+              alt={`${chattingName}의 대표 이미지`}
+              width={54}
+              height={54}
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="mr-[60px] min-w-0 flex-1">
-            <h2 className="heading-1-b mb-2 truncate text-label-normal">
-              {title}
+            <h2 className="heading-1-b mb-2 truncate text-left text-label-normal">
+              {chattingName}
             </h2>
             <p className="body-2-r flex truncate text-label-alternative">
               <Chat />
@@ -61,47 +70,46 @@ const ChatRoomItem = ({
               <span className='after:mx-1.5 after:text-line-normal after:content-["|"]'>
                 {membersCount}명
               </span>
-              {date}
+              {formatDateToStringWithDot(lastMessageTime)}
             </p>
           </div>
-        </Link>
-        {messageCount > 0 && (
+        </button>
+        {unreadMessageCount > 0 && (
           <span className="caption-1-sb absolute right-10 top-[23px] rounded-[14px] bg-primary-normal px-1 text-primary-white">
-            {messageCount}
-            {messageCount > 100 && '+'}
+            {unreadMessageCount}
+            {unreadMessageCount > 100 && '+'}
           </span>
         )}
         <button
           type="button"
-          onClick={openCalendar}
+          onClick={openModal}
           className="absolute right-5 top-[23px]"
         >
           <Other />
         </button>
       </li>
-      <Dialog open={isOpen} onClose={closeCalendar} className="relative z-50">
-        <DialogBackdrop
-          className="fixed inset-0 bg-label-strong/40"
-          aria-hidden="true"
-        />
-        <div className="fixed inset-0 flex w-screen items-end">
-          <DialogPanel
-            ref={modalRef}
-            className="w-full bg-background-normal px-5"
-            aria-modal="true"
+      {isOpen && (
+        <div
+          className="absolute inset-0 z-10 flex items-end bg-label-strong/40 md:bottom-20 xl:bottom-0"
+          onClick={closeModal}
+        >
+          <div
+            className="z-20 w-full bg-white py-5 text-center shadow-lg"
+            onClick={(e) => e.stopPropagation()}
           >
             <Button
               handler={() => {
-                onExit(id);
+                onExit(chatId);
+                closeModal();
               }}
-              className="mb-2.5 mt-5 w-full min-w-[335px]"
+              className="w-[335px]"
               size="default"
             >
               채팅방 나가기
             </Button>
-          </DialogPanel>
+          </div>
         </div>
-      </Dialog>
+      )}
     </>
   );
 };

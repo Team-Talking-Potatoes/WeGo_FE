@@ -39,14 +39,14 @@ const ChatImageViewer = ({
     if (!currentGroup) return;
 
     if (option === 'all') {
-      currentGroup.image.forEach((imageUrl) => {
+      currentGroup.images.forEach((imageUrl) => {
         const a = document.createElement('a');
         a.href = imageUrl;
         a.download = "WE'GO-image";
         a.click();
       });
     } else {
-      const imageUrl = currentGroup.image[currentImageIndex];
+      const imageUrl = currentGroup.images[currentImageIndex];
       const a = document.createElement('a');
       a.href = imageUrl;
       a.download = "WE'GO-image";
@@ -57,7 +57,7 @@ const ChatImageViewer = ({
   const handleClickDownload: React.MouseEventHandler<HTMLButtonElement> = (
     event,
   ) => {
-    if (currentGroup && currentGroup.image.length === 1) {
+    if (currentGroup && currentGroup.images.length === 1) {
       event.preventDefault(); // 기본 동작 방지
       handleDownload('single');
     }
@@ -68,7 +68,7 @@ const ChatImageViewer = ({
       .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
       .flatMap((groupKey) =>
         groupedImages[groupKey].flatMap((group) =>
-          group.image.map((image, imageIndex) => ({
+          group.images.map((image, imageIndex) => ({
             groupKey,
             group,
             imageIndex,
@@ -87,140 +87,148 @@ const ChatImageViewer = ({
   if (!(isViewerOpen && currentGroup && groupedImages)) return null;
 
   return (
-    <div className="fixed inset-0 z-40 bg-black">
-      <header className="relative flex items-center justify-between p-5">
+    <div className="fixed inset-0 z-40 bg-label-strong xl:bg-label-strong/[84%]">
+      <header className="xl:border-b xl:border-label-neutral">
+        <div className="relative m-auto flex items-center justify-between p-5 xl:max-w-[1440px]">
+          <button
+            type="button"
+            onClick={onCloseViewer}
+            className="text-primary-white"
+          >
+            <Close />
+          </button>
+          <h2 className="flex flex-col items-center">
+            <div className="heading-1-sb text-primary-white">
+              {currentGroup.uploader}
+            </div>
+            <div className="caption-1-r text-gray-400">
+              {(() => {
+                const utcDate = new Date(currentGroup.uploadDate);
+                const kstDate = new Date(
+                  utcDate.getTime() + 9 * 60 * 60 * 1000,
+                );
+
+                const year = kstDate.getFullYear();
+                const month = String(kstDate.getMonth() + 1).padStart(2, '0');
+                const day = String(kstDate.getDate()).padStart(2, '0');
+                const hours = kstDate.getHours() % 12 || 12;
+                const minutes = String(kstDate.getMinutes()).padStart(2, '0');
+                const period = kstDate.getHours() >= 12 ? 'PM' : 'AM';
+
+                return `${year}.${month}.${day}, ${hours}:${minutes} ${period}`;
+              })()}
+            </div>
+          </h2>
+
+          <Menu>
+            <MenuButton onClick={handleClickDownload}>
+              <Download />
+            </MenuButton>
+            <MenuItems className="absolute right-5 top-[70px] z-50 flex flex-col">
+              <MenuItem>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleDownload('single');
+                  }}
+                  className="body-2-sb rounded-t bg-primary-white px-[13px] py-[9px] text-label-normal hover:bg-gray-100"
+                >
+                  한 장만 저장
+                </button>
+              </MenuItem>
+              <MenuItem>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleDownload('all');
+                  }}
+                  className="body-2-sb rounded-b border border-t-line-normal bg-primary-white px-[13px] py-[9px] text-label-normal hover:bg-gray-100"
+                >
+                  묶음 저장
+                </button>
+              </MenuItem>
+            </MenuItems>
+          </Menu>
+        </div>
+      </header>
+      <div className="relative mx-auto max-w-[1400px]">
+        {groupedImages && (
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={1}
+            spaceBetween={0}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            navigation={{
+              prevEl: '.prev-button',
+              nextEl: '.next-button',
+            }}
+            className="h-[calc(100vh-160px)] xl:mt-[60px] xl:h-[calc(100vh-444px)]"
+            initialSlide={initialSlideIndex}
+            onSlideChange={(swiper) => {
+              const newIndex = swiper.realIndex;
+              const flatImage = flatImages[newIndex];
+              if (flatImage) {
+                const { group, imageIndex } = flatImage;
+                if (
+                  currentGroup !== group ||
+                  currentImageIndex !== imageIndex
+                ) {
+                  setCurrentGroup(group);
+                  setCurrentImageIndex(imageIndex);
+                }
+              }
+            }}
+          >
+            {Object.keys(groupedImages)
+              .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+              .flatMap((groupKey) =>
+                groupedImages[groupKey].flatMap((group) =>
+                  group.images.map((image, imageIndex) => (
+                    <SwiperSlide key={uuidv4()}>
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={image}
+                          alt={`이미지 ${imageIndex + 1}`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </SwiperSlide>
+                  )),
+                ),
+              )}
+          </Swiper>
+        )}
+
         <button
           type="button"
-          onClick={onCloseViewer}
-          className="text-primary-white"
-        >
-          <Close />
-        </button>
-        <h2 className="flex flex-col items-center">
-          <div className="heading-1-sb text-primary-white">
-            {currentGroup.uploader}
-          </div>
-          <div className="caption-1-r text-gray-400">
-            {(() => {
-              const utcDate = new Date(currentGroup.uploadDate);
-              const kstDate = new Date(utcDate.getTime() + 9 * 60 * 60 * 1000);
-
-              const year = kstDate.getFullYear();
-              const month = String(kstDate.getMonth() + 1).padStart(2, '0');
-              const day = String(kstDate.getDate()).padStart(2, '0');
-              const hours = kstDate.getHours() % 12 || 12;
-              const minutes = String(kstDate.getMinutes()).padStart(2, '0');
-              const period = kstDate.getHours() >= 12 ? 'PM' : 'AM';
-
-              return `${year}.${month}.${day}, ${hours}:${minutes} ${period}`;
-            })()}
-          </div>
-        </h2>
-
-        <Menu>
-          <MenuButton onClick={handleClickDownload}>
-            <Download />
-          </MenuButton>
-          <MenuItems className="absolute right-5 top-[70px] z-50 flex flex-col">
-            <MenuItem>
-              <button
-                type="button"
-                onClick={() => {
-                  handleDownload('single');
-                }}
-                className="body-2-sb rounded-t bg-primary-white px-[13px] py-[9px] text-label-normal hover:bg-gray-100"
-              >
-                한 장만 저장
-              </button>
-            </MenuItem>
-            <MenuItem>
-              <button
-                type="button"
-                onClick={() => {
-                  handleDownload('all');
-                }}
-                className="body-2-sb rounded-b border border-t-line-normal bg-primary-white px-[13px] py-[9px] text-label-normal hover:bg-gray-100"
-              >
-                묶음 저장
-              </button>
-            </MenuItem>
-          </MenuItems>
-        </Menu>
-      </header>
-
-      {groupedImages && (
-        <Swiper
-          modules={[Navigation]}
-          slidesPerView={1}
-          spaceBetween={0}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          navigation={{
-            prevEl: '.prev-button',
-            nextEl: '.next-button',
-          }}
-          className="h-[calc(100vh-160px)]"
-          initialSlide={initialSlideIndex}
-          onSlideChange={(swiper) => {
-            const newIndex = swiper.realIndex;
-            const flatImage = flatImages[newIndex];
-            if (flatImage) {
-              const { group, imageIndex } = flatImage;
-              if (currentGroup !== group || currentImageIndex !== imageIndex) {
-                setCurrentGroup(group);
-                setCurrentImageIndex(imageIndex);
-              }
+          className="prev-button absolute top-1/2 z-50 -translate-y-1/2 transform bg-black/40"
+          onClick={() => {
+            if (swiperRef.current && !swiperRef.current.animating) {
+              swiperRef.current.slidePrev();
             }
           }}
         >
-          {Object.keys(groupedImages)
-            .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-            .flatMap((groupKey) =>
-              groupedImages[groupKey].flatMap((group) =>
-                group.image.map((image, imageIndex) => (
-                  <SwiperSlide key={uuidv4()}>
-                    <div className="relative h-full w-full">
-                      <Image
-                        src={image}
-                        alt={`이미지 ${imageIndex + 1}`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </SwiperSlide>
-                )),
-              ),
-            )}
-        </Swiper>
-      )}
+          <Arrow />
+        </button>
+        <button
+          type="button"
+          className="next-button absolute right-0 top-1/2 z-50 -translate-y-1/2 rotate-180 transform bg-black/40"
+          onClick={() => {
+            if (swiperRef.current && !swiperRef.current.animating) {
+              swiperRef.current.slideNext();
+            }
+          }}
+        >
+          <Arrow />
+        </button>
+      </div>
 
-      <button
-        type="button"
-        className="prev-button absolute top-1/2 z-50 -translate-y-1/2 transform bg-black/40"
-        onClick={() => {
-          if (swiperRef.current && !swiperRef.current.animating) {
-            swiperRef.current.slidePrev();
-          }
-        }}
-      >
-        <Arrow />
-      </button>
-      <button
-        type="button"
-        className="next-button absolute right-0 top-1/2 z-50 -translate-y-1/2 rotate-180 transform bg-black/40"
-        onClick={() => {
-          if (swiperRef.current && !swiperRef.current.animating) {
-            swiperRef.current.slideNext();
-          }
-        }}
-      >
-        <Arrow />
-      </button>
-
-      {currentGroup.image.length > 1 && (
-        <div className="body-1-r absolute bottom-10 left-1/2 z-50 -translate-x-1/2 transform rounded-[40px] bg-[#333333] px-2.5 py-0.5 text-primary-white">
-          {currentImageIndex + 1} / {currentGroup.image.length}
+      {currentGroup.images.length > 1 && (
+        <div className="body-1-r absolute bottom-10 left-1/2 z-50 -translate-x-1/2 transform rounded-[40px] bg-[#333333] px-2.5 py-0.5 text-primary-white xl:bottom-[216px]">
+          {currentImageIndex + 1} / {currentGroup.images.length}
         </div>
       )}
     </div>

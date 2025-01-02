@@ -1,102 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ChatMessages from '@/components/chat/chatRoom/ChatMessages';
 import ChatInput from '@/components/chat/chatRoom/ChatInput';
 import HamburgerMenu from '@/assets/menu.svg';
 import Header from '@/components/common/header/Header';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { JoinedData, ImageInfo, Message } from '@/@types/chat';
+import { ChatOverview, ChatMessage } from '@/@types/chat';
 import ChatSideBar from '@/components/chat/chatRoom/ChatSideBar';
 import ChatAlbum from '@/components/chat/chatRoom/ChatAlbum';
 import ChatImageViewer from '@/components/chat/chatRoom/ChatImageViewer';
+import { useChat } from '@/hooks/useChat';
+import { useChatOverview } from '@/hooks/useChatOverview';
+import { useInView } from 'react-intersection-observer';
+import useGetUser from '@/queries/user/useGetUser';
+import ChatRoomSkeleton from '@/components/chat/chatRoom/ChatRoomSkeleton';
 
 interface Props {
-  chatData: JoinedData;
-  onSendMessage: (text: string, images: File[]) => void;
+  chatId: string;
+  onCloseChatRoom: () => void;
 }
 
-const ChatRoom = ({ chatData, onSendMessage }: Props) => {
-  const [textareaHeight, setTextareaHeight] = useState(22); // 초기 높이 설정
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isAlbumOpen, setIsAlbumOpen] = useState(false);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const [currentGroup, setCurrentGroup] = useState<ImageInfo | null>(null); // ImageInfo
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // ImageInfo 내 이미지 배열의 인덱스
+const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
+  const { ref, inView } = useInView({ threshold: 0.1 });
+  const [textareaHeight, setTextareaHeight] = useState(22);
+  const messagesContainerRef = useRef<HTMLUListElement | null>(null);
+  const previousScrollTopRef = useRef<number | null>(null);
 
-  const handleOpenSidebar = () => {
-    setIsSidebarOpen(true);
-  };
+  const { data: user } = useGetUser();
+  const nickname = user?.nickname;
 
-  const handleCloseSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const {
+    chatOverview,
+    currentGroup,
+    currentImageIndex,
+    groupedImages,
+    isSidebarOpen,
+    isAlbumOpen,
+    isViewerOpen,
+    handleOpenSidebar,
+    handleCloseSidebar,
+    handleOpenAlbum,
+    handleCloseAlbum,
+    handleOpenViewer,
+    handleCloseViewer,
+    setCurrentImageIndex,
+    setCurrentGroup,
+  } = useChatOverview(chatId);
 
-  const handleOpenAlbum = () => {
-    setIsAlbumOpen(true);
-  };
+  const {
+    chatInfo,
+    isFetchingNextPage,
+    hasNextPage,
+    error,
+    isFetchingPreviousRef,
+    fetchNextPage,
+    handleSendMessage,
+  } = useChat(chatId, nickname as string, 5);
 
-  const handleCloseAlbum = () => {
-    setIsAlbumOpen(false);
-  };
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      if (messagesContainerRef.current) {
+        previousScrollTopRef.current =
+          messagesContainerRef.current.scrollHeight -
+          messagesContainerRef.current.scrollTop;
+      }
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  const handleOpenViewer = (group: ImageInfo) => {
-    setCurrentGroup(group);
-    setCurrentImageIndex(0);
-    setIsViewerOpen(true);
-  };
+  useEffect(() => {
+    if (messagesContainerRef.current && previousScrollTopRef.current !== null) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight -
+        previousScrollTopRef.current;
+    }
+  }, [chatInfo]);
 
-  const handleCloseViewer = () => {
-    setIsViewerOpen(false);
-    setCurrentGroup(null);
-    setCurrentImageIndex(0);
-  };
+  if (error) {
+    console.error('에러', { error });
+    return (
+      <div>
+        데이터를 불러오는 데 실패했습니다. 나중에 다시 시도해주세요.
+        <p>{error.message}</p>
+      </div>
+    );
+  }
 
-  const groupedImages = chatData.images?.reduce(
-    (acc: Record<string, ImageInfo[]>, image) => {
-      const uploadDate = new Date(image.uploadDate);
-      const koreanDate = new Date(uploadDate.getTime() + 9 * 60 * 60 * 1000)
-        .toISOString()
-        .split('T')[0];
-
-      acc[koreanDate] = acc[koreanDate] || [];
-      acc[koreanDate].push(image);
-
-      acc[koreanDate].sort(
-        (a, b) =>
-          new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime(),
-      );
-
-      return acc;
-    },
-    {},
-  ) as Record<string, ImageInfo[]>;
+  if (!chatInfo || !chatOverview) return <ChatRoomSkeleton />;
 
   return (
     <>
       <Header
+        onRoute={onCloseChatRoom}
         title={
           <div className="flex items-center justify-center gap-1 truncate">
-            <span className="truncate">{chatData.title}</span>
+            <span className="truncate">{chatInfo?.chatTitle}</span>
             <span className="title-5-sb text-primary-normal">
-              {chatData.participants?.length}
+              {chatOverview?.participants?.length}
             </span>
           </div>
         }
+        isChatHeader
       >
         <button type="button" onClick={handleOpenSidebar}>
           <HamburgerMenu />
         </button>
       </Header>
       <ChatMessages
-        messages={chatData.messages as Message[]}
+        isFetchingPreviousRef={isFetchingPreviousRef}
+        messagesContainerRef={messagesContainerRef}
+        messages={chatInfo?.chatMessages as ChatMessage[]}
         textareaHeight={textareaHeight}
-      />
+        nickname={nickname as string}
+      >
+        {hasNextPage && !isFetchingNextPage ? <div ref={ref} /> : null}
+      </ChatMessages>
       <ChatInput
-        onSendMessage={onSendMessage}
+        chatId={chatId}
+        onSendMessage={handleSendMessage}
         onHeightChange={setTextareaHeight}
       />
       <ChatSideBar
-        chatData={chatData}
+        nickname={nickname as string}
+        chatData={chatOverview as ChatOverview}
         isSidebarOpen={isSidebarOpen}
         onOpenAlbum={handleOpenAlbum}
         onCloseSidebar={handleCloseSidebar}
