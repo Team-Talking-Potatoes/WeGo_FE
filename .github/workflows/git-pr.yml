@@ -45,6 +45,14 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Clear cache
+        run: npm cache clean --force
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set NODE_OPTIONS environment variable
+        run: echo "NODE_OPTIONS=--max-old-space-size=4096" >> $GITHUB_ENV
+
       - name: Build Project
         run: npm run build
         timeout-minutes: 8
