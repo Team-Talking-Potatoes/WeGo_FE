@@ -41,7 +41,7 @@ const ChatSideBar = ({
   return (
     <>
       <div
-        className={`absolute right-0 top-0 z-10 w-[296px] bg-white shadow-lg transition duration-300 ease-in-out ${
+        className={`absolute right-0 top-0 z-20 w-[296px] bg-white shadow-lg transition duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -124,7 +124,7 @@ const ChatSideBar = ({
       </div>
       {isSidebarOpen && (
         <div
-          className="absolute inset-0 bg-label-strong/40"
+          className="absolute inset-0 z-10 bg-label-strong/40"
           role="button"
           tabIndex={0}
           onClick={onCloseSidebar}

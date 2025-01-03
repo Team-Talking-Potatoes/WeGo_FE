@@ -4,6 +4,7 @@ import ChatHeader from '@/components/chat/chatRoomList/ChatHeader';
 import ChatRoomList from '@/components/chat/chatRoomList/ChatRoomList';
 import Chat from '@/assets/chat_gray.svg';
 import { RoomResponse, SortType } from '@/@types/chat';
+import ChatRoomListSkeleton from '@/components/chat/skeleton/ChatRoomListSkeleton';
 
 interface Rooms {
   data: RoomResponse[];
@@ -50,7 +51,7 @@ const ChatRoomsContainer = ({ onChatRoomId, chatRoomsData }: Props) => {
     <>
       <ChatHeader onSortChange={handleSortRooms} sortBy={currentSort} />
 
-      {isLoading && <div>채팅방 목록 로딩중 입니다....</div>}
+      {isLoading && <ChatRoomListSkeleton />}
 
       {!isLoading && sortedRooms?.length === 0 && (
         <div className="flex h-[calc(100vh-140px)] flex-col items-center justify-center md:mt-[120px] md:justify-start xl:mt-[240px]">
