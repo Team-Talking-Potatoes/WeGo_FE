@@ -43,7 +43,7 @@ const Pagination = ({ totalPages, currentPage, paginate }: Props) => {
 
       <PaginationButton
         className="ml-4"
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages || totalPages <= 1}
         onClick={() => paginate(currentPage + 1)}
       >
         <ArrowRight fill="label-normal" />

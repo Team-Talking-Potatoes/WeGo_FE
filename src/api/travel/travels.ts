@@ -4,6 +4,7 @@ import {
   TravelDetail,
   TravelFilterResponse,
   MyTravel,
+  MyTravelResponse,
 } from '@/@types/travel';
 import buildTravelUrl from '@/utils/buildTravelUrl';
 import { ApiResponse } from '@/@types/api';
@@ -57,7 +58,9 @@ export const pastTravel = (limit: number, offset: number) => {
 };
 
 export const checkedTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(`/travels/checked?limit=${limit}&offset=${offset}`);
+  return http.get<MyTravelResponse>(
+    `/travels/checked?limit=${limit}&offset=${offset}`,
+  );
 };
 
 export const writableTravel = (limit: number, offset: number) => {

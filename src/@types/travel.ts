@@ -107,3 +107,11 @@ export interface MyTravel {
   currentPage: number;
   hasNext: boolean;
 }
+
+export interface MyTravelResponse {
+  status: string;
+  data: MyTravel;
+  total: number;
+  currentPage: number;
+  hasNext: boolean;
+}
