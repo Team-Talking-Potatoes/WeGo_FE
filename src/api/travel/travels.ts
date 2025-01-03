@@ -46,14 +46,14 @@ export const deleteTravelBookMark = (id: number) => {
 
 /* ----------------------------- Apis in mypage ----------------------------- */
 export const upcommingTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(
-    `/travels/scheduled?limit=${limit}&offset=${offset}`,
+  return http.get<MyTravelResponse>(
+    `/travels/status?travelStatus=UPCOMING&size=${limit}&page=${offset}`,
   );
 };
 
 export const pastTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(
-    `/travels/finished?limit=${limit}&offset=${offset}`,
+  return http.get<MyTravelResponse>(
+    `/travels/status?travelStatus=PAST&size=${limit}&page=${offset}`,
   );
 };
 
