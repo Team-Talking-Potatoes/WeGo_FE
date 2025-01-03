@@ -47,6 +47,7 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        timeout-minutes: 8
 
       - name: Run Tests
         run: npm test -- --test-concurrency=4
