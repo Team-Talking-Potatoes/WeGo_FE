@@ -59,11 +59,11 @@ describe('validateAuthInput', () => {
   });
 
   describe('생년월일 검증', () => {
-    it('6자리 숫자면 true를 반환한다', () => {
-      expect(validate({ name: 'birthDate', value: '990101' })).toBe(true);
+    it('8자리 숫자면 true를 반환한다', () => {
+      expect(validate({ name: 'birthDate', value: '19990101' })).toBe(true);
     });
 
-    it('6자리가 아니거나 숫자가 아니면 false를 반환한다', () => {
+    it('8자리가 아니거나 숫자가 아니면 false를 반환한다', () => {
       expect(validate({ name: 'birthDate', value: '9901' })).toBe(false);
       expect(validate({ name: 'birthDate', value: '99010a' })).toBe(false);
     });
@@ -82,12 +82,12 @@ describe('validateAuthInput', () => {
 
   describe('이메일 인증코드 검증', () => {
     it('6자리 숫자면 true를 반환한다', () => {
-      expect(validate({ name: 'emailCode', value: '123456' })).toBe(true);
+      expect(validate({ name: 'verifyNumber', value: '123456' })).toBe(true);
     });
 
     it('6자리가 아니거나 숫자가 아니면 false를 반환한다', () => {
-      expect(validate({ name: 'emailCode', value: '12345' })).toBe(false);
-      expect(validate({ name: 'emailCode', value: '1234a6' })).toBe(false);
+      expect(validate({ name: 'verifyNumber', value: '12345' })).toBe(false);
+      expect(validate({ name: 'verifyNumber', value: '1234a6' })).toBe(false);
     });
   });
 });

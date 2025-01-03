@@ -51,7 +51,7 @@ describe('SignupForm', () => {
       screen.getByPlaceholderText(AUTH_PLACEHOLDER.email),
     ).toBeInTheDocument();
     expect(
-      screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode),
+      screen.getByPlaceholderText(AUTH_PLACEHOLDER.verifyNumber),
     ).toBeInTheDocument();
 
     // 비밀번호 필드

@@ -24,7 +24,7 @@ interface Props {
   sendMail: (credentials: { email: string }) => void;
   setIsEmailCertified: (isEmailCertified: boolean | null) => void;
   setCertifiedToken: (token: string) => void;
-  isSendingMail: boolean;
+  isSendingMail?: boolean;
 }
 
 const AuthEmailCertification = memo(

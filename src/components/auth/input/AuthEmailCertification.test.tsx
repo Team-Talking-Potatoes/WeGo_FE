@@ -29,32 +29,33 @@ afterEach(() => {
 afterAll(() => server.close());
 
 describe('AuthEmailCertification', () => {
+  const defaultProps = {
+    email: {
+      value: '',
+      isValid: null,
+      setValue: jest.fn(),
+      setIsValid: jest.fn(),
+      handleChange: jest.fn(),
+    },
+    verifyNumber: {
+      value: '',
+      isValid: null,
+      setValue: jest.fn(),
+      setIsValid: jest.fn(),
+      handleChange: jest.fn(),
+    },
+    isEmailCertified: false,
+    due: 300,
+    setDue: jest.fn(),
+    successMailSend: null,
+    sendMail: jest.fn(),
+    setIsEmailCertified: jest.fn(),
+    setCertifiedToken: jest.fn(),
+    isSendingMail: false,
+  };
+
   it('기본 이메일 입력 필드가 렌더링되어야 한다', () => {
-    renderWithClient(
-      <AuthEmailCertification
-        email={{
-          value: '',
-          isValid: null,
-          setValue: jest.fn(),
-          setIsValid: jest.fn(),
-          handleChange: jest.fn(),
-        }}
-        emailCode={{
-          value: '',
-          isValid: null,
-          setValue: jest.fn(),
-          setIsValid: jest.fn(),
-          handleChange: jest.fn(),
-        }}
-        isEmailCertified={false}
-        due={300}
-        setDue={jest.fn()}
-        successMailSend={null}
-        sendMail={jest.fn()}
-        setIsEmailCertified={jest.fn()}
-        setCertifiedToken={jest.fn()}
-      />,
-    );
+    renderWithClient(<AuthEmailCertification {...defaultProps} />);
 
     expect(screen.getByText(AUTH_LABEL.email)).toBeInTheDocument();
     expect(
@@ -73,7 +74,7 @@ describe('AuthEmailCertification', () => {
           setIsValid: jest.fn(),
           handleChange: jest.fn(),
         }}
-        emailCode={{
+        verifyNumber={{
           value: '',
           isValid: null,
           setValue: jest.fn(),
@@ -103,7 +104,7 @@ describe('AuthEmailCertification', () => {
           setIsValid: jest.fn(),
           handleChange: jest.fn(),
         }}
-        emailCode={{
+        verifyNumber={{
           value: '',
           isValid: null,
           setValue: jest.fn(),
@@ -125,7 +126,7 @@ describe('AuthEmailCertification', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode),
+        screen.getByPlaceholderText(AUTH_PLACEHOLDER.verifyNumber),
       ).toBeInTheDocument();
     });
   });
@@ -140,7 +141,7 @@ describe('AuthEmailCertification', () => {
           setIsValid: jest.fn(),
           handleChange: jest.fn(),
         }}
-        emailCode={{
+        verifyNumber={{
           value: '',
           isValid: null,
           setValue: jest.fn(),
@@ -179,7 +180,7 @@ describe('AuthEmailCertification', () => {
             setIsValid: jest.fn(),
             handleChange: jest.fn(),
           }}
-          emailCode={{
+          verifyNumber={{
             value: String(FAKE_EMAIL_CODE),
             isValid: true,
             setValue: jest.fn(),
@@ -199,7 +200,9 @@ describe('AuthEmailCertification', () => {
     renderWithClient(<TestComponent />);
 
     await waitFor(() => {
-      const codeInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode);
+      const codeInput = screen.getByPlaceholderText(
+        AUTH_PLACEHOLDER.verifyNumber,
+      );
       expect(codeInput).toBeInTheDocument();
     });
 
@@ -213,7 +216,9 @@ describe('AuthEmailCertification', () => {
 
     await waitFor(() => {
       const emailInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.email);
-      const codeInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.emailCode);
+      const codeInput = screen.getByPlaceholderText(
+        AUTH_PLACEHOLDER.verifyNumber,
+      );
 
       expect(emailInput).toBeDisabled();
       expect(codeInput).toBeDisabled();
@@ -231,7 +236,7 @@ describe('AuthEmailCertification', () => {
           setIsValid: jest.fn(),
           handleChange: jest.fn(),
         }}
-        emailCode={{
+        verifyNumber={{
           value: '',
           isValid: null,
           setValue: jest.fn(),
