@@ -47,9 +47,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  env: {
-    NODE_OPTIONS: '--max-old-space-size=4096',
-  },
 };
 
 export default nextConfig;
