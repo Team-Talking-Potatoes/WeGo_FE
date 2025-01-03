@@ -3,12 +3,13 @@ import Timeline from '@/assets/timeline.svg';
 import DateIcon from '@/assets/date.svg';
 import { TravelDetail } from '@/@types/travel';
 import dayjs from 'dayjs';
+import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import DomesticTag from '../../../common/tag/DomesticTag';
 import RecruitmentBox from './RecruitmentBox';
 
 type Props = Pick<
   TravelDetail,
-  | 'name'
+  | 'travelName'
   | 'isDomestic'
   | 'minTravelMateCount'
   | 'maxTravelMateCount'
@@ -19,7 +20,7 @@ type Props = Pick<
 >;
 
 const TravelInformation = ({
-  name,
+  travelName,
   isDomestic,
   minTravelMateCount,
   maxTravelMateCount,
@@ -36,13 +37,14 @@ const TravelInformation = ({
     <main className="flex w-full max-w-[540px] flex-col justify-center px-5 sm:px-0">
       <DomesticTag isDomestic={isDomestic} />
       <h2 className="title-4-b border-b border-line-normal pb-4 pt-1.5 font-bold">
-        {name}
+        {travelName}
       </h2>
       <div className="body-2-m flex flex-col gap-2 pt-4">
         <div className={`${info} justify-start`}>
           <DateIcon />
           <span className="pl-2">
-            {startAt} - {endAt}
+            {formatDateToShortWithDay(startAt)} -{' '}
+            {formatDateToShortWithDay(endAt)}
           </span>
         </div>
 
@@ -55,7 +57,9 @@ const TravelInformation = ({
           <div className={`${info} pl-2`}>
             <Timeline />
             <span className="pl-2 pr-1">모집기한</span>
-            <span className="text-primary-normal">2024.11.31</span>
+            <span className="text-primary-normal">
+              {formatDateToShortWithDay(registrationEnd)}
+            </span>
           </div>
         </div>
       </div>

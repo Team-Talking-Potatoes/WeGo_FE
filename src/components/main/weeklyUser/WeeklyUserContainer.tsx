@@ -5,7 +5,6 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { Suspense } from 'react';
 import WeeklyUser from './WeeklyUser';
 
 const WeeklyUserContainer = async () => {
@@ -14,12 +13,11 @@ const WeeklyUserContainer = async () => {
     queryKey: QUERY_KEYS.USER.POPULAR_USER,
     queryFn: getPopularUser,
   });
+
   return (
-    <Suspense fallback={<div>로딩중</div>}>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <WeeklyUser userList={data} />
-      </HydrationBoundary>
-    </Suspense>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <WeeklyUser userList={data.data} />
+    </HydrationBoundary>
   );
 };
 export default WeeklyUserContainer;

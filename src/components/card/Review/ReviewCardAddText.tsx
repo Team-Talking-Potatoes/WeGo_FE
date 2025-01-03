@@ -15,7 +15,7 @@ const ReviewCardAddText = ({
     <article className="flex gap-[18px]">
       <div className="relative h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded md:w-[140px]">
         <Image
-          src={reviewImage}
+          src={reviewImage || '/test1.png'}
           alt={`${nickname}의 여행리뷰 이미지`}
           width={100}
           height={100}

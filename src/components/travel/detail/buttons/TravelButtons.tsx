@@ -15,19 +15,21 @@ import { Button } from '@/components/common/button/Button';
 
 const TravelButtons = ({
   travelId,
-  isParticipation,
+  participationFlag,
   organizer,
   className,
 }: {
   travelId: number;
-  isParticipation: boolean;
+  participationFlag: boolean | null;
   organizer?: number;
   className?: string;
 }) => {
   const { data: userInfo } = useGetUser();
   const router = useRouter();
 
-  const [isParticipate, setIsParticipate] = useState<boolean>(isParticipation);
+  const [isParticipate, setIsParticipate] = useState<boolean | null>(
+    participationFlag,
+  );
   const { showModal, closeModal } = useModal();
   const { mutate: handleParticipation } = useTravelParticipation();
   const { mutate: handleParticipationCancel } = useTravelParticipationCancel();

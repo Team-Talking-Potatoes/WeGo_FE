@@ -1,5 +1,7 @@
 import Header from '@/components/common/header/Header';
+import SkeletonTravelDetail from '@/components/common/skeleton/travelDetail/SkeletonTravelDetail';
 import TravelDetailContainer from '@/components/travel/detail/TravelDetailContainer';
+import { Suspense } from 'react';
 
 const TravelDetailPage = async ({
   params,
@@ -11,7 +13,9 @@ const TravelDetailPage = async ({
   return (
     <section className="mx-auto mt-[60px] xl:mt-20 xl:max-w-[1296px]">
       <Header title="여행상세" />
-      <TravelDetailContainer id={id} />
+      <Suspense fallback={<SkeletonTravelDetail />}>
+        <TravelDetailContainer id={id} />
+      </Suspense>
     </section>
   );
 };

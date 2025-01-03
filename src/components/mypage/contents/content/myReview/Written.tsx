@@ -21,12 +21,12 @@ const Written = () => {
         <div className="grid grid-cols-2 gap-4 pb-4 md:grid-cols-3 xl:grid-cols-6">
           {reviews.reviews.map((review) => (
             <ReviewCard
-              key={review.reviewId}
-              reviewId={review.reviewId}
+              key={review.id}
+              reviewId={review.id}
               image={review.reviewImage}
               title={review.title}
               content={review.content}
-              score={review.score}
+              score={review.starRating}
               travelLocation={review.travelLocation}
               createdAt={review.createdAt}
             />

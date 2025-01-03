@@ -19,8 +19,7 @@ import CheckMarkButton from '../../common/button/CheckMarkButton';
 
 interface Props extends Travel {
   closed?: boolean;
-  checkMark?: boolean;
-  isChecked?: boolean;
+  isBookmark: boolean | null;
 }
 
 const TravelCardBig = ({
@@ -34,10 +33,9 @@ const TravelCardBig = ({
   endAt,
   image,
   closed,
-  checkMark,
-  isChecked,
+  isBookmark,
 }: Props) => {
-  const [isCheckedState, setIsCheckedState] = useState(isChecked);
+  const [isCheckedState, setIsCheckedState] = useState(isBookmark);
   const [animate, setAnimate] = useState(false);
 
   const progressRate = useMemo(
@@ -65,12 +63,6 @@ const TravelCardBig = ({
     setIsCheckedState(!isCheckedState);
   };
 
-  /* ---------------------------------- 임시 수정 --------------------------------- */
-  const isValidDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return !Number.isNaN(date.getTime());
-  };
-  /* ---------------------------------- 임시 수정 --------------------------------- */
   return (
     <Link
       href={`/travel/${travelId}`}
@@ -94,7 +86,7 @@ const TravelCardBig = ({
             마감된 여행
           </div>
         )}
-        {checkMark && (
+        {isCheckedState !== null && (
           <CheckMarkButton
             isChecked={isCheckedState}
             animate={animate}
@@ -123,15 +115,8 @@ const TravelCardBig = ({
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </div>
             <div className="body-3-r flex flex-shrink-0 gap-0.5 pl-1.5">
-              {/* 임시 수정 */}
-              {isValidDate(startAt)
-                ? formatDateToShortWithDay(startAt, undefined, true)
-                : 'Invalid Start Date'}{' '}
-              -{' '}
-              {isValidDate(endAt)
-                ? formatDateToShortWithDay(endAt, undefined, true)
-                : 'Invalid End Date'}
-              {/* 임시 수정 */}
+              {formatDateToShortWithDay(startAt)} -
+              {formatDateToShortWithDay(endAt)}
             </div>
           </div>
           {!closed && <ProgressBar progressRate={progressRate} />}

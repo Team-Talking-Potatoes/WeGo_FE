@@ -8,7 +8,8 @@
     "currentTravelMateCount": 5,
     "startAt": "2024.12.11",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test1.jpg"
+    "image": "/test/travel/test1.jpg",
+    "isBookmark": false
   },
   {
     "travelId": 14,
@@ -19,7 +20,8 @@
     "currentTravelMateCount": 11,
     "startAt": "2024.12.06",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test2.jpg"
+    "image": "/test/travel/test2.jpg",
+    "isBookmark": false
   },
   {
     "travelId": 15,
@@ -30,7 +32,8 @@
     "currentTravelMateCount": 10,
     "startAt": "2024.01.03",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test3.jpg"
+    "image": "/test/travel/test3.jpg",
+    "isBookmark": false
   },
   {
     "travelId": 16,
@@ -41,7 +44,8 @@
     "currentTravelMateCount": 3,
     "startAt": "2024.12.31",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test4.jpg"
+    "image": "/test/travel/test4.jpg",
+    "isBookmark": false
   },
   {
     "travelId": 17,
@@ -52,6 +56,7 @@
     "currentTravelMateCount": 5,
     "startAt": "2024.12.24",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test5.jpg"
+    "image": "/test/travel/test5.jpg",
+    "isBookmark": false
   }
 ]

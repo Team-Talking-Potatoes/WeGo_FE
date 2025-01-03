@@ -1,10 +1,17 @@
 import { Filters } from '@/@types/travel';
+import dayjs from 'dayjs';
 
 const buildTravelUrl = (filters: Filters, pageParam?: number): string => {
   const params = new URLSearchParams();
 
-  if (filters.startAt) params.append('startAt', filters.startAt);
-  if (filters.endAt) params.append('endAt', filters.endAt);
+  if (filters.startAt) {
+    const startDate = dayjs(filters.startAt).format('YYYYMMDD');
+    params.append('startAt', startDate);
+  }
+  if (filters.endAt) {
+    const endDate = dayjs(filters.endAt).format('YYYYMMDD');
+    params.append('endAt', endDate);
+  }
   if (filters.isDomestic != null)
     params.append('isDomestic', String(filters.isDomestic));
   if (filters.sortOrder != null)
@@ -16,7 +23,7 @@ const buildTravelUrl = (filters: Filters, pageParam?: number): string => {
     params.append('page', String(pageParam));
   }
 
-  return `${process.env.NEXT_PUBLIC_BASE_URL}/travels?${params.toString()}`;
+  return `/travels?${params.toString()}`;
 };
 
 export default buildTravelUrl;

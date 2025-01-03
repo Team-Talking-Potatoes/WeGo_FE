@@ -52,7 +52,7 @@ describe('TravelButtons', () => {
   });
 
   it('주최자인 경우 "여행취소"와 "공유" 버튼이 렌더링됩니다', () => {
-    render(<TravelButtons travelId={101} isParticipation organizer={1} />);
+    render(<TravelButtons travelId={101} participationFlag organizer={1} />);
     expect(screen.getByText('여행취소')).toBeInTheDocument();
     expect(screen.getByText('공유')).toBeInTheDocument();
 
@@ -61,7 +61,7 @@ describe('TravelButtons', () => {
   });
 
   it('참여자일 경우 "동행취소" 버튼이 렌더링됩니다', () => {
-    render(<TravelButtons travelId={1} isParticipation organizer={5} />);
+    render(<TravelButtons travelId={1} participationFlag organizer={5} />);
     expect(screen.getByText('동행취소')).toBeInTheDocument();
 
     expect(screen.queryByText('여행취소')).not.toBeInTheDocument();
@@ -71,7 +71,7 @@ describe('TravelButtons', () => {
 
   it('참여하지 않은 사용자일 경우 "동행" 버튼이 렌더링됩니다', () => {
     render(
-      <TravelButtons travelId={1} isParticipation={false} organizer={5} />,
+      <TravelButtons travelId={1} participationFlag={false} organizer={5} />,
     );
     expect(screen.getByText('동행')).toBeInTheDocument();
 

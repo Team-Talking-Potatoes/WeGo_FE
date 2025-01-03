@@ -13,18 +13,18 @@ import UserIcon from '../../../common/user/UserIcon';
 
 const TabTravelDetail = ({
   travelId,
-  isParticipation,
+  participationFlag,
   organizer,
   hashTags,
   description,
 }: {
   travelId: number;
-  isParticipation: boolean;
+  participationFlag: boolean | null;
   organizer?: Participant;
   hashTags: string;
   description: string;
 }) => {
-  const [isBookmarked, setIsBookmarked] = useState(isParticipation);
+  const [isBookmarked, setIsBookmarked] = useState(participationFlag);
   const { mutate: postBookMark } = useBookmarkTravel();
   const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
 
@@ -56,32 +56,33 @@ const TabTravelDetail = ({
 
           <div className="body-2-sb">{organizer && organizer.nickname}</div>
         </div>
-
-        <div className="flex items-center gap-2.5">
-          {organizer?.id !== user?.userId ? (
-            <button
-              onClick={handleClickBookMark}
-              type="button"
-              aria-label="북마크"
-            >
-              <BookMarkIcon
-                fill={isBookmarked ? '#F87171' : 'white'}
-                className={
-                  isBookmarked
-                    ? 'animate-check-shake'
-                    : 'animate-check-shake-reverse'
-                }
-              />
-            </button>
-          ) : (
-            <Link href="/">
-              <ButtonRounded label="일정수정" color="blue" />
+        {participationFlag !== null && (
+          <div className="flex items-center gap-2.5">
+            {organizer?.id !== user?.userId ? (
+              <button
+                onClick={handleClickBookMark}
+                type="button"
+                aria-label="북마크"
+              >
+                <BookMarkIcon
+                  fill={isBookmarked ? '#F87171' : 'white'}
+                  className={
+                    isBookmarked
+                      ? 'animate-check-shake'
+                      : 'animate-check-shake-reverse'
+                  }
+                />
+              </button>
+            ) : (
+              <Link href="/">
+                <ButtonRounded label="일정수정" color="blue" />
+              </Link>
+            )}
+            <Link href="/chat">
+              <ButtonRounded label="채팅방" />
             </Link>
-          )}
-          <Link href="/chat">
-            <ButtonRounded label="채팅방" />
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
       <div className="flex flex-col gap-2.5 rounded border px-4 py-5 shadow-custom">
         <main className="body-1-r md:min-h-24">{description}</main>

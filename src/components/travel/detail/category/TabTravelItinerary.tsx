@@ -49,7 +49,7 @@ const TabTravelItinerary = ({ tripDuration, travelPlan, startAt }: Props) => {
                     />
                   </div>
                   <span className="body-2-m text-label-alternative">
-                    {formatDateToShortWithDay(startAt, i - 1)}
+                    {formatDateToShortWithDay(startAt, i - 1, false)}
                   </span>
                 </div>
 
