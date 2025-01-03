@@ -1,4 +1,4 @@
-import HeroSection from '@/components/main/HeroSection';
+// import HeroSection from '@/components/main/HeroSection';
 import WeeklyPopularContainer from '@/components/main/weeklyTravel/WeeklyPopularContainer';
 import WeeklyReviewContainer from '@/components/main/weeklyReview/WeeklyReviewContainer';
 import WeeklyUserContainer from '@/components/main/weeklyUser/WeeklyUserContainer';
@@ -12,7 +12,7 @@ import SkeletonWeeklyHeader from '@/components/common/skeleton/home/SkeletonWeek
 const Home = () => {
   return (
     <main>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <ToTop />
       <Suspense fallback={<SkeletonHomeTravel />}>
         <WeeklyPopularContainer />
