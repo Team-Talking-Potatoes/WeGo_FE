@@ -50,10 +50,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set NODE_OPTIONS environment variable
-        run: echo "NODE_OPTIONS=--max-old-space-size=4096" >> $GITHUB_ENV
-
       - name: Build Project
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
         run: npm run build
         timeout-minutes: 8
 
