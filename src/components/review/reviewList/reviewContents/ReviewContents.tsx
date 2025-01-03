@@ -35,17 +35,17 @@ const ReviewContents = () => {
       {reviewsData && (
         <div className="grid grid-cols-2 gap-x-[15px] gap-y-6 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
           {reviewsData.pages.map((page) =>
-            page.reviews
-              ? page.reviews.map((review) => (
+            page.data.content
+              ? page.data.content.map((review) => (
                   <ReviewCard
-                    key={`${filters.sortOrder}-${review.reviewId}`}
-                    reviewId={review.reviewId}
+                    key={`${filters.sortOrder}-${review.id}`}
+                    reviewId={review.id}
                     nickname={review.nickname}
                     profileImage={review.profileImage}
                     image={review.reviewImage}
                     title={review.title}
                     content={review.content}
-                    score={review.score}
+                    score={review.starRating}
                     travelLocation={review.travelLocation}
                     createdAt={review.createdAt}
                     isLiked={review.isLiked ?? false}

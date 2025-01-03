@@ -6,7 +6,6 @@ import QueryProviders from '@/providers/QueryProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import MainNavigation from '@/components/nav/MainNavigation';
 import ZustandProvider from '@/providers/ZustandProvider';
-import { Suspense } from 'react';
 import Header from '@/components/header/Header';
 
 const pretendard = localFont({
@@ -46,8 +45,8 @@ const RootLayout = async ({
         <QueryProviders>
           <ZustandProvider>
             <Header />
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
             <MainNavigation />
+            {children}
           </ZustandProvider>
         </QueryProviders>
         <SpeedInsights />

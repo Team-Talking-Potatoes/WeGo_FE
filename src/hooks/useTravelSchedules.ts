@@ -93,6 +93,7 @@ const useTravelSchedules = (
 
   useEffect(() => {
     initDefaultSchedule();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

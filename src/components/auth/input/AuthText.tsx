@@ -5,6 +5,7 @@ import {
   AUTH_LABEL,
   AUTH_ERROR_MESSAGE,
   AUTH_PLACEHOLDER,
+  AUTH_MAX_LENGTH,
 } from '@/constants/auth';
 import TextInput from '@/components/common/input/TextInput';
 import type { TextInput as TextInputType } from '@/@types/auth';
@@ -43,12 +44,12 @@ const AuthText = memo(
     return (
       <div
         className={cn('relative mb-6', {
-          'mb-0': name === 'emailCode' || successMailSend !== undefined,
+          'mb-0': name === 'verifyNumber' || successMailSend !== undefined,
         })}
       >
         <label
           htmlFor={name}
-          className={`text-sm ${name === 'emailCode' && 'sr-only'}`}
+          className={`text-sm ${name === 'verifyNumber' && 'sr-only'}`}
         >
           {AUTH_LABEL[name]}
           {important && <span className="ml-[2px] text-[#4a8af8]">*</span>}
@@ -59,7 +60,7 @@ const AuthText = memo(
             type={type}
             name={name}
             disabled={disabled}
-            maxLength={name === 'emailCode' || name === 'birthDate' ? 6 : 25}
+            maxLength={AUTH_MAX_LENGTH[name] ?? 25}
             placeholder={AUTH_PLACEHOLDER[name]}
             value={value}
             size={size}
@@ -68,7 +69,7 @@ const AuthText = memo(
               ...classNameCondition,
               'border-line-strong': isValid === true,
               'disabled:border-status-infomative':
-                name === 'emailCode' && isValid === true,
+                name === 'verifyNumber' && isValid === true,
               'border-status-error focus:border-status-error':
                 successMailSend === false ||
                 (Boolean(value) && isValid !== null && isValid === false),
@@ -84,7 +85,7 @@ const AuthText = memo(
             'text-status-error': successMailSend === false || isValid === false,
           })}
         >
-          {name !== 'emailCode' && isValid === false && value
+          {name !== 'verifyNumber' && isValid === false && value
             ? AUTH_ERROR_MESSAGE[name]
             : null}
         </p>

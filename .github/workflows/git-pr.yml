@@ -45,5 +45,8 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Build Project
+        run: npm run build
+
       - name: Run Tests
         run: npm test -- --test-concurrency=4

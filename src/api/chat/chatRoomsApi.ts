@@ -7,7 +7,7 @@ interface RoomsResponse {
 }
 
 export const getChatRooms = async (
-  sortBy: SortType,
+  sortType: SortType,
 ): Promise<RoomsResponse> => {
-  return http.get<RoomsResponse>(`/chat?sortBy=${sortBy}`);
+  return http.get<RoomsResponse>(`/chat?sortType=${sortType}`);
 };

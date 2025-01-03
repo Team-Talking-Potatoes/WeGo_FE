@@ -21,8 +21,8 @@ const validate = ({ name, value, password }: ValidateOptions): boolean => {
       return REGEX.contact.test(value);
     case 'birthDate':
       return REGEX.birthDate.test(value);
-    case 'emailCode':
-      return REGEX.emailCode.test(value);
+    case 'verifyNumber':
+      return REGEX.verifyNumber.test(value);
     default:
       return false;
   }

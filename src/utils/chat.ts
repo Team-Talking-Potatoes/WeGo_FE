@@ -5,13 +5,13 @@ export const sortRooms = (
   sortType: SortType,
 ): RoomResponse[] => {
   return [...rooms].sort((a, b) => {
-    if (sortType === 'latest') {
+    if (sortType === 'RECENT') {
       return (
         new Date(b.lastMessageTime).getTime() -
         new Date(a.lastMessageTime).getTime()
       );
     }
-    if (sortType === 'unread') {
+    if (sortType === 'UNREAD') {
       if (a.unreadMessageCount === 0 && b.unreadMessageCount > 0) return 1;
       if (a.unreadMessageCount > 0 && b.unreadMessageCount === 0) return -1;
 

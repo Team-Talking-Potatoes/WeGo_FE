@@ -14,6 +14,7 @@ const useEditProfile = () => {
   return useMutation({
     mutationFn: editProfile,
     onError: (error: QueryError) => {
+      console.error(error);
       switch (error.status) {
         case 401:
           showModal('토큰이 만료되었습니다.', '프로필 수정에 실패했습니다.', {

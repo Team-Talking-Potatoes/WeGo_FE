@@ -16,10 +16,10 @@ export const useSetIsJoined = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['chatRooms', 'latest'],
+        queryKey: ['chatRooms', 'RECENT'],
       });
       queryClient.invalidateQueries({
-        queryKey: ['chatRooms', 'unread'],
+        queryKey: ['chatRooms', 'UNREAD'],
       });
     },
   });

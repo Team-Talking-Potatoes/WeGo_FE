@@ -1,7 +1,10 @@
-import LoginForm from '@/components/auth/LoginForm';
+'use client';
+
+import LoginForm from '@/components/auth/form/LoginForm';
 import { Button } from '@/components/common/button/Button';
 import Link from 'next/link';
 import Logo from '@/assets/icon/auth/logo_login.svg';
+import { Suspense } from 'react';
 
 const Login = () => {
   return (
@@ -26,7 +29,9 @@ const Login = () => {
         </p>
 
         <div className="mt-11 flex flex-col justify-between">
-          <LoginForm />
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoginForm />
+          </Suspense>
 
           <Link href="/signup">
             <Button fill="white" label="회원가입" size="full" />

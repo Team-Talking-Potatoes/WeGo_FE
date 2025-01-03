@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 import validate from '@/utils/validateAuthInput';
 import useSignup from '@/queries/auth/useSignup';
 import useSendMail from '@/queries/auth/useSendMail';
-import AuthPassword from './input/AuthPassword';
-import AuthEmailCertification from './input/AuthEmailCertification';
-import FormTitle from '../common/form/FormTitle';
+import FormTitle from '@/components/common/form/FormTitle';
+import AuthPassword from '../input/AuthPassword';
+import AuthEmailCertification from '../input/AuthEmailCertification';
 
 const SignupForm = () => {
   const [isEmailCertified, setIsEmailCertified] = useState<boolean | null>(
@@ -20,7 +20,7 @@ const SignupForm = () => {
   const [successMailSend, setSuccessMailSend] = useState<boolean | null>(null);
 
   const email = useAuthInput({ name: 'email' });
-  const emailCode = useAuthInput({ name: 'emailCode' });
+  const verifyNumber = useAuthInput({ name: 'verifyNumber' });
   const password = useAuthInput({ name: 'password' });
   const passwordConfirm = useAuthInput({
     name: 'passwordConfirm',
@@ -31,21 +31,21 @@ const SignupForm = () => {
   const birthDate = useAuthInput({ name: 'birthDate' });
   const contact = useAuthInput({ name: 'contact' });
 
-  const { mutate: sendMail } = useSendMail(
+  const { mutate: sendMail, isPending: isSendingMail } = useSendMail(
     () => {
       if (!successMailSend) {
         setSuccessMailSend(true);
       }
       setDue(300);
-      emailCode.setIsValid(false);
-      emailCode.setValue('');
+      verifyNumber.setIsValid(false);
+      verifyNumber.setValue('');
     },
     () => {
       setSuccessMailSend(false);
     },
   );
 
-  const { mutate: signup } = useSignup();
+  const { mutate: signup, isPending: isSigningUp } = useSignup();
 
   const isFormValid = () => {
     return (
@@ -90,10 +90,9 @@ const SignupForm = () => {
   return (
     <form onSubmit={handleSignup} className="w-full" data-testid="signup-form">
       <FormTitle title="회원가입" />
-
       <AuthEmailCertification
         email={email}
-        emailCode={emailCode}
+        verifyNumber={verifyNumber}
         isEmailCertified={isEmailCertified}
         due={due}
         setDue={setDue}
@@ -101,8 +100,8 @@ const SignupForm = () => {
         sendMail={sendMail}
         setIsEmailCertified={setIsEmailCertified}
         setCertifiedToken={setCertifiedToken}
+        isSendingMail={isSendingMail}
       />
-
       <AuthPassword
         name="password"
         value={password.value}
@@ -110,7 +109,6 @@ const SignupForm = () => {
         important
         onChange={password.handleChange}
       />
-
       <AuthPassword
         name="passwordConfirm"
         value={passwordConfirm.value}
@@ -118,7 +116,6 @@ const SignupForm = () => {
         important
         onChange={passwordConfirm.handleChange}
       />
-
       <AuthText
         type="text"
         name="name"
@@ -128,7 +125,6 @@ const SignupForm = () => {
         important
         onChange={name.handleChange}
       />
-
       <AuthText
         type="tel"
         name="contact"
@@ -138,7 +134,6 @@ const SignupForm = () => {
         important
         onChange={contact.handleChange}
       />
-
       <AuthText
         type="text"
         name="nickname"
@@ -148,7 +143,6 @@ const SignupForm = () => {
         important
         onChange={nickname.handleChange}
       />
-
       <AuthText
         type="text"
         name="birthDate"
@@ -163,8 +157,9 @@ const SignupForm = () => {
         label="회원가입"
         type="submit"
         size="full"
-        className="mt-9"
+        className="mt-9 hover:bg-primary-normal"
         disabled={!isFormValid()}
+        showSpinner={isSigningUp}
       />
     </form>
   );

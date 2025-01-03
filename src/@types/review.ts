@@ -1,13 +1,13 @@
 export interface Review {
   reviewId?: number;
-  id?: number;
+  id: number;
   title: string;
   nickname?: string;
   profileImage?: string;
   reviewImage: string;
   content: string;
   score?: number;
-  starRating?: number;
+  starRating: number;
   travelLocation: string;
   createdAt: string;
   isLast: boolean;
@@ -15,7 +15,7 @@ export interface Review {
 }
 
 export interface ReviewResponse {
-  reviews: Review[];
+  content: Review[];
   currentPage: number;
   size: number;
   total: number;

@@ -3,29 +3,28 @@ import '@testing-library/jest-dom';
 import AuthText from './AuthText';
 
 describe('AuthText', () => {
+  const defaultProps = {
+    type: 'text' as const,
+    name: 'email' as const,
+    value: '',
+    isValid: null as boolean | null,
+    onChange: jest.fn(),
+  };
+
   it('기본 렌더링이 정상적으로 되어야 한다', () => {
-    render(
-      <AuthText
-        type="text"
-        name="email"
-        value=""
-        isValid={null}
-        onChange={() => {}}
-      />,
-    );
+    render(<AuthText {...defaultProps} />);
 
     expect(screen.getByLabelText('이메일(아이디)')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
-  it('emailCode인 경우 라벨이 숨겨져야 한다', () => {
+  it('verifyNumber인 경우 라벨이 숨겨져야 한다', () => {
     render(
       <AuthText
-        type="text"
-        name="emailCode"
+        {...defaultProps}
+        name="verifyNumber"
         value=""
         isValid={null}
-        onChange={() => {}}
       />,
     );
 
@@ -34,31 +33,14 @@ describe('AuthText', () => {
   });
 
   it('important가 true일 때 별표가 표시되어야 한다', () => {
-    render(
-      <AuthText
-        type="text"
-        name="email"
-        value=""
-        isValid={null}
-        important
-        onChange={() => {}}
-      />,
-    );
+    render(<AuthText {...defaultProps} important />);
 
     expect(screen.getByText('*')).toBeInTheDocument();
   });
 
   it('입력값 변경이 정상적으로 동작해야 한다', () => {
     const handleChange = jest.fn();
-    render(
-      <AuthText
-        type="text"
-        name="email"
-        value=""
-        isValid={null}
-        onChange={handleChange}
-      />,
-    );
+    render(<AuthText {...defaultProps} onChange={handleChange} />);
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'test@example.com' } });
@@ -67,15 +49,7 @@ describe('AuthText', () => {
   });
 
   it('유효성 검사 실패 시 에러 메시지가 표시되어야 한다', () => {
-    render(
-      <AuthText
-        type="text"
-        name="email"
-        value="invalid"
-        isValid={false}
-        onChange={() => {}}
-      />,
-    );
+    render(<AuthText {...defaultProps} value="invalid" isValid={false} />);
 
     expect(
       screen.getByText('올바른 이메일 형식을 입력해주세요.'),
@@ -83,16 +57,7 @@ describe('AuthText', () => {
   });
 
   it('disabled 상태가 정상적으로 적용되어야 한다', () => {
-    render(
-      <AuthText
-        type="text"
-        name="email"
-        value=""
-        isValid={null}
-        disabled
-        onChange={() => {}}
-      />,
-    );
+    render(<AuthText {...defaultProps} disabled />);
 
     expect(screen.getByRole('textbox')).toBeDisabled();
   });
@@ -100,11 +65,10 @@ describe('AuthText', () => {
   it('maxLength가 정상적으로 적용되어야 한다', () => {
     render(
       <AuthText
-        type="text"
-        name="emailCode"
+        {...defaultProps}
+        name="verifyNumber"
         value=""
         isValid={null}
-        onChange={() => {}}
       />,
     );
 
@@ -113,13 +77,7 @@ describe('AuthText', () => {
 
   it('children이 있을 경우 정상적으로 렌더링되어야 한다', () => {
     render(
-      <AuthText
-        type="text"
-        name="email"
-        value=""
-        isValid={null}
-        onChange={() => {}}
-      >
+      <AuthText {...defaultProps}>
         <button type="button">테스트 버튼</button>
       </AuthText>,
     );
@@ -129,26 +87,12 @@ describe('AuthText', () => {
 
   it('유효성 상태에 따라 적절한 스타일이 적용되어야 한다', () => {
     const { rerender } = render(
-      <AuthText
-        type="text"
-        name="email"
-        value="test"
-        isValid
-        onChange={() => {}}
-      />,
+      <AuthText {...defaultProps} value="test" isValid />,
     );
 
     expect(screen.getByRole('textbox')).toHaveClass('border-line-strong');
 
-    rerender(
-      <AuthText
-        type="text"
-        name="email"
-        value="test"
-        isValid={false}
-        onChange={() => {}}
-      />,
-    );
+    rerender(<AuthText {...defaultProps} value="test" isValid={false} />);
 
     expect(screen.getByRole('textbox')).toHaveClass('border-status-error');
   });

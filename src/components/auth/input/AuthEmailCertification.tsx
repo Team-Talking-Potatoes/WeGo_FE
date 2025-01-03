@@ -3,6 +3,7 @@ import { useCallback, memo, useEffect } from 'react';
 import { Button } from '@/components/common/button/Button';
 import formatTimeToMMSS from '@/utils/formatTimeToMMSS';
 import useCheckCode from '@/queries/auth/useCheckCode';
+import LoadingOverlay from '@/components/common/loding/LoadingOverlay';
 import AuthText from './AuthText';
 
 interface PropsState {
@@ -15,7 +16,7 @@ interface PropsState {
 
 interface Props {
   email: PropsState;
-  emailCode: PropsState;
+  verifyNumber: PropsState;
   isEmailCertified: boolean | null;
   due: number;
   setDue: React.Dispatch<React.SetStateAction<number>>;
@@ -23,12 +24,13 @@ interface Props {
   sendMail: (credentials: { email: string }) => void;
   setIsEmailCertified: (isEmailCertified: boolean | null) => void;
   setCertifiedToken: (token: string) => void;
+  isSendingMail?: boolean;
 }
 
 const AuthEmailCertification = memo(
   ({
     email,
-    emailCode,
+    verifyNumber,
     isEmailCertified,
     due,
     setDue,
@@ -36,8 +38,9 @@ const AuthEmailCertification = memo(
     sendMail,
     setIsEmailCertified,
     setCertifiedToken,
+    isSendingMail,
   }: Props) => {
-    const { mutate: checkCode } = useCheckCode(
+    const { mutate: checkCode, isPending: isCheckingCode } = useCheckCode(
       (token: string) => {
         setIsEmailCertified(true);
         setCertifiedToken(token);
@@ -49,14 +52,15 @@ const AuthEmailCertification = memo(
 
     const handleVerifyClick = useCallback(() => {
       sendMail({ email: email.value });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [email.value, sendMail]);
 
     const handleConfirmClick = useCallback(() => {
       checkCode({
         email: email.value,
-        emailCode: Number(emailCode.value),
+        verifyNumber: Number(verifyNumber.value),
       });
-    }, [email.value, emailCode.value, checkCode]);
+    }, [email.value, verifyNumber.value, checkCode]);
 
     useEffect(() => {
       if (!successMailSend || Boolean(isEmailCertified) || due === 0)
@@ -87,21 +91,22 @@ const AuthEmailCertification = memo(
           className="flex-1"
         >
           <Button
-            label={successMailSend ? '재전송' : '인증'}
+            label={successMailSend || isSendingMail ? '재전송' : '인증'}
             handler={handleVerifyClick}
             size="addon"
+            fill="default"
             disabled={!email.isValid || Boolean(isEmailCertified)}
-            className="body-2-m mt-[6px]"
+            className="body-2-m mt-[6px] hover:bg-primary-normal"
           />
         </AuthText>
 
         <AuthText
           type="text"
-          name="emailCode"
-          value={emailCode.value}
+          name="verifyNumber"
+          value={verifyNumber.value}
           disabled={due === 0 || Boolean(isEmailCertified)}
           isValid={due === 0 ? false : isEmailCertified}
-          onChange={emailCode.handleChange}
+          onChange={verifyNumber.handleChange}
           className="flex-1"
           classNameCondition={{
             hidden: !successMailSend,
@@ -118,12 +123,15 @@ const AuthEmailCertification = memo(
             handler={handleConfirmClick}
             size="addon"
             disabled={
-              !emailCode.isValid || due === 0 || Boolean(isEmailCertified)
+              !verifyNumber.isValid || due === 0 || Boolean(isEmailCertified)
             }
-            className="body-2-m mt-[6px]"
+            className="body-2-m mt-[6px] hover:bg-primary-normal"
             classNameCondition={{ hidden: !successMailSend }}
           />
         </AuthText>
+
+        {isSendingMail && <LoadingOverlay />}
+        {isCheckingCode && <LoadingOverlay />}
       </div>
     );
   },

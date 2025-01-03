@@ -8,12 +8,12 @@ import useGetUser from '@/queries/user/useGetUser';
 import FormTitle from '@/components/common/form/FormTitle';
 import Nickname from './input/Nickname';
 import ProfileImage from './input/ProfileImage';
-import IntroductionInput from './input/Introduction';
+import DescriptionInput from './input/DescriptionInput';
 
 interface ProfileFormData {
-  image: File | null;
+  profileImage: File | null;
   nickname: string;
-  introduction: string;
+  description: string;
 }
 
 const EditForm = () => {
@@ -21,22 +21,24 @@ const EditForm = () => {
   const { data: user } = useGetUser();
 
   const [formData, setFormData] = useState<ProfileFormData>({
-    image: null,
+    profileImage: null,
     nickname: '',
-    introduction: '',
+    description: '',
   });
   const [previewImage, setPreviewImage] = useState(user?.profileImage || '');
 
   const { mutate: editProfile } = useEditProfile();
 
   const isValid = () => {
-    return !formData.image && !formData.nickname && !formData.introduction;
+    return (
+      !formData.profileImage && !formData.nickname && !formData.description
+    );
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFormData((prev) => ({ ...prev, image: file }));
+      setFormData((prev) => ({ ...prev, profileImage: file }));
       setPreviewImage(URL.createObjectURL(file));
     }
   };
@@ -45,22 +47,22 @@ const EditForm = () => {
     setFormData((prev) => ({ ...prev, nickname: value }));
   };
 
-  const handleIntroductionChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, introduction: value }));
+  const handleDescriptionChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, description: value }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-    if (formData.image) {
-      formDataToSend.append('image', formData.image);
+    if (formData.profileImage) {
+      formDataToSend.append('profileImage', formData.profileImage);
     }
     if (formData.nickname) {
       formDataToSend.append('nickname', formData.nickname);
     }
-    if (formData.introduction) {
-      formDataToSend.append('introduction', formData.introduction);
+    if (formData.description) {
+      formDataToSend.append('description', formData.description);
     }
 
     editProfile(formDataToSend);
@@ -88,10 +90,10 @@ const EditForm = () => {
         }}
       />
 
-      <IntroductionInput
-        value={formData.introduction}
+      <DescriptionInput
+        value={formData.description}
         onChange={(e) => {
-          handleIntroductionChange(e.target.value);
+          handleDescriptionChange(e.target.value);
         }}
       />
 

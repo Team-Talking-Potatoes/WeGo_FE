@@ -115,7 +115,7 @@ const TravelCardBig = ({
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </div>
             <div className="body-3-r flex flex-shrink-0 gap-0.5 pl-1.5">
-              {formatDateToShortWithDay(startAt)} -{' '}
+              {formatDateToShortWithDay(startAt)} -
               {formatDateToShortWithDay(endAt)}
             </div>
           </div>

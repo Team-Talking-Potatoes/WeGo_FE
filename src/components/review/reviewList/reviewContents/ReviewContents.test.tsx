@@ -60,13 +60,13 @@ describe('ReviewContents', () => {
           {
             reviews: [
               {
-                reviewId: 1,
+                id: 1,
                 nickname: '사용자1',
                 profileImage: 'https://example.com/profile1.jpg',
                 reviewImage: 'https://example.com/review1.jpg',
                 title: '리뷰 제목 1',
                 content: '리뷰 내용 1',
-                score: 5,
+                starRating: 5,
                 travelLocation: '서울',
                 createdAt: '2023-10-01',
                 isLiked: true,

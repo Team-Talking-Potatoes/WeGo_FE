@@ -1,4 +1,4 @@
-import SignupForm from '@/components/auth/SignupForm';
+import SignupForm from '@/components/auth/form/SignupForm';
 import Header from '@/components/common/header/Header';
 import Link from 'next/link';
 import { Suspense } from 'react';

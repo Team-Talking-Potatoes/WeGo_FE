@@ -1,6 +1,6 @@
 interface TextInput {
   email: string;
-  emailCode: number;
+  verifyNumber: number;
   name: string;
   nickname: string;
   birthDate: number;

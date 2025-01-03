@@ -47,7 +47,7 @@ const useSignup = () => {
             color: 'text-primary-normal',
           },
           onConfirm: () => {
-            router.push('/');
+            router.push('/login');
           },
         },
       );
