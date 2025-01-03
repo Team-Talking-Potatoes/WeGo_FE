@@ -14,7 +14,7 @@ import ProgressBar from '../../common/progressbar/ProgressBar';
 import ExpiredTag from '../../common/tag/ExpiredTag';
 import CheckMarkButton from '../../common/button/CheckMarkButton';
 
-interface Props extends Travel {
+interface Props extends Omit<Travel, 'isBookmark'> {
   closed?: boolean;
   checkMark?: boolean;
   isChecked?: boolean;
