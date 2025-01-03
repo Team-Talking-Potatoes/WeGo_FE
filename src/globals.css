@@ -41,3 +41,8 @@ body {
 .swiper-pagination-bullet-active {
   background: #fff !important;
 }
+
+dialog::backdrop {
+  background: black;
+  opacity: 0.2;
+}
