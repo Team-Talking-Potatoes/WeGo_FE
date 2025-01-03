@@ -45,11 +45,8 @@ export const uploadChatImages = async (
 ): Promise<UploadChatImagesResponse> => {
   const formData = new FormData();
   images.forEach((image) => {
-    formData.append('images', image);
+    formData.append('files', image);
   });
 
-  return http.post<UploadChatImagesResponse>(
-    `/chat/${chatId}/images`,
-    formData,
-  );
+  return http.post<UploadChatImagesResponse>(`/chat/${chatId}/image`, formData);
 };
