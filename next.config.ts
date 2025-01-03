@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  swcMinify: true,
+  optimizeFonts: true,
   transpilePackages: ['swiper'],
   webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule: any) =>
@@ -44,6 +46,9 @@ const nextConfig: NextConfig = {
         hostname: '**',
       },
     ],
+  },
+  env: {
+    NODE_OPTIONS: '--max-old-space-size=4096',
   },
 };
 
