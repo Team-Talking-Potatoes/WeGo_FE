@@ -1,3 +1,5 @@
+import { useWebSocketStore } from '@/store/useWebSocketStore';
+
 import React, { useState, useEffect, useRef } from 'react';
 import ChatMessages from '@/components/chat/chatRoom/ChatMessages';
 import ChatInput from '@/components/chat/chatRoom/ChatInput';
@@ -21,6 +23,34 @@ interface Props {
 }
 
 const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
+  const {
+    connect,
+    disconnect,
+    subscribeToChat,
+    unsubscribeFromChat,
+    connected,
+  } = useWebSocketStore();
+
+  useEffect(() => {
+    connect();
+
+    return () => {
+      disconnect();
+    };
+  }, [connect, disconnect]);
+
+  useEffect(() => {
+    if (connected) {
+      subscribeToChat(chatId);
+    } else {
+      console.warn('WebSocket is not connected yet');
+    }
+
+    return () => {
+      unsubscribeFromChat(chatId);
+    };
+  }, [connected, subscribeToChat, unsubscribeFromChat, chatId]);
+
   const { ref, inView } = useInView({ threshold: 0.1 });
   const [textareaHeight, setTextareaHeight] = useState(22);
   const messagesContainerRef = useRef<HTMLUListElement | null>(null);
