@@ -102,6 +102,8 @@ export interface TravelList {
 }
 
 export interface MyTravel {
-  travels: TravelList[];
+  content: TravelList[];
   total: number;
+  currentPage: number;
+  hasNext: boolean;
 }
