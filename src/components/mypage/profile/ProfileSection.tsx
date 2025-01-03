@@ -7,12 +7,10 @@ import Link from 'next/link';
 import useGetUser from '@/queries/user/useGetUser';
 import Setting from '@/assets/icon/setting_32px.svg';
 import cn from '@/utils/cn';
-import { useState } from 'react';
 import ProfileSkeleton from '../skeleton/ProfileSkeleton';
 
 const ProfileSection = () => {
   const { data: user, isLoading } = useGetUser();
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   if (isLoading) return <ProfileSkeleton />;
 
@@ -39,8 +37,11 @@ const ProfileSection = () => {
                 src={user.image}
                 alt="프로필 이미지"
                 fill
-                className={`object-cover transition-opacity duration-100 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                onLoad={() => setIsImageLoaded(true)}
+                className="object-cover opacity-0 duration-300 ease-in-out"
+                onLoadingComplete={(img) => {
+                  img.classList.remove('opacity-0');
+                  img.classList.add('opacity-100');
+                }}
               />
             ) : (
               <DefaultProfile aria-label="기본 프로필 이미지" />
