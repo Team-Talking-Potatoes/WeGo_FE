@@ -38,8 +38,7 @@ const WeeklyPopular = ({ travelList }: { travelList: Travel[] }) => {
               currentTravelMateCount={travel.currentTravelMateCount}
               startAt={travel.startAt}
               endAt={travel.endAt}
-              checkMark
-              isChecked
+              isBookmark={travel.isBookmark}
             />
           ))}
       </div>

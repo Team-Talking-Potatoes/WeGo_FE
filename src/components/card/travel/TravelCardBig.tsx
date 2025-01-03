@@ -19,8 +19,7 @@ import CheckMarkButton from '../../common/button/CheckMarkButton';
 
 interface Props extends Travel {
   closed?: boolean;
-  checkMark?: boolean;
-  isChecked?: boolean;
+  isBookmark: boolean | null;
 }
 
 const TravelCardBig = ({
@@ -34,10 +33,9 @@ const TravelCardBig = ({
   endAt,
   image,
   closed,
-  checkMark,
-  isChecked,
+  isBookmark,
 }: Props) => {
-  const [isCheckedState, setIsCheckedState] = useState(isChecked);
+  const [isCheckedState, setIsCheckedState] = useState(isBookmark);
   const [animate, setAnimate] = useState(false);
 
   const progressRate = useMemo(
@@ -88,7 +86,7 @@ const TravelCardBig = ({
             마감된 여행
           </div>
         )}
-        {checkMark && (
+        {isCheckedState !== null && (
           <CheckMarkButton
             isChecked={isCheckedState}
             animate={animate}
@@ -117,8 +115,8 @@ const TravelCardBig = ({
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </div>
             <div className="body-3-r flex flex-shrink-0 gap-0.5 pl-1.5">
-              {formatDateToShortWithDay(startAt, undefined, true)} -{' '}
-              {formatDateToShortWithDay(endAt, undefined, true)}
+              {formatDateToShortWithDay(startAt)} -{' '}
+              {formatDateToShortWithDay(endAt)}
             </div>
           </div>
           {!closed && <ProgressBar progressRate={progressRate} />}

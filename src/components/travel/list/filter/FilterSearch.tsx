@@ -10,10 +10,9 @@ const FilterSearch = () => {
   const [isPending, startTransition] = useTransition();
 
   const handleSearch = () => {
-    const encodedSearchText = encodeURIComponent(localSearchText);
     startTransition(() => {
       setFilters({
-        searchText: encodedSearchText,
+        searchText: localSearchText,
       });
     });
   };

@@ -11,6 +11,7 @@ export interface Travel {
   currentTravelMateCount: number;
   formattedStartDate?: string;
   expectedTripCost?: number;
+  isBookmark: boolean | null;
 }
 
 export interface TravelPlan {
@@ -30,7 +31,7 @@ export interface Participant {
 
 export interface TravelDetail {
   travelId: number;
-  name: string;
+  travelName: string;
   description: string;
   image: string;
   expectedTripCost: number;
@@ -47,6 +48,16 @@ export interface TravelDetail {
   tripDuration: number;
   travelPlan: TravelPlan[];
   participant: Participant[];
+  participationFlag: boolean | null;
+}
+
+export interface TravelReviewRateScore {
+  oneStarReviews: number;
+  twoStarReviews: number;
+  threeStarReviews: number;
+  fourStarReviews: number;
+  fiveStarReviews: number;
+  total: number;
 }
 
 export interface Filters {
