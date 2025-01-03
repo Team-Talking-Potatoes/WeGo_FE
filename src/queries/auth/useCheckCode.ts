@@ -11,6 +11,10 @@ const useCheckCode = (
 
   return useMutation({
     mutationFn: checkCode,
+    onSuccess: (data) => {
+      onSuccessCallback(data.verifiedToken);
+      showToast('이메일 인증이 완료되었습니다.', 'success');
+    },
     onError: (error: QueryError) => {
       onErrorCallback();
       switch (error.status) {
@@ -20,10 +24,6 @@ const useCheckCode = (
         default:
           showToast('이메일 인증에 실패하였습니다.', 'error');
       }
-    },
-    onSuccess: (data) => {
-      onSuccessCallback(data.verifiedToken);
-      showToast('이메일 인증이 완료되었습니다.', 'success');
     },
   });
 };

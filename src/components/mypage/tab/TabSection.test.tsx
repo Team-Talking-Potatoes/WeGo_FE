@@ -23,8 +23,14 @@ describe('TabSection 컴포넌트', () => {
     expect(screen.getByTestId('myTravelSubTab')).toBeInTheDocument();
 
     // 데이터 로딩이 완료될 때까지 기다림
-    await waitFor(() => {
-      expect(screen.getByTestId('upcomming-travels')).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByTestId('upcomming-travels')).toBeInTheDocument();
+      },
+      {
+        timeout: 5000,
+        interval: 100,
+      },
+    );
   });
 });

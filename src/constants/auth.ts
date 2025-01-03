@@ -8,7 +8,7 @@ const AUTH_LABEL = {
   nickname: '닉네임',
   birthDate: '생년월일',
   contact: '전화번호',
-  emailCode: '인증 번호',
+  verifyNumber: '인증 번호',
 } as const;
 
 const AUTH_ERROR_MESSAGE = {
@@ -22,20 +22,20 @@ const AUTH_ERROR_MESSAGE = {
   nickname: '2-10자 사이로 입력해주세요',
   birthDate: '올바른 생년월일을 입력해주세요',
   contact: '올바른 연락처 번호를 입력해주세요',
-  emailCode: '이메일 인증이 실패 하였습니다.',
+  verifyNumber: '이메일 인증이 실패 하였습니다.',
 } as const;
 
 const REGEX = {
   email:
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
-  password: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/,
-  currentPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/,
-  newPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/,
+  password: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/,
+  currentPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/,
+  newPassword: /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/,
   name: /^[가-힣]{2,10}$/,
-  nickname: /^[가-힣]{2,10}$/,
-  birthDate: /^\d{6}$/,
+  nickname: /^[가-힣a-zA-Z0-9]{2,10}$/,
+  birthDate: /^\d{8}$/,
   contact: /^\d{2,3}-\d{3,4}-\d{4}$/,
-  emailCode: /^\d{6}$/,
+  verifyNumber: /^\d{6}$/,
 } as const;
 
 const AUTH_PLACEHOLDER = {
@@ -46,13 +46,25 @@ const AUTH_PLACEHOLDER = {
   newPassword: '8-15자리의 비밀번호를 입력해주세요.',
   name: '이름을 입력해주세요.',
   nickname: '닉네임을 입력해주세요.',
-  birthDate: '생년월일 6자리를 입력해주세요.',
+  birthDate: '생년월일 8자리를 입력해주세요.',
   contact: '연락처를 입력해 주세요.',
-  emailCode: '인증 번호를 입력해주세요.',
+  verifyNumber: '인증 번호를 입력해주세요.',
+} as const;
+
+export const AUTH_MAX_LENGTH = {
+  email: 25,
+  password: 20,
+  passwordConfirm: 20,
+  newPassword: 20,
+  name: 10,
+  nickname: 10,
+  birthDate: 8,
+  contact: 13,
+  verifyNumber: 6,
 } as const;
 
 const AUTH_SUCCESS_MESSAGE = {
-  emailCode: '이메일 인증이 완료되었습니다.',
+  verifyNumber: '이메일 인증이 완료되었습니다.',
   signup: '회원가입이 완료되었습니다.',
 } as const;
 
