@@ -17,11 +17,11 @@ describe('Written 컴포넌트', () => {
   const queryClient = new QueryClient();
 
   const mockReview = {
-    reviewId: 1,
+    id: 1,
     reviewImage: 'https://example.com/image.jpg',
     title: '리뷰 제목 1',
     content: '리뷰 내용 1',
-    score: 5,
+    starRating: 5,
     travelLocation: '서울',
     createdAt: '2023-10-01',
   };
