@@ -1,9 +1,10 @@
 export interface Review {
-  reviewId?: number;
+  reviewId: number;
   id: number;
   title: string;
   nickname?: string;
   profileImage?: string;
+  imageUrl: string;
   reviewImage: string;
   content: string;
   score?: number;

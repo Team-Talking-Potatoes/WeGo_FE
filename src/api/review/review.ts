@@ -12,9 +12,17 @@ interface TravelReviewParams {
   travelId: number;
   pageParam: number;
 }
+
 interface MyReview {
+  content: Review[];
   total: number;
-  reviews: Review[];
+  currentPage: number;
+  hasNext: boolean;
+}
+
+interface MyReviewResponse {
+  status: string;
+  data: MyReview;
 }
 
 interface TravelReview {
@@ -54,7 +62,7 @@ export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
 };
 
 export const getMyReview = (limit: number, offset: number) => {
-  return http.get<MyReview>(
+  return http.get<MyReviewResponse>(
     `/reviews/published?limit=${limit}&offset=${offset}`,
   );
 };
