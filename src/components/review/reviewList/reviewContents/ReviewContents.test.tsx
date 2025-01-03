@@ -58,25 +58,29 @@ describe('ReviewContents', () => {
       data: {
         pages: [
           {
-            reviews: [
-              {
-                id: 1,
-                nickname: '사용자1',
-                profileImage: 'https://example.com/profile1.jpg',
-                reviewImage: 'https://example.com/review1.jpg',
-                title: '리뷰 제목 1',
-                content: '리뷰 내용 1',
-                starRating: 5,
-                travelLocation: '서울',
-                createdAt: '2023-10-01',
-                isLiked: true,
-              },
-            ],
+            data: {
+              content: [
+                {
+                  id: 1,
+                  nickname: '사용자1',
+                  profileImage: 'https://example.com/profile1.jpg',
+                  reviewImage: 'https://example.com/review1.jpg',
+                  title: '리뷰 제목 1',
+                  content: '리뷰 내용 1',
+                  starRating: 5,
+                  travelLocation: '서울',
+                  createdAt: '2023-10-01',
+                  isLiked: true,
+                },
+              ],
+            },
           },
         ],
       },
       isLoading: false,
       isError: false,
+      hasNextPage: false,
+      fetchNextPage: jest.fn(),
     });
 
     const { getByText } = renderWithQueryClient(<ReviewContents />);
@@ -89,12 +93,16 @@ describe('ReviewContents', () => {
       data: {
         pages: [
           {
-            reviews: [],
+            data: {
+              content: [],
+            },
           },
         ],
       },
       isLoading: false,
       isError: false,
+      hasNextPage: false,
+      fetchNextPage: jest.fn(),
     });
 
     const { queryByText } = renderWithQueryClient(<ReviewContents />);
