@@ -70,5 +70,7 @@ export const writableTravel = (limit: number, offset: number) => {
 };
 
 export const mySelfTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(`/travels/created?limit=${limit}&offset=${offset}`);
+  return http.get<MyTravelResponse>(
+    `/travels/created?limit=${limit}&offset=${offset}`,
+  );
 };
