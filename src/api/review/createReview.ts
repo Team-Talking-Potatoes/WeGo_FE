@@ -2,6 +2,7 @@ import { Travel } from '@/@types/travel';
 import { http } from '../fetcher';
 
 interface WritableTravelResponse {
+  status: string;
   content: Travel[];
   total: number;
   currentPage: number;

@@ -70,7 +70,7 @@ const HomeHeader = () => {
             <Link href="/mypage">
               <UserIcon
                 profileImage={user?.image}
-                nickname={user.nickname}
+                nickname={user?.nickname}
                 ariaLabel="마이페이지로 가기"
                 size="xs"
               />

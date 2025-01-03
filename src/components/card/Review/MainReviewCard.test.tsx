@@ -49,6 +49,9 @@ describe('ReviewCard', () => {
     const reviewLink = screen.getByRole('link', {
       name: `${mockReview.nickname}의 여행 후기 사진`,
     });
-    expect(reviewLink).toHaveAttribute('href', `/${mockReview.reviewId}`);
+    expect(reviewLink).toHaveAttribute(
+      'href',
+      `/review/${mockReview.reviewId}`,
+    );
   });
 });

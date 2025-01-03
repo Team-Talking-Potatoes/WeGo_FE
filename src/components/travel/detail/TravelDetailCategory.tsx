@@ -2,6 +2,7 @@
 
 import { Participant, TravelDetail } from '@/@types/travel';
 import React, { Suspense, useState } from 'react';
+import dayjs from 'dayjs';
 import TabTravelReview from './category/TabTravelReview';
 import TabTravelDetail from './category/TabTravelDetail';
 
@@ -14,7 +15,8 @@ type Props = Pick<
   | 'travelPlan'
   | 'startAt'
   | 'endAt'
-> & { organizer?: Participant; isParticipation: boolean };
+  | 'participationFlag'
+> & { organizer?: Participant };
 type Category = 'details' | 'itinerary' | 'review';
 
 const TabTravelItinerary = React.lazy(
@@ -29,7 +31,7 @@ const TravelDetailCategory = ({
   travelPlan,
   startAt,
   endAt,
-  isParticipation,
+  participationFlag,
   organizer,
 }: Props) => {
   const [category, setCategory] = useState<Category>('details');
@@ -40,8 +42,8 @@ const TravelDetailCategory = ({
     }
   };
 
-  const now = new Date();
-  const endDate = new Date(endAt);
+  const now = dayjs();
+  const endDate = dayjs(endAt);
 
   const categories = [
     { label: '여행상세', value: 'details' },
@@ -57,7 +59,7 @@ const TravelDetailCategory = ({
             key={value}
             type="button"
             onClick={() => !disabled && onClickCategory(value as Category)}
-            className={`cursor-pointer pb-2.5 ${category === value ? 'border-b-[3px] border-label-normal text-label-normal' : ''}`}
+            className={`cursor-pointer pb-2.5 ${category === value && 'border-b-[3px] border-label-normal text-label-normal'}`}
             disabled={disabled}
           >
             {!disabled && label}
@@ -68,23 +70,27 @@ const TravelDetailCategory = ({
         {category === 'details' && (
           <TabTravelDetail
             travelId={travelId}
-            isParticipation={isParticipation}
+            participationFlag={participationFlag}
             organizer={organizer}
             hashTags={hashTags}
             description={description}
           />
         )}
 
-        <Suspense fallback={<div>Loading...</div>}>
-          {category === 'itinerary' && (
+        {category === 'itinerary' && (
+          <Suspense fallback={<div>Loading...</div>}>
             <TabTravelItinerary
               tripDuration={tripDuration}
               travelPlan={travelPlan}
               startAt={startAt}
             />
-          )}
-          {category === 'review' && <TabTravelReview travelId={travelId} />}
-        </Suspense>
+          </Suspense>
+        )}
+        {category === 'review' && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TabTravelReview travelId={travelId} />
+          </Suspense>
+        )}
       </div>
     </section>
   );

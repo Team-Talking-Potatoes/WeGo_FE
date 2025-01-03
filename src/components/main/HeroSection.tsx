@@ -11,7 +11,7 @@ import HeroImage from './HeroImage';
 const slideData = [
   {
     id: 1,
-    src: '/hero/hero1.png',
+    src: '/hero/hero1.webp',
     link: '/',
     title1: '함께 떠나는',
     title2: '여행코스',
@@ -19,7 +19,7 @@ const slideData = [
   },
   {
     id: 2,
-    src: '/hero/hero3.png',
+    src: '/hero/hero3.webp',
     link: '/',
     title1: '이번달 인기',
     title2: '여행지기는 누구?',
@@ -27,7 +27,7 @@ const slideData = [
   },
   {
     id: 3,
-    src: '/hero/hero2.png',
+    src: '/hero/hero2.webp',
     link: '/',
     title1: '여행자들의',
     title2: '특별한 HOLIDAY',
@@ -47,8 +47,10 @@ const HeroSection = () => {
         <Image
           src={slideData[currentSlide]?.src || '/hero1.png'}
           alt="배경효과 이미지"
-          width={1000}
-          height={1000}
+          width={800}
+          height={800}
+          quality={1}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px"
           className="h-full w-full scale-110 object-cover blur-lg"
         />
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-white via-90% to-white" />
@@ -60,7 +62,7 @@ const HeroSection = () => {
         pagination={{
           clickable: true,
         }}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         loop
         slidesPerView={1}
         grabCursor

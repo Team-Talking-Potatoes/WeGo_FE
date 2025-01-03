@@ -43,13 +43,15 @@ describe('getWeekNumber', () => {
 
 describe('formatDateToShortWithDay', () => {
   it('2024.12.03를 12.03(화)로 변환합니다', () => {
-    const dateString = '2024.12.03';
-    expect(formatDateToShortWithDay(dateString)).toBe('12.03(화)');
+    const dateString = '20241203';
+    expect(formatDateToShortWithDay(dateString)).toBe('2024.12.03(화)');
   });
 
   it('2024.12.03에 offsetDays(3)를 더하면 12.06(금)으로 변환합니다', () => {
-    const dateString = '2024.12.03';
+    const dateString = '20241203';
     const offsetDays = 3;
-    expect(formatDateToShortWithDay(dateString, offsetDays)).toBe('12.06(금)');
+    expect(formatDateToShortWithDay(dateString, offsetDays)).toBe(
+      '2024.12.06(금)',
+    );
   });
 });

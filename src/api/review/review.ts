@@ -1,4 +1,6 @@
 import { Review, ReviewDetailResponse, ReviewResponse } from '@/@types/review';
+import { ApiResponse } from '@/@types/api';
+import { TravelReviewRateScore } from '@/@types/travel';
 import { http } from '../fetcher';
 
 interface ReviewParams {
@@ -6,26 +8,47 @@ interface ReviewParams {
   sortOrder: string;
 }
 
+interface TravelReviewParams {
+  travelId: number;
+  pageParam: number;
+}
 interface MyReview {
   total: number;
   reviews: Review[];
 }
-/* ---------------------------------- 임시 수정 --------------------------------- */
-interface ReviewPopularResponse {
-  status: string;
-  data: Review[];
+
+interface TravelReview {
+  content: Review[];
+  total: number;
+  hasNext: boolean;
+  currentPage: number;
+}
+interface TravelReviewRate {
+  reviews: TravelReviewRateScore;
+  totalRating: number;
 }
 
 export const getPopularReview = () => {
-  return http.get<ReviewPopularResponse>('/reviews/popular');
+  return http.get<ApiResponse<Review[]>>('/reviews/popular');
 };
-/* ---------------------------------- 임시 수정 --------------------------------- */
-export const getTravelReview = (id: number) => {
-  return http.get<Review[]>(`/reviews?id=${id}`);
+
+export const getTravelReview = ({
+  travelId,
+  pageParam,
+}: TravelReviewParams) => {
+  return http.get<ApiResponse<TravelReview>>(
+    `/reviews?id=${travelId}&page=${pageParam}`,
+  );
+};
+
+export const getTravelReviewRate = ({ travelId }: { travelId: number }) => {
+  return http.get<ApiResponse<TravelReviewRate>>(
+    `/reviews/${travelId}/ratings`,
+  );
 };
 
 export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
-  return http.get<ReviewResponse>(
+  return http.get<ApiResponse<ReviewResponse>>(
     `/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
   );
 };

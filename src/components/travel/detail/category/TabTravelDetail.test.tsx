@@ -20,7 +20,7 @@ const mockUserInfo = {
 
 const mock = {
   travelId: 1,
-  isParticipation: true,
+  participationFlag: true,
   organizer: {
     id: 1,
     nickname: '녹차라떼',
@@ -45,7 +45,7 @@ describe('TabTravelDetail', () => {
     render(
       <TabTravelDetail
         travelId={mock.travelId}
-        isParticipation={mock.isParticipation}
+        participationFlag={mock.participationFlag}
         organizer={mock.organizer}
         hashTags={mock.hashTags}
         description={mock.description}
@@ -78,7 +78,7 @@ describe('여행 모임장일 때', () => {
     render(
       <TabTravelDetail
         travelId={mock.travelId}
-        isParticipation={mock.isParticipation}
+        participationFlag={mock.participationFlag}
         organizer={mock.organizer}
         hashTags={mock.hashTags}
         description={mock.description}
@@ -102,7 +102,7 @@ describe('여행 모임장일 때', () => {
 describe('여행 모임장이 아닐 때', () => {
   const mockParticipation = {
     travelId: 1,
-    isParticipation: true,
+    participationFlag: true,
     organizer: {
       id: 2,
       nickname: '녹차라떼',
@@ -126,7 +126,7 @@ describe('여행 모임장이 아닐 때', () => {
     render(
       <TabTravelDetail
         travelId={mockParticipation.travelId}
-        isParticipation={mockParticipation.isParticipation}
+        participationFlag={mockParticipation.participationFlag}
         organizer={mockParticipation.organizer}
         hashTags={mockParticipation.hashTags}
         description={mockParticipation.description}

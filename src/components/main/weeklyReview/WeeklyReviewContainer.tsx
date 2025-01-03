@@ -5,7 +5,6 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { Suspense } from 'react';
 import WeeklyReview from './WeeklyReview';
 
 const WeeklyReviewContainer = async () => {
@@ -14,12 +13,11 @@ const WeeklyReviewContainer = async () => {
     queryKey: QUERY_KEYS.REVIEW.POPULAR_REVIEW,
     queryFn: getPopularReview,
   });
+
   return (
-    <Suspense fallback={<div>로딩중</div>}>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <WeeklyReview reviewList={data?.data} />
-      </HydrationBoundary>
-    </Suspense>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <WeeklyReview reviewList={data.data} />
+    </HydrationBoundary>
   );
 };
 

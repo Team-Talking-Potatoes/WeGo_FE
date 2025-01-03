@@ -8,7 +8,7 @@ const useReview = ({ sortOrder }: Filters) => {
     queryFn: ({ pageParam }) => getReview({ pageParam, sortOrder }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
-      return lastPage.hasNext ? pages.length + 1 : undefined;
+      return lastPage.data.hasNext ? pages.length + 1 : undefined;
     },
   });
 };
