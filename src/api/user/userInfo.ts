@@ -1,13 +1,11 @@
+import { MyPageProfile } from '@/@types/user';
 import { http } from '../fetcher';
 
-export interface UserInfo {
-  userId: number;
-  nickname: string;
-  email: string;
-  description: string;
-  profileImage: string;
+export interface UserInfoResponse {
+  status: string;
+  data: MyPageProfile;
 }
 
 export const getUserInfo = () => {
-  return http.get<UserInfo>('/users');
+  return http.get<UserInfoResponse>('/users');
 };

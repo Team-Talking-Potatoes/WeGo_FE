@@ -7,10 +7,12 @@ import Link from 'next/link';
 import useGetUser from '@/queries/user/useGetUser';
 import Setting from '@/assets/icon/setting_32px.svg';
 import cn from '@/utils/cn';
+import { useState } from 'react';
 import ProfileSkeleton from '../skeleton/ProfileSkeleton';
 
 const ProfileSection = () => {
   const { data: user, isLoading } = useGetUser();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   if (isLoading) return <ProfileSkeleton />;
 
@@ -31,14 +33,14 @@ const ProfileSection = () => {
 
       <div className="flex flex-col items-center xl:mt-8 xl:flex-row xl:justify-between">
         <div className="flex flex-col items-center justify-center xl:flex-row xl:gap-4">
-          <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-slate-200">
-            {user?.profileImage ? (
+          <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-slate-200">
+            {user?.image ? (
               <Image
-                src={user.profileImage}
+                src={user.image}
                 alt="프로필 이미지"
-                className="object-cover"
-                width={80}
-                height={80}
+                fill
+                className={`object-cover transition-opacity duration-100 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                onLoad={() => setIsImageLoaded(true)}
               />
             ) : (
               <DefaultProfile aria-label="기본 프로필 이미지" />
