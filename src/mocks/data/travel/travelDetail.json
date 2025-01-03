@@ -1,6 +1,6 @@
 {
   "travelId": 1,
-  "name": "12월에 떠나는 겨울여행",
+  "travelName": "12월에 떠나는 겨울여행",
   "description": "12월의 겨울 낭만을 즐기고 싶은 분들 계신가요?함께 국내 겨울 여행지를 돌아다니고 싶습니다!춥지만, 마음만은 따듯한 겨울 여행 함께해요 :)다양한 사람들이 모여서 함께 하고 싶어요!",
   "image": "/test3.png",
   "expectedTripCost": 250000,
@@ -11,10 +11,11 @@
   "isDomestic": true,
   "travelLocation": "강원도",
   "departureLocation": "서울역",
-  "startAt": "2024.12.03",
-  "endAt": "2024.12.25",
-  "registrationEnd": "2024.12.25",
+  "startAt": "20241203",
+  "endAt": "20241225",
+  "registrationEnd": "20241225",
   "tripDuration": 3,
+  "participationFlag": null,
   "travelPlan": [
     {
       "tripDay": 1,
