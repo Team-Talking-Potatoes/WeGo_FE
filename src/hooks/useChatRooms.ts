@@ -4,7 +4,7 @@ import { RoomResponse, SortType } from '@/@types/chat';
 import { sortRooms } from '@/utils/chat';
 
 export const useChatRooms = () => {
-  const [currentSort, setCurrentSort] = useState<SortType>('latest');
+  const [currentSort, setCurrentSort] = useState<SortType>('RECENT');
   const [sortedRooms, setSortedRooms] = useState<RoomResponse[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { data, isFetching, error } = useGetChatRooms(currentSort);
@@ -22,7 +22,7 @@ export const useChatRooms = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedSort =
-        (localStorage.getItem('sortBy') as SortType | null) || 'latest';
+        (localStorage.getItem('sortBy') as SortType | null) || 'RECENT';
       setCurrentSort(savedSort);
     }
   }, []);

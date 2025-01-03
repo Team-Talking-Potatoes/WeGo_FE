@@ -157,13 +157,7 @@ export const getChatRooms = http.get(
 
 export const getChat = http.get(
   `${process.env.NEXT_PUBLIC_BASE_URL}/chat/:id`,
-  async ({ request, params }) => {
-    const { id } = params;
-
-    if (id === 'overview') {
-      return HttpResponse.json(chatOverview);
-    }
-
+  async ({ request }) => {
     const url = new URL(request.url);
     const latest =
       url.searchParams.get('latest') === null
@@ -211,8 +205,18 @@ export const getChat = http.get(
   },
 );
 
+export const getChatOverview = http.get(
+  `${process.env.NEXT_PUBLIC_BASE_URL}/chat/:id/overview`,
+  async () => {
+    return HttpResponse.json({
+      status: '200',
+      data: chatOverview,
+    });
+  },
+);
+
 export const setIsJoined = http.post(
-  `${process.env.NEXT_PUBLIC_BASE_URL}/chat/join/:id`,
+  `${process.env.NEXT_PUBLIC_BASE_URL}/chat/:id`,
   async ({ params }) => {
     const { id } = params;
     const roomIndex = chatRoomList.data.findIndex((room) => room.chatId === id);
