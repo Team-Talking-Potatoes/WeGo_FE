@@ -46,7 +46,7 @@ describe('TravelDetailCategory', () => {
       <TravelDetailCategory
         travelId={1}
         hashTags={mockHashTags}
-        isParticipation
+        participationFlag
         description={mockDescription}
         tripDuration={mockTripDuration}
         travelPlan={mockTravelPlan}
