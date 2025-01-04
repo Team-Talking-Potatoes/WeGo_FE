@@ -65,7 +65,7 @@ describe('TravelCard를 렌더링 합니다', () => {
   });
 
   it('국내/해외 여행 라벨을 렌더링합니다', () => {
-    expect(screen.getByText('해외여행')).toBeInTheDocument();
+    expect(screen.getByText('국내여행')).toBeInTheDocument();
   });
 
   it('여행 링크를 렌더링합니다', () => {
