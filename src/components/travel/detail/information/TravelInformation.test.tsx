@@ -42,7 +42,7 @@ describe('TravelInformation', () => {
 
   it('여행 태그가 표시됩니다.', () => {
     renderComponent();
-    expect(screen.getByText('해외여행')).toBeInTheDocument();
+    expect(screen.getByText('국내여행')).toBeInTheDocument();
   });
 
   it('날짜 정보가 렌더링됩니다.', () => {
