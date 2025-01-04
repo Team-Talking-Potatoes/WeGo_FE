@@ -22,20 +22,22 @@ describe('Upcomming', () => {
   it('여행 데이터가 있을 때 여행 카드가 렌더링된다', () => {
     (useUpcommingTravel as jest.Mock).mockReturnValue({
       data: {
-        total: 1,
-        travels: [
-          {
-            travelId: 1,
-            travelName: '다가오는 여행 1',
-            maxTravelMateCount: 5,
-            currentTravelMateCount: 2,
-            isDomestic: true,
-            location: '서울',
-            image: 'https://example.com/image.jpg',
-            startAt: '2023-10-01',
-            endAt: '2023-10-10',
-          },
-        ],
+        data: {
+          content: [
+            {
+              travelId: 1,
+              travelName: '다가오는 여행 1',
+              maxTravelMateCount: 5,
+              currentTravelMateCount: 2,
+              isDomestic: true,
+              location: '서울',
+              image: 'https://example.com/image.jpg',
+              startAt: '2023-10-01',
+              endAt: '2023-10-10',
+            },
+          ],
+          total: 1,
+        },
       },
     });
 
@@ -46,8 +48,10 @@ describe('Upcomming', () => {
   it('여행 데이터가 없을 때 NoTravel 컴포넌트가 렌더링된다', () => {
     (useUpcommingTravel as jest.Mock).mockReturnValue({
       data: {
-        total: 0,
-        travels: [],
+        data: {
+          content: [],
+          total: 0,
+        },
       },
     });
 
@@ -58,31 +62,33 @@ describe('Upcomming', () => {
   it('페이지네이션이 렌더링된다', () => {
     (useUpcommingTravel as jest.Mock).mockReturnValue({
       data: {
-        total: 8,
-        travels: [
-          {
-            travelId: 1,
-            travelName: '다가오는 여행 1',
-            maxTravelMateCount: 5,
-            currentTravelMateCount: 2,
-            isDomestic: true,
-            location: '서울',
-            image: 'https://example.com/image.jpg',
-            startAt: '2023-10-01',
-            endAt: '2023-10-10',
-          },
-          {
-            travelId: 2,
-            travelName: '다가오는 여행 2',
-            maxTravelMateCount: 5,
-            currentTravelMateCount: 2,
-            isDomestic: true,
-            location: '부산',
-            image: 'https://example.com/image.jpg',
-            startAt: '2023-10-01',
-            endAt: '2023-10-10',
-          },
-        ],
+        data: {
+          content: [
+            {
+              travelId: 1,
+              travelName: '다가오는 여행 1',
+              maxTravelMateCount: 5,
+              currentTravelMateCount: 2,
+              isDomestic: true,
+              location: '서울',
+              image: 'https://example.com/image.jpg',
+              startAt: '2023-10-01',
+              endAt: '2023-10-10',
+            },
+            {
+              travelId: 2,
+              travelName: '다가오는 여행 2',
+              maxTravelMateCount: 5,
+              currentTravelMateCount: 2,
+              isDomestic: true,
+              location: '부산',
+              image: 'https://example.com/image.jpg',
+              startAt: '2023-10-01',
+              endAt: '2023-10-10',
+            },
+          ],
+          total: 8,
+        },
       },
     });
 
