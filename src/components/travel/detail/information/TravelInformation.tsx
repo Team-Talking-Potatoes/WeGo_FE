@@ -1,6 +1,7 @@
 import Profile from '@/assets/profile.svg';
 import Timeline from '@/assets/timeline.svg';
 import DateIcon from '@/assets/date.svg';
+import LocationIcon from '@/assets/location.svg';
 import { TravelDetail } from '@/@types/travel';
 import dayjs from 'dayjs';
 import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
@@ -17,6 +18,7 @@ type Props = Pick<
   | 'endAt'
   | 'participant'
   | 'registrationEnd'
+  | 'travelLocation'
 >;
 
 const TravelInformation = ({
@@ -28,6 +30,7 @@ const TravelInformation = ({
   endAt,
   participant,
   registrationEnd,
+  travelLocation,
 }: Props) => {
   const now = dayjs();
   const endDate = dayjs(registrationEnd);
@@ -40,6 +43,10 @@ const TravelInformation = ({
         {travelName}
       </h2>
       <div className="body-2-m flex flex-col gap-2 pt-4">
+        <div className={`${info} justify-start`}>
+          <LocationIcon />
+          <span className="pl-2">{travelLocation}</span>
+        </div>
         <div className={`${info} justify-start`}>
           <DateIcon />
           <span className="pl-2">
