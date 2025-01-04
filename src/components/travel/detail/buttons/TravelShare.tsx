@@ -29,8 +29,8 @@ const TravelShare = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div className="flex w-full justify-center xl:absolute xl:left-0">
-      <div className="mt-5 flex w-[50%] animate-slide-up flex-col gap-6 rounded-md border bg-white p-5">
-        <div className="body-1-m flex items-center justify-between">
+      <div className="mt-5 flex w-full animate-slide-up flex-col gap-6 rounded-md border bg-white p-5 xs:w-[50%]">
+        <div className="title-5-sb flex items-center justify-between">
           <span>공유하기</span>
           <button type="button" onClick={handleCloseClick}>
             <CloseIcon />

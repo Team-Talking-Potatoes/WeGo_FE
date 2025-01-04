@@ -10,12 +10,14 @@ const TabTravelDetail = ({
   organizer,
   hashTags,
   description,
+  isBookmark,
 }: {
   travelId: number;
   participationFlag: boolean | null;
   organizer?: Participant;
   hashTags: string;
   description: string;
+  isBookmark: boolean | null;
 }) => {
   const { data: user } = useGetUser();
 
@@ -35,7 +37,7 @@ const TabTravelDetail = ({
         {participationFlag !== null && user && organizer && (
           <TravelDetailButtons
             travelId={travelId}
-            isBookMark
+            isBookmark={isBookmark}
             userId={user.userId}
             organizerId={organizer.id}
           />

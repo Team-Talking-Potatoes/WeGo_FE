@@ -17,6 +17,7 @@ type Props = Pick<
   | 'startAt'
   | 'endAt'
   | 'participationFlag'
+  | 'isBookmark'
 > & { organizer?: Participant };
 type Category = 'details' | 'itinerary' | 'review';
 
@@ -34,6 +35,7 @@ const TravelDetailCategory = ({
   endAt,
   participationFlag,
   organizer,
+  isBookmark,
 }: Props) => {
   const [category, setCategory] = useState<Category>('details');
 
@@ -75,6 +77,7 @@ const TravelDetailCategory = ({
             organizer={organizer}
             hashTags={hashTags}
             description={description}
+            isBookmark={isBookmark}
           />
         )}
 

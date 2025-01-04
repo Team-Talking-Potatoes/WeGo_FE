@@ -13,23 +13,23 @@ import Link from 'next/link';
 const TravelDetailButtons = ({
   organizerId,
   userId,
-  isBookMark,
+  isBookmark,
   travelId,
 }: {
   organizerId: number;
   userId: number;
-  isBookMark: boolean;
+  isBookmark: boolean | null;
   travelId: number;
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isBookmarked, setIsBookmarked] = useState(isBookMark);
+  const [isBookmarked, setIsBookmarked] = useState(isBookmark);
   const { mutate: postBookMark } = useBookmarkTravel();
   const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
 
   useEffect(() => {
-    setIsBookmarked(isBookMark);
+    setIsBookmarked(isBookmark);
     setIsLoading(false);
-  }, [isBookMark]);
+  }, [isBookmark]);
 
   const handleClickBookMark = () => {
     if (isBookmarked) {

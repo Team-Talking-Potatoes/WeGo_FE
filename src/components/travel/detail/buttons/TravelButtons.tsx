@@ -112,7 +112,14 @@ const TravelButtons = ({
 
   let buttonComponent;
 
-  if (organizer === (userInfo && userInfo.userId)) {
+  if (isParticipate === null) {
+    buttonComponent = (
+      <div className="flex w-full flex-col items-center">
+        <Button label="공유" handler={handleClickShare} className="h-[52px]" />
+        <div>{isShareOpen && <TravelShare onClose={handleCloseShare} />}</div>
+      </div>
+    );
+  } else if (organizer === (userInfo && userInfo.userId)) {
     buttonComponent = (
       <div className="w-full">
         <div className="flex gap-4">

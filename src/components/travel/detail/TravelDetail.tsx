@@ -34,7 +34,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
               registrationEnd={travelDetail.registrationEnd}
               participant={travelDetail.participant}
             />
-            {!dateOver && travelDetail.participationFlag !== null && (
+            {!dateOver && (
               <TravelButtons
                 className="hidden xl:block"
                 travelId={travelDetail.travelId}
@@ -43,7 +43,6 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
               />
             )}
           </div>
-
           <TravelDetailCategory
             travelId={travelDetail.travelId}
             hashTags={travelDetail.hashTags}
@@ -54,8 +53,9 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
             startAt={travelDetail.startAt}
             endAt={travelDetail.endAt}
             organizer={organizer}
+            isBookmark={travelDetail.isBookmark}
           />
-          {!dateOver && travelDetail.participationFlag !== null && (
+          {!dateOver && (
             <TravelButtons
               className="xl:hidden"
               travelId={travelDetail.travelId}
