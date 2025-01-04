@@ -47,6 +47,10 @@ async function fetcher<T>(
 
   const response = await fetch(`${BASE_URL}${endpoint}`, mergedConfig);
 
+  if (endpoint === '/auth/token/verify') {
+    return { status: response.status } as T;
+  }
+
   if (!response.ok) {
     const error = new Error('API request failed') as FetcherError;
     error.status = response.status;
