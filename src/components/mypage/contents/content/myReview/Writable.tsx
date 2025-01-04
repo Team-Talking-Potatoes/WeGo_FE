@@ -29,7 +29,7 @@ const Writable = () => {
     >
       {travels && travels.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.travels.map((travel: TravelList) => (
+          {travels.content.map((travel: TravelList) => (
             <div key={travel.travelId} className="relative">
               <TravelCard
                 key={travel.travelId}

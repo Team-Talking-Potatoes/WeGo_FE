@@ -12,6 +12,9 @@ jobs:
   test:
     name: Code Test
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_CLIENT_URL: ${{ secrets.NEXT_PUBLIC_CLIENT_URL }}
+      NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
     strategy:
       matrix:
         node-version: [22.x]
@@ -46,6 +49,7 @@ jobs:
         run: npm run lint
 
       - name: Build Project
+        timeout-minutes: 15
         run: npm run build
 
       - name: Run Tests

@@ -22,3 +22,11 @@ export interface UserList {
   reviewCount: number;
   hashTags: string;
 }
+
+export interface MyPageProfile {
+  userId: number;
+  email: string;
+  nickname: string;
+  image: string;
+  description: string;
+}
