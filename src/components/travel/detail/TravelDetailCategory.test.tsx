@@ -52,6 +52,7 @@ describe('TravelDetailCategory', () => {
         travelPlan={mockTravelPlan}
         startAt={mockStartAt}
         endAt={endAt}
+        isBookmark
       />,
     );
 
