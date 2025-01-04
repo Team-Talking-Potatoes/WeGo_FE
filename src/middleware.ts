@@ -22,7 +22,7 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
   const verifyResponse =
     process.env.NODE_ENV === 'development'
       ? await verifyTokenMock(request)
-      : await verifyToken();
+      : await verifyToken(request);
 
   // 토큰 유효성 검증 통과가 필요한 페이지의 redirect
   if (
