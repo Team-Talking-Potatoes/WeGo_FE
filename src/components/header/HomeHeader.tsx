@@ -67,12 +67,17 @@ const HomeHeader = () => {
           </div>
 
           {user ? (
-            <Link href="/mypage">
+            <Link href="/mypage" className="flex items-center">
+              <span
+                className={`body-3-m sm:body-2-m ${isScrolled ? 'text-label-normal' : 'text-primary-white'} pr-2 xl:hidden`}
+              >
+                {user?.nickname}님
+              </span>
               <UserIcon
                 profileImage={user?.image}
                 nickname={user?.nickname}
+                size="xxs"
                 ariaLabel="마이페이지로 가기"
-                size="xs"
               />
             </Link>
           ) : (
