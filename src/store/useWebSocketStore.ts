@@ -14,6 +14,21 @@ interface WebSocketState {
   connected: boolean;
   messages: Record<string, ChatMessage[]>; // 채팅 ID별 메시지 저장
   unreadCounts: Record<string, number>; // 채팅 ID별 unreadCount 저장
+  chatUpdates: Record<
+    string,
+    {
+      currentMemberCount: number;
+      sendAt: string;
+      status: 'JOIN' | 'LEAVE' | 'MESSAGE';
+      participant?: {
+        user: string;
+        email: string;
+        description: string;
+        profileImage: string;
+        travelCount: number;
+      };
+    }
+  >;
   subscriptions: Map<string, Subscriptions>;
   connect: () => void;
   disconnect: () => void;
@@ -21,9 +36,12 @@ interface WebSocketState {
   unsubscribeFromChat: (chatId: string) => void;
   sendMessage: (
     chatId: string,
-    message: { content: string; images: string[] },
+    message: { message: string; images: string[] },
   ) => void;
   sendReadReceipt: (chatId: string, chatMessageId: number) => void;
+  subscribeToAlarm: (userId: string) => void; // 새로운 토픽 구독 함수
+  unsubscribeFromAlarm: (userId: string) => void; // 알림 구독 해제 함수
+  resetStatus: (chatId: string) => void;
 }
 
 export const useWebSocketStore = create<WebSocketState>((set, get) => ({
@@ -31,6 +49,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   connected: false,
   messages: {},
   unreadCounts: {},
+  chatUpdates: {},
   subscriptions: new Map(),
 
   connect: () => {
@@ -59,6 +78,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
 
     client.onStompError = (frame) => {
       console.log('Broker reported error:', frame.headers.message);
+      console.log('frame:', frame);
       set({ connected: false });
     };
 
@@ -156,6 +176,73 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     client.publish({
       destination: `/pub/chat/read/${chatId}`,
       body: JSON.stringify({ chatMessageId }),
+    });
+  },
+
+  subscribeToAlarm: (userId) => {
+    const { client, connected } = get();
+    if (!client || !connected) {
+      console.warn('WebSocket client is not connected');
+      return;
+    }
+
+    const alarmSubscription = client.subscribe(
+      `/sub/alarm/${userId}`,
+      (message: IMessage) => {
+        const body = JSON.parse(message.body);
+        console.log('Alarm received:', body);
+
+        // chatUpdates 상태 업데이트
+        set((state) => ({
+          chatUpdates: {
+            ...state.chatUpdates,
+            [body.chatId]: {
+              currentMemberCount: body.currentMemberCount,
+              sendAt: body.sendAt,
+              status: body.status as 'JOIN' | 'LEAVE' | 'MESSAGE',
+              participant: body.participant, // Optional
+            },
+          },
+        }));
+      },
+    );
+
+    set((state) => ({
+      subscriptions: state.subscriptions.set(userId, {
+        chat: alarmSubscription,
+        readReceipt: null as any,
+      }),
+    }));
+  },
+
+  unsubscribeFromAlarm: (userId) => {
+    const { subscriptions } = get();
+    if (!subscriptions.has(userId)) return;
+
+    const subscription = subscriptions.get(userId)?.chat;
+    subscription?.unsubscribe();
+    subscriptions.delete(userId);
+
+    set({ subscriptions });
+  },
+
+  resetStatus: (chatId: string) => {
+    set((state) => {
+      const currentStatus = state.chatUpdates[chatId]?.status;
+      if (currentStatus === 'JOIN') {
+        return state; // 상태가 이미 'JOIN'이면 업데이트 중단
+      }
+
+      return {
+        chatUpdates: {
+          ...state.chatUpdates,
+          [chatId]: {
+            ...state.chatUpdates[chatId],
+            status: 'JOIN',
+            participant: undefined,
+          },
+        },
+      };
     });
   },
 }));
