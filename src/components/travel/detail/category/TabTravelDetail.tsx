@@ -30,7 +30,7 @@ const TabTravelDetail = ({
     <section>
       <div className="flex items-center justify-between pb-[18px]">
         <div className="flex items-center gap-[7px]">
-          <UserIcon size="sm" />
+          <UserIcon size="sm" profileImage={organizer?.profileImage} />
 
           <div className="body-2-sb">{organizer && organizer.nickname}</div>
         </div>
