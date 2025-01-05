@@ -15,6 +15,12 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export const metadata: Metadata = {
   title: "WE'GO",
   description:

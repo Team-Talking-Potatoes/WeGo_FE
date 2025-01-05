@@ -1,5 +1,6 @@
 import Header from '@/components/common/header/Header';
 import SkeletonTravelDetail from '@/components/common/skeleton/travelDetail/SkeletonTravelDetail';
+import KakaoShare from '@/components/script/KakaoShare';
 import TravelDetailContainer from '@/components/travel/detail/TravelDetailContainer';
 import { Suspense } from 'react';
 
@@ -16,6 +17,7 @@ const TravelDetailPage = async ({
       <Suspense fallback={<SkeletonTravelDetail />}>
         <TravelDetailContainer id={id} />
       </Suspense>
+      <KakaoShare />
     </section>
   );
 };

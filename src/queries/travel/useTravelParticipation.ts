@@ -1,5 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { deleteTravelParticipation } from '@/api/travel/travels';
+import {
+  deleteTravelParticipation,
+  postTravelParticipation,
+} from '@/api/travel/travels';
 import CheckRedIcon from '@/assets/modal/modal_check_red.svg';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
@@ -9,7 +12,7 @@ import { useQueryErrorHandler } from '../common/errorHandler';
 export const useTravelParticipation = () => {
   const handleError = useQueryErrorHandler();
   return useMutation({
-    mutationFn: deleteTravelParticipation,
+    mutationFn: postTravelParticipation,
     onError: (error: QueryError) => handleError(error),
   });
 };

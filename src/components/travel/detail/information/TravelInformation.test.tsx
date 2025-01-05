@@ -4,6 +4,7 @@ import TravelInformation from './TravelInformation';
 
 describe('TravelInformation', () => {
   const travelDetail = {
+    location: '제주도',
     name: '제주도 여행',
     image: '/test.png',
     isDomestic: true,
@@ -22,6 +23,7 @@ describe('TravelInformation', () => {
   const renderComponent = () =>
     render(
       <TravelInformation
+        travelLocation={travelDetail.location}
         travelName={travelDetail.name}
         isDomestic={travelDetail.isDomestic}
         minTravelMateCount={travelDetail.minTravelMateCount}
@@ -40,7 +42,7 @@ describe('TravelInformation', () => {
 
   it('여행 태그가 표시됩니다.', () => {
     renderComponent();
-    expect(screen.getByText('해외여행')).toBeInTheDocument();
+    expect(screen.getByText('국내여행')).toBeInTheDocument();
   });
 
   it('날짜 정보가 렌더링됩니다.', () => {

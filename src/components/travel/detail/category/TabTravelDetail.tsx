@@ -1,15 +1,8 @@
-import BookMarkIcon from '@/assets/bookmark.svg';
 import { Participant } from '@/@types/travel';
-import { useState } from 'react';
-import Link from 'next/link';
-import {
-  useBookmarkTravel,
-  useDeleteBookmarkTravel,
-} from '@/queries/travel/useBookmarkTravel';
 import useGetUser from '@/queries/user/useGetUser';
-import ButtonRounded from '../../../common/button/ButtonRounded';
 import TravelTag from '../../../common/tag/TravelTag';
 import UserIcon from '../../../common/user/UserIcon';
+import TravelDetailButtons from './TravelDetailButtons';
 
 const TabTravelDetail = ({
   travelId,
@@ -17,31 +10,16 @@ const TabTravelDetail = ({
   organizer,
   hashTags,
   description,
+  isBookmark,
 }: {
   travelId: number;
   participationFlag: boolean | null;
   organizer?: Participant;
   hashTags: string;
   description: string;
+  isBookmark: boolean | null;
 }) => {
-  const [isBookmarked, setIsBookmarked] = useState(participationFlag);
-  const { mutate: postBookMark } = useBookmarkTravel();
-  const { mutate: deleteBookMark } = useDeleteBookmarkTravel();
-
   const { data: user } = useGetUser();
-
-  const handleClickBookMark = () => {
-    if (isBookmarked) {
-      deleteBookMark(travelId, {
-        onError: () => setIsBookmarked(true),
-      });
-    } else {
-      postBookMark(travelId, {
-        onError: () => setIsBookmarked(false),
-      });
-    }
-    setIsBookmarked((prev) => !prev);
-  };
 
   const hashTagList = hashTags
     .split('#')
@@ -56,32 +34,13 @@ const TabTravelDetail = ({
 
           <div className="body-2-sb">{organizer && organizer.nickname}</div>
         </div>
-        {participationFlag !== null && (
-          <div className="flex items-center gap-2.5">
-            {organizer?.id !== user?.userId ? (
-              <button
-                onClick={handleClickBookMark}
-                type="button"
-                aria-label="북마크"
-              >
-                <BookMarkIcon
-                  fill={isBookmarked ? '#F87171' : 'white'}
-                  className={
-                    isBookmarked
-                      ? 'animate-check-shake'
-                      : 'animate-check-shake-reverse'
-                  }
-                />
-              </button>
-            ) : (
-              <Link href="/">
-                <ButtonRounded label="일정수정" color="blue" />
-              </Link>
-            )}
-            <Link href="/chat">
-              <ButtonRounded label="채팅방" />
-            </Link>
-          </div>
+        {participationFlag !== null && user && organizer && (
+          <TravelDetailButtons
+            travelId={travelId}
+            isBookmark={isBookmark}
+            userId={user.userId}
+            organizerId={organizer.id}
+          />
         )}
       </div>
       <div className="flex flex-col gap-2.5 rounded border px-4 py-5 shadow-custom">
