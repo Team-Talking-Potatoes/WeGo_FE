@@ -5,7 +5,7 @@ import useReview from '@/queries/review/useReview';
 import { useReviewStore } from '@/store/useReviewStore';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import SpinnerIcon from '@/assets/spinner_round.svg';
+import ReviewSkeleton from '../skeleton/ReviewSkeleton';
 
 const ReviewContents = () => {
   const { ref, inView } = useInView();
@@ -14,7 +14,6 @@ const ReviewContents = () => {
   const {
     data: reviewsData,
     isLoading,
-    isError,
     fetchNextPage,
     hasNextPage,
   } = useReview({
@@ -27,8 +26,7 @@ const ReviewContents = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isLoading) return <div>로딩중</div>;
-  if (isError) return <div>에러</div>;
+  if (isLoading) return <ReviewSkeleton />;
 
   return (
     <div className="mt-3">
@@ -48,7 +46,7 @@ const ReviewContents = () => {
                     score={review.starRating}
                     travelLocation={review.travelLocation}
                     createdAt={review.createdAt}
-                    isLiked={review.isLiked ?? false}
+                    isLiked={review.likesFlag ?? false}
                   />
                 ))
               : null,
@@ -57,12 +55,8 @@ const ReviewContents = () => {
       )}
 
       {hasNextPage ? (
-        <div
-          ref={ref}
-          className="flex h-16 w-full justify-center p-5"
-          aria-label="리뷰를 불러오는 중입니다."
-        >
-          <SpinnerIcon className="animate-spin" />
+        <div ref={ref}>
+          <ReviewSkeleton />
         </div>
       ) : null}
     </div>

@@ -22,7 +22,7 @@ describe('ReviewFilter', () => {
     (useReviewStore as unknown as jest.Mock).mockImplementation((selector) => {
       const state = {
         filters: {
-          sortOrder: 'createdAt', // 기본값 설정
+          sortOrder: 'LATEST',
         },
         setFilters: setFiltersMock,
       };
@@ -30,31 +30,44 @@ describe('ReviewFilter', () => {
     });
   });
 
-  it('기본적으로 "createdAt" 필터가 선택되어야 한다', () => {
-    const { getByText } = renderWithQueryClient(<ReviewFilter />);
+  it('기본적으로 "LATEST" 필터가 선택되어야 한다', () => {
+    const { getByRole } = renderWithQueryClient(<ReviewFilter />);
 
-    expect(getByText(/최근/i)).toHaveAttribute('disabled');
-    expect(getByText(/인기/i)).not.toHaveAttribute('disabled');
+    const latestButton = getByRole('button', { name: /최근/i });
+    const popularButton = getByRole('button', { name: /인기/i });
+
+    expect(latestButton).toBeDisabled();
+    expect(popularButton).not.toBeDisabled();
   });
 
   it('필터 버튼 클릭 시 setFilters가 호출되어야 한다', () => {
-    const { getByText } = renderWithQueryClient(<ReviewFilter />);
-    const popularButton = getByText(/인기/i);
+    const { getByRole } = renderWithQueryClient(<ReviewFilter />);
+    const popularButton = getByRole('button', { name: /인기/i });
 
     fireEvent.click(popularButton);
 
     expect(setFiltersMock).toHaveBeenCalledWith({
-      sortOrder: 'popular',
+      sortOrder: 'POPULAR',
     });
   });
 
   it('필터 버튼 클릭 시 선택된 필터가 업데이트되어야 한다', () => {
-    const { getByText } = renderWithQueryClient(<ReviewFilter />);
+    (useReviewStore as unknown as jest.Mock).mockImplementation((selector) => {
+      const state = {
+        filters: {
+          sortOrder: 'POPULAR',
+        },
+        setFilters: setFiltersMock,
+      };
+      return selector(state);
+    });
 
-    const popularButton = getByText(/인기/i);
-    fireEvent.click(popularButton);
+    const { getByRole } = renderWithQueryClient(<ReviewFilter />);
 
-    expect(getByText(/인기/i)).not.toHaveAttribute('disabled');
-    expect(getByText(/최근/i)).toHaveAttribute('disabled');
+    const popularButton = getByRole('button', { name: /인기/i });
+    const latestButton = getByRole('button', { name: /최근/i });
+
+    expect(popularButton).toBeDisabled();
+    expect(latestButton).not.toBeDisabled();
   });
 });

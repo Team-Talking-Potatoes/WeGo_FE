@@ -45,7 +45,11 @@ const ReviewCard = ({
             src={image}
             alt={title}
             fill
-            className="rounded object-cover"
+            className="rounded object-cover opacity-0 duration-300 ease-in-out"
+            onLoadingComplete={(img) => {
+              img.classList.remove('opacity-0');
+              img.classList.add('opacity-100');
+            }}
           />
 
           {isLiked !== undefined && (
