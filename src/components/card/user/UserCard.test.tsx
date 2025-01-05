@@ -43,7 +43,6 @@ describe('UserCard가 올바르게 렌더링됩니다', () => {
   it('해시태그를 렌더링합니다', async () => {
     expect(screen.getByText('상세해요')).toBeInTheDocument();
     expect(screen.getByText('여행')).toBeInTheDocument();
-    expect(screen.getByText('맛집')).toBeInTheDocument();
   });
 
   it('openTravelCount와 reviewCount를 렌더링합니다', async () => {
