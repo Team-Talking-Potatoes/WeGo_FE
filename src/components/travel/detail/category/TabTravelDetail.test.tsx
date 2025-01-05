@@ -49,7 +49,7 @@ describe('TabTravelDetail', () => {
         organizer={mock.organizer}
         hashTags={mock.hashTags}
         description={mock.description}
-        isBookmark
+        bookmarkFlag
       />,
     );
   });
@@ -83,7 +83,7 @@ describe('여행 모임장일 때', () => {
         organizer={mock.organizer}
         hashTags={mock.hashTags}
         description={mock.description}
-        isBookmark={null}
+        bookmarkFlag={null}
       />,
     );
   });
@@ -132,7 +132,7 @@ describe('여행 모임장이 아닐 때', () => {
         organizer={mockParticipation.organizer}
         hashTags={mockParticipation.hashTags}
         description={mockParticipation.description}
-        isBookmark
+        bookmarkFlag
       />,
     );
   });
