@@ -86,7 +86,7 @@ const DatePickerModal = ({
             {isInitBtn && (
               <Button
                 handler={initCalendar}
-                className="mt-10"
+                className="mt-10 xl:mt-6 xl:w-[145px]"
                 disabled={!selectedStartDate}
                 size="half"
                 fill="white"
@@ -96,7 +96,7 @@ const DatePickerModal = ({
             )}
             <Button
               handler={confirmCalendar}
-              className="mt-10 xl:mt-6"
+              className={`mt-10 xl:mt-6 ${isInitBtn && 'xl:w-[145px]'}`}
               disabled={!selectedStartDate}
               size={isInitBtn ? 'half' : 'default'}
             >

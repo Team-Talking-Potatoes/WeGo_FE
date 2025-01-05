@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
+
 'use client';
 
 import StepRenderer from '@/components/createTrip/steps/StepRenderer';
 import Header from '@/components/common/header/Header';
 import TripRegisterHeader from '@/components/createTrip/tripRegisterHeader/TripRegisterHeader';
 import useTravelForm from '@/hooks/useTravelForm';
+import LoadingOverlay from '@/components/common/loding/LoadingOverlay';
 
 const MultiStepForm = () => {
   const {
@@ -19,7 +22,7 @@ const MultiStepForm = () => {
   } = useTravelForm();
 
   return (
-    <div className="flex h-dvh flex-col">
+    <div className="relative flex h-dvh flex-col">
       <Header
         title="여행 만들기"
         onRoute={currentStep === 0 ? undefined : goToPrevStep}
@@ -27,9 +30,7 @@ const MultiStepForm = () => {
       <div className="mx-5">
         <div className="mx-auto mt-[100px] flex w-full min-w-[335px] max-w-[500px] flex-col xl:mt-[120px]">
           {isLoading ? (
-            <div className="flex h-1/2 items-center justify-center">
-              로딩중...
-            </div>
+            <LoadingOverlay />
           ) : (
             <>
               <TripRegisterHeader currentStep={currentStep} />

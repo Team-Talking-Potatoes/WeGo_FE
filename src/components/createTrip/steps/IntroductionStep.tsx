@@ -119,6 +119,7 @@ const IntroductionStep = ({
         placeholder="여행을 자세하게 소개 해 주세요."
         onChange={(e) => onChange('travelDescription', e.target.value)}
         extraClassName="w-full"
+        maxLength={500}
       />
 
       <ImageUploader

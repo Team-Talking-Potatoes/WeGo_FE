@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Group from '@/assets/group.svg';
 import Right from '@/assets/right_gray.svg';
@@ -7,6 +7,7 @@ import { ChatOverview, ImageInfo, Participant } from '@/@types/chat';
 import { v4 as uuidv4 } from 'uuid';
 import UserProfileModal from '@/components/user/userProfileModal/UserProfileModal';
 import UserIcon from '@/components/common/user/UserIcon';
+import { useWebSocketStore } from '@/store/useWebSocketStore';
 
 interface Props {
   chatData: ChatOverview;
@@ -25,6 +26,11 @@ const ChatSideBar = ({
   onCloseSidebar,
   onOpenViewer,
 }: Props) => {
+  const { chatUpdates } = useWebSocketStore();
+  const [participants, setParticipants] = useState<Participant[]>(
+    chatData.participants ?? [],
+  );
+
   const [isOpen, setIsOpen] = useState(false);
   const [selectedParticipant, setSelectedParticipant] =
     useState<Participant | null>(null);
@@ -38,6 +44,18 @@ const ChatSideBar = ({
     setSelectedParticipant(participant); // 선택된 참여자 정보 설정
     setIsOpen(true); // 모달 열기
   };
+
+  useEffect(() => {
+    Object.values(chatUpdates).forEach((update) => {
+      if (
+        update.status === 'JOIN' &&
+        update.participant &&
+        !participants.some((p) => p.user === update.participant?.user)
+      ) {
+        setParticipants((prev) => [...prev, update.participant!]);
+      }
+    });
+  }, [chatUpdates, participants]);
   return (
     <>
       <div
@@ -62,7 +80,7 @@ const ChatSideBar = ({
                     new Date(a.uploadDate).getTime(),
                 )
                 .map((img, index) =>
-                  index < 4 ? (
+                  index < 4 && img.images.length !== 0 ? (
                     <li key={uuidv4()}>
                       <button
                         type="button"
@@ -87,7 +105,7 @@ const ChatSideBar = ({
           <div className="h-[1px] bg-line-normal" />
           <h2 className="title-5-b text-label-normal">참여자</h2>
           <ul className="flex flex-1 flex-col gap-4 overflow-y-auto custom-scrollbar">
-            {chatData.participants?.map((participant) => (
+            {participants.map((participant) => (
               <button
                 type="button"
                 key={uuidv4()}

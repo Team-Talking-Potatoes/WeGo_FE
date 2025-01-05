@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { setIsJoined, uploadChatImages } from '@/api/chat/chatApi';
+import { leaveChat } from '@/api/chat/chatRoomsApi';
 import { QueryError } from '@/@types/query';
 
 interface Props {
@@ -36,6 +37,29 @@ export const useUploadChatImages = () => {
       uploadChatImages(chatId, images),
     onError: (error: QueryError) => {
       console.error(error);
+    },
+  });
+};
+
+interface LeaveChatProps {
+  chatId: string;
+}
+
+export const useLeaveChat = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ chatId }: LeaveChatProps) => leaveChat(chatId),
+    onError: (error: QueryError) => {
+      console.error(error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['chatRooms', 'RECENT'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['chatRooms', 'UNREAD'],
+      });
     },
   });
 };

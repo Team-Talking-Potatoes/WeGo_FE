@@ -76,10 +76,7 @@ const useTravelForm = () => {
           parseInt(formData.endTime.minute, 10) * 60 * 1000,
 
     isScheduleValid: formData.detailTravel.every(
-      (schedule) =>
-        schedule.destination.trim() !== '' &&
-        schedule.description.trim() !== '' &&
-        schedule.destinationImage !== null,
+      (schedule) => schedule.destination.trim() !== '',
     ),
   };
 
