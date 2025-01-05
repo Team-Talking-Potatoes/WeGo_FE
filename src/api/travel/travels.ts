@@ -59,18 +59,18 @@ export const pastTravel = (limit: number, offset: number) => {
 
 export const checkedTravel = (limit: number, offset: number) => {
   return http.get<MyTravelResponse>(
-    `/travels/checked?limit=${limit}&offset=${offset}`,
+    `/travels/checked?size=${limit}&page=${offset}`,
   );
 };
 
 export const writableTravel = (limit: number, offset: number) => {
   return http.get<MyTravel>(
-    `/travels/reviews/pending?limit=${limit}&offset=${offset}`,
+    `/travels/reviews/pending?size=${limit}&page=${offset}`,
   );
 };
 
 export const mySelfTravel = (limit: number, offset: number) => {
   return http.get<MyTravelResponse>(
-    `/travels/created?limit=${limit}&offset=${offset}`,
+    `/travels/created?size=${limit}&page=${offset}`,
   );
 };
