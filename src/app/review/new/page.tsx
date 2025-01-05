@@ -5,11 +5,16 @@ import CreateReviewButtons from '@/components/review/new/CreateReviewButtons';
 import SelectTravel from '@/components/review/new/SelectTravel';
 import SelectHashTag from '@/components/review/new/organizer/SelectHashTag';
 import ReviewParticipantContainer from '@/components/review/new/participant/ReviewParticipantContainer';
-import { Suspense, useState } from 'react';
+import { Suspense, use, useState } from 'react';
 
-const CreateReviewPage = ({ id, title }: { id?: number; title?: string }) => {
+const CreateReviewPage = ({
+  searchParams,
+}: {
+  searchParams: Promise<{ id?: string; title?: string }>;
+}) => {
+  const { id, title } = use(searchParams);
+  const travelId = id ? Number(id) : undefined;
   const [isFirstPage, setIsFirstPage] = useState(true);
-
   return (
     <form
       method="dialog"
@@ -18,7 +23,7 @@ const CreateReviewPage = ({ id, title }: { id?: number; title?: string }) => {
       <CreateReviewHeader />
       <main className="flex flex-col gap-6">
         <Suspense fallback={<div>Loading...</div>}>
-          <SelectTravel id={id} title={title} />
+          <SelectTravel id={travelId} title={title} />
           {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
         </Suspense>
       </main>

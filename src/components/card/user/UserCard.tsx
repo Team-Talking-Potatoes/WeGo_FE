@@ -15,7 +15,7 @@ const UserCard = ({
     <Link
       href={`/${userId}`}
       aria-label={`${nickName} 프로필 보기`}
-      className="flex h-[246px] flex-col items-center justify-center rounded border border-line-normal px-[21px] py-5 md:w-[200px] lg:h-[306px] lg:w-[332px]"
+      className="flex h-[246px] w-[200px] flex-col items-center justify-center rounded border border-line-normal px-[21px] py-5 lg:h-[306px] lg:w-[332px]"
     >
       <UserIcon profileImage={profileImage} nickname={nickName} />
       <div className="flex flex-col items-center justify-center gap-0.5 pb-4 pt-4 md:pt-6">
@@ -29,6 +29,7 @@ const UserCard = ({
         {hashTags
           ?.split('#')
           .filter((str) => str.trim() !== '')
+          .slice(0, 2)
           .map((str) => <UserTag label={str} key={str} />)}
       </div>
     </Link>

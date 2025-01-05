@@ -47,7 +47,9 @@ const Writable = () => {
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />
 
-              <Link href="/">
+              <Link
+                href={`/review/new?id=${travel.travelId}&title=${travel.travelName}`}
+              >
                 <button
                   type="button"
                   className="body-3-m absolute right-0 top-0 text-primary-normal underline"
