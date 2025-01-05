@@ -6,28 +6,36 @@ import SelectTravel from '@/components/review/new/SelectTravel';
 import SelectHashTag from '@/components/review/new/organizer/SelectHashTag';
 import ReviewParticipantContainer from '@/components/review/new/participant/ReviewParticipantContainer';
 import { Suspense, useState } from 'react';
+import SpinnerIcon from '@/assets/icon/loading/spinner-button.svg';
 
-const CreateReviewPage = ({ id, title }: { id?: number; title?: string }) => {
+const CreateReviewPage = () => {
   const [isFirstPage, setIsFirstPage] = useState(true);
 
   return (
-    <form
-      method="dialog"
-      className="heading-1-sb flex h-fit w-full flex-col px-6 pb-6 pt-8 text-label-normal"
+    <Suspense
+      fallback={
+        <div className="mt-4 flex h-[46px] items-center justify-center">
+          <SpinnerIcon className="animate-spin" />
+        </div>
+      }
     >
-      <CreateReviewHeader />
-      <main className="flex flex-col gap-6">
-        <Suspense fallback={<div>Loading...</div>}>
-          <SelectTravel id={id} title={title} />
-          {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
-        </Suspense>
-      </main>
+      <form
+        method="dialog"
+        className="heading-1-sb flex h-fit w-full flex-col px-6 pb-6 pt-8 text-label-normal"
+      >
+        <CreateReviewHeader />
+        <main className="flex flex-col gap-6">
+          <SelectTravel />
 
-      <CreateReviewButtons
-        isFirstPage={isFirstPage}
-        clickNext={() => setIsFirstPage(false)}
-      />
-    </form>
+          {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
+        </main>
+
+        <CreateReviewButtons
+          isFirstPage={isFirstPage}
+          clickNext={() => setIsFirstPage(false)}
+        />
+      </form>
+    </Suspense>
   );
 };
 
