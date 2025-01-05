@@ -58,6 +58,9 @@ export default {
       boxShadow: {
         custom: '0px 0px 5px 0px rgba(0, 0, 0, 0.16)',
       },
+      transitionTimingFunction: {
+        progressBar: 'cubic-bezier(.01,.98,1,1)',
+      },
 
       keyframes: {
         'fade-in': {

@@ -52,6 +52,9 @@ const TravelButtons = ({
           },
           icon: ParticipantIcon,
           confirmText: '확인',
+          onConfirm: () => {
+            router.refresh();
+          },
         });
       },
     });
