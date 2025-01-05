@@ -66,7 +66,7 @@ const useCreateTravel = () => {
               try {
                 await clearIndexedDB();
               } finally {
-                router.push('/');
+                router.push('/travel');
               }
             },
           },
