@@ -44,7 +44,7 @@ const TravelList = () => {
 
   if (isLoading) {
     return (
-      <div className="flex w-full flex-col items-center justify-center gap-5 p-8">
+      <div className="flex w-full flex-col items-center justify-center gap-5">
         <SkeletonTravelList />
       </div>
     );
