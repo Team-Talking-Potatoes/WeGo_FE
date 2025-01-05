@@ -8,8 +8,8 @@ const useGetTravelsList = (filters: Filters) => {
     queryKey: QUERY_KEYS.TRAVEL.TRAVEL_LIST(filters),
     queryFn: ({ pageParam = 1 }) => getTravels({ ...filters, pageParam }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      return lastPage.data.hasNext ? lastPage.data.currentPage + 1 : undefined;
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.data.hasNext ? pages.length + 1 : undefined;
     },
   });
 };
