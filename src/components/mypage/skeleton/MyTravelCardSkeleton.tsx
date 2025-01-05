@@ -11,7 +11,7 @@ const MyTravelCardSkeleton = () => {
               <Skeleton className="h-[120px] w-[100px] flex-shrink-0 rounded md:h-[160px] md:w-[223px]" />
               <div className="relative flex w-full flex-col justify-between">
                 <div className="flex flex-col gap-1">
-                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-12 rounded-[20px]" />
                   <Skeleton className="h-6 w-full md:h-[26px]" />
                 </div>
                 <div className="flex flex-col gap-2.5">

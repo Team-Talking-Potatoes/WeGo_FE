@@ -31,7 +31,7 @@ const ProfileSkeleton = () => {
           </div>
         </div>
 
-        <Skeleton className="mt-6 h-[46px] w-[335px] rounded-[44px] md:w-[500px]" />
+        <Skeleton className="mt-6 h-[46px] w-[335px] rounded-[44px] md:w-[500px] xl:mt-0" />
       </div>
     </div>
   );
