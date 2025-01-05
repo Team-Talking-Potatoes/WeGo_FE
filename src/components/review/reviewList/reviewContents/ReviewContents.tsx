@@ -46,7 +46,7 @@ const ReviewContents = () => {
                     score={review.starRating}
                     travelLocation={review.travelLocation}
                     createdAt={review.createdAt}
-                    isLiked={review.isLiked ?? false}
+                    isLiked={review.likesFlag ?? false}
                   />
                 ))
               : null,

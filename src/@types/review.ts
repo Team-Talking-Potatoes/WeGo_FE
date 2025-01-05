@@ -12,7 +12,7 @@ export interface Review {
   travelLocation: string;
   createdAt: string;
   isLast: boolean;
-  isLiked?: boolean;
+  likesFlag?: boolean;
 }
 
 export interface ReviewResponse {
