@@ -1,0 +1,21 @@
+.swiper-pagination-bullets {
+  position: absolute !important;
+  display: flex;
+  margin-left: 70px;
+  margin-bottom: 28px;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination-bullets {
+    margin-left: 50px;
+    margin-bottom: 25px;
+  }
+}
+.swiper-pagination-bullet {
+  background: white !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+}

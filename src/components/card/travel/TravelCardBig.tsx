@@ -96,7 +96,7 @@ const TravelCardBig = ({
         )}
       </div>
 
-      <div className="flex h-full w-full flex-col justify-between gap-1.5 rounded px-4 pb-4 pt-5">
+      <div className="flex h-[51.72%] w-full flex-col justify-between gap-1.5 rounded px-4 pb-4 pt-5">
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-1">
             <DomesticTag isDomestic={isDomestic} />

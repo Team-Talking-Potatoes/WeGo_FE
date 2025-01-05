@@ -22,7 +22,7 @@ const TravelImage = ({ image, name, endAt, registrationEnd }: Props) => {
         alt={`${name} 이미지`}
         height={760}
         width={500}
-        className="h-full w-full object-contain"
+        className="h-full w-full object-cover"
       />
       {now >= endDate && <DateOverTag endAt={endAt} />}
     </figure>

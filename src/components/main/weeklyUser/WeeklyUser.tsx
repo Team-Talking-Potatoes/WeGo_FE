@@ -51,7 +51,7 @@ const WeeklyUser = ({ userList }: { userList: UserList[] }) => {
               >
                 <UserCard
                   userId={user.userId}
-                  nickname={user.nickname}
+                  nickName={user.nickName}
                   profileImage={user.profileImage}
                   openTravelCount={user.openTravelCount}
                   reviewCount={user.reviewCount}

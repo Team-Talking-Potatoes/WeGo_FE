@@ -65,9 +65,10 @@ const TabTravelItinerary = ({ tripDuration, travelPlan, startAt }: Props) => {
               <div className="flex w-full flex-col gap-4">
                 {travelPlan
                   .filter((plan) => plan.tripDay === i)
-                  .map((plan) => (
+                  .map((plan, index) => (
                     <TravelPlanCard
-                      key={plan.destination}
+                      // eslint-disable-next-line
+                      key={`${plan.destination}${index}`}
                       image={plan.image}
                       destination={plan.destination}
                       description={plan.description}

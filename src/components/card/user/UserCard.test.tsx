@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 
 const mock = {
   userId: 1,
-  nickname: '녹차라떼',
+  nickName: '녹차라떼',
   profileImage: '/test.png',
   reviewCount: 25,
   openTravelCount: 11,
@@ -19,7 +19,7 @@ const renderUserCard = (overrides = {}) => {
   render(
     <UserCard
       userId={props.userId}
-      nickname={props.nickname}
+      nickName={props.nickName}
       profileImage={props.profileImage}
       openTravelCount={props.openTravelCount}
       reviewCount={props.reviewCount}
