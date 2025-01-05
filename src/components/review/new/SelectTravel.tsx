@@ -68,7 +68,7 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
   if (isLoading) {
     return (
       <div className="flex h-5 w-5 flex-col items-center justify-center gap-5 p-8">
-        로딩중
+        <SpinnerIcon className="animate-spin" />
       </div>
     );
   }
