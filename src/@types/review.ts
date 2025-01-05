@@ -26,6 +26,9 @@ export interface ReviewResponse {
 export interface Filters {
   sortOrder: 'createdAt' | 'popular';
 }
+export interface ReviewListFilters {
+  sortOrder: 'LATEST' | 'POPULAR';
+}
 
 export interface ReviewDetail {
   reviewId: number;

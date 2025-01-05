@@ -57,13 +57,13 @@ export const getTravelReviewRate = ({ travelId }: { travelId: number }) => {
 
 export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
   return http.get<ApiResponse<ReviewResponse>>(
-    `/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
+    `/reviews?page=${pageParam}&sortBy=${sortOrder}&size=12`,
   );
 };
 
 export const getMyReview = (limit: number, offset: number) => {
   return http.get<MyReviewResponse>(
-    `/reviews/published?limit=${limit}&offset=${offset}`,
+    `/reviews/published?size=${limit}&page=${offset}`,
   );
 };
 

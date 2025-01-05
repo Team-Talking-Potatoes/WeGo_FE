@@ -1,14 +1,15 @@
-import { Filters } from '@/@types/review';
+import { ReviewListFilters } from '@/@types/review';
 import { create } from 'zustand';
 
 interface ReviewStore {
-  filters: Filters;
-  setFilters: (filters: Filters) => void;
+  filters: ReviewListFilters;
+  setFilters: (filters: ReviewListFilters) => void;
 }
 
 export const useReviewStore = create<ReviewStore>((set) => ({
   filters: {
-    sortOrder: 'createdAt',
+    sortOrder: 'LATEST',
+    size: 12,
   },
   setFilters: (filters) =>
     set((state) => ({ filters: { ...state.filters, ...filters } })),
