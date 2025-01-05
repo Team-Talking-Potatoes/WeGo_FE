@@ -15,7 +15,7 @@ const mockUserInfo = {
   nickname: '닉네임',
   email: 'email',
   description: 'description',
-  profileImage: 'https://example.com/image.jpg',
+  profileImage: '/image.jpg',
 };
 
 const mock = {
@@ -25,7 +25,7 @@ const mock = {
     id: 1,
     nickname: '녹차라떼',
     role: 'string',
-    profileImage: 'string',
+    profileImage: '/image.jpg',
   },
   hashTags: '#겨울여행#액티비티',
   description:
@@ -109,7 +109,7 @@ describe('여행 모임장이 아닐 때', () => {
       id: 2,
       nickname: '녹차라떼',
       role: 'string',
-      profileImage: 'string',
+      profileImage: '/string.png',
     },
     hashTags: '#겨울여행#액티비티',
     description:
