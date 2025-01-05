@@ -7,9 +7,11 @@ import { useWritableTravel } from '@/queries/travel/useGetMyTravel';
 import Pagination from '@/components/common/pagination/Pagination';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
 import MyTravelCardSkeleton from '@/components/mypage/skeleton/MyTravelCardSkeleton';
+import useCreateReviewStore from '@/store/useCreateReview';
 import NoTravel from '../myTravel/NoTravel';
 
 const Writable = () => {
+  const { setTravelName, setTravelId } = useCreateReviewStore();
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const { data: travels, isLoading } = useWritableTravel(
@@ -47,9 +49,13 @@ const Writable = () => {
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />
 
-              <Link href="/">
+              <Link href="/review/new">
                 <button
                   type="button"
+                  onClick={() => {
+                    setTravelName(travel.travelName);
+                    setTravelId(travel.travelId);
+                  }}
                   className="body-3-m absolute right-0 top-0 text-primary-normal underline"
                 >
                   리뷰 작성
