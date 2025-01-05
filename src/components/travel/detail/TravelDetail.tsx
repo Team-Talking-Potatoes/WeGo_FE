@@ -53,7 +53,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
             startAt={travelDetail.startAt}
             endAt={travelDetail.endAt}
             organizer={organizer}
-            isBookmark={travelDetail.isBookmark}
+            bookmarkFlag={travelDetail.bookmarkFlag}
           />
           {!dateOver && (
             <TravelButtons

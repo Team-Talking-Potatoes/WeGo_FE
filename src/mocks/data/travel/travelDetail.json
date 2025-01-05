@@ -16,7 +16,7 @@
   "registrationEnd": "20241225",
   "tripDuration": 3,
   "participationFlag": null,
-  "isBookmark": true,
+  "bookmarkFlag": true,
   "travelPlan": [
     {
       "tripDay": 1,
