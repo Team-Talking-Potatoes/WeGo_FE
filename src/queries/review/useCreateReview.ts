@@ -24,6 +24,7 @@ export const useCreateReview = () => {
     mutationFn: (formData: FormData) => createReview(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['myReview'] });
+      queryClient.invalidateQueries({ queryKey: ['review', 'listPage'] });
       resetStore();
       router.back();
     },
