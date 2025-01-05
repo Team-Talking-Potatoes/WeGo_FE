@@ -1,42 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useGetChat } from '@/queries/chat/useGetChat';
 import { useState, useEffect, useRef } from 'react';
-import { ChattingResponse, ChatMessage } from '@/@types/chat';
-// import { useWebSocketStore } from '@/store/useWebSocketStore';
+import { ChattingResponse } from '@/@types/chat';
+import { useWebSocketStore } from '@/store/useWebSocketStore';
 
-export const useChat = (
-  chatId: string,
-  sender: string,
-  participantsCount: number,
-) => {
-  // const {
-  //   connect,
-  //   disconnect,
-  //   subscribeToChat,
-  //   unsubscribeFromChat,
-  //   sendMessage,
-  //   connected,
-  //   messages,
-  // } = useWebSocketStore();
+export const useChat = (chatId: string) => {
+  const {
+    messages,
+    unreadCounts,
+    connected,
+    sendMessage,
 
-  // useEffect(() => {
-  //   connect();
+    subscribeToChat,
+    unsubscribeFromChat,
+  } = useWebSocketStore();
 
-  //   return () => {
-  //     disconnect();
-  //   };
-  // }, [connect, disconnect]);
+  useEffect(() => {
+    if (connected) {
+      subscribeToChat(chatId);
+    } else {
+      console.warn('WebSocket is not connected yet');
+    }
 
-  // useEffect(() => {
-  //   if (connected) {
-  //     subscribeToChat(chatId);
-  //   } else {
-  //     console.warn('WebSocket is not connected yet');
-  //   }
+    return () => {
+      unsubscribeFromChat(chatId);
+    };
+  }, [connected, subscribeToChat, unsubscribeFromChat, chatId]);
 
-  //   return () => {
-  //     unsubscribeFromChat(chatId);
-  //   };
-  // }, [chatId, connected, subscribeToChat, unsubscribeFromChat]);
+  const [chatInfo, setChatInfo] = useState<ChattingResponse | null>(null);
+  const isFetchingPreviousRef = useRef<boolean>(false);
 
   const {
     data,
@@ -47,36 +39,8 @@ export const useChat = (
     fetchNextPage,
   } = useGetChat(chatId);
 
-  const [chatInfo, setChatInfo] = useState<ChattingResponse | null>(null);
-  const isFetchingPreviousRef = useRef<boolean>(false);
-
   const handleSendMessage = (content: string, images: string[]) => {
-    const newMessage = {
-      chatMessageId: `${Date.now()}`,
-      sender,
-      content,
-      senderProfileImage: '/user.jpg',
-      images,
-      createdAt: new Date().toLocaleString('ko-KR', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      }),
-      unreadCount: participantsCount,
-    };
-
-    setChatInfo((prev) => {
-      if (!prev) return null;
-
-      return {
-        ...prev,
-        chatMessages: [...(prev.chatMessages as ChatMessage[]), newMessage],
-      };
-    });
-    // sendMessage(chatId, { content, images });
+    sendMessage(chatId, { message: content, images });
   };
 
   useEffect(() => {
@@ -85,42 +49,60 @@ export const useChat = (
       setChatInfo((prev) => {
         if (!prev) {
           return {
-            ...data.pages[0].data,
+            chatTitle: data.pages[0].data.chatTitle,
+            chatMessages: [...data.pages[0].data.chatMessages].reverse(),
           };
         }
 
+        // 기존 메시지와 새 메시지 병합
+        const newMessages = [
+          ...data.pages.flatMap((page) => page.data.chatMessages).reverse(),
+          ...prev.chatMessages,
+        ];
+
+        // 중복 제거 (고유 ID로 필터링)
+        const uniqueMessages = Array.from(
+          new Map(newMessages.map((msg) => [msg.chatMessageId, msg])).values(),
+        );
+
         return {
           ...prev,
-          chatMessages: [
-            ...data.pages[data.pages.length - 1].data.chatMessages,
-            ...prev.chatMessages,
-          ],
+          chatMessages: uniqueMessages,
         };
       });
     }
   }, [data]);
 
-  // useEffect(() => {
-  //   if (messages[chatId] && data) {
-  //     setChatInfo((prev) => {
-  //       if (!prev) {
-  //         return {
-  //           ...data.pages[0].data,
-  //           chatMessages: messages[chatId],
-  //         };
-  //       }
+  // messages 변경 시 chatInfo 동기화
+  useEffect(() => {
+    if (!messages[chatId]) return;
 
-  //       return {
-  //         ...prev,
-  //         chatMessages: [...messages[chatId], ...prev.chatMessages],
-  //       };
-  //     });
-  //   }
-  // }, [messages]);
+    setChatInfo((prev) => {
+      if (!prev) return null;
+
+      const newMessages = messages[chatId];
+
+      // 기존 메시지와 병합 (중복 방지)
+      const updatedMessages = [
+        ...prev.chatMessages.filter(
+          (msg) =>
+            !newMessages.some(
+              (newMsg) => newMsg.chatMessageId === msg.chatMessageId,
+            ),
+        ),
+        ...newMessages,
+      ];
+      return {
+        ...prev,
+        chatMessages: updatedMessages,
+      };
+    });
+  }, [messages[chatId]]);
 
   return {
     data,
     chatInfo,
+    unreadCount: unreadCounts[chatId],
     isFetching,
     hasNextPage,
     isFetchingNextPage,

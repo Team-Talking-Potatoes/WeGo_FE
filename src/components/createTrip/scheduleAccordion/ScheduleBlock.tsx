@@ -77,6 +77,7 @@ const ScheduleBlock = ({
         onChange={(e) => handleChange('description', e.target.value)}
         textareaClassName="bg-background-alternative w-full"
         extraClassName="w-full bg-background-alternative"
+        maxLength={500}
       />
     </li>
   );

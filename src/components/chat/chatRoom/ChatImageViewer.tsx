@@ -87,7 +87,7 @@ const ChatImageViewer = ({
   if (!(isViewerOpen && currentGroup && groupedImages)) return null;
 
   return (
-    <div className="fixed inset-0 z-40 bg-label-strong xl:bg-label-strong/[84%]">
+    <div className="fixed inset-0 z-[90] bg-label-strong xl:bg-label-strong/[84%]">
       <header className="xl:border-b xl:border-label-neutral">
         <div className="relative m-auto flex items-center justify-between p-5 xl:max-w-[1440px]">
           <button
@@ -124,7 +124,7 @@ const ChatImageViewer = ({
             <MenuButton onClick={handleClickDownload}>
               <Download />
             </MenuButton>
-            <MenuItems className="absolute right-5 top-[70px] z-50 flex flex-col">
+            <MenuItems className="z-100 absolute right-5 top-[70px] flex flex-col">
               <MenuItem>
                 <button
                   type="button"
@@ -204,7 +204,7 @@ const ChatImageViewer = ({
 
         <button
           type="button"
-          className="prev-button absolute top-1/2 z-50 -translate-y-1/2 transform bg-black/40"
+          className="prev-button absolute top-1/2 z-[110] -translate-y-1/2 transform bg-black/40"
           onClick={() => {
             if (swiperRef.current && !swiperRef.current.animating) {
               swiperRef.current.slidePrev();
@@ -215,7 +215,7 @@ const ChatImageViewer = ({
         </button>
         <button
           type="button"
-          className="next-button absolute right-0 top-1/2 z-50 -translate-y-1/2 rotate-180 transform bg-black/40"
+          className="next-button absolute right-0 top-1/2 z-[110] -translate-y-1/2 rotate-180 transform bg-black/40"
           onClick={() => {
             if (swiperRef.current && !swiperRef.current.animating) {
               swiperRef.current.slideNext();
@@ -227,7 +227,7 @@ const ChatImageViewer = ({
       </div>
 
       {currentGroup.images.length > 1 && (
-        <div className="body-1-r absolute bottom-10 left-1/2 z-50 -translate-x-1/2 transform rounded-[40px] bg-[#333333] px-2.5 py-0.5 text-primary-white xl:bottom-[216px]">
+        <div className="z-100 body-1-r absolute bottom-10 left-1/2 -translate-x-1/2 transform rounded-[40px] bg-[#333333] px-2.5 py-0.5 text-primary-white xl:bottom-[216px]">
           {currentImageIndex + 1} / {currentGroup.images.length}
         </div>
       )}
