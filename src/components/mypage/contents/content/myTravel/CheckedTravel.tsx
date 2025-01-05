@@ -15,7 +15,7 @@ const CheckedTravel = () => {
     itemsPerPage,
     currentPage - 1,
   );
-  const totalPages = travels ? Math.ceil(travels.total / itemsPerPage) : 0;
+  const totalPages = travels ? Math.ceil(travels.data.total / itemsPerPage) : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
