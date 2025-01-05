@@ -57,7 +57,7 @@ export const useCreateReview = () => {
       const hashTagString = Array.from(hashTags)
         .map((tag) => `#${tag}`)
         .join('');
-      formData.append('hashTags', hashTagString);
+      formData.append('organizerReviewTags', hashTagString);
     }
 
     formData.append('travelId', travelId.toString());
