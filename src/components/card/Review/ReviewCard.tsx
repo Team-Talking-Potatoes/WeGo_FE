@@ -65,7 +65,7 @@ const ReviewCard = ({
             <p className="body-3-m z-20 line-clamp-1 md:body-1-m group-hover:opacity-0">
               {title}
             </p>
-            <p className="body-3-m z-10 line-clamp-5 h-0 max-h-[90px] translate-y-full overflow-hidden transition-all duration-200 ease-in-out md:body-1-m group-hover:z-20 group-hover:h-auto group-hover:translate-y-0">
+            <p className="body-3-m z-10 line-clamp-5 h-0 max-h-[90px] translate-y-full overflow-hidden transition-all duration-200 ease-in-out md:body-1-m group-hover:z-20 group-hover:h-auto group-hover:translate-y-0 md:max-h-full">
               {content}
             </p>
             <p className="caption-1-r z-20 text-label-assistive md:body-2-r">
