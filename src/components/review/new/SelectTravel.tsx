@@ -8,14 +8,15 @@ import { useInView } from 'react-intersection-observer';
 import SpinnerIcon from '@/assets/spinner_round.svg';
 import useCreateReviewStore from '@/store/useCreateReview';
 
-const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
+const SelectTravel = () => {
   const { ref, inView } = useInView();
-  const { setTravelId, errorMessages } = useCreateReviewStore();
+  const { travelId, travelName, setTravelId, errorMessages } =
+    useCreateReviewStore();
   const buttonRef = useRef<HTMLDivElement>(null);
   const [isListOpen, setIsListOpen] = useState(false);
   const [selectedTravel, setSelectedTravel] = useState({
-    travelId: id || 0,
-    travelName: title || '작성할 리뷰를 선택해 주세요.',
+    id: travelId,
+    travel: travelName,
   });
 
   const {
@@ -32,15 +33,11 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
     setIsListOpen((prev) => !prev);
   };
 
-  const handleSelect = (travelId: number, travelName: string) => {
-    setSelectedTravel({ travelId, travelName });
-    setTravelId(travelId);
+  const handleSelect = (id: number, travel: string) => {
+    setSelectedTravel({ id, travel });
+    setTravelId(id);
     setIsListOpen(false);
   };
-
-  useEffect(() => {
-    if (id) setTravelId(id);
-  }, [id, setTravelId]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -81,21 +78,21 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
 
   return (
     <div className="mt-4">
-      {errorMessages.travelId && selectedTravel.travelId === 0 && (
+      {errorMessages.travelId && selectedTravel.id === 0 && (
         <p className="body-3-r text-status-error">{errorMessages.travelId}</p>
       )}
       <section
         ref={buttonRef}
-        className={`body-2-r relative flex h-[46px] items-center rounded border border-line-normal px-4 py-3 text-interaction-inactive ${errorMessages.travelId && selectedTravel.travelId === 0 && 'border-status-error'}`}
+        className={`body-2-r relative flex h-[46px] items-center rounded border border-line-normal px-4 py-3 text-interaction-inactive ${errorMessages.travelId && selectedTravel.id === 0 && 'border-status-error'}`}
       >
         <button
           type="button"
           aria-label="리뷰를 작성할 여행 선택하기"
           onClick={handleListOpen}
-          className={`${selectedTravel.travelId !== 0 && 'text-label-normal'} flex w-full cursor-pointer items-center justify-between`}
+          className={`${selectedTravel.id !== 0 && 'text-label-normal'} flex w-full cursor-pointer items-center justify-between`}
         >
           <span className="w-full overflow-hidden truncate text-start">
-            {selectedTravel.travelName}
+            {selectedTravel.travel}
           </span>
 
           <ArrowIcon
@@ -122,11 +119,11 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
                       className="group flex max-h-16 w-full cursor-pointer items-center gap-1.5 px-3 py-1.5 text-interaction-inactive"
                     >
                       <CheckIcon
-                        className={`${selectedTravel.travelId === travel.travelId ? 'visible' : 'invisible'}`}
+                        className={`${selectedTravel.id === travel.travelId ? 'visible' : 'invisible'}`}
                         aria-hidden="true"
                       />
                       <span
-                        className={`w-[95%] overflow-hidden truncate group-hover:text-label-neutral ${selectedTravel.travelId === travel.travelId ? 'text-label-neutral' : ''}`}
+                        className={`w-[95%] overflow-hidden truncate group-hover:text-label-neutral ${selectedTravel.id === travel.travelId ? 'text-label-neutral' : ''}`}
                       >
                         {travel.travelName}
                       </span>

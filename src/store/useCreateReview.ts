@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 interface CreateReviewStore {
   travelId: number;
+  travelName: string;
   hashTags: Set<string>;
   countStar: number;
   title: string;
@@ -16,6 +17,7 @@ interface CreateReviewStore {
   };
 
   setTravelId: (travelId: number) => void;
+  setTravelName: (travelName: string) => void;
   setHashTags: (hashTag: string) => void;
   setCountStar: (countStar: number) => void;
   setTitle: (title: string) => void;
@@ -31,6 +33,7 @@ interface CreateReviewStore {
 
 const useCreateReviewStore = create<CreateReviewStore>((set, get) => ({
   travelId: 0,
+  travelName: '작성할 리뷰를 선택해 주세요.',
   hashTags: new Set(),
   countStar: 0,
   title: '',
@@ -45,6 +48,7 @@ const useCreateReviewStore = create<CreateReviewStore>((set, get) => ({
   },
 
   setTravelId: (travelId) => set({ travelId }),
+  setTravelName: (travelName) => set({ travelName }),
   setHashTags: (hashTag) => {
     const { hashTags } = get();
     if (hashTags.has(hashTag)) {
@@ -70,6 +74,7 @@ const useCreateReviewStore = create<CreateReviewStore>((set, get) => ({
   resetStore: () =>
     set({
       travelId: 0,
+      travelName: '작성할 리뷰를 선택해 주세요.',
       hashTags: new Set(),
       countStar: 0,
       title: '',

@@ -5,23 +5,11 @@ import CreateReviewButtons from '@/components/review/new/CreateReviewButtons';
 import SelectTravel from '@/components/review/new/SelectTravel';
 import SelectHashTag from '@/components/review/new/organizer/SelectHashTag';
 import ReviewParticipantContainer from '@/components/review/new/participant/ReviewParticipantContainer';
-import { Suspense, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
 import SpinnerIcon from '@/assets/icon/loading/spinner-button.svg';
 
 const CreateReviewPage = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
-  const title = searchParams.get('title') || undefined;
-  const travelId = id ? Number(id) : undefined;
   const [isFirstPage, setIsFirstPage] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (travelId) {
-      setIsLoading(false);
-    }
-  }, [travelId]);
 
   return (
     <Suspense
@@ -37,13 +25,7 @@ const CreateReviewPage = () => {
       >
         <CreateReviewHeader />
         <main className="flex flex-col gap-6">
-          {isLoading ? (
-            <div className="mt-4 flex h-[46px] items-center justify-center rounded border border-line-normal">
-              <SpinnerIcon className="animate-spin" />
-            </div>
-          ) : (
-            <SelectTravel id={travelId} title={title} />
-          )}
+          <SelectTravel />
 
           {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
         </main>
