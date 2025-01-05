@@ -49,7 +49,7 @@ export interface TravelDetail {
   travelPlan: TravelPlan[];
   participant: Participant[];
   participationFlag: boolean | null;
-  isBookmark: boolean | null;
+  bookmarkFlag: boolean | null;
 }
 
 export interface TravelReviewRateScore {
