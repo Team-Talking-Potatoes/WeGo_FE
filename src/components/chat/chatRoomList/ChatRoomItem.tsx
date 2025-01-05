@@ -1,21 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import Image from 'next/image';
 import Other from '@/assets/other.svg';
 import Chat from '@/assets/chat_blue.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/common/button/Button';
 import { RoomResponse } from '@/@types/chat';
 import { formatDateToStringWithDot } from '@/utils/calendarHelper';
+import { useWebSocketStore } from '@/store/useWebSocketStore';
+import { useLeaveChat } from '@/queries/chat/useSetChat';
 
 interface Props {
   room: RoomResponse;
-  onExit: (id: string) => void;
   onChatRoomId: (chatId: string) => void;
+  selectedChatRoomId: string;
 }
 
-const ChatRoomItem = ({ room, onExit, onChatRoomId }: Props) => {
+const ChatRoomItem = ({ room, onChatRoomId, selectedChatRoomId }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { chatUpdates, resetStatus } = useWebSocketStore();
+  const [unreadCount, setUnreadCount] = useState(room.unreadMessageCount);
+  const { mutate: leaveChat } = useLeaveChat();
 
   const openModal = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -26,15 +32,28 @@ const ChatRoomItem = ({ room, onExit, onChatRoomId }: Props) => {
     setIsOpen(false);
   };
 
-  const {
-    chatId,
-    chattingName,
-    host,
-    image,
-    membersCount,
-    unreadMessageCount,
-    lastMessageTime,
-  } = room;
+  const { chatId, chattingName, host, image, membersCount, lastMessageTime } =
+    room;
+
+  useEffect(() => {
+    if (selectedChatRoomId === chatId) {
+      setUnreadCount(0);
+    }
+  }, [selectedChatRoomId, chatId]);
+
+  useEffect(() => {
+    const chatUpdate = chatUpdates[chatId];
+
+    if (selectedChatRoomId !== chatId && chatUpdate?.status === 'MESSAGE') {
+      setUnreadCount((prev) => prev + 1);
+    }
+  }, [chatUpdates[chatId]?.status, chatId]);
+
+  useEffect(() => {
+    if (selectedChatRoomId !== chatId && chatUpdates[chatId]?.status) {
+      resetStatus(chatId);
+    }
+  }, [selectedChatRoomId, chatId, chatUpdates]);
 
   return (
     <>
@@ -44,7 +63,7 @@ const ChatRoomItem = ({ room, onExit, onChatRoomId }: Props) => {
           onClick={() => {
             onChatRoomId(chatId);
           }}
-          className="flex w-full cursor-pointer items-start border-b border-line-neutral p-5 transition-all duration-300 hover:bg-gray-100"
+          className={`${selectedChatRoomId === chatId && 'bg-gray-100'} flex w-full cursor-pointer items-start border-b border-line-neutral p-5 transition-all duration-300 hover:bg-gray-100`}
         >
           <div
             className="relative mr-2.5 h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full"
@@ -68,44 +87,53 @@ const ChatRoomItem = ({ room, onExit, onChatRoomId }: Props) => {
                 {host}
               </span>
               <span className='after:mx-1.5 after:text-line-normal after:content-["|"]'>
-                {membersCount}명
+                {chatUpdates && chatUpdates[chatId]
+                  ? chatUpdates[chatId].currentMemberCount
+                  : membersCount}
+                명
               </span>
-              {formatDateToStringWithDot(lastMessageTime)}
+              {chatUpdates &&
+              chatUpdates[chatId] &&
+              chatUpdates[chatId].status === 'MESSAGE'
+                ? chatUpdates[chatId].sendAt.replace(
+                    /(\d{4})(\d{2})(\d{2})/,
+                    '$1.$2.$3',
+                  )
+                : formatDateToStringWithDot(lastMessageTime)}
             </p>
           </div>
         </button>
-        {unreadMessageCount > 0 && (
+        {unreadCount > 0 && (
           <span className="caption-1-sb absolute right-10 top-[23px] rounded-[14px] bg-primary-normal px-1 text-primary-white">
-            {unreadMessageCount}
-            {unreadMessageCount > 100 && '+'}
+            {unreadCount}
+            {unreadCount > 100 && '+'}
           </span>
         )}
-        <button
-          type="button"
-          onClick={openModal}
-          className="absolute right-5 top-[23px]"
-        >
-          <Other />
-        </button>
+        {room.hasJoined && (
+          <button
+            type="button"
+            onClick={openModal}
+            className="absolute right-5 top-[23px]"
+          >
+            <Other />
+          </button>
+        )}
       </li>
       {isOpen && (
         <div
-          className="absolute inset-0 z-10 flex items-end bg-label-strong/40 md:bottom-20 xl:bottom-0"
+          className="absolute inset-0 z-50 flex items-end bg-label-strong/40 md:bottom-20 xl:bottom-0"
           onClick={closeModal}
         >
           <div
-            className="z-20 w-full bg-white py-5 text-center shadow-lg"
+            className="z-[60px] flex w-full justify-center bg-white py-5 shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <Button
               handler={() => {
-                onExit(chatId);
-                closeModal();
+                leaveChat({ chatId });
               }}
-              className="w-[335px]"
-              size="default"
             >
-              채팅방 나가기
+              방 나가기
             </Button>
           </div>
         </div>
