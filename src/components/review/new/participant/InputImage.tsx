@@ -8,7 +8,7 @@ import useCreateReviewStore from '@/store/useCreateReview';
 import { compressImage } from '@/utils/compressImage';
 
 const MAX_FILE_COUNT = 5;
-const MAX_FILE_SIZE_MB = 2;
+const MAX_FILE_SIZE_MB = 5;
 const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
 const InputImage = () => {

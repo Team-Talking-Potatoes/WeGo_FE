@@ -21,7 +21,9 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
   const {
     data: travels,
     isLoading,
+    isFetching,
     isError,
+    error,
     hasNextPage,
     fetchNextPage,
   } = useCreateReviewSelectTravel();
@@ -58,19 +60,24 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
   }, []);
 
   useEffect(() => {
-    if (inView && hasNextPage) {
+    if (inView && hasNextPage && !isFetching) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+  }, [inView, hasNextPage, fetchNextPage, isFetching]);
 
   if (isLoading) {
     return (
       <div className="flex h-5 w-5 flex-col items-center justify-center gap-5 p-8">
-        <SpinnerIcon className="animate-spin" />
+        로딩중
       </div>
     );
   }
-  if (isError) return <div>에러</div>;
+
+  if (isError) return <div>에러{error?.message}</div>;
+
+  if (travels?.pages[0].content.length === 0) {
+    return <div key="no-travel">다녀온 여행이 없어요</div>;
+  }
 
   return (
     <div className="mt-4">
@@ -104,31 +111,27 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
             <span className="w-full overflow-y-scroll custom-scrollbar">
               {travels &&
                 travels.pages.map((page) =>
-                  page.content.length === 0 ? (
-                    <div key="no-travel">다녀온 여행이 없어요</div>
-                  ) : (
-                    page.content.map((travel) => (
-                      <button
-                        key={travel.travelId}
-                        type="button"
-                        aria-label={`${travel.travelName} 선택하기`}
-                        onClick={() =>
-                          handleSelect(travel.travelId, travel.travelName)
-                        }
-                        className="group flex max-h-16 w-full cursor-pointer items-center gap-1.5 px-3 py-1.5 text-interaction-inactive"
+                  page.content.map((travel) => (
+                    <button
+                      key={travel.travelId}
+                      type="button"
+                      aria-label={`${travel.travelName} 선택하기`}
+                      onClick={() =>
+                        handleSelect(travel.travelId, travel.travelName)
+                      }
+                      className="group flex max-h-16 w-full cursor-pointer items-center gap-1.5 px-3 py-1.5 text-interaction-inactive"
+                    >
+                      <CheckIcon
+                        className={`${selectedTravel.travelId === travel.travelId ? 'visible' : 'invisible'}`}
+                        aria-hidden="true"
+                      />
+                      <span
+                        className={`w-[95%] overflow-hidden truncate group-hover:text-label-neutral ${selectedTravel.travelId === travel.travelId ? 'text-label-neutral' : ''}`}
                       >
-                        <CheckIcon
-                          className={`${selectedTravel.travelId === travel.travelId ? 'visible' : 'invisible'}`}
-                          aria-hidden="true"
-                        />
-                        <span
-                          className={`w-[95%] overflow-hidden truncate group-hover:text-label-neutral ${selectedTravel.travelId === travel.travelId ? 'text-label-neutral' : ''}`}
-                        >
-                          {travel.travelName}
-                        </span>
-                      </button>
-                    ))
-                  ),
+                        {travel.travelName}
+                      </span>
+                    </button>
+                  )),
                 )}
               {hasNextPage ? (
                 <div
@@ -138,7 +141,9 @@ const SelectTravel = ({ id, title }: { id?: number; title?: string }) => {
                 >
                   <SpinnerIcon className="animate-spin" />
                 </div>
-              ) : null}
+              ) : (
+                <div aria-label="마지막 리스트 입니다" />
+              )}
             </span>
           </div>
         )}
