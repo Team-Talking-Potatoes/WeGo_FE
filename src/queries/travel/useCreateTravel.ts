@@ -52,6 +52,7 @@ const useCreateTravel = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['upcommingTravel'] });
+      queryClient.invalidateQueries({ queryKey: ['travels'] });
 
       if (user) {
         const { nickname } = user;
