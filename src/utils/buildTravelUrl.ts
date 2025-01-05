@@ -23,7 +23,7 @@ const buildTravelUrl = (filters: Filters, pageParam?: number): string => {
     params.append('page', String(pageParam));
   }
 
-  return `/travels?${params.toString()}`;
+  return `/travels?${params.toString()}&size=12`;
 };
 
 export default buildTravelUrl;
