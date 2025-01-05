@@ -19,7 +19,12 @@ const ReviewCardAddText = ({
           alt={`${nickname}의 여행리뷰 이미지`}
           width={100}
           height={100}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-opacity duration-300"
+          style={{ opacity: 0 }}
+          onLoadingComplete={(img: HTMLImageElement) => {
+            const imgElement = img;
+            imgElement.style.opacity = '1';
+          }}
         />
       </div>
       <div className="flex w-full flex-col gap-2">

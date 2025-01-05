@@ -55,7 +55,7 @@ const TravelDetailCategory = ({
   ];
 
   return (
-    <section className="mx-auto w-full px-5 xs:max-w-[540px] sm:px-0 md:col-span-2 md:max-w-full md:pt-4 xl:mx-0 xl:max-w-[652px]">
+    <section className="mx-auto min-h-[300px] w-full px-5 xs:max-w-[540px] sm:px-0 md:col-span-2 md:max-w-full md:pt-4 xl:mx-0 xl:max-w-[652px]">
       <header className="heading-1-b z-20 flex items-start gap-5 border-b text-label-alternative md:gap-8">
         {categories.map(({ label, value, disabled }) => (
           <button

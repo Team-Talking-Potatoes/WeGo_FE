@@ -79,7 +79,11 @@ const TravelCardBig = ({
           alt={`${travelName} - ${location} 여행 이미지`}
           width={400}
           height={200}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover opacity-0 duration-300 ease-in-out"
+          onLoadingComplete={(img) => {
+            img.classList.remove('opacity-0');
+            img.classList.add('opacity-100');
+          }}
         />
         {closed && (
           <div className="body-3-sb absolute inset-0 z-10 flex items-center justify-center text-primary-white">

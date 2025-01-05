@@ -15,7 +15,12 @@ const TravelPlanCard = ({
           alt={`${destination} 일정 이미지`}
           width={600}
           height={500}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-opacity duration-300 ease-in-out"
+          style={{ opacity: 0 }}
+          onLoadingComplete={(img: HTMLImageElement) => {
+            const imgElement = img;
+            imgElement.style.opacity = '1';
+          }}
         />
       </div>
 
