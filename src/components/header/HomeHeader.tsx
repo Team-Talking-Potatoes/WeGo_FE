@@ -20,7 +20,7 @@ const HomeHeader = () => {
       } else {
         setIsScrolled(false);
       }
-    }, 300);
+    }, 100);
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
