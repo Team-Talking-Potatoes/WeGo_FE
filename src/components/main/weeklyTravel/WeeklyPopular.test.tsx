@@ -11,6 +11,7 @@ jest.mock('@tanstack/react-query', () => ({
     mutate: jest.fn(),
     onError: jest.fn(),
   }),
+  useQueryClient: jest.fn(),
 }));
 
 describe('WeeklyPopular', () => {
