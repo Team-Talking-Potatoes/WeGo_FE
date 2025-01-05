@@ -61,7 +61,7 @@ export const useCreateReview = () => {
     }
 
     formData.append('travelId', travelId.toString());
-    formData.append('score', countStar.toString());
+    formData.append('starRating', countStar.toString());
     formData.append('title', title);
     formData.append('comment', comment);
 

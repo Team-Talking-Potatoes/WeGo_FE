@@ -127,12 +127,12 @@ const TravelButtons = ({
             fill="white"
             label="여행취소"
             handler={handleTravelCancel}
-            className="h-[52px] max-w-[242px]"
+            className="h-[52px] w-full max-w-[242px]"
           />
           <Button
             label="공유"
             handler={handleClickShare}
-            className="h-[52px] max-w-[242px]"
+            className="h-[52px] w-full max-w-[242px]"
           />
         </div>
         {isShareOpen && <TravelShare onClose={handleCloseShare} />}

@@ -32,14 +32,8 @@ const TravelList = () => {
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      // 1초 지연 후에 fetchNextPage 호출
-      const timeoutId = setTimeout(() => {
-        fetchNextPage();
-      }, 1000);
-
-      return () => clearTimeout(timeoutId);
+      fetchNextPage();
     }
-    return undefined;
   }, [inView, hasNextPage, fetchNextPage]);
 
   if (isLoading) {

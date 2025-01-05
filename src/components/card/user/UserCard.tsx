@@ -27,11 +27,9 @@ const UserCard = ({
 
       <div className="flex items-center justify-center gap-1.5">
         {hashTags
-          .split('#')
+          ?.split('#')
           .filter((str) => str.trim() !== '')
-          .map((str) => (
-            <UserTag label={str} key={str} />
-          ))}
+          .map((str) => <UserTag label={str} key={str} />)}
       </div>
     </Link>
   );

@@ -8,8 +8,8 @@ const TravelPlanCard = ({
   description,
 }: Omit<TravelPlan, 'tripDay' | 'tripOrderNumber'>) => {
   return (
-    <div className="aspect-[249/204] max-w-[546px] overflow-hidden rounded bg-background-alternative sm:flex sm:aspect-[538/130]">
-      <div className="flex h-[50%] w-full flex-shrink-0 overflow-hidden sm:h-full sm:w-[50%]">
+    <div className="max-w-[546px] overflow-hidden rounded bg-background-alternative sm:flex sm:aspect-[538/130]">
+      <div className="flex aspect-[249/100] h-[50%] w-full flex-shrink-0 overflow-hidden sm:h-full sm:w-[50%]">
         <Image
           src={image}
           alt={`${destination} 일정 이미지`}
@@ -19,14 +19,12 @@ const TravelPlanCard = ({
         />
       </div>
 
-      <div className="flex flex-col items-start justify-center px-3 py-4 sm:px-5 xl:w-[50%]">
-        <div className="heading-1-b flex items-center gap-1">
+      <div className="relative flex flex-col items-start justify-start overflow-scroll px-3 py-4 custom-scrollbar sm:px-5 xl:w-[50%]">
+        <div className="heading-1-b flex w-full items-start gap-1">
           <LocationIcon fill="#6B7280" stroke="#6B7280" />
           <span>{destination}</span>
         </div>
-        <div className="body-2-r line-clamp-2 pt-1 sm:line-clamp-none">
-          {description}
-        </div>
+        <div className="body-2-r">{description}</div>
       </div>
     </div>
   );
