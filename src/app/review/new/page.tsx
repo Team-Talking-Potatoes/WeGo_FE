@@ -5,7 +5,7 @@ import CreateReviewButtons from '@/components/review/new/CreateReviewButtons';
 import SelectTravel from '@/components/review/new/SelectTravel';
 import SelectHashTag from '@/components/review/new/organizer/SelectHashTag';
 import ReviewParticipantContainer from '@/components/review/new/participant/ReviewParticipantContainer';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SpinnerIcon from '@/assets/icon/loading/spinner-button.svg';
 
@@ -24,28 +24,36 @@ const CreateReviewPage = () => {
   }, [travelId]);
 
   return (
-    <form
-      method="dialog"
-      className="heading-1-sb flex h-fit w-full flex-col px-6 pb-6 pt-8 text-label-normal"
+    <Suspense
+      fallback={
+        <div className="mt-4 flex h-[46px] items-center justify-center">
+          <SpinnerIcon className="animate-spin" />
+        </div>
+      }
     >
-      <CreateReviewHeader />
-      <main className="flex flex-col gap-6">
-        {isLoading ? (
-          <div className="mt-4 flex h-[46px] items-center justify-center rounded border border-line-normal">
-            <SpinnerIcon className="animate-spin" />
-          </div>
-        ) : (
-          <SelectTravel id={travelId} title={title} />
-        )}
+      <form
+        method="dialog"
+        className="heading-1-sb flex h-fit w-full flex-col px-6 pb-6 pt-8 text-label-normal"
+      >
+        <CreateReviewHeader />
+        <main className="flex flex-col gap-6">
+          {isLoading ? (
+            <div className="mt-4 flex h-[46px] items-center justify-center rounded border border-line-normal">
+              <SpinnerIcon className="animate-spin" />
+            </div>
+          ) : (
+            <SelectTravel id={travelId} title={title} />
+          )}
 
-        {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
-      </main>
+          {isFirstPage ? <SelectHashTag /> : <ReviewParticipantContainer />}
+        </main>
 
-      <CreateReviewButtons
-        isFirstPage={isFirstPage}
-        clickNext={() => setIsFirstPage(false)}
-      />
-    </form>
+        <CreateReviewButtons
+          isFirstPage={isFirstPage}
+          clickNext={() => setIsFirstPage(false)}
+        />
+      </form>
+    </Suspense>
   );
 };
 
