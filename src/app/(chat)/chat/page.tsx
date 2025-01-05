@@ -1,15 +1,49 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 'use client';
 
 import ChatRoomsContainer from '@/components/chat/chatRoomList/ChatRoomsContainer';
 import ChatRoomContainer from '@/components/chat/chatRoom/ChatRoomContainer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useChatRooms } from '@/hooks/useChatRooms';
 import { RoomResponse } from '@/@types/chat';
 import MainNavigation from '@/components/nav/MainNavigation';
 import PCHeader from '@/components/header/PCHeader';
+import { useWebSocketStore } from '@/store/useWebSocketStore';
+import useGetUser from '@/queries/user/useGetUser';
 
 const ChatRoomsPage = () => {
   const [chatRoomId, setChatRoomId] = useState<string | null>(null);
+  const {
+    connected,
+    connect,
+    disconnect,
+    subscribeToAlarm,
+    unsubscribeFromAlarm,
+  } = useWebSocketStore();
+  const { data } = useGetUser();
+  const userId = data?.userId;
+
+  useEffect(() => {
+    connect();
+
+    return () => {
+      disconnect();
+    };
+  }, [connect, disconnect]);
+
+  useEffect(() => {
+    if (connected && userId) {
+      subscribeToAlarm(`${userId}`);
+    } else {
+      console.warn('WebSocket is not connected yet');
+    }
+
+    return () => {
+      unsubscribeFromAlarm(`${userId}`);
+    };
+  }, [connected, subscribeToAlarm, unsubscribeFromAlarm, userId]);
+
   const handleChatRoomId = (chatId: string) => {
     setChatRoomId(chatId);
   };
@@ -44,6 +78,7 @@ const ChatRoomsPage = () => {
           className={`relative w-full ${chatRoomId === null ? 'block' : 'hidden'} md:block md:min-w-[383px] md:max-w-[450px] md:border-r md:border-[#D9D9D9] xl:mt-20 xl:h-[calc(100dvh-80px)]`}
         >
           <ChatRoomsContainer
+            chatRoomId={chatRoomId as string}
             onChatRoomId={handleChatRoomId}
             chatRoomsData={chatRoomsData}
           />

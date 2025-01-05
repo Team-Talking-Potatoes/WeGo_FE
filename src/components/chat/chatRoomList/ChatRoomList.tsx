@@ -3,19 +3,19 @@ import { RoomResponse } from '@/@types/chat';
 
 interface Props {
   rooms: RoomResponse[];
-  onExit: (id: string) => void;
   onChatRoomId: (chatId: string) => void;
+  chatRoomId: string;
 }
 
-const ChatRoomList = ({ rooms, onExit, onChatRoomId }: Props) => {
+const ChatRoomList = ({ rooms, onChatRoomId, chatRoomId }: Props) => {
   return (
     <ul className="static h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
       {rooms.map((room) => (
         <ChatRoomItem
           key={room.chatId}
           room={room}
-          onExit={onExit}
           onChatRoomId={onChatRoomId}
+          selectedChatRoomId={chatRoomId}
         />
       ))}
     </ul>

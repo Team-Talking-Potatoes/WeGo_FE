@@ -14,7 +14,11 @@ export const useChatInput = ({
   onHeightChange,
 }: ChatInputOptions) => {
   const [message, setMessage] = useState('');
-  const [imageUrls, setImageUrls] = useState<File[]>([]);
+  const [imageUrls, setImageUrls] = useState<{ file: File; url: string }[]>([]);
+  const [modalData, setModalData] = useState({
+    title: '이미지 최대 등록 갯수 초과',
+    description: '이미지는 최대 9장 등록 가능합니다.',
+  });
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -53,7 +57,7 @@ export const useChatInput = ({
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [message, imageUrls]);
 
   const handleSend = async () => {
     if (isLoading) return;
@@ -65,7 +69,7 @@ export const useChatInput = ({
         if (imageUrls.length) {
           const uploadedImages = await mutateAsync({
             chatId,
-            images: imageUrls,
+            images: imageUrls.map(({ file }) => file),
           });
           onSendMessage(message.trim(), uploadedImages.data);
         } else onSendMessage(message.trim(), []);
@@ -79,34 +83,88 @@ export const useChatInput = ({
     }
   };
 
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+  const MAX_TOTAL_SIZE = 50 * 1024 * 1024; // 50MB
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const uploadedFiles = Array.from(event.target.files);
 
+      // 현재 업로드된 파일 개수 확인
       const totalImages = imageUrls.length + uploadedFiles.length;
-
       if (totalImages > 9) {
+        setModalData({
+          title: '이미지 최대 등록 갯수 초과',
+          description: '이미지는 최대 9장 등록 가능합니다.',
+        });
         openModal();
         if (fileInputRef.current) fileInputRef.current.value = '';
         return;
       }
 
-      setImageUrls((prev) => [...prev, ...uploadedFiles]);
+      // 개별 파일 크기 확인
+      const oversizedFiles = uploadedFiles.filter(
+        (file) => file.size > MAX_FILE_SIZE,
+      );
+      if (oversizedFiles.length > 0) {
+        setModalData({
+          title: '이미지 최대 크기 초과',
+          description: '각 파일 크기는 10MB를 초과할 수 없습니다.',
+        });
+        openModal();
+
+        if (fileInputRef.current) fileInputRef.current.value = '';
+        return;
+      }
+
+      // 전체 파일 크기 확인
+      const totalSize =
+        imageUrls.reduce((acc, img) => acc + img.file.size, 0) +
+        uploadedFiles.reduce((acc, file) => acc + file.size, 0);
+      if (totalSize > MAX_TOTAL_SIZE) {
+        setModalData({
+          title: '이미지 최대 크기 초과',
+          description: '전체 요청 크기는 50MB를 초과할 수 없습니다.',
+        });
+        openModal();
+
+        if (fileInputRef.current) fileInputRef.current.value = '';
+        return;
+      }
+
+      // 새로 추가된 파일에 대해 Blob URL 생성
+      const newImageUrls = uploadedFiles.map((file) => ({
+        file,
+        url: URL.createObjectURL(file),
+      }));
+
+      setImageUrls((prev) => [...prev, ...newImageUrls]);
     }
   };
 
-  const handleImageRemove = (url: File) => {
-    setImageUrls((prev) => prev.filter((imageUrl) => imageUrl !== url));
+  const handleImageRemove = (fileToRemove: File) => {
+    const removedImage = imageUrls.find((image) => image.file === fileToRemove);
+    if (removedImage) {
+      URL.revokeObjectURL(removedImage.url);
+    }
+    setImageUrls((prev) => prev.filter((image) => image.file !== fileToRemove));
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
   };
+
+  useEffect(() => {
+    return () => {
+      imageUrls.forEach((image) => URL.revokeObjectURL(image.url));
+    };
+  }, [imageUrls]);
 
   return {
     message,
     textareaRef,
     fileInputRef,
     imageUrls,
+    modalData,
     isOpen,
     isLoading,
     setMessage,

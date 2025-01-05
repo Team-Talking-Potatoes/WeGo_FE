@@ -14,6 +14,7 @@ import { useChatOverview } from '@/hooks/useChatOverview';
 import { useInView } from 'react-intersection-observer';
 import useGetUser from '@/queries/user/useGetUser';
 import ChatRoomSkeleton from '@/components/chat/skeleton/ChatRoomSkeleton';
+import { useWebSocketStore } from '@/store/useWebSocketStore';
 
 interface Props {
   chatId: string;
@@ -26,8 +27,20 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
   const messagesContainerRef = useRef<HTMLUListElement | null>(null);
   const previousScrollTopRef = useRef<number | null>(null);
 
-  const { data: user } = useGetUser();
-  const nickname = user?.nickname;
+  const { data } = useGetUser();
+  const nickname = data?.nickname;
+
+  const { chatUpdates } = useWebSocketStore();
+
+  const {
+    chatInfo,
+    isFetchingNextPage,
+    hasNextPage,
+    error,
+    isFetchingPreviousRef,
+    fetchNextPage,
+    handleSendMessage,
+  } = useChat(chatId);
 
   const {
     chatOverview,
@@ -45,17 +58,7 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
     handleCloseViewer,
     setCurrentImageIndex,
     setCurrentGroup,
-  } = useChatOverview(chatId);
-
-  const {
-    chatInfo,
-    isFetchingNextPage,
-    hasNextPage,
-    error,
-    isFetchingPreviousRef,
-    fetchNextPage,
-    handleSendMessage,
-  } = useChat(chatId, nickname as string, 5);
+  } = useChatOverview(chatId, chatInfo);
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -96,7 +99,9 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
           <div className="flex items-center justify-center gap-1 truncate">
             <span className="truncate">{chatInfo?.chatTitle}</span>
             <span className="title-5-sb text-primary-normal">
-              {chatOverview?.participants?.length}
+              {chatUpdates && chatUpdates[chatId]
+                ? chatUpdates[chatId].currentMemberCount
+                : chatOverview?.participants?.length}
             </span>
           </div>
         }

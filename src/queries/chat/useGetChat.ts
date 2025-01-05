@@ -28,10 +28,18 @@ export const useGetChat = (chatId: string) => {
       ) {
         return undefined;
       }
-      const oldestMessage = Number(lastPage.data.chatMessages[0].chatMessageId);
+      const oldestMessage = Number(
+        lastPage.data.chatMessages[lastPage.data.chatMessages.length - 1]
+          .chatMessageId,
+      );
       return oldestMessage;
     },
     staleTime: Infinity,
+    gcTime: Infinity,
+    refetchInterval: Infinity,
+    refetchOnWindowFocus: false, // 윈도우 포커스 시 리패칭 방지
+    refetchOnReconnect: false, // 네트워크 복구 시 리패칭 방지
+    refetchOnMount: false, // 컴포넌트 마운트 시 리패칭 방지
   });
 };
 

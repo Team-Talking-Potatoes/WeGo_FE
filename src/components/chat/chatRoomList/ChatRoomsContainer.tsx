@@ -24,16 +24,20 @@ interface ChatRooms {
 interface Props {
   onChatRoomId: (chatId: string) => void;
   chatRoomsData: ChatRooms;
+  chatRoomId: string;
 }
 
-const ChatRoomsContainer = ({ onChatRoomId, chatRoomsData }: Props) => {
+const ChatRoomsContainer = ({
+  onChatRoomId,
+  chatRoomsData,
+  chatRoomId,
+}: Props) => {
   const {
     sortedRooms,
     currentSort,
     isFetching,
     isLoading,
     error,
-    handleExitRoom,
     handleSortRooms,
   } = chatRoomsData;
 
@@ -67,8 +71,8 @@ const ChatRoomsContainer = ({ onChatRoomId, chatRoomsData }: Props) => {
       {!isLoading && sortedRooms && sortedRooms.length > 0 && (
         <ChatRoomList
           rooms={sortedRooms as RoomResponse[]}
-          onExit={handleExitRoom}
           onChatRoomId={onChatRoomId}
+          chatRoomId={chatRoomId}
         />
       )}
     </>

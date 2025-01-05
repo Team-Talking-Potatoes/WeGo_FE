@@ -162,7 +162,7 @@ const ChatMessage = ({
                             isLastInGroup ? 'bottom-[14px]' : 'bottom-0'
                           } text-label-neutral ${isMine ? 'right-0' : 'left-0'}`}
                         >
-                          {message.unreadCount}
+                          {/* {message.unreadCount} */}
                         </div>
                         {isLastInGroup && (
                           <div className="caption-1-r whitespace-nowrap text-label-alternative">
@@ -196,7 +196,7 @@ const ChatMessage = ({
                       isLastInGroup ? 'bottom-[14px]' : 'bottom-0'
                     } text-label-neutral ${isMine ? 'right-0' : 'left-0'}`}
                   >
-                    {message.unreadCount}
+                    {/* {message.unreadCount} */}
                   </div>
                   {isLastInGroup && (
                     <div className="caption-1-r whitespace-nowrap text-label-alternative">
@@ -214,3 +214,4 @@ const ChatMessage = ({
 };
 
 export default ChatMessage;
+// 언리드 주석

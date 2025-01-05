@@ -19,6 +19,7 @@ const ChatInput = ({ chatId, onSendMessage, onHeightChange }: Props) => {
     message,
     textareaRef,
     fileInputRef,
+    modalData,
     imageUrls,
     isOpen,
     setMessage,
@@ -50,13 +51,13 @@ const ChatInput = ({ chatId, onSendMessage, onHeightChange }: Props) => {
           <div className="ml-2.5 flex max-w-full flex-1 flex-col gap-2.5 overflow-x-hidden rounded-3xl bg-gray-100 px-4 py-2">
             {imageUrls.length > 0 && (
               <div className="flex gap-4 overflow-x-auto custom-scrollbar">
-                {imageUrls.map((file, index) => (
+                {imageUrls.map(({ file, url }, index) => (
                   <div
-                    key={URL.createObjectURL(file)}
+                    key={url}
                     className="relative mt-[6px] h-[56px] w-[56px] flex-shrink-0"
                   >
                     <Image
-                      src={URL.createObjectURL(file)}
+                      src={url}
                       alt={`업로드된 이미지 미리보기 ${index + 1}`}
                       fill
                       className="rounded object-cover"
@@ -113,9 +114,9 @@ const ChatInput = ({ chatId, onSendMessage, onHeightChange }: Props) => {
               </div>
             </div>
             <div className="text-center">
-              <h2 className="title-5-b mb-2">이미지 최대 등록 갯수 초과</h2>
+              <h2 className="title-5-b mb-2">{modalData.title}</h2>
               <p className="body-2-r text-label-neutral">
-                이미지는 최대 9장 등록 가능합니다.
+                {modalData.description}
               </p>
             </div>
             <div className="mt-9 flex justify-center">

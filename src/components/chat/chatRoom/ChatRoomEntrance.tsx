@@ -4,6 +4,7 @@ import { RoomResponse } from '@/@types/chat';
 import { Button } from '@/components/common/button/Button';
 import { useSetIsJoined } from '@/queries/chat/useSetChat';
 import UserIcon from '@/components/common/user/UserIcon';
+import { useWebSocketStore } from '@/store/useWebSocketStore';
 
 interface Props {
   chatId: string;
@@ -13,6 +14,7 @@ interface Props {
 
 const ChatRoomEntrance = ({ chatId, chatRoomData, onCloseChatRoom }: Props) => {
   const { mutate } = useSetIsJoined();
+  const { chatUpdates } = useWebSocketStore();
 
   const handleJoinChat = () => {
     mutate({ chatId });
@@ -32,7 +34,7 @@ const ChatRoomEntrance = ({ chatId, chatRoomData, onCloseChatRoom }: Props) => {
     <>
       <Header onRoute={onCloseChatRoom} title="채팅" isChatHeader />
 
-      <div className="mb-[120px] mt-[100px] flex h-full flex-1 flex-col items-center text-center xl:mt-[calc(60px+18%)]">
+      <div className="mb-[120px] mt-[100px] flex h-full flex-1 flex-col items-center text-center xl:mt-[12%]">
         <div className="relative mb-6 h-[100px] w-[100px] overflow-hidden rounded-full">
           <Image
             src={image}
@@ -54,7 +56,10 @@ const ChatRoomEntrance = ({ chatId, chatRoomData, onCloseChatRoom }: Props) => {
             {host}
           </span>
           <span className="body-2-m text-label-alternative">
-            {membersCount}/{totalMembersCount}명
+            {chatUpdates && chatUpdates[chatId]
+              ? chatUpdates[chatId].currentMemberCount
+              : membersCount}
+            /{totalMembersCount}명
           </span>
         </div>
         <Button

@@ -19,7 +19,7 @@ const TextareaContainerVariants = cva(
 );
 
 const TextareaVariants = cva(
-  'rounded py-3 px-4 outline-none text-sm resize-none pb-0 placeholder-shown:border-none w-full',
+  'rounded py-3 px-4 outline-none text-sm resize-none pb-0 placeholder-shown:border-none w-full custom-scrollbar',
   {
     variants: {
       size: {

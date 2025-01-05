@@ -25,23 +25,27 @@ export const sortRooms = (
 };
 
 export const formatDateToKorean = (dateString: string) => {
-  const dateParts = dateString.match(/\d+/g);
-  if (!dateParts) return '';
-
-  const year = dateParts[0];
-  const month = dateParts[1];
-  const day = dateParts[2];
+  const [datePart] = dateString.split(' '); // "2025.01.04"
+  const [year, month, day] = datePart
+    .split('.')
+    .map((value) => parseInt(value, 10));
 
   return `${year}년 ${month}월 ${day}일`;
 };
 
 export const formatTimeToKorean = (dateString: string) => {
-  const timeMatch = dateString.match(/(오전|오후)\s(\d+):(\d+)/);
-  if (!timeMatch) return '';
+  const [, timePart] = dateString.split(' '); // "16:30"
+  const [hourString, minute] = timePart.split(':');
+  let hour = parseInt(hourString, 10);
+  const period = hour >= 12 ? '오후' : '오전';
 
-  const period = timeMatch[1];
-  const hour = parseInt(timeMatch[2], 10);
-  const minutes = timeMatch[3];
+  if (hour > 12) {
+    hour -= 12;
+  } else if (hour === 0) {
+    hour = 12;
+  }
 
-  return `${period} ${hour}:${minutes}`;
+  return `${period} ${hour}:${minute}`;
 };
+
+// 값 변경으로 인한 수정

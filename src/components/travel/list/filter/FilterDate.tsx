@@ -2,14 +2,15 @@ import ArrowIcon from '@/assets/arrow_down.svg';
 import DatePickerModal from '@/components/createTrip/datepicker/DatePickerModal';
 import useDatePicker from '@/hooks/useDatePicker';
 import { useTravelListStore } from '@/store/useTravelListStore';
+import { useState } from 'react';
 
 const FilterDate = () => {
   const { startAt, endAt } = useTravelListStore((state) => state.filters);
   const setFilters = useTravelListStore((state) => state.setFilters);
-  const dateRange = {
+  const [dateRange, setDateRange] = useState({
     startDate: startAt ? new Date(startAt) : null,
     endDate: endAt ? new Date(endAt) : null,
-  };
+  });
 
   const calendar = useDatePicker(
     dateRange,
@@ -18,6 +19,7 @@ const FilterDate = () => {
         startAt: newDateRange.startDate?.toISOString().split('T')[0] || '',
         endAt: newDateRange.endDate?.toISOString().split('T')[0] || '',
       });
+      setDateRange(newDateRange);
     },
     true,
     true,
