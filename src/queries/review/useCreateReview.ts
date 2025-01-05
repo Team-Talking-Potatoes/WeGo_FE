@@ -1,11 +1,12 @@
 import { createReview } from '@/api/review/createReview';
 import useCreateReviewStore from '@/store/useCreateReview';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useQueryErrorHandler } from '../common/errorHandler';
 
 export const useCreateReview = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const {
     travelId,
@@ -22,6 +23,8 @@ export const useCreateReview = () => {
   const mutation = useMutation({
     mutationFn: (formData: FormData) => createReview(formData),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['myReview'] });
+      queryClient.invalidateQueries({ queryKey: ['review', 'listPage'] });
       resetStore();
       router.back();
     },

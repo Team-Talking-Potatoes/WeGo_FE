@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createTravel } from '@/api/travel/createTravel';
 import { QueryError } from '@/@types/query';
 import useModal from '@/hooks/useModal';
@@ -9,9 +9,11 @@ import { clearIndexedDB } from '@/utils/travelIndexedDB';
 import useGetUser from '@/queries/user/useGetUser';
 
 const useCreateTravel = () => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { showModal } = useModal();
   const { data: user } = useGetUser();
+
   return useMutation({
     mutationFn: createTravel,
     onError: (error: QueryError) => {
@@ -49,6 +51,9 @@ const useCreateTravel = () => {
       }
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['upcommingTravel'] });
+      queryClient.invalidateQueries({ queryKey: ['travels'] });
+
       if (user) {
         const { nickname } = user;
         showModal(
