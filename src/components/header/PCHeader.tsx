@@ -29,7 +29,10 @@ const PCHeader = () => {
               />
             </Link>
           ) : (
-            <Link href="/login">
+            <Link
+              href="/login"
+              className="flex h-8 w-8 items-center justify-center"
+            >
               <MypageIcon
                 width={24}
                 height={24}

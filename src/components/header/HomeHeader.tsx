@@ -81,7 +81,10 @@ const HomeHeader = () => {
               />
             </Link>
           ) : (
-            <Link href="/login">
+            <Link
+              href="/login"
+              className="flex h-8 w-8 items-center justify-center"
+            >
               <Mypage
                 width={24}
                 height={24}
