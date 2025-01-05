@@ -7,8 +7,8 @@ const useGetTravelReview = ({ travelId }: { travelId: number }) => {
     queryKey: QUERY_KEYS.TRAVEL.TRAVEL_DETAIL_REVIEW(travelId),
     queryFn: ({ pageParam = 1 }) => getTravelReview({ travelId, pageParam }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      return lastPage.data.hasNext ? lastPage.data.currentPage + 1 : undefined;
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.data.hasNext ? pages.length + 1 : undefined;
     },
     staleTime: Infinity,
   });
