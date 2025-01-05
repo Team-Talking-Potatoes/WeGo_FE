@@ -6,6 +6,7 @@ import { useReviewStore } from '@/store/useReviewStore';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import SpinnerIcon from '@/assets/spinner_round.svg';
+import ReviewSkeleton from '../skeleton/ReviewSkeleton';
 
 const ReviewContents = () => {
   const { ref, inView } = useInView();
@@ -14,7 +15,6 @@ const ReviewContents = () => {
   const {
     data: reviewsData,
     isLoading,
-    isError,
     fetchNextPage,
     hasNextPage,
   } = useReview({
@@ -27,8 +27,7 @@ const ReviewContents = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isLoading) return <div>로딩중</div>;
-  if (isError) return <div>에러</div>;
+  if (isLoading) return <ReviewSkeleton />;
 
   return (
     <div className="mt-3">
