@@ -22,8 +22,7 @@ describe('Writable', () => {
   it('여행 데이터가 있을 때 여행 카드가 렌더링된다', () => {
     (useWritableTravel as jest.Mock).mockReturnValue({
       data: {
-        total: 1,
-        travels: [
+        content: [
           {
             travelId: 1,
             travelName: '여행 1',
@@ -36,6 +35,7 @@ describe('Writable', () => {
             endAt: '2023-10-10',
           },
         ],
+        total: 1,
       },
     });
 
@@ -47,8 +47,8 @@ describe('Writable', () => {
   it('여행 데이터가 없을 때 NoTravel 컴포넌트가 렌더링된다', () => {
     (useWritableTravel as jest.Mock).mockReturnValue({
       data: {
+        content: [],
         total: 0,
-        travels: [],
       },
     });
 
@@ -59,8 +59,7 @@ describe('Writable', () => {
   it('페이지네이션이 렌더링된다', () => {
     (useWritableTravel as jest.Mock).mockReturnValue({
       data: {
-        total: 8,
-        travels: [
+        content: [
           {
             travelId: 1,
             travelName: '여행 1',
@@ -84,6 +83,7 @@ describe('Writable', () => {
             endAt: '2023-10-10',
           },
         ],
+        total: 8,
       },
     });
 

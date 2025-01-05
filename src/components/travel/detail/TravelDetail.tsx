@@ -24,6 +24,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
 
           <div className="flex w-full flex-col items-center md:pt-5 xl:sticky xl:top-28 xl:pt-0">
             <TravelInformation
+              travelLocation={travelDetail.travelLocation}
               travelName={travelDetail.travelName}
               isDomestic={travelDetail.isDomestic}
               minTravelMateCount={travelDetail.minTravelMateCount}
@@ -33,16 +34,15 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
               registrationEnd={travelDetail.registrationEnd}
               participant={travelDetail.participant}
             />
-            {!dateOver && travelDetail.participationFlag !== null && (
+            {!dateOver && (
               <TravelButtons
-                className="xl:hidden"
+                className="hidden xl:block"
                 travelId={travelDetail.travelId}
                 organizer={organizer?.id}
                 participationFlag={travelDetail.participationFlag}
               />
             )}
           </div>
-
           <TravelDetailCategory
             travelId={travelDetail.travelId}
             hashTags={travelDetail.hashTags}
@@ -53,8 +53,9 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
             startAt={travelDetail.startAt}
             endAt={travelDetail.endAt}
             organizer={organizer}
+            isBookmark={travelDetail.isBookmark}
           />
-          {!dateOver && travelDetail.participationFlag !== null && (
+          {!dateOver && (
             <TravelButtons
               className="xl:hidden"
               travelId={travelDetail.travelId}

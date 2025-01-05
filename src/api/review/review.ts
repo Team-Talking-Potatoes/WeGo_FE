@@ -12,9 +12,17 @@ interface TravelReviewParams {
   travelId: number;
   pageParam: number;
 }
+
 interface MyReview {
+  content: Review[];
   total: number;
-  reviews: Review[];
+  currentPage: number;
+  hasNext: boolean;
+}
+
+interface MyReviewResponse {
+  status: string;
+  data: MyReview;
 }
 
 interface TravelReview {
@@ -49,13 +57,13 @@ export const getTravelReviewRate = ({ travelId }: { travelId: number }) => {
 
 export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
   return http.get<ApiResponse<ReviewResponse>>(
-    `/reviews?page=${pageParam}&sortBy=${sortOrder}&limit=12`,
+    `/reviews?page=${pageParam}&sortBy=${sortOrder}&size=12`,
   );
 };
 
 export const getMyReview = (limit: number, offset: number) => {
-  return http.get<MyReview>(
-    `/reviews/published?limit=${limit}&offset=${offset}`,
+  return http.get<MyReviewResponse>(
+    `/reviews/published?size=${limit}&page=${offset}`,
   );
 };
 

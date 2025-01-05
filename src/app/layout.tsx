@@ -15,12 +15,24 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export const metadata: Metadata = {
   title: "WE'GO",
   description:
     "여러 사람들과 함께 떠나는 여행. WE'GO와 함께 다양한 여행모임을 만나보세요",
   icons: {
     icon: '/favicon.png',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
   },
 };
 

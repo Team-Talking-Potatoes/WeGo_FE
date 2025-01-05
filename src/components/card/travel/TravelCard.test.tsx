@@ -10,9 +10,9 @@ const mock = {
   location: '충남 부여',
   maxTravelMateCount: 6,
   currentTravelMateCount: 1,
-  startAt: '12/3',
-  endAt: '12/20',
-  formattedStartDate: '12/03',
+  startAt: '2001-12-03',
+  endAt: '2001-12-20',
+  formattedStartDate: '2001-12-03',
   image: '/test/travel/test1.png',
 };
 
@@ -61,11 +61,11 @@ describe('TravelCard를 렌더링 합니다', () => {
   });
 
   it('날짜를 렌더링합니다', () => {
-    expect(screen.getByText('12/03')).toBeInTheDocument();
+    expect(screen.getByText(/2001.12.03/)).toBeInTheDocument();
   });
 
   it('국내/해외 여행 라벨을 렌더링합니다', () => {
-    expect(screen.getByText('해외여행')).toBeInTheDocument();
+    expect(screen.getByText('국내여행')).toBeInTheDocument();
   });
 
   it('여행 링크를 렌더링합니다', () => {

@@ -8,7 +8,7 @@ const Written = () => {
   const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
   const { data: reviews } = useMyReview(itemsPerPage, currentPage - 1);
-  const totalPages = reviews ? Math.ceil(reviews.total / itemsPerPage) : 0;
+  const totalPages = reviews ? Math.ceil(reviews.data.total / itemsPerPage) : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -17,13 +17,13 @@ const Written = () => {
       className="w-full max-w-[335px] pb-10 md:max-w-[688px] xl:max-w-[1400px]"
       data-testid="written-reviews"
     >
-      {reviews && reviews.total > 0 ? (
+      {reviews && reviews.data.total > 0 ? (
         <div className="grid grid-cols-2 gap-4 pb-4 md:grid-cols-3 xl:grid-cols-6">
-          {reviews.reviews.map((review) => (
+          {reviews.data.content.map((review) => (
             <ReviewCard
-              key={review.id}
-              reviewId={review.id}
-              image={review.reviewImage}
+              key={review.reviewId}
+              reviewId={review.reviewId}
+              image={review.imageUrl}
               title={review.title}
               content={review.content}
               score={review.starRating}

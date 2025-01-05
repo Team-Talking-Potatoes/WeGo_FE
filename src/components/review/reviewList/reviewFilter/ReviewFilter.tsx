@@ -7,7 +7,7 @@ const ReviewFilter = () => {
   const sortOrder = useReviewStore((state) => state.filters.sortOrder);
   const setFilters = useReviewStore((state) => state.setFilters);
 
-  const handleSortOrder = (value: 'createdAt' | 'popular') => {
+  const handleSortOrder = (value: 'LATEST' | 'POPULAR') => {
     setFilters({ sortOrder: value });
   };
 
@@ -16,26 +16,26 @@ const ReviewFilter = () => {
       <ul className="flex items-center justify-start divide-x divide-line-normal">
         <li
           className={cn('body-2-r pr-2 text-label-alternative', {
-            'body-2-sb text-label-normal': sortOrder === 'createdAt',
+            'body-2-sb text-label-normal': sortOrder === 'LATEST',
           })}
         >
           <button
             type="button"
-            disabled={sortOrder === 'createdAt'}
-            onClick={() => handleSortOrder('createdAt')}
+            disabled={sortOrder === 'LATEST'}
+            onClick={() => handleSortOrder('LATEST')}
           >
             최근
           </button>
         </li>
         <li
           className={cn('body-2-r pl-2 text-label-alternative', {
-            'body-2-sb text-label-normal': sortOrder === 'popular',
+            'body-2-sb text-label-normal': sortOrder === 'POPULAR',
           })}
         >
           <button
             type="button"
-            disabled={sortOrder === 'popular'}
-            onClick={() => handleSortOrder('popular')}
+            disabled={sortOrder === 'POPULAR'}
+            onClick={() => handleSortOrder('POPULAR')}
           >
             인기
           </button>

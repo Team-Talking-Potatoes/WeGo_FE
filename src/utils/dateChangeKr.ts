@@ -26,12 +26,14 @@ export const getWeekNumber = (dateFrom = dayjs()) => {
  * @param dateString 변환하려는 날짜(20241203)
  * @param offsetDays dateString을 기준으로 더하고 싶은 숫자
  * @param includeYear 연도 포함 여부
+ * @param includeDay 요일 포함 여부
  * @return 2024.12.03(화) 혹은 12.03(화)
  */
 export const formatDateToShortWithDay = (
-  dateString: string,
+  dateString: string | undefined,
   offsetDays?: number,
   includeYear: boolean = true,
+  includeDay: boolean = true,
 ): string => {
   let date = dayjs(dateString, 'YYYYMMDD').locale('ko');
 
@@ -40,7 +42,7 @@ export const formatDateToShortWithDay = (
   }
   const dayName = date.format('ddd');
 
-  return includeYear
-    ? date.format(`YYYY.MM.DD(${dayName})`)
-    : date.format(`MM.DD(${dayName})`);
+  if (includeYear) return date.format(`YYYY.MM.DD(${dayName})`);
+  if (includeDay) return date.format(`MM.DD(${dayName})`);
+  return date.format(`YYYY.MM.DD`);
 };

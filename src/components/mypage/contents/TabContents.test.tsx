@@ -17,7 +17,6 @@ jest.mock('next/navigation', () => ({
     push: jest.fn(),
     replace: jest.fn(),
     back: jest.fn(),
-    // 필요한 다른 router 메서드들...
   }),
 }));
 
@@ -31,53 +30,61 @@ jest.mock('@/queries/travel/useGetMyTravel', () => ({
   useMySelfTravel: () => ({
     isLoading: false,
     data: {
-      total: 1,
-      travels: [
-        {
-          travelId: 11,
-          travelName: '도쿄에서 즐기는 미식여행',
-          expectedTripCost: 1000000,
-          travelMateCount: 11,
-          isDomestic: true,
-          travelStatus: '예정',
-          location: '도쿄시',
-          image: '/test/travel/test1.jpg',
-          startAt: '2024.12.11',
-          endAt: '2024.12.11',
-          maxTravelMateCount: 12,
-          currentTravelMateCount: 11,
-        },
-      ],
+      data: {
+        content: [
+          {
+            travelId: 11,
+            travelName: '도쿄에서 즐기는 미식여행',
+            expectedTripCost: 1000000,
+            travelMateCount: 11,
+            isDomestic: true,
+            travelStatus: '예정',
+            location: '도쿄시',
+            image: '/test/travel/test1.jpg',
+            startAt: '2024.12.11',
+            endAt: '2024.12.11',
+            maxTravelMateCount: 12,
+            currentTravelMateCount: 11,
+          },
+        ],
+        total: 1,
+      },
     },
   }),
   useWritableTravel: () => ({
     isLoading: false,
     data: {
-      content: [],
-      total: 0,
-      currentPage: 1,
-      hasNext: false,
+      data: {
+        content: [],
+        total: 0,
+      },
     },
   }),
   useCheckedTravel: () => ({
     isLoading: false,
     data: {
-      total: 3,
-      travels: [],
+      data: {
+        content: [],
+        total: 3,
+      },
     },
   }),
   usePastTravel: () => ({
     isLoading: false,
     data: {
-      total: 3,
-      travels: [],
+      data: {
+        content: [],
+        total: 3,
+      },
     },
   }),
   useUpcommingTravel: () => ({
     isLoading: false,
     data: {
-      total: 3,
-      travels: [],
+      data: {
+        content: [],
+        total: 3,
+      },
     },
   }),
 }));

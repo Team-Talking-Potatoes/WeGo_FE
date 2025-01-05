@@ -22,7 +22,7 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
   const verifyResponse =
     process.env.NODE_ENV === 'development'
       ? await verifyTokenMock(request)
-      : await verifyToken();
+      : await verifyToken(request);
 
   // 토큰 유효성 검증 통과가 필요한 페이지의 redirect
   if (
@@ -56,6 +56,15 @@ const authRedirect = async (request: NextRequest, response: NextResponse) => {
 };
 
 export const middleware = (request: NextRequest) => {
+  // 정적 파일 요청은 미들웨어 처리하지 않음
+  if (
+    request.nextUrl.pathname.startsWith('/_next') ||
+    request.nextUrl.pathname.includes('/api/') ||
+    request.nextUrl.pathname.match(/\.(ico|png|svg|jpg|jpeg|gif)$/)
+  ) {
+    return NextResponse.next();
+  }
+
   const response = NextResponse.next();
 
   // 서버 컴포넌트에서 pathname을 가져오기 위해 헤더에 설정
@@ -63,4 +72,18 @@ export const middleware = (request: NextRequest) => {
 
   // 로그인 여부에 따라 리다이렉트
   return authRedirect(request, response);
+};
+
+// 미들웨어가 실행될 경로 설정
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
 };

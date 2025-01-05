@@ -9,6 +9,7 @@ import {
   useBookmarkTravel,
   useDeleteBookmarkTravel,
 } from '@/queries/travel/useBookmarkTravel';
+import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import DomesticTag from '../../common/tag/DomesticTag';
 import ProgressBar from '../../common/progressbar/ProgressBar';
 import ExpiredTag from '../../common/tag/ExpiredTag';
@@ -118,8 +119,8 @@ const TravelCard = ({
               <ProfileICon />
               {`${currentTravelMateCount}/${maxTravelMateCount}`}
             </span>
-            <span className={`body-3-r ${iconAndText}`}>
-              {formattedStartDate}
+            <span className="body-3-r">
+              {formatDateToShortWithDay(formattedStartDate, 0, false, false)} -{' '}
             </span>
           </div>
           {!closed && <ProgressBar progressRate={progressRate} />}

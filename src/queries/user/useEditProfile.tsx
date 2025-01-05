@@ -44,7 +44,7 @@ const useEditProfile = () => {
         icon: ModalSuccessIcon,
         confirmText: '확인',
         onConfirm: () => {
-          router.push('/mypage');
+          router.replace('/mypage');
         },
       });
     },

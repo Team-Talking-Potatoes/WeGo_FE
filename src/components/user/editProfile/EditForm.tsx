@@ -25,7 +25,7 @@ const EditForm = () => {
     nickname: '',
     description: '',
   });
-  const [previewImage, setPreviewImage] = useState(user?.profileImage || '');
+  const [previewImage, setPreviewImage] = useState(user?.image || '');
 
   const { mutate: editProfile } = useEditProfile();
 

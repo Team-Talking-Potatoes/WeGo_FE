@@ -4,21 +4,22 @@ import {
   TravelDetail,
   TravelFilterResponse,
   MyTravel,
+  MyTravelResponse,
 } from '@/@types/travel';
 import buildTravelUrl from '@/utils/buildTravelUrl';
 import { ApiResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 export const postTravelParticipation = (travelId: number) => {
-  return http.post<any>(`/travels/participation?id=${travelId}`);
+  return http.post<any>(`/travels/${travelId}/participation`);
 };
 
 export const deleteTravelParticipation = (travelId: number) => {
-  return http.delete<any>(`/travels/participation?id=${travelId}`);
+  return http.delete<any>(`/travels/${travelId}/participation`);
 };
 
 export const deleteTravel = (travelId: number) => {
-  return http.delete<any>(`/travels?id=${travelId}`);
+  return http.delete<any>(`/travels/${travelId}`);
 };
 
 export const getPopularTravel = () => {
@@ -36,28 +37,30 @@ export const getTravels = (props: Filters & { pageParam?: number }) => {
 };
 
 export const postTravelBookMark = (id: number) => {
-  return http.post<any>(`/travels/bookmark?id=${id}`);
+  return http.post<any>(`/travels/bookmark?travelId=${id}`);
 };
 
 export const deleteTravelBookMark = (id: number) => {
-  return http.delete<any>(`/travels/bookmark?id=${id}`);
+  return http.delete<any>(`/travels/bookmark?travelId=${id}`);
 };
 
 /* ----------------------------- Apis in mypage ----------------------------- */
 export const upcommingTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(
-    `/travels/scheduled?limit=${limit}&offset=${offset}`,
+  return http.get<MyTravelResponse>(
+    `/travels/status?travelStatus=UPCOMING&size=${limit}&page=${offset}`,
   );
 };
 
 export const pastTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(
-    `/travels/finished?limit=${limit}&offset=${offset}`,
+  return http.get<MyTravelResponse>(
+    `/travels/status?travelStatus=PAST&size=${limit}&page=${offset}`,
   );
 };
 
 export const checkedTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(`/travels/checked?limit=${limit}&offset=${offset}`);
+  return http.get<MyTravelResponse>(
+    `/travels/checked?limit=${limit}&offset=${offset}`,
+  );
 };
 
 export const writableTravel = (limit: number, offset: number) => {
@@ -67,5 +70,7 @@ export const writableTravel = (limit: number, offset: number) => {
 };
 
 export const mySelfTravel = (limit: number, offset: number) => {
-  return http.get<MyTravel>(`/travels/created?limit=${limit}&offset=${offset}`);
+  return http.get<MyTravelResponse>(
+    `/travels/created?limit=${limit}&offset=${offset}`,
+  );
 };

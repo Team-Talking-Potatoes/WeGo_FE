@@ -2,6 +2,7 @@ import StarIcon from '@/assets/icon/star_20px.svg';
 import UserIcon from '@/components/common/user/UserIcon';
 import { ReviewDetail } from '@/@types/review';
 import Link from 'next/link';
+import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import ReviewThumbnail from './reviewThumbnail/ReviewThumbnail';
 import ReviewContent from './reviewContent/ReviewContent';
 import DetailLike from '../likeButton/DetailLike';
@@ -46,7 +47,7 @@ const ReviewDetailContainer = ({ data }: Props) => {
 
           <div className="text-grey-500 body-2-m mt-4 flex w-full items-center justify-between xl:mt-2.5">
             <div className="flex items-center gap-1 text-label-alternative">
-              <p>{data?.createdAt}</p>
+              <p>{formatDateToShortWithDay(data?.createdAt)}</p>
             </div>
             <div className="flex items-center gap-1">
               <StarIcon />

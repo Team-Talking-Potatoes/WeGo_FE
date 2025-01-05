@@ -1,9 +1,10 @@
 export interface Review {
-  reviewId?: number;
+  reviewId: number;
   id: number;
   title: string;
   nickname?: string;
   profileImage?: string;
+  imageUrl: string;
   reviewImage: string;
   content: string;
   score?: number;
@@ -11,7 +12,7 @@ export interface Review {
   travelLocation: string;
   createdAt: string;
   isLast: boolean;
-  isLiked?: boolean;
+  likesFlag?: boolean;
 }
 
 export interface ReviewResponse {
@@ -24,6 +25,9 @@ export interface ReviewResponse {
 
 export interface Filters {
   sortOrder: 'createdAt' | 'popular';
+}
+export interface ReviewListFilters {
+  sortOrder: 'LATEST' | 'POPULAR';
 }
 
 export interface ReviewDetail {

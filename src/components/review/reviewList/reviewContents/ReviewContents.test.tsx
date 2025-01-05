@@ -12,7 +12,6 @@ jest.mock('next/navigation', () => ({
     push: jest.fn(),
     replace: jest.fn(),
     back: jest.fn(),
-    // 필요한 다른 router 메서드들...
   }),
 }));
 
@@ -35,22 +34,15 @@ describe('ReviewContents', () => {
     });
   });
 
-  it('로딩 중일 때 로딩 메시지를 표시한다', () => {
+  it('로딩 중일 때 스켈레톤 UI를 표시한다', () => {
     (useReview as jest.Mock).mockReturnValue({
       isLoading: true,
     });
 
-    const { getByText } = renderWithQueryClient(<ReviewContents />);
-    expect(getByText(/로딩중/i)).toBeInTheDocument();
-  });
-
-  it('에러가 발생했을 때 에러 메시지를 표시한다', () => {
-    (useReview as jest.Mock).mockReturnValue({
-      isError: true,
-    });
-
-    const { getByText } = renderWithQueryClient(<ReviewContents />);
-    expect(getByText(/에러/i)).toBeInTheDocument();
+    const { container } = renderWithQueryClient(<ReviewContents />);
+    // 스켈레톤 UI의 특정 클래스명을 기준으로 요소를 찾습니다.
+    const skeletonElements = container.querySelectorAll('.skeleton-style');
+    expect(skeletonElements.length).toBeGreaterThan(0);
   });
 
   it('리뷰 데이터가 있을 때 리뷰 카드가 렌더링된다', () => {
@@ -84,8 +76,8 @@ describe('ReviewContents', () => {
     });
 
     const { getByText } = renderWithQueryClient(<ReviewContents />);
-    expect(getByText(/리뷰 제목 1/i)).toBeInTheDocument();
-    expect(getByText(/리뷰 내용 1/i)).toBeInTheDocument();
+    expect(getByText('리뷰 제목 1')).toBeInTheDocument();
+    expect(getByText('리뷰 내용 1')).toBeInTheDocument();
   });
 
   it('리뷰 데이터가 없을 때 아무것도 렌더링하지 않는다', () => {

@@ -19,16 +19,22 @@ const MobileHeader = () => {
         </Link>
 
         {user ? (
-          <Link href="/mypage">
+          <Link href="/mypage" className="flex items-center">
+            <span className="body-3-m pr-2 sm:body-2-m xl:hidden">
+              {user?.nickname}님
+            </span>
             <UserIcon
-              profileImage={user?.profileImage}
+              profileImage={user?.image}
               nickname={user?.nickname}
-              size="xs"
+              size="xxs"
               ariaLabel="마이페이지로 가기"
             />
           </Link>
         ) : (
-          <Link href="/login">
+          <Link
+            href="/login"
+            className="flex h-8 w-8 items-center justify-center"
+          >
             <MypageIcon
               width={24}
               height={24}

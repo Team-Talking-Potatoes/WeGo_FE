@@ -15,7 +15,7 @@ const Upcomming = () => {
     itemsPerPage,
     currentPage - 1,
   );
-  const totalPages = travels ? Math.ceil(travels.total / itemsPerPage) : 0;
+  const totalPages = travels ? Math.ceil(travels.data.total / itemsPerPage) : 0;
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -26,9 +26,9 @@ const Upcomming = () => {
       className="w-full max-w-[335px] pb-10 md:max-w-[688px] xl:max-w-[1400px]"
       data-testid="upcomming-travels"
     >
-      {travels && travels.total > 0 ? (
+      {travels && travels.data.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.travels.map((travel: TravelList) => (
+          {travels.data.content.map((travel: TravelList) => (
             <div key={travel.travelId}>
               <TravelCard
                 key={travel.travelId}

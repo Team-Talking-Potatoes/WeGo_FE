@@ -16,8 +16,8 @@ const FilterDomestic = () => {
     setFilters({ isDomestic: value });
   };
 
-  if (domestic === true) display = '해외';
-  else if (domestic === false) display = '국내';
+  if (domestic === true) display = '국내';
+  else if (domestic === false) display = '해외';
   else display = '지역전체';
 
   return (
@@ -41,14 +41,14 @@ const FilterDomestic = () => {
           지역전체
         </ListboxOption>
         <ListboxOption
-          value={false}
-          className={`w-full cursor-pointer border-y border-line-normal py-2.5 text-center ${domestic === false && 'text-label-normal'}`}
+          value
+          className={`w-full cursor-pointer border-y border-line-normal py-2.5 text-center ${domestic && 'text-label-normal'}`}
         >
           국내
         </ListboxOption>
         <ListboxOption
-          value
-          className={`cursor-pointer py-2.5 ${domestic && 'text-label-normal'}`}
+          value={false}
+          className={`cursor-pointer py-2.5 ${domestic === false && 'text-label-normal'}`}
         >
           해외
         </ListboxOption>

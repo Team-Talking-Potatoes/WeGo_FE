@@ -1,14 +1,20 @@
-import { getUserInfo, UserInfo } from '@/api/user/userInfo';
+import { getUserInfo, UserInfoResponse } from '@/api/user/userInfo';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { FetcherError } from '@/@types/api';
+import { MyPageProfile } from '@/@types/user';
 
 const useGetUser = () => {
   const queryClient = useQueryClient();
 
-  const { data, isLoading, error } = useQuery<UserInfo, FetcherError>({
+  const { data, isLoading, error } = useQuery<
+    UserInfoResponse,
+    FetcherError,
+    MyPageProfile
+  >({
     queryKey: ['user'],
     queryFn: getUserInfo,
+    select: (response) => response.data,
     staleTime: Infinity,
     gcTime: 1000 * 60 * 30,
     refetchOnMount: false,

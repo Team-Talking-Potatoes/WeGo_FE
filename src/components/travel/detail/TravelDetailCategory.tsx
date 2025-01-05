@@ -3,6 +3,7 @@
 import { Participant, TravelDetail } from '@/@types/travel';
 import React, { Suspense, useState } from 'react';
 import dayjs from 'dayjs';
+import SpinnerIcon from '@/assets/spinner_round.svg';
 import TabTravelReview from './category/TabTravelReview';
 import TabTravelDetail from './category/TabTravelDetail';
 
@@ -16,6 +17,7 @@ type Props = Pick<
   | 'startAt'
   | 'endAt'
   | 'participationFlag'
+  | 'isBookmark'
 > & { organizer?: Participant };
 type Category = 'details' | 'itinerary' | 'review';
 
@@ -33,6 +35,7 @@ const TravelDetailCategory = ({
   endAt,
   participationFlag,
   organizer,
+  isBookmark,
 }: Props) => {
   const [category, setCategory] = useState<Category>('details');
 
@@ -74,11 +77,18 @@ const TravelDetailCategory = ({
             organizer={organizer}
             hashTags={hashTags}
             description={description}
+            isBookmark={isBookmark}
           />
         )}
 
         {category === 'itinerary' && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="flex flex-col items-center justify-center p-8">
+                <SpinnerIcon className="animate-spin" />
+              </div>
+            }
+          >
             <TabTravelItinerary
               tripDuration={tripDuration}
               travelPlan={travelPlan}
@@ -87,7 +97,13 @@ const TravelDetailCategory = ({
           </Suspense>
         )}
         {category === 'review' && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="flex flex-col items-center justify-center p-8">
+                <SpinnerIcon className="animate-spin" />
+              </div>
+            }
+          >
             <TabTravelReview travelId={travelId} />
           </Suspense>
         )}

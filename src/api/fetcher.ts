@@ -1,4 +1,5 @@
 import { FetcherError } from '@/@types/api';
+import { getAccessTokenFromCookies } from '@/utils/cookies';
 
 type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -30,22 +31,35 @@ async function fetcher<T>(
     },
   };
 
+  const accessToken =
+    typeof window === 'undefined' ? await getAccessTokenFromCookies() : '';
+
   const mergedConfig = {
     ...defaultConfig,
     ...config,
-    headers: {
-      ...defaultConfig.headers,
-      ...config?.headers,
-    },
-  };
+    headers: Object.fromEntries(
+      Object.entries({
+        ...defaultConfig.headers,
+        ...config?.headers,
+        ...(accessToken ? { Cookie: `accessToken=${accessToken}` } : {}),
+        // eslint-disable-next-line
+      }).filter(([key, value]) => value !== undefined),
+    ),
+  } as FetcherConfig;
 
   if (mergedConfig.body instanceof FormData) {
-    delete mergedConfig.headers['Content-Type'];
+    if (mergedConfig.headers) {
+      delete mergedConfig.headers['Content-Type'];
+    }
   } else if (mergedConfig.body) {
     mergedConfig.body = JSON.stringify(mergedConfig.body);
   }
 
   const response = await fetch(`${BASE_URL}${endpoint}`, mergedConfig);
+
+  if (endpoint === '/auth/token/verify') {
+    return { status: response.status } as T;
+  }
 
   if (!response.ok) {
     const error = new Error('API request failed') as FetcherError;
