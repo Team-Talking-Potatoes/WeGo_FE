@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export interface Travel {
   travelId: number;
   travelName: string;
@@ -43,11 +45,8 @@ export type TravelCard = Pick<
   | 'bookmarkFlag'
 >;
 
-export interface Participant {
-  id: number;
-  nickname: string;
+export interface Participant extends Omit<User, 'description' | 'email'> {
   role: string;
-  profileImage: string;
 }
 
 export interface TravelReviewRateScore {
