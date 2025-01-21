@@ -41,10 +41,8 @@ export interface ImageInfo {
   uploader: string;
 }
 
-export interface Participant {
-  user: User['nickname'];
-  email: User['email'];
-  profileImage: User['image'];
+export interface Participant
+  extends Pick<User, 'email' | 'profileImage' | 'nickname'> {
   description: string;
   travelCount: number;
 }
