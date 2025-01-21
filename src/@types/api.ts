@@ -3,11 +3,19 @@ export interface APIError extends Error {
   message: string;
 }
 
-export interface ApiResponse<T> {
+export interface FetcherError extends Error {
+  status?: number;
+}
+
+export interface BaseResponse<T> {
   status: string;
   data: T;
 }
 
-export interface FetcherError extends Error {
-  status?: number;
+export interface ListResponse<T> {
+  status: string;
+  data: T[];
+  total: number;
+  currentPage: number;
+  hasNext: boolean;
 }
