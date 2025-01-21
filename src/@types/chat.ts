@@ -1,24 +1,27 @@
 import { CHAT_SORT_OPTIONS } from '@/constants/chat';
 
-export type SortType = keyof typeof CHAT_SORT_OPTIONS;
-
-export interface RoomResponse {
+export interface ChatRoom {
   chatId: string;
   chattingName: string;
+  description: string;
   host: string;
+  hostProfileImage: string;
   hasJoined: boolean;
+  unreadMessageCount: number;
   lastMessageTime: string;
   image: string;
-  unreadMessageCount: number;
   membersCount: number;
   totalMembersCount: number;
-  hostProfileImage: string;
-  description: string;
 }
 
-export interface ChattingResponse {
+export interface Chat {
   chatTitle: string;
   chatMessages: ChatMessage[];
+}
+
+export interface ChatOverview {
+  participants: Participant[];
+  album: ImageInfo[];
 }
 
 export interface ChatMessage {
@@ -31,16 +34,12 @@ export interface ChatMessage {
   unreadCount: number;
 }
 
-export interface ChatOverview {
-  participants: Participant[];
-  album: ImageInfo[];
-}
-
 export interface ImageInfo {
   images: string[];
   uploadDate: string;
   uploader: string;
 }
+
 export interface Participant {
   user: string;
   email: string;
@@ -48,3 +47,5 @@ export interface Participant {
   profileImage: string;
   travelCount: number;
 }
+
+export type SortType = keyof typeof CHAT_SORT_OPTIONS;
