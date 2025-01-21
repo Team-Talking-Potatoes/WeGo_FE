@@ -1,10 +1,10 @@
 import TravelCardBig from '@/components/card/travel/TravelCardBig';
-import { Travel } from '@/@types/travel';
+import { TravelCard } from '@/@types/travel';
 import Link from 'next/link';
 import ButtonRounded from '@/components/common/button/ButtonRounded';
 import WeeklyHeader from './WeeklyHeader';
 
-const WeeklyPopular = ({ travelList }: { travelList: Travel[] }) => {
+const WeeklyPopular = ({ travelList }: { travelList: TravelCard[] }) => {
   if (travelList.length === 0) {
     return (
       <section className="m-auto flex h-96 flex-col justify-center gap-6 px-5 pb-8 pt-[50px] md:px-10 md:pb-12 xl:max-w-[1480px] xl:pb-16">
@@ -30,15 +30,15 @@ const WeeklyPopular = ({ travelList }: { travelList: Travel[] }) => {
             <TravelCardBig
               key={travel.travelId}
               travelId={travel.travelId}
-              image={travel.image}
+              travelImage={travel.travelImage}
               isDomestic={travel.isDomestic}
               travelName={travel.travelName}
-              location={travel.location}
+              travelLocation={travel.travelLocation}
               maxTravelMateCount={travel.maxTravelMateCount}
               currentTravelMateCount={travel.currentTravelMateCount}
               startAt={travel.startAt}
               endAt={travel.endAt}
-              isBookmark={travel.isBookmark}
+              bookmarkFlag={travel.bookmarkFlag}
             />
           ))}
       </div>

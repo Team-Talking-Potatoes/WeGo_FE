@@ -1,47 +1,16 @@
 export interface Travel {
   travelId: number;
   travelName: string;
-  isDomestic: boolean;
-  travelStatus?: string;
-  location: string;
-  image: string;
-  startAt: string;
-  endAt: string;
-  maxTravelMateCount: number;
-  currentTravelMateCount: number;
-  formattedStartDate?: string;
+  description: string;
+  travelImage: string;
   expectedTripCost?: number;
-  isBookmark: boolean | null;
-}
-
-export interface TravelPlan {
-  tripDay: number;
-  tripOrderNumber: number;
-  destination: string;
-  description: string;
-  image: string;
-}
-
-export interface Participant {
-  id: number;
-  nickname: string;
-  role: string;
-  profileImage: string;
-}
-
-export interface TravelDetail {
-  travelId: number;
-  travelName: string;
-  description: string;
-  image: string;
-  expectedTripCost: number;
   currentTravelMateCount: number;
   minTravelMateCount: number;
   maxTravelMateCount: number;
   hashTags: string;
   isDomestic: boolean;
   travelLocation: string;
-  departureLocation: string;
+  departureLocation?: string;
   startAt: string;
   endAt: string;
   registrationEnd: string;
@@ -50,6 +19,35 @@ export interface TravelDetail {
   participant: Participant[];
   participationFlag: boolean | null;
   bookmarkFlag: boolean | null;
+}
+
+export interface TravelPlan {
+  tripDay: number;
+  tripOrderNumber: number;
+  destination: string;
+  description: string;
+  travelPlanImage: string;
+}
+
+export type TravelCard = Pick<
+  Travel,
+  | 'travelId'
+  | 'travelImage'
+  | 'isDomestic'
+  | 'travelName'
+  | 'travelLocation'
+  | 'maxTravelMateCount'
+  | 'currentTravelMateCount'
+  | 'startAt'
+  | 'endAt'
+  | 'bookmarkFlag'
+>;
+
+export interface Participant {
+  id: number;
+  nickname: string;
+  role: string;
+  profileImage: string;
 }
 
 export interface TravelReviewRateScore {
@@ -103,7 +101,7 @@ export interface TravelList {
 }
 
 export interface MyTravel {
-  content: TravelList[];
+  content: Travel[];
   total: number;
   currentPage: number;
   hasNext: boolean;
