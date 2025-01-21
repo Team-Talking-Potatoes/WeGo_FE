@@ -1,32 +1,14 @@
 export interface User {
-  id: number;
+  userId: number;
   email: string;
-  password: string;
-  name: string;
   nickname: string;
-  contact: string;
-  birthDate: number;
-  image: string;
-  createdAt: string;
-  updatedAt: string;
-  SaveList: [];
-  LikesList: [];
-  ParticipationList: [];
+  profileImage: string;
+  description: string;
 }
 
-export interface UserList {
-  userId: number;
-  profileImage: string;
-  nickName: string;
+export interface PopularUser
+  extends Pick<User, 'userId' | 'nickname' | 'profileImage'> {
   openTravelCount: number;
   reviewCount: number;
   hashTags: string;
-}
-
-export interface MyPageProfile {
-  userId: number;
-  email: string;
-  nickname: string;
-  image: string;
-  description: string;
 }
