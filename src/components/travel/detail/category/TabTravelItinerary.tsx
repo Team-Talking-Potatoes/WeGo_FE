@@ -1,12 +1,12 @@
 'use client';
 
-import { TravelDetail } from '@/@types/travel';
+import { Travel } from '@/@types/travel';
 import ArrowDownIcon from '@/assets/arrow_down.svg';
 import { useState } from 'react';
 import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import TravelPlanCard from '../../../card/travel/TravelPlanCard';
 
-type Props = Pick<TravelDetail, 'tripDuration' | 'travelPlan' | 'startAt'>;
+type Props = Pick<Travel, 'tripDuration' | 'travelPlan' | 'startAt'>;
 
 const TabTravelItinerary = ({ tripDuration, travelPlan, startAt }: Props) => {
   const [isOpen, setIsOpen] = useState<Set<number>>(new Set());
@@ -69,7 +69,7 @@ const TabTravelItinerary = ({ tripDuration, travelPlan, startAt }: Props) => {
                     <TravelPlanCard
                       // eslint-disable-next-line
                       key={`${plan.destination}${index}`}
-                      image={plan.image}
+                      travelPlanImage={plan.travelPlanImage}
                       destination={plan.destination}
                       description={plan.description}
                     />

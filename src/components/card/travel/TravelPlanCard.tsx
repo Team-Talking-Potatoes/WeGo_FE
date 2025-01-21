@@ -3,7 +3,7 @@ import LocationIcon from '@/assets/location.svg';
 import Image from 'next/image';
 
 const TravelPlanCard = ({
-  image,
+  travelPlanImage,
   destination,
   description,
 }: Omit<TravelPlan, 'tripDay' | 'tripOrderNumber'>) => {
@@ -11,7 +11,7 @@ const TravelPlanCard = ({
     <div className="max-w-[546px] overflow-hidden rounded bg-background-alternative sm:flex sm:aspect-[538/130]">
       <div className="flex aspect-[249/100] h-[50%] w-full flex-shrink-0 overflow-hidden sm:h-full sm:w-[50%]">
         <Image
-          src={image}
+          src={travelPlanImage}
           alt={`${destination} 일정 이미지`}
           width={600}
           height={500}

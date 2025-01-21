@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Location from '@/assets/location.svg';
 import ProfileICon from '@/assets/profile.svg';
-import { Travel } from '@/@types/travel';
+import { TravelCard as TravelCardProps } from '@/@types/travel';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import cn from '@/utils/cn';
@@ -15,26 +15,24 @@ import ProgressBar from '../../common/progressbar/ProgressBar';
 import ExpiredTag from '../../common/tag/ExpiredTag';
 import CheckMarkButton from '../../common/button/CheckMarkButton';
 
-interface Props extends Omit<Travel, 'isBookmark'> {
+interface Props extends TravelCardProps {
   closed?: boolean;
-  checkMark?: boolean;
-  isChecked?: boolean;
+  formattedStartDate?: string;
 }
 
 const TravelCard = ({
   travelId,
   isDomestic,
   travelName,
-  location,
+  travelLocation,
   maxTravelMateCount,
   currentTravelMateCount,
   formattedStartDate,
-  image,
+  travelImage,
   closed,
-  checkMark,
-  isChecked,
+  bookmarkFlag,
 }: Props) => {
-  const [isCheckedState, setIsCheckedState] = useState(isChecked);
+  const [isCheckedState, setIsCheckedState] = useState(bookmarkFlag);
   const [animate, setAnimate] = useState(false);
 
   const progressRate = useMemo(
@@ -79,8 +77,8 @@ const TravelCard = ({
         )}
       >
         <Image
-          src={image}
-          alt={`${travelName} - ${location} 여행 이미지`}
+          src={travelImage}
+          alt={`${travelName} - ${travelLocation} 여행 이미지`}
           width={300}
           height={300}
           className="h-full w-full rounded object-cover opacity-0 duration-300 ease-in-out"
@@ -94,7 +92,7 @@ const TravelCard = ({
             마감된 여행
           </div>
         )}
-        {checkMark && (
+        {isCheckedState !== null && (
           <CheckMarkButton
             isChecked={isCheckedState}
             animate={animate}
@@ -117,7 +115,7 @@ const TravelCard = ({
           <div className="flex items-center gap-[6px] text-gray-500">
             <span className={`body-3-sb ${iconAndText}`}>
               <Location />
-              {location}
+              {travelLocation}
             </span>
             <span className={`body-3-r ${iconAndText}`}>
               <ProfileICon />

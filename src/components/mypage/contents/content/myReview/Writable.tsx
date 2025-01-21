@@ -2,7 +2,6 @@ import { useState } from 'react';
 import TravelCard from '@/components/card/travel/TravelCard';
 import { checkTomorrow } from '@/utils/dateChangeKr';
 import Link from 'next/link';
-import { TravelList } from '@/@types/travel';
 import { useWritableTravel } from '@/queries/travel/useGetMyTravel';
 import Pagination from '@/components/common/pagination/Pagination';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
@@ -31,7 +30,7 @@ const Writable = () => {
     >
       {travels && travels.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.content.map((travel: TravelList) => (
+          {travels.content.map((travel) => (
             <div key={travel.travelId} className="relative">
               <TravelCard
                 key={travel.travelId}
@@ -40,11 +39,12 @@ const Writable = () => {
                 maxTravelMateCount={travel.maxTravelMateCount}
                 currentTravelMateCount={travel.currentTravelMateCount}
                 isDomestic={travel.isDomestic}
-                location={travel.location}
-                image={travel.image}
+                travelLocation={travel.travelLocation}
+                travelImage={travel.travelImage}
                 startAt={travel.startAt}
                 endAt={travel.endAt}
                 formattedStartDate={checkTomorrow(travel.startAt)}
+                bookmarkFlag
                 closed
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />

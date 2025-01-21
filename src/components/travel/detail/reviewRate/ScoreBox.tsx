@@ -17,7 +17,7 @@ const ScoreBox = ({
     4: scoreFrequency.fourStarReviews,
     5: scoreFrequency.fiveStarReviews,
   };
-
+  const scores = Object.keys(fullScoreFrequency).map(Number);
   return (
     <div className="flex h-40 w-full flex-shrink-0 items-center justify-center gap-[18px] rounded border border-gray-100 px-3.5 py-5 md:gap-12">
       <div className="flex flex-col items-center gap-2">
@@ -28,7 +28,7 @@ const ScoreBox = ({
         <div className="relative flex">
           <StarRate score={averageScore} />
           <div className="absolute flex">
-            {[1, 2, 3, 4, 5].map((v) => (
+            {scores.map((v) => (
               <BlueStart key={`star-${v}`} className="text-label-disable" />
             ))}
           </div>

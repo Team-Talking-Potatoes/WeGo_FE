@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Location from '@/assets/location.svg';
 import ProfileICon from '@/assets/profile.svg';
-import { Travel } from '@/@types/travel';
+import { TravelCard } from '@/@types/travel';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import cn from '@/utils/cn';
@@ -17,25 +17,24 @@ import ProgressBar from '../../common/progressbar/ProgressBar';
 import ExpiredTag from '../../common/tag/ExpiredTag';
 import CheckMarkButton from '../../common/button/CheckMarkButton';
 
-interface Props extends Travel {
+interface Props extends TravelCard {
   closed?: boolean;
-  isBookmark: boolean | null;
 }
 
 const TravelCardBig = ({
   travelId,
   isDomestic,
   travelName,
-  location,
+  travelLocation,
   maxTravelMateCount,
   currentTravelMateCount,
   startAt,
   endAt,
-  image,
+  travelImage,
   closed,
-  isBookmark,
+  bookmarkFlag,
 }: Props) => {
-  const [isCheckedState, setIsCheckedState] = useState(isBookmark);
+  const [isCheckedState, setIsCheckedState] = useState(bookmarkFlag);
   const [animate, setAnimate] = useState(false);
 
   const progressRate = useMemo(
@@ -75,8 +74,8 @@ const TravelCardBig = ({
         })}
       >
         <Image
-          src={image}
-          alt={`${travelName} - ${location} 여행 이미지`}
+          src={travelImage}
+          alt={`${travelName} - ${travelLocation} 여행 이미지`}
           width={400}
           height={200}
           className="h-full w-full object-cover opacity-0 duration-300 ease-in-out"
@@ -112,7 +111,7 @@ const TravelCardBig = ({
           <div className="body-3-sb line-clamp-1 flex h-3.5 items-center divide-x divide-line-normal text-gray-500">
             <div className="body-3-sb flex flex-shrink-0 items-center gap-0.5 pr-1.5">
               <Location />
-              {location}
+              {travelLocation}
             </div>
             <div className="body-3-r flex items-center gap-0.5 px-1.5">
               <ProfileICon />

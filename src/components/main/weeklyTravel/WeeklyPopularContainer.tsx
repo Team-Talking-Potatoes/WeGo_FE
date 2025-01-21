@@ -13,6 +13,7 @@ const WeeklyPopularContainer = async () => {
     queryKey: QUERY_KEYS.TRAVEL.POPULAR_TRAVEL,
     queryFn: getPopularTravel,
   });
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <WeeklyPopular travelList={data.data} />
