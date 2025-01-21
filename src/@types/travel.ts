@@ -45,7 +45,8 @@ export type TravelCard = Pick<
   | 'bookmarkFlag'
 >;
 
-export interface Participant extends Omit<User, 'description' | 'email'> {
+export interface Participant
+  extends Pick<User, 'userId' | 'profileImage' | 'nickname'> {
   role: string;
 }
 
