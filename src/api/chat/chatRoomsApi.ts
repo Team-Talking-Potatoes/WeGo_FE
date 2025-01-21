@@ -1,23 +1,15 @@
-import { RoomResponse, SortType } from '@/@types/chat';
+import { BaseResponse } from '@/@types/api';
+import { ChatRoom, SortType } from '@/@types/chat';
 import { http } from '../fetcher';
-
-interface RoomsResponse {
-  status: string;
-  data: RoomResponse[];
-}
-
-interface LeaveChatResponse {
-  status: string;
-  data: null;
-}
 
 export const getChatRooms = async (
   sortType: SortType,
-): Promise<RoomsResponse> => {
-  return http.get<RoomsResponse>(`/chat?sortType=${sortType}`);
+): Promise<BaseResponse<ChatRoom[]>> => {
+  return http.get<BaseResponse<ChatRoom[]>>(`/chat?sortType=${sortType}`);
 };
 
-export const leaveChat = async (chatId: string): Promise<LeaveChatResponse> => {
-  return http.delete<LeaveChatResponse>(`/chat/${chatId}`);
+export const leaveChat = async (
+  chatId: string,
+): Promise<BaseResponse<null>> => {
+  return http.delete<BaseResponse<null>>(`/chat/${chatId}`);
 };
-// 나가기 기능
