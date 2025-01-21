@@ -1,4 +1,5 @@
 import { CHAT_SORT_OPTIONS } from '@/constants/chat';
+import { User } from './user';
 
 export interface ChatRoom {
   chatId: string;
@@ -41,10 +42,10 @@ export interface ImageInfo {
 }
 
 export interface Participant {
-  user: string;
-  email: string;
+  user: User['nickname'];
+  email: User['email'];
+  profileImage: User['image'];
   description: string;
-  profileImage: string;
   travelCount: number;
 }
 
