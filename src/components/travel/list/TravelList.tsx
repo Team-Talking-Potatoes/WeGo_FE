@@ -4,7 +4,7 @@ import NoResult from '@/components/common/NoResult';
 import { useTravelListStore } from '@/store/useTravelListStore';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { checkTomorrow } from '@/utils/dateChangeKr';
+
 import useGetTravelsList from '@/queries/travel/useGetTravelsList';
 import { InitialFilters } from '@/@types/travel';
 import TravelCardBig from '@/components/card/travel/TravelCardBig';
@@ -64,16 +64,15 @@ const TravelList = () => {
             <TravelCardBig
               key={travel.travelId}
               travelId={travel.travelId}
-              image={travel.image}
+              travelImage={travel.travelImage}
               isDomestic={travel.isDomestic}
               travelName={travel.travelName}
-              location={travel.location}
+              travelLocation={travel.travelLocation}
               maxTravelMateCount={travel.maxTravelMateCount}
               currentTravelMateCount={travel.currentTravelMateCount}
               startAt={travel.startAt}
               endAt={travel.endAt}
-              formattedStartDate={checkTomorrow(travel.startAt)}
-              isBookmark={travel.isBookmark}
+              bookmarkFlag={travel.bookmarkFlag}
             />
           )),
         )}
