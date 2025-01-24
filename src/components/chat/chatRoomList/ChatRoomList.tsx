@@ -1,8 +1,8 @@
 import ChatRoomItem from '@/components/chat/chatRoomList/ChatRoomItem';
-import { RoomResponse } from '@/@types/chat';
+import { ChatRoom } from '@/@types/chat';
 
 interface Props {
-  rooms: RoomResponse[];
+  rooms: ChatRoom[];
   onChatRoomId: (chatId: string) => void;
   chatRoomId: string;
 }

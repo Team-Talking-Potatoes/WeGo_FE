@@ -50,7 +50,7 @@ const ChatSideBar = ({
       if (
         update.status === 'JOIN' &&
         update.participant &&
-        !participants.some((p) => p.user === update.participant?.user)
+        !participants.some((p) => p.nickname === update.participant?.nickname)
       ) {
         setParticipants((prev) => [...prev, update.participant!]);
       }
@@ -116,19 +116,19 @@ const ChatSideBar = ({
                   <UserIcon
                     size="md"
                     profileImage={participant.profileImage}
-                    nickname={participant.user}
-                    ariaLabel={`${participant.user ?? '유저'}의 프로필 이미지`}
+                    nickname={participant.nickname}
+                    ariaLabel={`${participant.nickname ?? '유저'}의 프로필 이미지`}
                   />
-                  {nickname === participant.user && (
+                  {nickname === participant.nickname && (
                     <div className="caption-1-sb absolute inset-0 flex items-center justify-center rounded-full bg-black/50 text-white">
                       ME
                     </div>
                   )}
                 </div>
                 <div
-                  className={`${nickname === participant.user ? 'body-2-sb' : 'body-2-r'} truncate text-label-normal`}
+                  className={`${nickname === participant.nickname ? 'body-2-sb' : 'body-2-r'} truncate text-label-normal`}
                 >
-                  {participant.user}
+                  {participant.nickname}
                 </div>
               </button>
             ))}

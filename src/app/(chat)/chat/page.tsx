@@ -6,7 +6,7 @@ import ChatRoomsContainer from '@/components/chat/chatRoomList/ChatRoomsContaine
 import ChatRoomContainer from '@/components/chat/chatRoom/ChatRoomContainer';
 import { useState, useEffect } from 'react';
 import { useChatRooms } from '@/hooks/useChatRooms';
-import { RoomResponse } from '@/@types/chat';
+import { ChatRoom } from '@/@types/chat';
 import MainNavigation from '@/components/nav/MainNavigation';
 import PCHeader from '@/components/header/PCHeader';
 import { useWebSocketStore } from '@/store/useWebSocketStore';
@@ -89,7 +89,7 @@ const ChatRoomsPage = () => {
           <ChatRoomContainer
             onCloseChatRoom={handleCloseChatRoom}
             chatRoomId={chatRoomId as string}
-            selectedRoom={selectedRoom as RoomResponse}
+            selectedRoom={selectedRoom as ChatRoom}
           />
         </div>
       </div>

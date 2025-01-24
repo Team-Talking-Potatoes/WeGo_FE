@@ -35,11 +35,11 @@ const ProfileModal = ({ isOpen, onClose, participant }: Props) => {
             <UserIcon
               size="lg"
               profileImage={participant.profileImage}
-              nickname={participant.user}
-              ariaLabel={`${participant.user ?? '유저'}의 프로필 이미지`}
+              nickname={participant.nickname}
+              ariaLabel={`${participant.nickname ?? '유저'}의 프로필 이미지`}
             />
             <h2 className="title-5-b mt-6 text-label-strong">
-              {participant.user}
+              {participant.nickname}
             </h2>
             <p className="body-3-r mb-4 text-label-alternative">
               {participant.email}

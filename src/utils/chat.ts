@@ -1,9 +1,9 @@
-import { RoomResponse, SortType } from '@/@types/chat';
+import { ChatRoom, SortType } from '@/@types/chat';
 
 export const sortRooms = (
-  rooms: RoomResponse[],
+  rooms: ChatRoom[],
   sortType: SortType,
-): RoomResponse[] => {
+): ChatRoom[] => {
   return [...rooms].sort((a, b) => {
     if (sortType === 'RECENT') {
       return (
@@ -47,5 +47,3 @@ export const formatTimeToKorean = (dateString: string) => {
 
   return `${period} ${hour}:${minute}`;
 };
-
-// 값 변경으로 인한 수정
