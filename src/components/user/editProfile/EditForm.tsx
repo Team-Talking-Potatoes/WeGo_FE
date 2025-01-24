@@ -6,14 +6,13 @@ import { useRouter } from 'next/navigation';
 import useEditProfile from '@/queries/user/useEditProfile';
 import useGetUser from '@/queries/user/useGetUser';
 import FormTitle from '@/components/common/form/FormTitle';
+import { User } from '@/@types/user';
 import Nickname from './input/Nickname';
 import ProfileImage from './input/ProfileImage';
 import DescriptionInput from './input/DescriptionInput';
 
-interface ProfileFormData {
+interface ProfileFormData extends Pick<User, 'nickname' | 'description'> {
   profileImage: File | null;
-  nickname: string;
-  description: string;
 }
 
 const EditForm = () => {
