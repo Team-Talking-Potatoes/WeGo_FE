@@ -31,7 +31,7 @@ const ResetAuthPassword = () => {
 
     resetAuthPassword({
       email: email ?? '',
-      password: password.value,
+      newPassword: password.value,
       token: token ?? '',
     });
   };

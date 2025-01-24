@@ -12,7 +12,7 @@ const useCheckCode = (
   return useMutation({
     mutationFn: checkCode,
     onSuccess: (data) => {
-      onSuccessCallback(data.verifiedToken);
+      onSuccessCallback(data.data.emailVerifyToken);
       showToast('이메일 인증이 완료되었습니다.', 'success');
     },
     onError: (error: QueryError) => {

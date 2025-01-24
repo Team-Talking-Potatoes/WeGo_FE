@@ -55,6 +55,7 @@ export const AUTH_MAX_LENGTH = {
   email: 25,
   password: 20,
   passwordConfirm: 20,
+  currentPassword: 20,
   newPassword: 20,
   name: 10,
   nickname: 10,
