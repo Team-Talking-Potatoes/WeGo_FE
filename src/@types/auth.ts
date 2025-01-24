@@ -1,4 +1,4 @@
-interface TextInput {
+export interface TextInput {
   email: string;
   verifyNumber: number;
   name: string;
@@ -7,17 +7,15 @@ interface TextInput {
   contact: string;
 }
 
-interface PasswordInput {
+export interface PasswordInput {
   currentPassword: string;
   password: string;
   newPassword: string;
   passwordConfirm: string;
 }
 
-interface ValidateOptions {
+export interface ValidateOptions {
   name: keyof TextInput | keyof PasswordInput;
   value: string;
   password?: string;
 }
-
-export type { TextInput, PasswordInput, ValidateOptions };
