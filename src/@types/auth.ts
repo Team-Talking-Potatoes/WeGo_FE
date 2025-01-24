@@ -1,13 +1,10 @@
-export interface TextInput {
+export interface AuthInput {
   email: string;
   verifyNumber: number;
   name: string;
   nickname: string;
   birthDate: number;
   contact: string;
-}
-
-export interface PasswordInput {
   currentPassword: string;
   password: string;
   newPassword: string;
@@ -15,7 +12,7 @@ export interface PasswordInput {
 }
 
 export interface ValidateOptions {
-  name: keyof TextInput | keyof PasswordInput;
+  name: keyof AuthInput;
   value: string;
   password?: string;
 }

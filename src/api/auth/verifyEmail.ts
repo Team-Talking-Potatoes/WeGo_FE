@@ -1,9 +1,9 @@
-import { TextInput } from '@/@types/auth';
+import { AuthInput } from '@/@types/auth';
 import { BaseResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
-type SendMailRequestBody = Pick<TextInput, 'email'>;
-type CheckCodeRequestBody = Pick<TextInput, 'email' | 'verifyNumber'>;
+type SendMailRequestBody = Pick<AuthInput, 'email'>;
+type CheckCodeRequestBody = Pick<AuthInput, 'email' | 'verifyNumber'>;
 
 /* -------------------------------- 인증 이메일 전송 (회원가입)------------------------------- */
 export const sendMail = (credentials: SendMailRequestBody) => {
