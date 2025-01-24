@@ -5,7 +5,7 @@ import UserIconList from './UserIconList';
 const mock = {
   participant: [
     {
-      id: 1,
+      userId: 1,
       nickname: '이름',
       role: 'role',
       profileImage: 'https://example.com/image.jpg',
@@ -16,31 +16,31 @@ const mock = {
 const mockList = {
   participant: [
     {
-      id: 1,
+      userId: 1,
       nickname: '이름',
       role: 'role',
       profileImage: 'https://example.com/image.jpg',
     },
     {
-      id: 2,
+      userId: 2,
       nickname: '이름',
       role: 'role',
       profileImage: 'https://example.com/image.jpg',
     },
     {
-      id: 3,
+      userId: 3,
       nickname: '이름',
       role: 'role',
       profileImage: 'https://example.com/image.jpg',
     },
     {
-      id: 4,
+      userId: 4,
       nickname: '4번',
       role: 'role',
       profileImage: 'https://example.com/image.jpg',
     },
     {
-      id: 5,
+      userId: 5,
       nickname: '마지막',
       role: 'role',
       profileImage: 'https://example.com/image.jpg',

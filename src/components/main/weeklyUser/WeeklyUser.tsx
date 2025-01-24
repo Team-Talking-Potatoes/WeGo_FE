@@ -3,13 +3,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { UserList } from '@/@types/user';
+import { PopularUser } from '@/@types/user';
 import Link from 'next/link';
 import ButtonRounded from '@/components/common/button/ButtonRounded';
 import UserCard from '../../card/user/UserCard';
 import WeeklyUserHeader from './WeeklyUserHeader';
 
-const WeeklyUser = ({ userList }: { userList: UserList[] }) => {
+const WeeklyUser = ({ userList }: { userList: PopularUser[] }) => {
   if (userList.length === 0) {
     return (
       <section className="mx-auto h-auto max-w-[1480px] px-5 pb-32 pt-12 sm:mb-14 md:px-10">
@@ -51,7 +51,7 @@ const WeeklyUser = ({ userList }: { userList: UserList[] }) => {
               >
                 <UserCard
                   userId={user.userId}
-                  nickName={user.nickName}
+                  nickname={user.nickname}
                   profileImage={user.profileImage}
                   openTravelCount={user.openTravelCount}
                   reviewCount={user.reviewCount}
