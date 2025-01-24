@@ -41,7 +41,7 @@ const MySelfTravel = () => {
                 travelImage={travel.travelImage}
                 startAt={travel.startAt}
                 endAt={travel.endAt}
-                bookmarkFlag
+                bookmarkFlag={travel.bookmarkFlag}
                 formattedStartDate={checkTomorrow(travel.startAt)}
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />

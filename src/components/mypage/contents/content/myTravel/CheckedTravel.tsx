@@ -42,7 +42,7 @@ const CheckedTravel = () => {
                 startAt={travel.startAt}
                 endAt={travel.endAt}
                 formattedStartDate={checkTomorrow(travel.startAt)}
-                bookmarkFlag
+                bookmarkFlag={travel.bookmarkFlag}
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />
             </div>

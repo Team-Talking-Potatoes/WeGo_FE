@@ -38,7 +38,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: Travel }) => {
               <TravelButtons
                 className="hidden xl:block"
                 travelId={travelDetail.travelId}
-                organizer={organizer?.id}
+                organizer={organizer?.userId}
                 participationFlag={travelDetail.participationFlag}
               />
             )}
@@ -59,7 +59,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: Travel }) => {
             <TravelButtons
               className="xl:hidden"
               travelId={travelDetail.travelId}
-              organizer={organizer?.id}
+              organizer={organizer?.userId}
               participationFlag={travelDetail.participationFlag}
             />
           )}
