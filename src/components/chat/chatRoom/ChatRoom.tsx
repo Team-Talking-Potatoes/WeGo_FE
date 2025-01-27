@@ -27,8 +27,6 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
   const previousScrollTopRef = useRef<number | null>(null);
 
   const { data } = useGetUser();
-  const nickname = data?.nickname;
-
   const { chatUpdates } = useWebSocketStore();
 
   const {
@@ -88,7 +86,8 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
     );
   }
 
-  if (!chatInfo || !chatOverview) return <ChatRoomSkeleton />;
+  if (!chatInfo || !chatOverview || !data) return <ChatRoomSkeleton />;
+  const { nickname } = data;
 
   return (
     <>
