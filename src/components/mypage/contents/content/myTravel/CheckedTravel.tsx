@@ -28,7 +28,7 @@ const CheckedTravel = () => {
     >
       {travels && travels.data.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.data.content.map((travel: TravelCardProps) => (
+          {travels.data?.content.map((travel: TravelCardProps) => (
             <div key={travel.travelId}>
               <TravelCard
                 key={travel.travelId}

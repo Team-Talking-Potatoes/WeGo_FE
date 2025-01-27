@@ -1,7 +1,13 @@
-import { PopularUser } from '@/@types/user';
+import { User } from '@/@types/user';
 import Link from 'next/link';
 import UserIcon from '../../common/user/UserIcon';
 import UserTag from '../../common/tag/UserTag';
+
+interface Props extends Pick<User, 'userId' | 'nickname' | 'profileImage'> {
+  openTravelCount: number;
+  reviewCount: number;
+  hashTags: string;
+}
 
 const UserCard = ({
   nickname,
@@ -10,7 +16,7 @@ const UserCard = ({
   reviewCount,
   hashTags,
   userId,
-}: PopularUser) => {
+}: Props) => {
   return (
     <Link
       href={`/${userId}`}

@@ -5,10 +5,3 @@ export interface User {
   profileImage: string;
   description: string;
 }
-
-export interface PopularUser
-  extends Pick<User, 'userId' | 'nickname' | 'profileImage'> {
-  openTravelCount: number;
-  reviewCount: number;
-  hashTags: string;
-}
