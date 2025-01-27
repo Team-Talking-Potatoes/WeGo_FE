@@ -1,9 +1,17 @@
+import { AuthInput } from '@/@types/auth';
+import { BaseResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
-export const checkPassword = (password: { password: string }) => {
-  return http.post<any>('/users/check/password', password);
+type PasswordRequestBody = Pick<AuthInput, 'password'>;
+
+interface CheckPasswordToken {
+  deleteUserToken: string;
+}
+
+export const checkPassword = (password: PasswordRequestBody) => {
+  return http.post<BaseResponse<object>>('/users/check/password', password);
 };
 
 export const deleteAccount = () => {
-  return http.delete<any>('/users');
+  return http.delete<BaseResponse<CheckPasswordToken>>('/users');
 };
