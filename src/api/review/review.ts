@@ -1,5 +1,5 @@
 import { Review, ReviewDetailResponse, ReviewResponse } from '@/@types/review';
-import { ApiResponse } from '@/@types/api';
+import { BaseResponse } from '@/@types/api';
 import { TravelReviewRateScore } from '@/@types/travel';
 import { http } from '../fetcher';
 
@@ -37,26 +37,26 @@ interface TravelReviewRate {
 }
 
 export const getPopularReview = () => {
-  return http.get<ApiResponse<Review[]>>('/reviews/popular');
+  return http.get<BaseResponse<Review[]>>('/reviews/popular');
 };
 
 export const getTravelReview = ({
   travelId,
   pageParam,
 }: TravelReviewParams) => {
-  return http.get<ApiResponse<TravelReview>>(
+  return http.get<BaseResponse<TravelReview>>(
     `/reviews?id=${travelId}&page=${pageParam}`,
   );
 };
 
 export const getTravelReviewRate = ({ travelId }: { travelId: number }) => {
-  return http.get<ApiResponse<TravelReviewRate>>(
+  return http.get<BaseResponse<TravelReviewRate>>(
     `/reviews/${travelId}/ratings`,
   );
 };
 
 export const getReview = ({ pageParam, sortOrder }: ReviewParams) => {
-  return http.get<ApiResponse<ReviewResponse>>(
+  return http.get<BaseResponse<ReviewResponse>>(
     `/reviews?page=${pageParam}&sortBy=${sortOrder}&size=12`,
   );
 };

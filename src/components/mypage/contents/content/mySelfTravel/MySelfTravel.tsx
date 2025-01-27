@@ -28,7 +28,7 @@ const MySelfTravel = () => {
     >
       {travels && travels.data.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.data.content.map((travel: TravelCardProps) => (
+          {travels.data?.content.map((travel: TravelCardProps) => (
             <div key={travel.travelId}>
               <TravelCard
                 key={travel.travelId}
@@ -41,7 +41,7 @@ const MySelfTravel = () => {
                 travelImage={travel.travelImage}
                 startAt={travel.startAt}
                 endAt={travel.endAt}
-                bookmarkFlag
+                bookmarkFlag={travel.bookmarkFlag}
                 formattedStartDate={checkTomorrow(travel.startAt)}
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />
