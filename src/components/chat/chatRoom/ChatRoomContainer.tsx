@@ -3,11 +3,11 @@
 import ChatRoomEntrance from '@/components/chat/chatRoom/ChatRoomEntrance';
 import ChatRoom from '@/components/chat/chatRoom/ChatRoom';
 import Chat from '@/assets/chat_gray.svg';
-import { RoomResponse } from '@/@types/chat';
+import { ChatRoom as ChatRoomType } from '@/@types/chat';
 
 interface Props {
   chatRoomId: string;
-  selectedRoom: RoomResponse;
+  selectedRoom: ChatRoomType;
   onCloseChatRoom: () => void;
 }
 

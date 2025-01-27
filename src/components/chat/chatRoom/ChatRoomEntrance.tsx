@@ -1,6 +1,6 @@
 import Header from '@/components/common/header/Header';
 import Image from 'next/image';
-import { RoomResponse } from '@/@types/chat';
+import { ChatRoom } from '@/@types/chat';
 import { Button } from '@/components/common/button/Button';
 import { useSetIsJoined } from '@/queries/chat/useSetChat';
 import UserIcon from '@/components/common/user/UserIcon';
@@ -8,7 +8,7 @@ import { useWebSocketStore } from '@/store/useWebSocketStore';
 
 interface Props {
   chatId: string;
-  chatRoomData: RoomResponse;
+  chatRoomData: ChatRoom;
   onCloseChatRoom: () => void;
 }
 

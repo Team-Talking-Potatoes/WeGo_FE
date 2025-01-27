@@ -1,16 +1,8 @@
 import { useGetChatOverview } from '@/queries/chat/useGetChat';
 import { useState, useEffect } from 'react';
-import {
-  ImageInfo,
-  ChatOverview,
-  ChatMessage,
-  ChattingResponse,
-} from '@/@types/chat';
+import { ImageInfo, ChatOverview, ChatMessage, Chat } from '@/@types/chat';
 
-export const useChatOverview = (
-  chatId: string,
-  chatInfo?: ChattingResponse | null,
-) => {
+export const useChatOverview = (chatId: string, chatInfo?: Chat | null) => {
   const { data } = useGetChatOverview(chatId);
   const [chatOverview, setChatOverview] = useState<ChatOverview | null>(null);
 
