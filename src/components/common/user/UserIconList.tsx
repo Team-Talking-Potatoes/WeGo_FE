@@ -10,7 +10,7 @@ const UserIconList = ({ participant }: { participant: Participant[] }) => {
     <div className="flex items-center space-x-[-12px]">
       {visibleUsers.map((user, index) => (
         <div
-          key={user.id}
+          key={user.userId}
           className="relative flex-shrink-0"
           style={{
             zIndex: index,

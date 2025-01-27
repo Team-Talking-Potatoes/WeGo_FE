@@ -32,9 +32,9 @@ const ProfileSection = () => {
       <div className="flex flex-col items-center xl:mt-8 xl:flex-row xl:justify-between">
         <div className="flex flex-col items-center justify-center xl:flex-row xl:gap-4">
           <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-slate-200">
-            {user?.image ? (
+            {user?.profileImage ? (
               <Image
-                src={user.image}
+                src={user.profileImage}
                 alt="프로필 이미지"
                 fill
                 className="object-cover opacity-0 duration-300 ease-in-out"
