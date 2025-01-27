@@ -70,7 +70,7 @@ const ChatRoomsContainer = ({
 
       {!isLoading && sortedRooms && sortedRooms.length > 0 && (
         <ChatRoomList
-          rooms={sortedRooms as ChatRoom[]}
+          rooms={sortedRooms}
           onChatRoomId={onChatRoomId}
           chatRoomId={chatRoomId}
         />
