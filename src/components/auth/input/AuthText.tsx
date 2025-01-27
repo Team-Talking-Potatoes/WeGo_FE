@@ -8,12 +8,12 @@ import {
   AUTH_MAX_LENGTH,
 } from '@/constants/auth';
 import TextInput from '@/components/common/input/TextInput';
-import type { TextInput as TextInputType } from '@/@types/auth';
+import type { AuthInput } from '@/@types/auth';
 import { memo } from 'react';
 
 interface Props {
   type: 'text' | 'email' | 'tel' | 'number';
-  name: keyof TextInputType;
+  name: keyof AuthInput;
   value: string;
   isValid: boolean | null;
   disabled?: boolean;

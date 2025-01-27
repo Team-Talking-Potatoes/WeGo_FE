@@ -1,10 +1,10 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import validate from '@/utils/validateAuthInput';
 import { debounce } from 'lodash';
-import { PasswordInput, TextInput } from '@/@types/auth';
+import { AuthInput } from '@/@types/auth';
 
 interface Props {
-  name: keyof TextInput | keyof PasswordInput;
+  name: keyof AuthInput;
   password?: string;
 }
 

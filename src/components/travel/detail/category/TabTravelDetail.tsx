@@ -39,7 +39,7 @@ const TabTravelDetail = ({
             travelId={travelId}
             bookmarkFlag={bookmarkFlag}
             userId={user.userId}
-            organizerId={organizer.id}
+            organizerId={organizer.userId}
           />
         )}
       </div>

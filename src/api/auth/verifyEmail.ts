@@ -4,6 +4,9 @@ import { http } from '../fetcher';
 
 type SendMailRequestBody = Pick<AuthInput, 'email'>;
 type CheckCodeRequestBody = Pick<AuthInput, 'email' | 'verifyNumber'>;
+interface EmailVerifyToken {
+  emailVerifyToken: string;
+}
 
 /* -------------------------------- 인증 이메일 전송 (회원가입)------------------------------- */
 export const sendMail = (credentials: SendMailRequestBody) => {
@@ -16,9 +19,9 @@ export const passwordSendMail = (credentials: SendMailRequestBody) => {
 };
 
 /* ------------------------------- 이메일 인증코드 확인 ------------------------------ */
-export const checkCode = ({ email, verifyNumber }: CheckCodeRequestBody) => {
-  return http.post<BaseResponse<object>>('/auth/emails/verification', {
-    email,
-    verifyNumber,
-  });
+export const checkCode = (credentials: CheckCodeRequestBody) => {
+  return http.post<BaseResponse<EmailVerifyToken>>(
+    '/auth/emails/verification',
+    credentials,
+  );
 };

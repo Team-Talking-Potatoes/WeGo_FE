@@ -10,7 +10,7 @@ const userInfoMock = {
   userId: 1,
   email: 'user@test.com',
   nickname: 'TestUser',
-  image: null,
+  profileImage: null,
   description: null,
 };
 

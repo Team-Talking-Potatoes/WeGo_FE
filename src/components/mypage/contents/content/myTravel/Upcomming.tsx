@@ -3,7 +3,7 @@ import Pagination from '@/components/common/pagination/Pagination';
 import { checkTomorrow } from '@/utils/dateChangeKr';
 import { useState } from 'react';
 import { useUpcommingTravel } from '@/queries/travel/useGetMyTravel';
-import { TravelList } from '@/@types/travel';
+import { TravelCard as TravelCardProps } from '@/@types/travel';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
 import MyTravelCardSkeleton from '@/components/mypage/skeleton/MyTravelCardSkeleton';
 import NoTravel from './NoTravel';
@@ -28,19 +28,20 @@ const Upcomming = () => {
     >
       {travels && travels.data.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.data.content.map((travel: TravelList) => (
+          {travels.data?.content.map((travel: TravelCardProps) => (
             <div key={travel.travelId}>
               <TravelCard
                 key={travel.travelId}
                 travelId={travel.travelId}
+                travelImage={travel.travelImage}
+                isDomestic={travel.isDomestic}
                 travelName={travel.travelName}
+                travelLocation={travel.travelLocation}
                 maxTravelMateCount={travel.maxTravelMateCount}
                 currentTravelMateCount={travel.currentTravelMateCount}
-                isDomestic={travel.isDomestic}
-                location={travel.location}
-                image={travel.image}
                 startAt={travel.startAt}
                 endAt={travel.endAt}
+                bookmarkFlag={travel.bookmarkFlag}
                 formattedStartDate={checkTomorrow(travel.startAt)}
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />
