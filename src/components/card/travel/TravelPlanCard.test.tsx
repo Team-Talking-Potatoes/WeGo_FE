@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import TravelPlanCard from './TravelPlanCard';
 
 const mockPlan = {
-  image: 'https://example.com/image.jpg',
+  travelPlanImage: 'https://example.com/image.jpg',
   destination: '대전 성심당',
   description: '웨이팅 1시간 예상, 빵 종류별로 사기',
 };
@@ -15,7 +15,7 @@ const renderTravelPlanCard = (overrides = {}) => {
   };
   render(
     <TravelPlanCard
-      image={props.image}
+      travelPlanImage={props.travelPlanImage}
       destination={props.destination}
       description={props.description}
     />,

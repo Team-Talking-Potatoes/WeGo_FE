@@ -3,60 +3,60 @@
     "travelId": 13,
     "isDomestic": false,
     "travelName": "부여로 떠나는 다함께 시골투어",
-    "location": "충남 부여",
+    "travelLocation": "충남 부여",
     "maxTravelMateCount": 6,
     "currentTravelMateCount": 5,
     "startAt": "2024.12.11",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test1.jpg",
-    "isBookmark": false
+    "travelImage": "/test/travel/test1.jpg",
+    "bookmarkFlag": false
   },
   {
     "travelId": 14,
     "isDomestic": true,
     "travelName": "도쿄에서 즐기는 미식여행",
-    "location": "도쿄시",
+    "travelLocation": "도쿄시",
     "maxTravelMateCount": 12,
     "currentTravelMateCount": 11,
     "startAt": "2024.12.06",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test2.jpg",
-    "isBookmark": false
+    "travelImage": "/test/travel/test2.jpg",
+    "bookmarkFlag": false
   },
   {
     "travelId": 15,
     "isDomestic": false,
     "travelName": "당일치기 남산타워 보러가기",
-    "location": "용산구",
+    "travelLocation": "용산구",
     "maxTravelMateCount": 10,
     "currentTravelMateCount": 10,
     "startAt": "2024.01.03",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test3.jpg",
-    "isBookmark": false
+    "travelImage": "/test/travel/test3.jpg",
+    "bookmarkFlag": false
   },
   {
     "travelId": 16,
     "isDomestic": true,
     "travelName": "지하철로 떠나는 일본 도심 투어",
-    "location": "오사카",
+    "travelLocation": "오사카",
     "maxTravelMateCount": 6,
     "currentTravelMateCount": 3,
     "startAt": "2024.12.31",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test4.jpg",
-    "isBookmark": false
+    "travelImage": "/test/travel/test4.jpg",
+    "bookmarkFlag": false
   },
   {
     "travelId": 17,
     "isDomestic": false,
     "travelName": "겨울에만 즐길 수 있는 고즈넉한 한옥 스테이",
-    "location": "북촌",
+    "travelLocation": "북촌",
     "maxTravelMateCount": 6,
     "currentTravelMateCount": 5,
     "startAt": "2024.12.24",
     "endAt": "2025.01.12",
-    "image": "/test/travel/test5.jpg",
-    "isBookmark": false
+    "travelImage": "/test/travel/test5.jpg",
+    "bookmarkFlag": false
   }
 ]
