@@ -37,4 +37,6 @@ export interface ReviewScore {
 
 export interface ReviewListFilters {
   sortOrder: 'LATEST' | 'POPULAR';
+  pageParam: number;
+  size: number;
 }

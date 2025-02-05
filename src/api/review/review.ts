@@ -27,7 +27,7 @@ export const getReview = ({
   sortOrder,
 }: {
   pageParam: number;
-  sortOrder: ReviewListFilters;
+  sortOrder: ReviewListFilters['sortOrder'];
 }) => {
   return http.get<ListResponse<Review>>(
     `/reviews?page=${pageParam}&sortByType=${sortOrder}&size=12`,

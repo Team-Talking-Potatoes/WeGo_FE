@@ -16,9 +16,7 @@ const ReviewContents = () => {
     isLoading,
     fetchNextPage,
     hasNextPage,
-  } = useReview({
-    sortOrder: filters.sortOrder,
-  });
+  } = useReview(filters.sortOrder);
 
   useEffect(() => {
     if (inView && hasNextPage) {
