@@ -57,46 +57,46 @@ const TravelList = () => {
   }
 
   return (
-    <section className="mb-5 grid h-full w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
-      <ul>
-        {travelListData &&
-          travelListData.pages.map((page) =>
-            page.data.content.map((travel) => (
-              <li key={travel.travelId}>
-                <TravelCardBig
-                  travelId={travel.travelId}
-                  travelImage={travel.travelImage}
-                  isDomestic={travel.isDomestic}
-                  travelName={travel.travelName}
-                  travelLocation={travel.travelLocation}
-                  maxTravelMateCount={travel.maxTravelMateCount}
-                  currentTravelMateCount={travel.currentTravelMateCount}
-                  startAt={travel.startAt}
-                  endAt={travel.endAt}
-                  bookmarkFlag={travel.bookmarkFlag}
-                />
-              </li>
-            )),
-          )}
-      </ul>
+    <ul className="mb-5 grid h-full w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
+      {travelListData &&
+        travelListData.pages.map((page) =>
+          page.data.content.map((travel) => (
+            <li key={travel.travelId}>
+              <TravelCardBig
+                travelId={travel.travelId}
+                travelImage={travel.travelImage}
+                isDomestic={travel.isDomestic}
+                travelName={travel.travelName}
+                travelLocation={travel.travelLocation}
+                maxTravelMateCount={travel.maxTravelMateCount}
+                currentTravelMateCount={travel.currentTravelMateCount}
+                startAt={travel.startAt}
+                endAt={travel.endAt}
+                bookmarkFlag={travel.bookmarkFlag}
+              />
+            </li>
+          )),
+        )}
 
       {hasNextPage ? (
         <>
-          <div
+          <li
             ref={ref}
             className="flex w-full justify-center"
             aria-label="여행 정보를 불러오는 중입니다."
           >
             <SkeletonTravelCardBig />
-          </div>
+          </li>
           {[1, 2, 3].map((v) => (
-            <SkeletonTravelCardBig key={v} />
+            <li key={v}>
+              <SkeletonTravelCardBig />
+            </li>
           ))}
         </>
       ) : (
-        <div aria-label="마지막 페이지 입니다" />
+        <li aria-label="마지막 페이지 입니다" />
       )}
-    </section>
+    </ul>
   );
 };
 
