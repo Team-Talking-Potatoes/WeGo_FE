@@ -36,17 +36,17 @@ const ReviewContents = () => {
             page.data.content
               ? page.data.content.map((review) => (
                   <ReviewCard
-                    key={`${filters.sortOrder}-${review.id}`}
-                    reviewId={review.id}
+                    key={`${filters.sortOrder}-${review.reviewId}`}
+                    reviewId={review.reviewId}
                     nickname={review.nickname}
                     profileImage={review.profileImage}
-                    image={review.reviewImage}
+                    reviewImage={review.reviewImage}
                     title={review.title}
                     content={review.content}
-                    score={review.starRating}
+                    starRating={review.starRating}
                     travelLocation={review.travelLocation}
                     createdAt={review.createdAt}
-                    isLiked={review.likesFlag ?? false}
+                    likesFlag={review.likesFlag ?? false}
                   />
                 ))
               : null,

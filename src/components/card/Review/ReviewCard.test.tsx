@@ -32,13 +32,13 @@ describe('리뷰 카드 컴포넌트', () => {
   const props = {
     reviewId: 1,
     profileImage: '/user.jpg',
-    image: '/test.png',
+    reviewImage: '/test.png',
     title: '테스트 리뷰',
     content: '이것은 테스트 리뷰 내용입니다.',
-    score: 4.5,
+    starRating: 4.5,
     travelLocation: '서울',
     createdAt: '2023-10-10',
-    isLiked: false,
+    likesFlag: false,
   };
 
   it('리뷰 카드가 올바르게 렌더링되어야 합니다 (리뷰 페이지)', () => {

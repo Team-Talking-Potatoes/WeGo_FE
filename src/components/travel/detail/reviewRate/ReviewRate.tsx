@@ -20,7 +20,7 @@ const ReviewRate = ({ travelId }: { travelId: number }) => {
     return (
       <ScoreBox
         averageScore={data.data.totalRating}
-        scoreFrequency={data.data.reviews}
+        scoreFrequency={data.data.reviewRatings}
       />
     );
   }

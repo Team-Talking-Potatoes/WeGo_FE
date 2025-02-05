@@ -2,7 +2,7 @@ import { ReviewListFilters } from '@/@types/review';
 import { getReview } from '@/api/review/review';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const useReview = ({ sortOrder }: ReviewListFilters) => {
+const useReview = (sortOrder: ReviewListFilters) => {
   return useInfiniteQuery({
     queryKey: ['review', 'listPage', sortOrder],
     queryFn: ({ pageParam }) => getReview({ pageParam, sortOrder }),

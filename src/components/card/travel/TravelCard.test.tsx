@@ -7,13 +7,14 @@ const mock = {
   travelId: 12,
   isDomestic: true,
   travelName: '부여로 떠나는 다함께 시골투어',
-  location: '충남 부여',
+  travelLocation: '충남 부여',
   maxTravelMateCount: 6,
   currentTravelMateCount: 1,
   startAt: '2001-12-03',
   endAt: '2001-12-20',
   formattedStartDate: '2001-12-03',
-  image: '/test/travel/test1.png',
+  travelImage: '/test/travel/test1.png',
+  bookmarkFlag: false,
 };
 
 const renderTravelCard = (overrides = {}) => {
@@ -29,13 +30,14 @@ const renderTravelCard = (overrides = {}) => {
         travelId={props.travelId}
         isDomestic={props.isDomestic}
         travelName={props.travelName}
-        location={props.location}
+        travelLocation={props.travelLocation}
         maxTravelMateCount={props.maxTravelMateCount}
         currentTravelMateCount={props.currentTravelMateCount}
         startAt={props.startAt}
         endAt={props.endAt}
         formattedStartDate={props.formattedStartDate}
-        image={props.image}
+        travelImage={props.travelImage}
+        bookmarkFlag={props.bookmarkFlag}
       />
     </QueryClientProvider>,
   );
@@ -83,7 +85,7 @@ describe('TravelCard를 렌더링 합니다', () => {
 
 describe('TravelCard가 올바르게 렌더링 되지 않습니다', () => {
   it('여행 이미지가 없을 경우, 이미지를 렌더링하지 않습니다', () => {
-    renderTravelCard({ image: '' });
+    renderTravelCard({ travelImage: '' });
     const travelImage = screen.queryByAltText(
       '부여로 떠나는 다함께 시골투어 - 충남 부여 여행 이미지',
     );
@@ -97,8 +99,8 @@ describe('TravelCard가 올바르게 렌더링 되지 않습니다', () => {
   });
 
   it('여행 위치가 없을 경우, 렌더링하지 않습니다', () => {
-    renderTravelCard({ location: '' });
-    const travelLocation = screen.queryByText(mock.location);
+    renderTravelCard({ travelLocation: '' });
+    const travelLocation = screen.queryByText(mock.travelLocation);
     expect(travelLocation).not.toBeInTheDocument();
   });
 

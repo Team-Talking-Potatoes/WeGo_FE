@@ -1,6 +1,6 @@
 import StarIcon from '@/assets/icon/star_20px.svg';
 import UserIcon from '@/components/common/user/UserIcon';
-import { ReviewDetail } from '@/@types/review';
+import { Review } from '@/@types/review';
 import Link from 'next/link';
 import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import ReviewThumbnail from './reviewThumbnail/ReviewThumbnail';
@@ -8,7 +8,7 @@ import ReviewContent from './reviewContent/ReviewContent';
 import DetailLike from '../likeButton/DetailLike';
 
 interface Props {
-  data: ReviewDetail | undefined;
+  data: Partial<Review> | undefined;
 }
 
 const ReviewDetailContainer = ({ data }: Props) => {
@@ -26,7 +26,7 @@ const ReviewDetailContainer = ({ data }: Props) => {
             <div className="body-2-m flex items-center gap-2 text-label-neutral">
               <UserIcon
                 nickname={data?.nickname || ''}
-                profileImage={data?.userProfileImage || ''}
+                profileImage={data?.profileImage || ''}
                 size="xs"
               />
               <p className="body-2-m">{data?.nickname}</p>
