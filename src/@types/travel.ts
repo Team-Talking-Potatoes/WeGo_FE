@@ -80,11 +80,6 @@ export interface TravelParams {
   filters?: Filters;
 }
 
-export interface TravelFilterResponse {
-  content: Travel[];
-  currentPage: number;
-  hasNext: boolean;
-}
 export interface TravelList {
   travelId: number;
   travelName: string;

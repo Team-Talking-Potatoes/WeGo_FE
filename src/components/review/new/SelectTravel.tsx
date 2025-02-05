@@ -72,7 +72,7 @@ const SelectTravel = () => {
 
   if (isError) return <div>에러{error?.message}</div>;
 
-  if (travels?.pages[0].content.length === 0) {
+  if (travels?.pages[0].data.content.length === 0) {
     return <div key="no-travel">다녀온 여행이 없어요</div>;
   }
 
@@ -108,7 +108,7 @@ const SelectTravel = () => {
             <span className="w-full overflow-y-scroll custom-scrollbar">
               {travels &&
                 travels.pages.map((page) =>
-                  page.content.map((travel) => (
+                  page.data.content.map((travel) => (
                     <button
                       key={travel.travelId}
                       type="button"

@@ -57,25 +57,29 @@ const TravelList = () => {
   }
 
   return (
-    <div className="mb-5 grid h-full w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
-      {travelListData &&
-        travelListData.pages.map((page) =>
-          page.data.content.map((travel) => (
-            <TravelCardBig
-              key={travel.travelId}
-              travelId={travel.travelId}
-              travelImage={travel.travelImage}
-              isDomestic={travel.isDomestic}
-              travelName={travel.travelName}
-              travelLocation={travel.travelLocation}
-              maxTravelMateCount={travel.maxTravelMateCount}
-              currentTravelMateCount={travel.currentTravelMateCount}
-              startAt={travel.startAt}
-              endAt={travel.endAt}
-              bookmarkFlag={travel.bookmarkFlag}
-            />
-          )),
-        )}
+    <section className="mb-5 grid h-full w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
+      <ul>
+        {travelListData &&
+          travelListData.pages.map((page) =>
+            page.data.content.map((travel) => (
+              <li key={travel.travelId}>
+                <TravelCardBig
+                  travelId={travel.travelId}
+                  travelImage={travel.travelImage}
+                  isDomestic={travel.isDomestic}
+                  travelName={travel.travelName}
+                  travelLocation={travel.travelLocation}
+                  maxTravelMateCount={travel.maxTravelMateCount}
+                  currentTravelMateCount={travel.currentTravelMateCount}
+                  startAt={travel.startAt}
+                  endAt={travel.endAt}
+                  bookmarkFlag={travel.bookmarkFlag}
+                />
+              </li>
+            )),
+          )}
+      </ul>
+
       {hasNextPage ? (
         <>
           <div
@@ -92,7 +96,7 @@ const TravelList = () => {
       ) : (
         <div aria-label="마지막 페이지 입니다" />
       )}
-    </div>
+    </section>
   );
 };
 

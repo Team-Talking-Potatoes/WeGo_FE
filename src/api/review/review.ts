@@ -1,5 +1,5 @@
 import { Review, ReviewDetailResponse, ReviewResponse } from '@/@types/review';
-import { BaseResponse } from '@/@types/api';
+import { BaseResponse, ListResponse } from '@/@types/api';
 import { TravelReviewRateScore } from '@/@types/travel';
 import { http } from '../fetcher';
 
@@ -25,12 +25,6 @@ interface MyReviewResponse {
   data: MyReview;
 }
 
-interface TravelReview {
-  content: Review[];
-  total: number;
-  hasNext: boolean;
-  currentPage: number;
-}
 interface TravelReviewRate {
   reviews: TravelReviewRateScore;
   totalRating: number;
@@ -44,7 +38,7 @@ export const getTravelReview = ({
   travelId,
   pageParam,
 }: TravelReviewParams) => {
-  return http.get<BaseResponse<TravelReview>>(
+  return http.get<ListResponse<Review>>(
     `/reviews?id=${travelId}&page=${pageParam}`,
   );
 };
