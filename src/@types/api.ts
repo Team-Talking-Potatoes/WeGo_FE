@@ -14,8 +14,10 @@ export interface BaseResponse<T> {
 
 export interface ListResponse<T> {
   status: string;
-  data: T[];
-  total: number;
-  currentPage: number;
-  hasNext: boolean;
+  data: {
+    content: T[];
+    total: number;
+    currentPage: number;
+    hasNext: boolean;
+  };
 }
