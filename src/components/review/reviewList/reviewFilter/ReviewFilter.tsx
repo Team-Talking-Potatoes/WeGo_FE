@@ -8,7 +8,7 @@ const ReviewFilter = () => {
   const setFilters = useReviewStore((state) => state.setFilters);
 
   const handleSortOrder = (value: 'LATEST' | 'POPULAR') => {
-    setFilters({ sortOrder: value });
+    setFilters({ sortOrder: value, pageParam: 0, size: 12 });
   };
 
   return (

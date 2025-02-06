@@ -47,7 +47,7 @@ const TabTravelReview = ({ travelId }: { travelId: number }) => {
                     nickname={review.nickname}
                     reviewImage={review.reviewImage}
                     content={review.title}
-                    score={review.starRating}
+                    starRating={review.starRating}
                   />
                 </Link>
               )),

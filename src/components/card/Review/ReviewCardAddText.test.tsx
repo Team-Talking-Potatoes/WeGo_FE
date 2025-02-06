@@ -6,7 +6,7 @@ const mockReveiwAndText = {
   nickname: '녹차',
   reviewImage: 'https://example.com/image.jpg',
   content: '맛있는 녹차',
-  score: 5,
+  starRating: 5,
 };
 
 const renderReviewCard = (overrides = {}) => {
@@ -19,7 +19,7 @@ const renderReviewCard = (overrides = {}) => {
       nickname={props.nickname}
       reviewImage={props.reviewImage}
       content={props.content}
-      score={props.score}
+      starRating={props.starRating}
     />,
   );
 };
@@ -52,7 +52,7 @@ describe('ReviewCardAddText', () => {
   });
 
   it('점수가 없을 경우 점수 텍스트가 렌더링되지 않습니다', () => {
-    renderReviewCard({ score: undefined });
+    renderReviewCard({ starRating: undefined });
     const score = screen.queryByText('5');
     expect(score).not.toBeInTheDocument();
   });

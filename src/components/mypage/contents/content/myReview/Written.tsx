@@ -23,10 +23,10 @@ const Written = () => {
             <ReviewCard
               key={review.reviewId}
               reviewId={review.reviewId}
-              image={review.imageUrl}
+              reviewImage={review.reviewImage}
               title={review.title}
               content={review.content}
-              score={review.starRating}
+              starRating={review.starRating}
               travelLocation={review.travelLocation}
               createdAt={review.createdAt}
             />

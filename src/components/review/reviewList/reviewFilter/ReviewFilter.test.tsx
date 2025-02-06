@@ -48,6 +48,8 @@ describe('ReviewFilter', () => {
 
     expect(setFiltersMock).toHaveBeenCalledWith({
       sortOrder: 'POPULAR',
+      pageParam: 0,
+      size: 12,
     });
   });
 
