@@ -1,25 +1,24 @@
 import {
   Filters,
   Travel,
-  TravelFilterResponse,
   MyTravel,
   MyTravelResponse,
   TravelCard,
 } from '@/@types/travel';
 import buildTravelUrl from '@/utils/buildTravelUrl';
-import { BaseResponse } from '@/@types/api';
+import { BaseResponse, ListResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 export const postTravelParticipation = (travelId: number) => {
-  return http.post<any>(`/travels/${travelId}/participation`);
+  return http.post<unknown>(`/travels/${travelId}/participation`);
 };
 
 export const deleteTravelParticipation = (travelId: number) => {
-  return http.delete<any>(`/travels/${travelId}/participation`);
+  return http.delete<unknown>(`/travels/${travelId}/participation`);
 };
 
 export const deleteTravel = (travelId: number) => {
-  return http.delete<any>(`/travels/${travelId}`);
+  return http.delete<unknown>(`/travels/${travelId}`);
 };
 
 export const getPopularTravel = () => {
@@ -33,15 +32,15 @@ export const getTravelDetail = ({ id }: { id: string }) => {
 export const getTravels = (props: Filters & { pageParam?: number }) => {
   const { pageParam, ...filters } = props;
   const url = buildTravelUrl(filters, pageParam);
-  return http.get<BaseResponse<TravelFilterResponse>>(url);
+  return http.get<ListResponse<Travel>>(url);
 };
 
 export const postTravelBookMark = (id: number) => {
-  return http.post<any>(`/travels/bookmark?travelId=${id}`);
+  return http.post<unknown>(`/travels/bookmark?travelId=${id}`);
 };
 
 export const deleteTravelBookMark = (id: number) => {
-  return http.delete<any>(`/travels/bookmark?travelId=${id}`);
+  return http.delete<unknown>(`/travels/bookmark?travelId=${id}`);
 };
 
 /* ----------------------------- Apis in mypage ----------------------------- */

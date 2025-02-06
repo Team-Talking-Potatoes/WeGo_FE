@@ -85,7 +85,7 @@ const InputImage = () => {
           <label
             htmlFor="file"
             className="relative flex h-20 w-20 flex-shrink-0 cursor-pointer items-center justify-center overflow-hidden bg-label-alternative"
-            aria-label="이미지 등록"
+            aria-label="이미지 등록하기, 이미지 하나당 5MB이내로 등록 가능 합니다"
           >
             <PluseIcon className="text-white" />
           </label>
