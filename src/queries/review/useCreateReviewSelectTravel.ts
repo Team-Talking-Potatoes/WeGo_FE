@@ -9,7 +9,7 @@ const useCreateReviewSelectTravel = () => {
     queryFn: ({ pageParam = 0 }) => getWritableTravelReview(size, pageParam),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => {
-      return lastPage.hasNext ? pages.length : undefined;
+      return lastPage.data.hasNext ? pages.length : undefined;
     },
     staleTime: Infinity,
   });

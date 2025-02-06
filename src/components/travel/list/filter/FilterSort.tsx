@@ -24,7 +24,6 @@ const FilterSort = () => {
       </ListboxButton>
       <ListboxOptions
         anchor="bottom"
-        transition
         className="body-2-m z-20 flex w-[90px] flex-col items-center justify-center rounded border-line-normal bg-white text-label-alternative shadow-custom transition duration-100 ease-in [--anchor-gap:4px] [--anchor-padding:20px]"
       >
         <ListboxOption

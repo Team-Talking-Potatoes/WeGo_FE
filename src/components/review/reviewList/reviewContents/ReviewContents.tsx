@@ -32,29 +32,27 @@ const ReviewContents = () => {
       {reviewsData && (
         <ul className="grid grid-cols-2 gap-x-[15px] gap-y-6 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
           {reviewsData.pages.map((page, pageIndex) =>
-            page.data.content
-              ? page.data.content.map((review, reviewIndex) => (
-                  <li key={`${filters.sortOrder}-${review.reviewId}`}>
-                    <ReviewCard
-                      reviewId={review.reviewId}
-                      nickname={review.nickname}
-                      profileImage={review.profileImage}
-                      reviewImage={review.reviewImage}
-                      title={review.title}
-                      content={review.content}
-                      starRating={review.starRating}
-                      travelLocation={review.travelLocation}
-                      createdAt={review.createdAt}
-                      likesFlag={review.likesFlag ?? false}
-                    />
-                    <ListSkip.Link
-                      skipId="review-list-end"
-                      skipLabel="리뷰 리스트"
-                      currentElement={pageIndex * 12 + reviewIndex + 1}
-                    />
-                  </li>
-                ))
-              : null,
+            page.data.content.map((review, reviewIndex) => (
+              <li key={`${filters.sortOrder}-${review.reviewId}`}>
+                <ReviewCard
+                  reviewId={review.reviewId}
+                  nickname={review.nickname}
+                  profileImage={review.profileImage}
+                  reviewImage={review.reviewImage}
+                  title={review.title}
+                  content={review.content}
+                  starRating={review.starRating}
+                  travelLocation={review.travelLocation}
+                  createdAt={review.createdAt}
+                  likesFlag={review.likesFlag ?? false}
+                />
+                <ListSkip.Link
+                  skipId="review-list-end"
+                  skipLabel="리뷰 리스트"
+                  currentElement={pageIndex * 12 + reviewIndex + 1}
+                />
+              </li>
+            )),
           )}
         </ul>
       )}
