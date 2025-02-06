@@ -18,7 +18,7 @@ export const getTravelReview = ({
   pageParam: number;
 }) => {
   return http.get<ListResponse<Review>>(
-    `/reviews?travelId=${travelId}&page=${pageParam}&size=8`,
+    `/reviews/travels/${travelId}?page=${pageParam}&size=8`,
   );
 };
 
