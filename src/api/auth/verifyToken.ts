@@ -11,5 +11,5 @@ export const verifyToken = (request?: NextRequest) => {
       }
     : undefined;
 
-  return http.get<BaseResponse<object>>('/auth/token/verification', config);
+  return http.get<BaseResponse<unknown>>('/auth/token/verification', config);
 };

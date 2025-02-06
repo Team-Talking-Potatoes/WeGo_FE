@@ -57,7 +57,7 @@ async function fetcher<T>(
 
   const response = await fetch(`${BASE_URL}${endpoint}`, mergedConfig);
 
-  if (endpoint === '/auth/token/verify') {
+  if (endpoint === '/auth/token/verification') {
     return { status: response.status } as T;
   }
 
