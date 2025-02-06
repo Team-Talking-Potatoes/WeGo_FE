@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { setIsJoined, uploadChatImages } from '@/api/chat/chatApi';
 import { leaveChat } from '@/api/chat/chatRoomsApi';
 import { QueryError } from '@/@types/query';
+import useHandleChatError from '@/hooks/useHandleChatError';
 
 interface Props {
   chatId: string;
@@ -9,11 +10,12 @@ interface Props {
 
 export const useSetIsJoined = () => {
   const queryClient = useQueryClient();
+  const handleChatError = useHandleChatError();
 
   return useMutation({
     mutationFn: ({ chatId }: Props) => setIsJoined(chatId),
     onError: (error: QueryError) => {
-      console.error(error);
+      handleChatError(error);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -47,11 +49,12 @@ interface LeaveChatProps {
 
 export const useLeaveChat = () => {
   const queryClient = useQueryClient();
+  const handleChatError = useHandleChatError();
 
   return useMutation({
     mutationFn: ({ chatId }: LeaveChatProps) => leaveChat(chatId),
     onError: (error: QueryError) => {
-      console.error(error);
+      handleChatError(error);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
