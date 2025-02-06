@@ -22,7 +22,7 @@ const PCHeader = () => {
           {user ? (
             <Link href="/mypage">
               <UserIcon
-                profileImage={user?.image}
+                profileImage={user?.profileImage}
                 nickname={user.nickname}
                 size="xxs"
                 ariaLabel="마이페이지로 가기"

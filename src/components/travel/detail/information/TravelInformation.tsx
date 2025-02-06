@@ -2,14 +2,14 @@ import Profile from '@/assets/profile.svg';
 import Timeline from '@/assets/timeline.svg';
 import DateIcon from '@/assets/date.svg';
 import LocationIcon from '@/assets/location.svg';
-import { TravelDetail } from '@/@types/travel';
+import { Travel } from '@/@types/travel';
 import dayjs from 'dayjs';
 import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
 import DomesticTag from '../../../common/tag/DomesticTag';
 import RecruitmentBox from './RecruitmentBox';
 
 type Props = Pick<
-  TravelDetail,
+  Travel,
   | 'travelName'
   | 'isDomestic'
   | 'minTravelMateCount'

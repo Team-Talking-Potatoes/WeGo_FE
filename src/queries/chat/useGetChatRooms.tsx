@@ -1,13 +1,21 @@
 import { getChatRooms } from '@/api/chat/chatRoomsApi';
 import { useQuery } from '@tanstack/react-query';
 import { SortType } from '@/@types/chat';
+import useHandleChatError from '@/hooks/useHandleChatError';
 
 const useGetChatRooms = (sortBy: SortType) => {
+  const handleChatError = useHandleChatError();
+
   return useQuery({
     queryKey: ['chatRooms', sortBy],
-    queryFn: ({ queryKey }) => {
-      const [, sort] = queryKey as [string, SortType];
-      return getChatRooms(sort);
+    queryFn: async ({ queryKey }) => {
+      try {
+        const [, sort] = queryKey as [string, SortType];
+        return await getChatRooms(sort);
+      } catch (error: any) {
+        handleChatError(error);
+        throw error;
+      }
     },
     staleTime: Infinity,
     gcTime: Infinity,

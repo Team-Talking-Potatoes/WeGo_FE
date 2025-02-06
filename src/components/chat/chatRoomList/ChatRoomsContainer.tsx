@@ -3,16 +3,16 @@
 import ChatHeader from '@/components/chat/chatRoomList/ChatHeader';
 import ChatRoomList from '@/components/chat/chatRoomList/ChatRoomList';
 import Chat from '@/assets/chat_gray.svg';
-import { RoomResponse, SortType } from '@/@types/chat';
+import { ChatRoom, SortType } from '@/@types/chat';
 import ChatRoomListSkeleton from '@/components/chat/skeleton/ChatRoomListSkeleton';
 
 interface Rooms {
-  data: RoomResponse[];
+  data: ChatRoom[];
 }
 
 interface ChatRooms {
   data: Rooms | undefined;
-  sortedRooms: RoomResponse[] | null;
+  sortedRooms: ChatRoom[] | null;
   currentSort: SortType;
   isFetching: boolean;
   isLoading: boolean;
@@ -70,7 +70,7 @@ const ChatRoomsContainer = ({
 
       {!isLoading && sortedRooms && sortedRooms.length > 0 && (
         <ChatRoomList
-          rooms={sortedRooms as RoomResponse[]}
+          rooms={sortedRooms}
           onChatRoomId={onChatRoomId}
           chatRoomId={chatRoomId}
         />

@@ -2,17 +2,19 @@
 
 import NoResult from '@/components/common/NoResult';
 import { useTravelListStore } from '@/store/useTravelListStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { checkTomorrow } from '@/utils/dateChangeKr';
+
 import useGetTravelsList from '@/queries/travel/useGetTravelsList';
 import { InitialFilters } from '@/@types/travel';
 import TravelCardBig from '@/components/card/travel/TravelCardBig';
 import SkeletonTravelList from '@/components/common/skeleton/travelList/SkeletonTravelList';
 import SkeletonTravelCardBig from '@/components/common/skeleton/card/SkeletonTravelCardBig';
+import { ListSkip } from '@/components/a11y/ListSkip';
 
 const TravelList = () => {
   const { ref, inView } = useInView();
+  const [skipMode, setSkipMode] = useState(false);
   const filters = useTravelListStore((state) => state.filters);
 
   const {
@@ -24,6 +26,11 @@ const TravelList = () => {
     fetchNextPage,
   } = useGetTravelsList(filters);
 
+  const handleSkipClick = () => {
+    setSkipMode(true);
+    setTimeout(() => setSkipMode(false), 8000);
+  };
+
   useEffect(() => {
     if (filters !== InitialFilters) {
       fetchNextPage();
@@ -31,10 +38,10 @@ const TravelList = () => {
   }, [filters, fetchNextPage]);
 
   useEffect(() => {
-    if (inView && hasNextPage) {
+    if (!skipMode && inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
+  }, [inView, hasNextPage, fetchNextPage, skipMode]);
 
   if (isLoading) {
     return (
@@ -44,7 +51,7 @@ const TravelList = () => {
     );
   }
 
-  if (isError) return <div>에러{error?.message}</div>;
+  if (isError) return <div>에러가 발생했습니다. {error?.message}</div>;
 
   if (travelListData?.pages[0].data.content.length === 0) {
     return (
@@ -57,43 +64,54 @@ const TravelList = () => {
   }
 
   return (
-    <div className="mb-5 grid h-full w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
-      {travelListData &&
-        travelListData.pages.map((page) =>
-          page.data.content.map((travel) => (
-            <TravelCardBig
-              key={travel.travelId}
-              travelId={travel.travelId}
-              image={travel.image}
-              isDomestic={travel.isDomestic}
-              travelName={travel.travelName}
-              location={travel.location}
-              maxTravelMateCount={travel.maxTravelMateCount}
-              currentTravelMateCount={travel.currentTravelMateCount}
-              startAt={travel.startAt}
-              endAt={travel.endAt}
-              formattedStartDate={checkTomorrow(travel.startAt)}
-              isBookmark={travel.isBookmark}
-            />
-          )),
+    <>
+      <ul className="mb-5 grid h-full w-full gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
+        {travelListData &&
+          travelListData.pages.map((page, pageIndex) =>
+            page.data.content.map((travel, travelIndex) => (
+              <li key={travel.travelId}>
+                <TravelCardBig
+                  travelId={travel.travelId}
+                  travelImage={travel.travelImage}
+                  isDomestic={travel.isDomestic}
+                  travelName={travel.travelName}
+                  travelLocation={travel.travelLocation}
+                  maxTravelMateCount={travel.maxTravelMateCount}
+                  currentTravelMateCount={travel.currentTravelMateCount}
+                  startAt={travel.startAt}
+                  endAt={travel.endAt}
+                  bookmarkFlag={travel.bookmarkFlag}
+                />
+                <ListSkip.Link
+                  skipId="travel-list-end"
+                  skipLabel="여행 리스트"
+                  currentElement={pageIndex * 12 + travelIndex + 1}
+                  onClick={handleSkipClick}
+                />
+              </li>
+            )),
+          )}
+
+        {hasNextPage && !skipMode && (
+          <>
+            <li
+              ref={ref}
+              className="flex w-full justify-center"
+              aria-label="여행 정보를 불러오는 중입니다."
+            >
+              <SkeletonTravelCardBig />
+            </li>
+            {Array.from({ length: 3 }).map((_, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={`skeleton-${index}`}>
+                <SkeletonTravelCardBig />
+              </li>
+            ))}
+          </>
         )}
-      {hasNextPage ? (
-        <>
-          <div
-            ref={ref}
-            className="flex w-full justify-center"
-            aria-label="여행 정보를 불러오는 중입니다."
-          >
-            <SkeletonTravelCardBig />
-          </div>
-          {[1, 2, 3].map((v) => (
-            <SkeletonTravelCardBig key={v} />
-          ))}
-        </>
-      ) : (
-        <div aria-label="마지막 페이지 입니다" />
-      )}
-    </div>
+      </ul>
+      <ListSkip.Destination skipId="travel-list-end" skipLabel="여행 리스트" />
+    </>
   );
 };
 

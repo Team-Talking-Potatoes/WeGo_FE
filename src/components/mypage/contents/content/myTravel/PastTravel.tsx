@@ -3,7 +3,7 @@ import Pagination from '@/components/common/pagination/Pagination';
 import { checkTomorrow } from '@/utils/dateChangeKr';
 import { useState } from 'react';
 import { usePastTravel } from '@/queries/travel/useGetMyTravel';
-import { TravelList } from '@/@types/travel';
+import { TravelCard as TravelCardProps } from '@/@types/travel';
 import HorizontalDivider from '@/components/common/divider/HorizontalDivider';
 import MyTravelCardSkeleton from '@/components/mypage/skeleton/MyTravelCardSkeleton';
 import NoTravel from './NoTravel';
@@ -28,7 +28,7 @@ const PastTravel = () => {
     >
       {travels && travels.data.total > 0 ? (
         <div className="grid w-full gap-5 xl:grid-cols-2 xl:gap-6">
-          {travels.data.content.map((travel: TravelList) => (
+          {travels.data?.content.map((travel: TravelCardProps) => (
             <div key={travel.travelId}>
               <TravelCard
                 key={travel.travelId}
@@ -37,11 +37,12 @@ const PastTravel = () => {
                 maxTravelMateCount={travel.maxTravelMateCount}
                 currentTravelMateCount={travel.currentTravelMateCount}
                 isDomestic={travel.isDomestic}
-                location={travel.location}
-                image={travel.image}
+                travelLocation={travel.travelLocation}
+                travelImage={travel.travelImage}
                 startAt={travel.startAt}
                 endAt={travel.endAt}
                 formattedStartDate={checkTomorrow(travel.startAt)}
+                bookmarkFlag={travel.bookmarkFlag}
                 closed
               />
               <HorizontalDivider className="mt-5 xl:mt-6" />

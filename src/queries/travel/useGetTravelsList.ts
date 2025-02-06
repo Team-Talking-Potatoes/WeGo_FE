@@ -6,10 +6,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 const useGetTravelsList = (filters: Filters) => {
   return useInfiniteQuery({
     queryKey: QUERY_KEYS.TRAVEL.TRAVEL_LIST(filters),
-    queryFn: ({ pageParam = 1 }) => getTravels({ ...filters, pageParam }),
-    initialPageParam: 1,
+    queryFn: ({ pageParam = 0 }) => getTravels({ ...filters, pageParam }),
+    initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => {
-      return lastPage.data.hasNext ? pages.length + 1 : undefined;
+      return lastPage.data.hasNext ? pages.length : undefined;
     },
   });
 };

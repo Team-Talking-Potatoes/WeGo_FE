@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useGetChat } from '@/queries/chat/useGetChat';
 import { useState, useEffect, useRef } from 'react';
-import { ChattingResponse } from '@/@types/chat';
+import { Chat } from '@/@types/chat';
 import { useWebSocketStore } from '@/store/useWebSocketStore';
 
 export const useChat = (chatId: string) => {
@@ -27,7 +27,7 @@ export const useChat = (chatId: string) => {
     };
   }, [connected, subscribeToChat, unsubscribeFromChat, chatId]);
 
-  const [chatInfo, setChatInfo] = useState<ChattingResponse | null>(null);
+  const [chatInfo, setChatInfo] = useState<Chat | null>(null);
   const isFetchingPreviousRef = useRef<boolean>(false);
 
   const {

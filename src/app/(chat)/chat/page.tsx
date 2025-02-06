@@ -6,7 +6,6 @@ import ChatRoomsContainer from '@/components/chat/chatRoomList/ChatRoomsContaine
 import ChatRoomContainer from '@/components/chat/chatRoom/ChatRoomContainer';
 import { useState, useEffect } from 'react';
 import { useChatRooms } from '@/hooks/useChatRooms';
-import { RoomResponse } from '@/@types/chat';
 import MainNavigation from '@/components/nav/MainNavigation';
 import PCHeader from '@/components/header/PCHeader';
 import { useWebSocketStore } from '@/store/useWebSocketStore';
@@ -83,15 +82,15 @@ const ChatRoomsPage = () => {
             chatRoomsData={chatRoomsData}
           />
         </div>
-        <div
-          className={`relative ${chatRoomId === null ? 'hidden' : 'flex'} w-full flex-col overflow-hidden md:flex xl:mt-20 xl:h-[calc(100dvh-80px)]`}
-        >
-          <ChatRoomContainer
-            onCloseChatRoom={handleCloseChatRoom}
-            chatRoomId={chatRoomId as string}
-            selectedRoom={selectedRoom as RoomResponse}
-          />
-        </div>
+        {chatRoomId && selectedRoom && (
+          <div className="relative w-full flex-col overflow-hidden md:flex xl:mt-20 xl:h-[calc(100dvh-80px)]">
+            <ChatRoomContainer
+              onCloseChatRoom={handleCloseChatRoom}
+              chatRoomId={chatRoomId}
+              selectedRoom={selectedRoom}
+            />
+          </div>
+        )}
       </div>
       <div
         className={`${selectedRoom?.hasJoined ? 'hidden' : 'block'} md:block xl:hidden`}

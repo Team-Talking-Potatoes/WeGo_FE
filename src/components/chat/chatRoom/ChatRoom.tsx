@@ -5,7 +5,6 @@ import HamburgerMenu from '@/assets/menu.svg';
 import Header from '@/components/common/header/Header';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { ChatOverview, ChatMessage } from '@/@types/chat';
 import ChatSideBar from '@/components/chat/chatRoom/ChatSideBar';
 import ChatAlbum from '@/components/chat/chatRoom/ChatAlbum';
 import ChatImageViewer from '@/components/chat/chatRoom/ChatImageViewer';
@@ -28,8 +27,6 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
   const previousScrollTopRef = useRef<number | null>(null);
 
   const { data } = useGetUser();
-  const nickname = data?.nickname;
-
   const { chatUpdates } = useWebSocketStore();
 
   const {
@@ -89,7 +86,8 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
     );
   }
 
-  if (!chatInfo || !chatOverview) return <ChatRoomSkeleton />;
+  if (!chatInfo || !chatOverview || !data) return <ChatRoomSkeleton />;
+  const { nickname } = data;
 
   return (
     <>
@@ -114,9 +112,9 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
       <ChatMessages
         isFetchingPreviousRef={isFetchingPreviousRef}
         messagesContainerRef={messagesContainerRef}
-        messages={chatInfo?.chatMessages as ChatMessage[]}
+        messages={chatInfo?.chatMessages}
         textareaHeight={textareaHeight}
-        nickname={nickname as string}
+        nickname={nickname}
       >
         {hasNextPage && !isFetchingNextPage ? <div ref={ref} /> : null}
       </ChatMessages>
@@ -126,8 +124,8 @@ const ChatRoom = ({ chatId, onCloseChatRoom }: Props) => {
         onHeightChange={setTextareaHeight}
       />
       <ChatSideBar
-        nickname={nickname as string}
-        chatData={chatOverview as ChatOverview}
+        nickname={nickname}
+        chatData={chatOverview}
         isSidebarOpen={isSidebarOpen}
         onOpenAlbum={handleOpenAlbum}
         onCloseSidebar={handleCloseSidebar}

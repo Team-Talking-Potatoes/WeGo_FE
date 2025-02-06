@@ -1,6 +1,6 @@
 import VerticalProgressBar from '@/components/common/progressbar/VerticalProgressBar';
 import BlueStart from '@/assets/blue_star.svg';
-import { TravelReviewRateScore } from '@/@types/travel';
+import { ReviewRatings } from '@/@types/review';
 import StarRate from './StarRate';
 
 const ScoreBox = ({
@@ -8,7 +8,7 @@ const ScoreBox = ({
   scoreFrequency,
 }: {
   averageScore: number;
-  scoreFrequency: TravelReviewRateScore;
+  scoreFrequency: ReviewRatings;
 }) => {
   const fullScoreFrequency = {
     1: scoreFrequency.oneStarReviews,
@@ -17,7 +17,7 @@ const ScoreBox = ({
     4: scoreFrequency.fourStarReviews,
     5: scoreFrequency.fiveStarReviews,
   };
-
+  const scores = Object.keys(fullScoreFrequency).map(Number);
   return (
     <div className="flex h-40 w-full flex-shrink-0 items-center justify-center gap-[18px] rounded border border-gray-100 px-3.5 py-5 md:gap-12">
       <div className="flex flex-col items-center gap-2">
@@ -28,7 +28,7 @@ const ScoreBox = ({
         <div className="relative flex">
           <StarRate score={averageScore} />
           <div className="absolute flex">
-            {[1, 2, 3, 4, 5].map((v) => (
+            {scores.map((v) => (
               <BlueStart key={`star-${v}`} className="text-label-disable" />
             ))}
           </div>
@@ -41,7 +41,9 @@ const ScoreBox = ({
             <div key={score} className="flex flex-col items-center">
               <div className="body-3-r pb-2 text-gray-400">{count}</div>
               <VerticalProgressBar
-                progressRate={Math.floor((count / scoreFrequency.total) * 100)}
+                progressRate={Math.floor(
+                  (count / scoreFrequency.totalReviews) * 100,
+                )}
               />
               <div className="body-2-m pt-1">{score}점</div>
             </div>

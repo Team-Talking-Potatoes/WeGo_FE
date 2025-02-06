@@ -27,7 +27,7 @@ export const useReviewLikes = ({
     },
     onError: (error: QueryError) => {
       switch (error.status) {
-        case 401:
+        case 400:
           showModal('로그인이 필요합니다.', '로그인 후 이용해주세요.', {
             icon: ModalErrorIcon,
             confirmText: '돌아가기',

@@ -6,12 +6,12 @@ import {
   AUTH_ERROR_MESSAGE,
   AUTH_PLACEHOLDER,
 } from '@/constants/auth';
-import type { PasswordInput as PasswordInputType } from '@/@types/auth';
+import type { AuthInput } from '@/@types/auth';
 import PasswordInput from '@/components/common/input/PasswordInput';
 import { memo } from 'react';
 
 interface Props {
-  name: keyof PasswordInputType;
+  name: keyof AuthInput;
   value: string;
   isValid: boolean | null;
   important?: boolean;

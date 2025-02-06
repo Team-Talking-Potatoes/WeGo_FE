@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server';
+import { BaseResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 export const verifyToken = (request?: NextRequest) => {
@@ -10,5 +11,5 @@ export const verifyToken = (request?: NextRequest) => {
       }
     : undefined;
 
-  return http.get<{ status: number }>('/auth/token/verify', config);
+  return http.get<BaseResponse<object>>('/auth/token/verification', config);
 };

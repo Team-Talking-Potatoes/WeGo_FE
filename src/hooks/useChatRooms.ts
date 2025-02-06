@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import useGetChatRooms from '@/queries/chat/useGetChatRooms';
-import { RoomResponse, SortType } from '@/@types/chat';
+import { ChatRoom, SortType } from '@/@types/chat';
 import { sortRooms } from '@/utils/chat';
 
 export const useChatRooms = () => {
   const [currentSort, setCurrentSort] = useState<SortType>('RECENT');
-  const [sortedRooms, setSortedRooms] = useState<RoomResponse[] | null>(null);
+  const [sortedRooms, setSortedRooms] = useState<ChatRoom[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { data, isFetching, error } = useGetChatRooms(currentSort);
 

@@ -21,7 +21,7 @@ interface WebSocketState {
       sendAt: string;
       status: 'JOIN' | 'LEAVE' | 'MESSAGE';
       participant?: {
-        user: string;
+        nickname: string;
         email: string;
         description: string;
         profileImage: string;

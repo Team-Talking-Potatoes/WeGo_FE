@@ -1,58 +1,41 @@
 export interface Review {
+  // 리뷰 정보
   reviewId: number;
-  id: number;
-  title: string;
-  nickname?: string;
-  profileImage?: string;
-  imageUrl: string;
   reviewImage: string;
-  content: string;
-  score?: number;
-  starRating: number;
-  travelLocation: string;
-  createdAt: string;
-  isLast: boolean;
-  likesFlag?: boolean;
-}
-
-export interface ReviewResponse {
-  content: Review[];
-  currentPage: number;
-  size: number;
-  total: number;
-  hasNext: boolean;
-}
-
-export interface Filters {
-  sortOrder: 'createdAt' | 'popular';
-}
-export interface ReviewListFilters {
-  sortOrder: 'LATEST' | 'POPULAR';
-}
-
-export interface ReviewDetail {
-  reviewId: number;
-  travelId: number;
-  travelTitle: string;
-  userProfileImage: string;
-  nickname: string;
   title: string;
-  comment: string;
-  starRating: number;
+  content: string;
   reviewImages: string[];
+  starRating: number;
   likesCount: number;
   likesFlag: boolean;
-  travelLocation: string;
   createdAt: string;
+  travelLocation: string;
+
+  // 여행 정보
+  travelId: number;
+  travelTitle: string;
+
+  // 유저 정보
+  nickname: string;
+  profileImage: string;
 }
 
-export interface ReviewDetailResponse {
-  status: string;
-  data: ReviewDetail;
+export interface ReviewRatings {
+  totalReviews: number;
+  oneStarReviews: number;
+  twoStarReviews: number;
+  threeStarReviews: number;
+  fourStarReviews: number;
+  fiveStarReviews: number;
 }
 
-export interface CreateReview {
-  score: number;
-  content: string;
-  reviewImage: File[];
+export interface ReviewScore {
+  totalRating: number;
+  reviewRatings: ReviewRatings;
+}
+
+export interface ReviewListFilters {
+  sortOrder: 'LATEST' | 'POPULAR';
+  pageParam: number;
+  size: number;
 }

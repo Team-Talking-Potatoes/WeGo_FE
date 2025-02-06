@@ -42,12 +42,12 @@ const TabTravelReview = ({ travelId }: { travelId: number }) => {
           {data &&
             data.pages.map((reviewList) =>
               reviewList.data.content.map((review) => (
-                <Link href={`/review/${review.id}`} key={review.id}>
+                <Link href={`/review/${review.reviewId}`} key={review.reviewId}>
                   <ReviewCardAddText
                     nickname={review.nickname}
                     reviewImage={review.reviewImage}
                     content={review.title}
-                    score={review.starRating}
+                    starRating={review.starRating}
                   />
                 </Link>
               )),

@@ -1,5 +1,6 @@
+import { BaseResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
 export const logout = () => {
-  return http.post<any>('/auth/sign-out');
+  return http.post<BaseResponse<object>>('/auth/sign-out');
 };

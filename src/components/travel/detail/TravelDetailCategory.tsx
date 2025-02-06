@@ -1,6 +1,6 @@
 'use client';
 
-import { Participant, TravelDetail } from '@/@types/travel';
+import { Participant, Travel } from '@/@types/travel';
 import React, { Suspense, useState } from 'react';
 import dayjs from 'dayjs';
 import SpinnerIcon from '@/assets/spinner_round.svg';
@@ -8,7 +8,7 @@ import TabTravelReview from './category/TabTravelReview';
 import TabTravelDetail from './category/TabTravelDetail';
 
 type Props = Pick<
-  TravelDetail,
+  Travel,
   | 'travelId'
   | 'hashTags'
   | 'description'

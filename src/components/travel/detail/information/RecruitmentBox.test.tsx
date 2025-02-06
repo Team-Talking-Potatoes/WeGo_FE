@@ -42,8 +42,8 @@ describe('RecruitmentBox', () => {
 
 describe('RecruitmentBox, 모집 중인 여행일 때', () => {
   const mockParticipants = [
-    { id: 1, nickname: 'string', role: 'string', profileImage: 'string' },
-    { id: 2, nickname: 'string', role: 'string', profileImage: 'string' },
+    { userId: 1, nickname: 'string', role: 'string', profileImage: 'string' },
+    { userId: 2, nickname: 'string', role: 'string', profileImage: 'string' },
   ];
 
   beforeEach(() =>

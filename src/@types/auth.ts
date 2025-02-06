@@ -1,23 +1,18 @@
-interface TextInput {
+export interface AuthInput {
   email: string;
   verifyNumber: number;
   name: string;
   nickname: string;
   birthDate: number;
   contact: string;
-}
-
-interface PasswordInput {
   currentPassword: string;
   password: string;
   newPassword: string;
   passwordConfirm: string;
 }
 
-interface ValidateOptions {
-  name: keyof TextInput | keyof PasswordInput;
+export interface ValidateOptions {
+  name: keyof AuthInput;
   value: string;
   password?: string;
 }
-
-export type { TextInput, PasswordInput, ValidateOptions };

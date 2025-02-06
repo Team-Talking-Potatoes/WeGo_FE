@@ -10,21 +10,21 @@ const mockTravelPlan = [
     tripOrderNumber: 1,
     destination: '서울',
     description: '서울 탐방',
-    image: '/test1.png',
+    travelPlanImage: '/test1.png',
   },
   {
     tripDay: 2,
     tripOrderNumber: 1,
     destination: '부산',
     description: '부산 여행',
-    image: '/test1.png',
+    travelPlanImage: '/test1.png',
   },
   {
     tripDay: 3,
     tripOrderNumber: 1,
     destination: '제주도',
     description: '제주도 여행',
-    image: '/test1.png',
+    travelPlanImage: '/test1.png',
   },
 ];
 

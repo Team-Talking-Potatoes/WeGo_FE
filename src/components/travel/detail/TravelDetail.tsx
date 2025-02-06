@@ -1,11 +1,11 @@
 import TravelInformation from '@/components/travel/detail/information/TravelInformation';
-import { TravelDetail as TravelType } from '@/@types/travel';
+import { Travel } from '@/@types/travel';
 import dayjs from 'dayjs';
 import TravelDetailCategory from './TravelDetailCategory';
 import TravelImage from './image/TravelImage';
 import TravelButtons from './buttons/TravelButtons';
 
-const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
+const TravelDetail = ({ travelDetail }: { travelDetail: Travel }) => {
   const organizer =
     travelDetail &&
     travelDetail.participant.find((part) => part.role === 'ORGANIZER');
@@ -17,7 +17,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
         <article className="relative mb-32 grid gap-[22px] md:grid-cols-[1fr_1fr] md:px-10 xl:mb-24 xl:grid-cols-[652px_auto]">
           <TravelImage
             name={travelDetail.travelName}
-            image={travelDetail.image}
+            image={travelDetail.travelImage}
             endAt={travelDetail.endAt}
             registrationEnd={travelDetail.registrationEnd}
           />
@@ -38,7 +38,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
               <TravelButtons
                 className="hidden xl:block"
                 travelId={travelDetail.travelId}
-                organizer={organizer?.id}
+                organizer={organizer?.userId}
                 participationFlag={travelDetail.participationFlag}
               />
             )}
@@ -59,7 +59,7 @@ const TravelDetail = ({ travelDetail }: { travelDetail: TravelType }) => {
             <TravelButtons
               className="xl:hidden"
               travelId={travelDetail.travelId}
-              organizer={organizer?.id}
+              organizer={organizer?.userId}
               participationFlag={travelDetail.participationFlag}
             />
           )}

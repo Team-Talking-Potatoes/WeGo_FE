@@ -6,13 +6,13 @@ import Other from '@/assets/other.svg';
 import Chat from '@/assets/chat_blue.svg';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/common/button/Button';
-import { RoomResponse } from '@/@types/chat';
+import { ChatRoom } from '@/@types/chat';
 import { formatDateToStringWithDot } from '@/utils/calendarHelper';
 import { useWebSocketStore } from '@/store/useWebSocketStore';
 import { useLeaveChat } from '@/queries/chat/useSetChat';
 
 interface Props {
-  room: RoomResponse;
+  room: ChatRoom;
   onChatRoomId: (chatId: string) => void;
   selectedChatRoomId: string;
 }

@@ -1,15 +1,9 @@
 import { Travel } from '@/@types/travel';
+import { ListResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
-interface WritableTravelResponse {
-  content: Travel[];
-  total: number;
-  currentPage: number;
-  hasNext: boolean;
-}
-
 export const getWritableTravelReview = (size: number, page: number) => {
-  return http.get<WritableTravelResponse>(
+  return http.get<ListResponse<Travel>>(
     `/travels/reviews/pending?limit=${size}&page=${page}`,
   );
 };

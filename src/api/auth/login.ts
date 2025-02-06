@@ -1,8 +1,9 @@
-import { User } from '@/@types/user';
+import { AuthInput } from '@/@types/auth';
+import { BaseResponse } from '@/@types/api';
 import { http } from '../fetcher';
 
-type LoginRequestBody = Pick<User, 'email' | 'password'>;
+type LoginRequestBody = Pick<AuthInput, 'email' | 'password'>;
 
 export const login = (credentials: LoginRequestBody) => {
-  return http.post<any>('/auth/sign-in', credentials);
+  return http.post<BaseResponse<object>>('/auth/sign-in', credentials);
 };

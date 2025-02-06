@@ -13,6 +13,7 @@ import {
 import useCreateTravel from '@/queries/travel/useCreateTravel';
 import useToast from '@/hooks/useToast';
 import { usePathname, useRouter } from 'next/navigation';
+import { createTravelFormData } from '@/utils/createTravelFormData';
 
 const defaultInitialData: FormTravelData = {
   travelName: '',
@@ -126,7 +127,7 @@ const useTravelForm = () => {
     } catch (error) {
       console.error('IndexedDB 데이터 삭제 중 오류 발생:', error);
     } finally {
-      createTravel(formData);
+      createTravel(createTravelFormData(formData));
     }
   };
 

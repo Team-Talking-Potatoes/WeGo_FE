@@ -22,7 +22,7 @@ const mock = {
   travelId: 1,
   participationFlag: true,
   organizer: {
-    id: 1,
+    userId: 1,
     nickname: '녹차라떼',
     role: 'string',
     profileImage: '/image.jpg',
@@ -106,7 +106,7 @@ describe('여행 모임장이 아닐 때', () => {
     travelId: 1,
     participationFlag: true,
     organizer: {
-      id: 2,
+      userId: 2,
       nickname: '녹차라떼',
       role: 'string',
       profileImage: '/string.png',

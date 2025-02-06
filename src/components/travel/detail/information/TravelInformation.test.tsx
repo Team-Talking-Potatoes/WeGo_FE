@@ -13,9 +13,9 @@ describe('TravelInformation', () => {
     startAt: '2024.12.01',
     endAt: '2024.12.10',
     participant: [
-      { id: 1, nickname: '1', role: 'string', profileImage: 'string' },
-      { id: 2, nickname: '2', role: 'string', profileImage: 'string' },
-      { id: 3, nickname: '3', role: 'string', profileImage: 'string' },
+      { userId: 1, nickname: '1', role: 'string', profileImage: 'string' },
+      { userId: 2, nickname: '2', role: 'string', profileImage: 'string' },
+      { userId: 3, nickname: '3', role: 'string', profileImage: 'string' },
     ],
     registrationEnd: '2024.11.30',
   };
