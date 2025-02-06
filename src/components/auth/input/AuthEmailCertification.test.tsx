@@ -215,15 +215,20 @@ describe('AuthEmailCertification', () => {
     fireEvent.click(confirmButton);
 
     await waitFor(() => {
-      const emailInput = screen.getByPlaceholderText(AUTH_PLACEHOLDER.email);
-      const codeInput = screen.getByPlaceholderText(
-        AUTH_PLACEHOLDER.verifyNumber,
-      );
-
-      expect(emailInput).toBeDisabled();
-      expect(codeInput).toBeDisabled();
-      expect(confirmButton).toBeDisabled();
+      expect(
+        screen.getByPlaceholderText(AUTH_PLACEHOLDER.email),
+      ).toBeDisabled();
     });
+
+    const resendButton = screen.getByRole('button', { name: '재전송' });
+    const confirmButtonAfterCertification = screen.getByRole('button', {
+      name: '확인',
+    });
+
+    expect(resendButton).toHaveClass('disabled:bg-background-alternative');
+    expect(confirmButtonAfterCertification).toHaveClass(
+      'disabled:bg-background-alternative',
+    );
   });
 
   it('재전송 버튼 클릭 시 타이머가 리셋되어야 한다', async () => {

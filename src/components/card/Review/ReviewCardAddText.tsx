@@ -2,14 +2,16 @@ import { Review } from '@/@types/review';
 import StartIcon from '@/assets/blue_star.svg';
 import Image from 'next/image';
 
-interface Props
-  extends Pick<Review, 'nickname' | 'reviewImage' | 'content' | 'score'> {}
+type Props = Pick<
+  Review,
+  'nickname' | 'reviewImage' | 'content' | 'starRating'
+>;
 
 const ReviewCardAddText = ({
   nickname,
   reviewImage,
   content,
-  score,
+  starRating,
 }: Props) => {
   return (
     <article className="flex gap-[18px]">
@@ -32,7 +34,7 @@ const ReviewCardAddText = ({
           <span className="heading-1-b">{nickname}</span>
           <span className="body-2-m flex items-center gap-0.5 text-label-alternative">
             <StartIcon className="text-primary-normal" />
-            {score}
+            {starRating}
           </span>
         </div>
         <div className="body-2-m line-clamp-3 text-label-neutral">

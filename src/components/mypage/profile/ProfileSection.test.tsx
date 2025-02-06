@@ -23,7 +23,7 @@ describe('ProfileSection', () => {
     (useGetUser as jest.Mock).mockReturnValue({
       data: {
         userId: 1,
-        image: null,
+        profileImage: null,
         nickname: '테스트 사용자',
         email: 'test@example.com',
         description: '테스트 설명',
@@ -41,7 +41,7 @@ describe('ProfileSection', () => {
   it('사용자 프로필 이미지가 있을 때 해당 이미지가 렌더링되어야 한다', () => {
     (useGetUser as jest.Mock).mockReturnValue({
       data: {
-        image: '/path/to/profile/image.jpg',
+        profileImage: '/path/to/profile/image.jpg',
         nickname: '테스트 사용자',
         email: 'test@example.com',
         description: '테스트 설명',
@@ -60,7 +60,7 @@ describe('ProfileSection', () => {
   it('프로필 수정 버튼이 렌더링되어야 한다', () => {
     (useGetUser as jest.Mock).mockReturnValue({
       data: {
-        image: null,
+        profileImage: null,
         nickname: '테스트 사용자',
         email: 'test@example.com',
         description: '테스트 설명',

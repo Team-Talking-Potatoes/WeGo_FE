@@ -9,6 +9,7 @@ interface ReviewStore {
 export const useReviewStore = create<ReviewStore>((set) => ({
   filters: {
     sortOrder: 'LATEST',
+    pageParam: 0,
     size: 12,
   },
   setFilters: (filters) =>

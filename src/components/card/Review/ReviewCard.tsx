@@ -5,34 +5,24 @@ import StarIcon from '@/assets/icon/star_20px.svg';
 import UserIcon from '@/components/common/user/UserIcon';
 import { useState } from 'react';
 import { formatDateToShortWithDay } from '@/utils/dateChangeKr';
+import { Review } from '@/@types/review';
 import ReviewHeart from './ReviewHeart';
 
-interface Props {
-  reviewId: number;
-  nickname?: string;
-  profileImage?: string;
-  image: string;
-  title: string;
-  content: string;
-  score: number;
-  travelLocation: string;
-  createdAt: string;
-  isLiked?: boolean;
-}
+type Props = Partial<Review>;
 
 const ReviewCard = ({
   reviewId,
   nickname,
   profileImage,
-  image,
+  reviewImage,
   title,
   content,
-  score,
+  starRating,
   travelLocation,
   createdAt,
-  isLiked,
+  likesFlag,
 }: Props) => {
-  const [isLikedState, setIsLikedState] = useState(isLiked);
+  const [isLikedState, setIsLikedState] = useState(likesFlag);
 
   return (
     <Link
@@ -42,8 +32,8 @@ const ReviewCard = ({
       <div className="relative aspect-[160/210] w-full">
         <div className="relative h-full">
           <Image
-            src={image}
-            alt={title}
+            src={reviewImage ?? ''}
+            alt={title ?? ''}
             fill
             className="rounded object-cover opacity-0 duration-300 ease-in-out"
             onLoadingComplete={(img) => {
@@ -52,9 +42,9 @@ const ReviewCard = ({
             }}
           />
 
-          {isLiked !== undefined && (
+          {likesFlag !== undefined && (
             <ReviewHeart
-              reviewId={reviewId}
+              reviewId={reviewId!}
               isLiked={isLikedState}
               setIsLiked={setIsLikedState}
             />
@@ -89,7 +79,7 @@ const ReviewCard = ({
 
           <div className="flex items-center">
             <StarIcon />
-            <p className="body-3-m text-label-alternative">{score}</p>
+            <p className="body-3-m text-label-alternative">{starRating}</p>
           </div>
         </div>
       </div>
