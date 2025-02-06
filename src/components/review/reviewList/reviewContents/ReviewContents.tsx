@@ -5,6 +5,7 @@ import useReview from '@/queries/review/useReview';
 import { useReviewStore } from '@/store/useReviewStore';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { ListSkip } from '@/components/a11y/ListSkip';
 import ReviewSkeleton from '../skeleton/ReviewSkeleton';
 
 const ReviewContents = () => {
@@ -29,27 +30,33 @@ const ReviewContents = () => {
   return (
     <div className="mt-3">
       {reviewsData && (
-        <div className="grid grid-cols-2 gap-x-[15px] gap-y-6 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
-          {reviewsData.pages.map((page) =>
+        <ul className="grid grid-cols-2 gap-x-[15px] gap-y-6 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
+          {reviewsData.pages.map((page, pageIndex) =>
             page.data.content
-              ? page.data.content.map((review) => (
-                  <ReviewCard
-                    key={`${filters.sortOrder}-${review.reviewId}`}
-                    reviewId={review.reviewId}
-                    nickname={review.nickname}
-                    profileImage={review.profileImage}
-                    reviewImage={review.reviewImage}
-                    title={review.title}
-                    content={review.content}
-                    starRating={review.starRating}
-                    travelLocation={review.travelLocation}
-                    createdAt={review.createdAt}
-                    likesFlag={review.likesFlag ?? false}
-                  />
+              ? page.data.content.map((review, reviewIndex) => (
+                  <li key={`${filters.sortOrder}-${review.reviewId}`}>
+                    <ReviewCard
+                      reviewId={review.reviewId}
+                      nickname={review.nickname}
+                      profileImage={review.profileImage}
+                      reviewImage={review.reviewImage}
+                      title={review.title}
+                      content={review.content}
+                      starRating={review.starRating}
+                      travelLocation={review.travelLocation}
+                      createdAt={review.createdAt}
+                      likesFlag={review.likesFlag ?? false}
+                    />
+                    <ListSkip.Link
+                      skipId="review-list-end"
+                      skipLabel="리뷰 리스트"
+                      currentElement={pageIndex * 12 + reviewIndex + 1}
+                    />
+                  </li>
                 ))
               : null,
           )}
-        </div>
+        </ul>
       )}
 
       {hasNextPage ? (
@@ -57,6 +64,8 @@ const ReviewContents = () => {
           <ReviewSkeleton />
         </div>
       ) : null}
+
+      <ListSkip.Destination skipId="review-list-end" skipLabel="리뷰 목록" />
     </div>
   );
 };
