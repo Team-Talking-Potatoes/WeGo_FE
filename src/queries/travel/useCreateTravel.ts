@@ -18,16 +18,6 @@ const useCreateTravel = () => {
     mutationFn: createTravel,
     onError: (error: QueryError) => {
       switch (error.status) {
-        case 401:
-          showModal('토큰이 만료되었습니다.', '여행 만들기에 실패했습니다.', {
-            icon: ModalErrorIcon,
-            type: 'error',
-            confirmText: '돌아가기',
-            onConfirm: () => {
-              router.push('/login');
-            },
-          });
-          break;
         case 400:
           showModal(
             '잘못된 형식의 입력입니다.',
@@ -41,8 +31,16 @@ const useCreateTravel = () => {
             },
           );
           break;
-        default:
+        case 500:
           showModal('네트워크를 확인해주세요.', `${error.message}`, {
+            icon: ModalErrorIcon,
+            onConfirm: () => {
+              router.push('/');
+            },
+          });
+          break;
+        default:
+          showModal('알 수 없는 오류 발생했습니다.', `${error.message}`, {
             icon: ModalErrorIcon,
             onConfirm: () => {
               router.push('/');
