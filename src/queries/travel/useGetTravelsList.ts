@@ -9,7 +9,7 @@ const useGetTravelsList = (filters: Filters) => {
     queryFn: ({ pageParam = 0 }) => getTravels({ ...filters, pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => {
-      return lastPage.hasNext ? pages.length : undefined;
+      return lastPage.data.hasNext ? pages.length : undefined;
     },
   });
 };

@@ -79,7 +79,8 @@ const TravelCardBig = ({
           width={400}
           height={200}
           className="h-full w-full object-cover opacity-0 duration-300 ease-in-out"
-          onLoadingComplete={(img) => {
+          onLoad={(event) => {
+            const img = event.currentTarget;
             img.classList.remove('opacity-0');
             img.classList.add('opacity-100');
           }}

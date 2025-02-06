@@ -2,27 +2,29 @@ interface Props {
   skipId: string;
   skipLabel: string;
   currentElement: number;
+  onClick?: () => void;
 }
 
 export const ListSkip = {
   /**
    * 리스트 탈출을 위한 링크 컴포넌트
    */
-  Link: ({ currentElement, skipId, skipLabel }: Partial<Props>) => {
+  Link: ({ currentElement, skipId, skipLabel, onClick }: Partial<Props>) => {
     const pageInfo = currentElement
       ? ` (현재 ${currentElement} : ''}번째 요소)`
       : '';
 
     return (
-      <li className="col-span-full">
+      <div className="col-span-full">
         <a
           href={`#${skipId}`}
           className="sr-only focus:not-sr-only focus:block focus:border focus:bg-white focus:p-2 focus:text-center"
           aria-label={`${skipLabel || '목록'} 탈출하기${pageInfo}`}
+          onClick={onClick}
         >
           {skipLabel || '목록'} 탈출하기
         </a>
-      </li>
+      </div>
     );
   },
 
