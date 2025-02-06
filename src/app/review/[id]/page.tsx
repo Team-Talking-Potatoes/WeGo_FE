@@ -27,7 +27,7 @@ const ReviewDetailPage = async ({
   return (
     <div className="pb-[120px]">
       <Header title="리뷰 상세보기" />
-      <ReviewDetailContainer data={data?.data} />
+      {data && <ReviewDetailContainer data={data.data} />}
     </div>
   );
 };
