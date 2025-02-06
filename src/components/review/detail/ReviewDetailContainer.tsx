@@ -8,7 +8,7 @@ import ReviewContent from './reviewContent/ReviewContent';
 import DetailLike from '../likeButton/DetailLike';
 
 interface Props {
-  data: Partial<Review> | undefined;
+  data: Partial<Review>;
 }
 
 const ReviewDetailContainer = ({ data }: Props) => {
@@ -41,7 +41,7 @@ const ReviewDetailContainer = ({ data }: Props) => {
 
           <ReviewContent
             title={data?.title || ''}
-            content={data?.comment || ''}
+            content={data?.content || ''}
             travelLocation={data?.travelLocation || ''}
           />
 

@@ -4,7 +4,6 @@ export interface Review {
   reviewImage: string;
   title: string;
   content: string;
-  comment: string;
   reviewImages: string[];
   starRating: number;
   likesCount: number;
