@@ -64,12 +64,12 @@ export const checkedTravel = (limit: number, offset: number) => {
 
 export const writableTravel = (limit: number, offset: number) => {
   return http.get<MyTravel>(
-    `/travels/reviews/pending?size=${limit}&page=${offset}`,
+    `/travels/reviews/writable?size=${limit}&page=${offset}`,
   );
 };
 
 export const mySelfTravel = (limit: number, offset: number) => {
   return http.get<MyTravelResponse>(
-    `/travels/created?size=${limit}&page=${offset}`,
+    `/travels/mine?size=${limit}&page=${offset}`,
   );
 };
